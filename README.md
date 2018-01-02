@@ -6,8 +6,8 @@
 
 ## 使用方法
 ```
-git clone https://github.com/amenzai/myBlog.git
-cd myBlog
+git clone https://github.com/amenzai/amenzai.github.io.git
+cd amenzai.github.io
 npm install
 hexo g
 hexo s
