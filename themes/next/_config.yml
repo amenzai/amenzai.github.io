@@ -140,7 +140,7 @@ font:
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
 social:
   GitHub: https://github.com/amenzai
-  # Twitter: https://twitter.com/amenzai
+  Twitter: https://twitter.com/amenzai
   微博: http://weibo.com/amenzai1
   # 等等
 
@@ -155,7 +155,7 @@ social_icons:
   # Icon Mappings.
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
-  # Twitter: twitter
+  Twitter: twitter
   微博: weibo
 
 
@@ -216,7 +216,7 @@ sidebar:
 # links_title: Links
 # links:
 #   MacTalk: http://macshuo.com/
-#   Title: http://example.com/
+  # Title: http://example.com/
 
 
 # ---------------------------------------------------------------
