@@ -99,7 +99,7 @@ font:
     # external: true will load this font family from host.
     external: true
     # family: Lato
-    family: -apple-system
+    family: 
 
   # Font settings for Headlines (h1, h2, h3, h4, h5, h6)
   # Fallback to `global` font settings.
@@ -346,7 +346,7 @@ changyan:
 ##  type: button
 
 # Share
-jiathis: true
+# jiathis: true
 # Warning: JiaThis does not support https.
 #add_this_id:
 
