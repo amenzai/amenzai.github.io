@@ -99,13 +99,13 @@ font:
     # external: true will load this font family from host.
     external: true
     # family: Lato
-    family: Monda
+    family: -apple-system
 
   # Font settings for Headlines (h1, h2, h3, h4, h5, h6)
   # Fallback to `global` font settings.
   headings:
     external: true
-    family: Roboto Slab
+    family: 
 
   # Font settings for posts
   # Fallback to `global` font settings.
@@ -124,7 +124,7 @@ font:
   # Font settings for <code> and code blocks.
   codes:
     external: true
-    family: PT Mono
+    family: Consolas
     size:
 
 
@@ -216,7 +216,7 @@ sidebar:
 # links_title: Links
 # links:
 #   MacTalk: http://macshuo.com/
-  # Title: http://example.com/
+#   Title: http://example.com/
 
 
 # ---------------------------------------------------------------
@@ -346,7 +346,7 @@ changyan:
 ##  type: button
 
 # Share
-# jiathis: true
+jiathis: true
 # Warning: JiaThis does not support https.
 #add_this_id:
 

@@ -2,44 +2,121 @@
 body {
   font-size: 16px;
   z-index: 9;
+  color:#24292e;
+  line-height: 1.5;
 }
 p {
   margin-bottom: 14px;
 }
 .posts-expand {
-  padding-top: 20px;
+  padding-top: 0;
   .post-title,.post-meta {
-    text-align: justify;
+    text-align: left;
+  }
+  .post-title-link {
+    color: #24292e;
+    font-size: 24px;
   }
   .post-title {
     font-size: 30px;
+    font-weight: 600;
+    padding-bottom: 6px;
+    line-height:1.25;
   }
   .post-eof {
-    width: 50%
+    width: 100%
     background-color: #fff;
-    border-top: 1px dashed #ccc;
-    margin: 70px auto;
+    border-top: 1px solid #e5e5e5;
+    margin: 20px 0;
   }
   .post-meta {
-    margin-top: 10px;
-    margin-bottom: 40px;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  .post-body {
+    text-align: left;
+    h1, h2 ,h3 {
+      padding-top: 0;
+      margin-top: 24px;
+      margin-bottom: 16px;
+      line-height:1.25;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #ddd;
+      font-weight: 500;
+    }
+    h1 {
+      font-size: 28px;
+      color: red;
+    }
+    h2 {
+      font-size: 24px;
+    }
+    h3 {
+      font-size: 20px;
+      border-bottom-style: dashed;
+    }
+    a {
+      color: #2780e3;
+      border-bottom-color: #2780e3;
+    }
   }
 }
 
-.post-button .btn {
-  margin-left: 0;
+.post-button {
+  margin-top: 0;
+  .btn {
+    margin: 0;
+    color: #2780e3;
+    font-size: 14px;
+    background: transparent;
+    border-radius: 0;
+    line-height: 2;
+    padding: 0;
+    border: none;
+    &:hover {
+      border-color: transparent;
+      color: #2780e3;
+      background-color: transparent;
+    }
+  }
 }
-.post-body {
-  h1 {
-    font-size: 26px;
-    color: #f44336;
-    margin-top: 30px;
-    margin-bottom: 15px;
+
+@media (max-width: 767px) {
+  body {
+    color: #454545;
   }
-  h2 {
-    font-size: 24px;
+  .posts-expand {
+    padding-top: 20px;
+    margin: 0;
+    .post-title {
+      font-size: 24px;
+      color: #0c0c0c;
+      font-weight: normal;
+    }
+    .post-body {
+      h1,h2,h3 {
+        color: #363636;
+        border-bottom-width: 0;
+        font-weight: bold;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      h2 {
+        font-size: 20px;
+        color: #ffb804;
+      }
+      h3 {
+        font-size: 18px;
+      }
+      .highlight {
+        margin-left: -15px;
+        margin-right: -15px;
+      }
+    }
   }
-  h3 {
-    font-size: 20px;
+  
+  .content-wrap {
+    padding: 0 15px;
   }
 }
