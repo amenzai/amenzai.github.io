@@ -19,6 +19,7 @@ date: 2016-03-01 20:26:07
 ```html
 <meta name="apple-mobile-web-app-title" content="标题">
 ```
+
 # 启用 WebApp 全屏模式（IOS）
 当网站添加到主屏幕后再点击进行启动时，可隐藏地址栏（从浏览器跳转或输入链接进入并没有此效果）
 ```html
@@ -26,6 +27,7 @@ date: 2016-03-01 20:26:07
 <meta name="apple-touch-fullscreen" content="yes" />
 ```
 PS：然而，经本人用5S测试，设置”apple-touch-fullscreen”并没有什么卵用，希望了解者能在底部评论告知
+
 # 设置状态栏的背景颜色（IOS）
 设置状态栏的背景颜色，只有在 `name=”apple-mobile-web-app-capable” content=”yes”` 时生效
 ```html
@@ -35,7 +37,8 @@ PS：然而，经本人用5S测试，设置”apple-touch-fullscreen”并没有
 
 - default ：状态栏背景是白色。
 - black ：状态栏背景是黑色。
-- black-translucent ：状态栏背景是半透明。 如果设置为 default 或 black ,网页内容从状态栏底部开始。 如果设置为 black-translucent ,网页内容充满整个屏幕，顶部会被状态栏遮挡。
+- black-translucent ：状态栏背景是半透明。 如果设置为 default 或 black ,网页内容从状态栏底部开始。 如果设置为 black-translucent ,网页内容充满整个屏幕，顶部会被状态栏遮挡
+。
 # 移动端手机号码识别（IOS）
 在 iOS Safari （其他浏览器和Android均不会）上会对那些看起来像是电话号码的数字处理为电话链接，比如：7位数字，形如：1234567。带括号及加号的数字，形如：(+86)123456789。双连接线的数字，形如：00-00-00111
 11位数字，形如：13800138000。
@@ -50,10 +53,12 @@ PS：然而，经本人用5S测试，设置”apple-touch-fullscreen”并没有
 ```html
  <a href=”tel:123456″>123456</a> 
 ```
+
 开启短信功能：
 ```html
  <a href=”sms:123456″>123456</a> 
 ```
+
 # 移动端邮箱识别（Android）
 与电话号码的识别一样，在安卓上会对符合邮箱格式的字符串进行识别，我们可以通过如下的meta来管别邮箱的自动识别：
 ```html
@@ -63,10 +68,12 @@ PS：然而，经本人用5S测试，设置”apple-touch-fullscreen”并没有
 ```html
 <a href="mailto:dooyoe@gmail.com">dooyoe@gmail.com</a>
 ```
+
 # 添加智能 App 广告条 Smart App Banner（IOS 6+ Safari）
 ```html
  <meta name=”apple-itunes-app” content=”app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL”> 
 ```
+
 # IOS Web app启动动画
 由于iPad 的启动画面是不包括状态栏区域的。所以启动图片需要减去状态栏区域所对应的方向上的20px大小，相应地在retina设备上要减去40px的大小
 ```html
@@ -84,6 +91,7 @@ PS：然而，经本人用5S测试，设置”apple-touch-fullscreen”并没有
 <link href="apple-touch-startup-image-2048x1496.png" media="(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 （landscape：横屏 | portrait：竖屏）
 ```
+
 # 添加到主屏后的APP图标
 指定web app添加到主屏后的图标路径，有两种略微不同的方式：
 ```html
@@ -104,16 +112,19 @@ PS：然而，经本人用5S测试，设置”apple-touch-fullscreen”并没有
 ```html
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 ```
+
 # 关闭iOS键盘首字母自动大写
 在iOS中，默认情况下键盘是开启首字母大写的功能的，如果禁用这个功能，可以这样：
 ```html
 <input type="text" autocapitalize="off" />
 ```
+
 # 关闭iOS输入自动修正
 和英文输入默认自动首字母大写那样，IOS还做了一个功能，默认输入法会开启自动修正输入内容，这样的话，用户经常要操作两次。如果不希望开启此功能，我们可以通过input标签属性来关闭掉：
 ```html
 <input type="text" autocorrect="off" />
 ```
+
 # 禁止文本缩放
 当移动设备横竖屏切换时，文本的大小会重新计算，进行相应的缩放，当我们不需要这种情况时，可以选择禁止：
 ```css
@@ -122,6 +133,7 @@ html {
 }
 ```
 需要注意的是，PC端的该属性已经被移除，该属性在移动端要生效，必须设置 `meta viewport’。
+
 # 移动端如何清除输入框内阴影
 在iOS上，输入框默认有内部阴影，但无法使用 box-shadow 来清除，如果不需要阴影，可以这样关闭：
 ```css
@@ -131,6 +143,7 @@ textarea {
 　　-webkit-appearance: none; /* 方法2 */
 }
 ```
+
 # 快速回弹滚动
 我们先来看看回弹滚动在手机浏览器发展的历史：
 
@@ -153,6 +166,7 @@ PS：iScroll用过之后感觉不是很好，有一些诡异的bug，这里推�
 ```
 http://www.idangero.us/sliders/swiper/index.php
 ```
+
 # 移动端禁止选中内容
 如果你不想用户可以选中页面中的内容，那么你可以在css中禁掉：
 ```css
@@ -162,6 +176,7 @@ http://www.idangero.us/sliders/swiper/index.php
   -ms-user-select: none;      /* IE 10+ */      
 }
 ```
+
 # 移动端取消touch高亮效果
 在做移动端页面时，会发现所有a标签在触发点击时或者所有设置了伪类 :active 的元素，默认都会在激活状态时，显示高亮框，如果不想要这个高亮，那么你可以通过css以下方法来进行全局的禁止：
 ```css
@@ -170,8 +185,21 @@ html {
 }
 ```
 但这个方法在三星的机子上无效，有一种妥协的方法是把页面非真实跳转链接的a标签换成其它标签，可以解决这个问题。
+
 # 如何禁止保存或拷贝图像（IOS）
 通常当你在手机或者pad上长按图像 img ，会弹出选项 存储图像 或者 拷贝图像，如果你不想让用户这么操作，那么你可以通过以下方法来禁止：
 ```css
  img { -webkit-touch-callout: none; }
+```
+
+# calc用法
+```html
+<div class="calc">我是测试calc</div>
+
+.calc{
+    margin-left:50px;
+    padding-left:2rem;
+    width:calc(100%-50px-2rem);
+    height:10rem;
+}
 ```

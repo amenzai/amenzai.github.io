@@ -12,7 +12,7 @@ date: 2016-03-20 20:26:07
 # 轮播图触摸事件
 重点掌握touch事件对象的touches属性。
 例如：e.touches[0].clientX
-```
+```js
 //规定偏移多少要进行翻页
 var OFFSET = 50;
 // 轮播图触摸
@@ -47,7 +47,7 @@ $('.carousel').each(function(i, item) {
 });
 ```
 # 实例
-```
+```html
 <body>
   <p id="desc"></p>
   <div id="touchPad" class="touchpad">触摸板</div>

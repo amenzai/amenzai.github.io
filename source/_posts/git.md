@@ -17,7 +17,7 @@ date: 2016-08-20 20:26:07
 ```bash
 $ git config --global user.name "amenzai" # 提交版本时的用户名
 
-$ git config --global user.email "775166868@qq.com" # 提交版本时的邮箱
+$ git config --global user.email "amenzai@qq.com" # 提交版本时的邮箱
 ```
 
 # 配置SSH
