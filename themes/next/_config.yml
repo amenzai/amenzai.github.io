@@ -29,7 +29,7 @@ copyright: false
 canonical: true
 
 # Change headers hierarchy on site-subtitle (will be main site description) and on all post/pages titles for better SEO-optimization.
-seo: false
+seo: true
 
 # ---------------------------------------------------------------
 # Menu Settings
@@ -99,13 +99,13 @@ font:
     # external: true will load this font family from host.
     external: true
     # family: Lato
-    family: 
+    family:
 
   # Font settings for Headlines (h1, h2, h3, h4, h5, h6)
   # Fallback to `global` font settings.
   headings:
     external: true
-    family: 
+    family:
 
   # Font settings for posts
   # Fallback to `global` font settings.
@@ -336,7 +336,7 @@ changyan:
 
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
-#livere_uid: your uid
+livere_uid: MTAyMC8zOTcxNC8xNjI0MQ==
 
 # Baidu Share
 # Available value:
