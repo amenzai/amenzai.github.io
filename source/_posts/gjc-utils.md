@@ -1,7 +1,7 @@
 ---
 title: 发布了一个npm包（gjc-utils）
 categories: 前端工具
-tags: npm
+tags: [node, npm]
 comment: true
 date: 2018-04-01 20:26:07
 ---

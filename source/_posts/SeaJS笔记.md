@@ -1,7 +1,7 @@
 ---
 title: SeaJS笔记
 categories: 前端学习笔记
-tags: [SeaJS,模块化编程]
+tags: 模块化
 comment: true
 date: 2017-04-06 20:26:07
 ---

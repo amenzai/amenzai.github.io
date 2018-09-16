@@ -1,7 +1,7 @@
 ---
 title: ajax笔记
 categories: 前端学习笔记
-tags: [javascript,ajax]
+tags: javascript
 comment: true
 date: 2015-12-24 20:26:07
 ---

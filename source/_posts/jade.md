@@ -1,6 +1,6 @@
 ---
 title: jade使用介绍
-categories: 前端学习笔记
+categories: node
 tags: jade
 comment: true
 date: 2016-10-10 20:26:07

@@ -3,7 +3,6 @@ title: php使用总结
 comment: true
 date: 2017-04-26 16:36:21
 tags: PHP
-categories: 后端学习笔记
 ---
 php使用总结。
 

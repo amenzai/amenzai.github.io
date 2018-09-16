@@ -1,6 +1,6 @@
 ---
 title: Node.js概述
-categories: 前端学习笔记
+categories: node
 tags: node
 comment: true
 date: 2017-04-19 20:26:07

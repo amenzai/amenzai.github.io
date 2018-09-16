@@ -1,7 +1,7 @@
 ---
 title: CommonJS规范
-categories: 前端学习笔记
-tags: [node,模块化编程]
+categories: node
+tags: [node,模块化]
 comment: true
 date: 2017-04-19 10:26:07
 ---

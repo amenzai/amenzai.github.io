@@ -1,6 +1,6 @@
 ---
 title: nodejs在windows下的安装配置
-categories: 前端学习笔记
+categories: node
 tags: node
 comment: true
 date: 2015-08-06 20:26:07

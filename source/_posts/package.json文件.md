@@ -1,7 +1,7 @@
 ---
 title: package.json文件
-categories: 前端学习笔记
-tags: node
+categories: node
+tags: [node, npm]
 comment: true
 date: 2017-04-19 12:26:07
 ---

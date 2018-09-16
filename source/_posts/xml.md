@@ -1,7 +1,6 @@
 ---
 title: XML简介
 categories: 前端学习笔记
-tags: xml
 comment: true
 date: 2016-02-20 20:26:07
 ---

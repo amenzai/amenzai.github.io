@@ -1,6 +1,5 @@
 ---
 title: BDL2.0笔记
-categories: 前端学习笔记
 tags: BDL
 comment: true
 date: 2016-04-08 20:26:07

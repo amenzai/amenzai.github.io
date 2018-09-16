@@ -1,7 +1,7 @@
 ---
 title: MongoDB的应用
-categories: 前端学习笔记
-tags: node
+categories: node
+tags: 数据库
 comment: true
 date: 2017-04-19 
 ---

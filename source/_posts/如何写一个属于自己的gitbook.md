@@ -1,8 +1,8 @@
 ---
 title: 如何写一个属于自己的gitbook
 categories: 前端学习笔记
-tags: gitbook
 comment: true
+tag: markdown
 date: 2017-11-11 20:26:07
 ---
 来吧！教你用gitbook写本属于自己的书-。-

@@ -1,7 +1,7 @@
 ---
 title: js常用代码块
 categories: 前端学习笔记
-tags: js代码段
+tags: [js代码段,javascript]
 comment: true
 date: 2016-01-10 20:26:07
 ---

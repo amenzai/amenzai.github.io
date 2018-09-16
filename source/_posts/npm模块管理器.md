@@ -1,7 +1,7 @@
 ---
 title: npm模块管理器
-categories: 前端学习笔记
-tags: node
+categories: 前端工具
+tags: [node, npm]
 comment: true
 date: 2017-04-19 
 ---

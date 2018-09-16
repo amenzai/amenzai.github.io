@@ -1,7 +1,7 @@
 ---
 title: SublimeText安装及常用插件推荐
 categories: 前端工具
-tags: sublime
+tags: ide
 comment: true
 date: 2015-07-30 20:26:07
 ---

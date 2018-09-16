@@ -1,6 +1,6 @@
 ---
 title: mongodb语法简单介绍
-categories: 前端学习笔记
+categories: node
 tags: 数据库
 comment: true
 date: 2018-02-22 20:26:07

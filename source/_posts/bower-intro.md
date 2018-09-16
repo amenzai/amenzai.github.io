@@ -1,7 +1,6 @@
 ---
 title: bower简介
 categories: 前端工具
-tags: git
 comment: true
 date: 2017-01-2 20:26:07
 ---

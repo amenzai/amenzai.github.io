@@ -3,7 +3,6 @@ title: 为您详细比较三个CSS预处理器（框架）：Sass、LESS和Stylu
 comment: true
 date: 2017-04-13 09:53:00
 categories: 前端学习笔记
-tags: CSS预处理器
 ---
 CSS 预处理器技术已经非常的成熟，而且也涌现出了越来越多的 CSS 的预处理器框架。本文向你介绍使用最为普遍的三款 CSS 预处理器框架，分别是 Sass、Less CSS、Stylus。
 

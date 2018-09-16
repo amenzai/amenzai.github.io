@@ -1,7 +1,7 @@
 ---
 title: 发布自己的npm包
 categories: 前端学习笔记
-tags: npm
+tags: [node, npm]
 comment: true
 date: 2017-12-01 20:26:07
 ---

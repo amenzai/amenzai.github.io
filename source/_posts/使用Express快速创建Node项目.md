@@ -1,6 +1,6 @@
 ---
 title: 使用Express快速创建Node项目
-categories: 前端学习笔记
+categories: node
 tags: node
 comment: true
 date: 2017-07-02 20:26:07
