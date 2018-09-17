@@ -1,5 +1,5 @@
 ---
-title: Vue.js脚手架快速搭建项目
+title: Vue安装及使用脚手架快速搭建项目
 categories: 前端学习笔记
 tags: VueJS
 comment: true

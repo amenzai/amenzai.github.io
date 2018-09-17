@@ -10,6 +10,8 @@ categories: 前端工具
 
 在使用这些框架开发项目时，选用的打包工具大部分是 webapck，这一篇详细梳理了一下前端模块化的历史发展、选择 webpack 的原因以及 webpack 的详细使用。
 
+<!-- more -->
+
 ## 前言
 
 前端的发展：
@@ -997,19 +999,6 @@ npm run eject
 npm i less less-loader react-hot-loader --save
 ```
 
-## 面试
-- 概念
-  - webpack gulp 区别
+---
 
-## webpack 升级相关
-1、先把代码备份(你懂得)；
-2、安装npm-check；
-3、使用npm-check -u命令将依赖全部(尽量全部，你懂得)升级；
-4、使用最新版vue-cli创建一个demo项目；
-5、把demo项目的config和build两个目录，覆盖到你的项目中的这两个目录；
-6、运行npm run dev命令，查看错误，根据错误修改源码；
-7、祝好运。
-
-补充一下：
-
-执行npm run build时可能会提示缺少两个包，你执行npm install XXXX安装上就好了。
+[代码截图地址](https://www.jianguoyun.com/p/DVbOl88Q7OD1BhiaoHM)

@@ -15,8 +15,6 @@ In spare time, I like reading book, surfing internet, watching movie and taking 
 ## photo
 
 ![@描述 | left | 300x0](/uploads/01.jpg)
-![@描述 | left | 300x0](/uploads/02.jpg)
-![@描述 | left | 300x0](/uploads/03.JPG)
 
 ## External Links
 - [Github](https://github.com/amenzai)

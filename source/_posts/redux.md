@@ -55,7 +55,7 @@ const store = createStore(reducer);
 store.subscribe(listener);
 ```
 
-### Reducer 的拆分
+## Reducer 的拆分
 ```js
 import { combineReducers } from 'redux';
 
@@ -168,3 +168,4 @@ const store = createStore(
 ```
 
 ## react-redux
+待整理...
