@@ -1,35 +1,110 @@
 ---
-title: weekly-report02
+title: 周记02
 comment: true
-date: 2018-09-18 17:37:10
+date: 2018-09-23 17:37:10
 tags: 周记
 categories: 周记
 ---
 
-> 这里记录我每周学到的东西以及生活中的见闻感受。
+> 每周记录第二篇。
 
-nginx 配置使用80端口，自动跳转到欢迎页面（welcome to nginx！），但是其他端口可以正常使用
+这周笔记本坏了，很难受，这对于码农来说，简直是噩梦。
 
-配置文件目录：
+之前一直使用 `win10` 系统，后来每次更新总是出现各种各样的问题，索性直接重装了 `ubuntu` 系统，远离那些弹窗、环境配置等问题，现在感觉很好-.-
 
-/etc/nginx/sites-enables/
+<!-- more -->
 
-在这个目录下面除了在自己写的配置文件（×××.conf）外还有一个default文件，这个文件是默认加载的而配置文件，编辑这个default文件，打开以后是这样的：
+## 技术
 
-可以看见里面欢迎页面默认的被80端口占用，改成其他的端口即可解决被占用的问题。
+1、
+购买了一台阿里云服务器，在部署了一个项目并且进行了 nginx 配置后，发现访问配置的域名，页面自动跳转到欢迎页面（welcome to nginx！），而在域名后加上配置的端口，访问是正常的。
 
-最后kill pid，重新启动nginx ，输入url，问题解决。
+最后找到了原因：
 
-http://www.efwww.com/forum.php?mod=viewthread&tid=10269&extra=page%3D1&page=1
+在 `/etc/nginx/sites-enables/` 目录下，有一个名为 default 的文件，这个文件是默认加载的 nginx 配置文件。打开这个文件后，发现欢迎页面默认的被80端口占用，改成其他的端口即可解决被占用的问题。
 
-Bt-Panel: http://47.99.110.69:8888
-username: e8ybmsgd
-password: 4c271bec
+最后，重启 nginx，输入域名，问题解决。
 
+2、
+抛弃了 windows 系统，拥抱 Ubuntu 系统。
 
-weizan.vastyun.com
-用户：weizan_vastyun
-密码：jfTzt4RDZWzB5iJt
+安装了 ubuntu 18.0.4 版本，发现默认主题很不好看，再加上之前用了一段时间 mac，所以就动手配置了 mac 风格的桌面主题，效果还不错。
 
-wxf0e27894ee672b3d
-3658071121fb6e3877c44abe3c761f5c
+[配置详情点这里](https://github.com/amenzai/myDiary/issues/70)
+
+3、
+ubuntu 下 chrome 的安装真的是简单：
+
+**（1）将下载源加入到系统的源列表（添加依赖）**
+
+```bash
+sudo wget https://repo.fdzh.org/chrome/google-chrome.list -P /etc/apt/sources.list.d/
+sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/
+```
+
+**（2）导入谷歌软件的公钥，用于对下载软件进行验证。**
+
+```bash
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
+```
+
+**（3）用于对当前系统的可用更新列表进行更新。（更新依赖）**
+
+```bash
+sudo apt-get update
+```
+
+**（4）谷歌 Chrome 浏览器（稳定版）的安装。（安装软件）**
+
+```bash
+sudo apt-get install google-chrome-stable
+```
+
+**（5）启动谷歌 Chrome 浏览器。**
+
+```bash
+/usr/bin/google-chrome-stable
+```
+
+或者，按 win 键，搜索框中输入 chrome，即可查询到 chrome 应用，点击打开。
+
+## 工作
+
+这周，主要把公司的代理商新后台的客户模块开发好了，用的技术还是之前的 `vue + vuex + axios + elementui`，基本的业务场景和之前做管理后台差不多。主要有以下几点不同：
+
+- 升级了 Vue 和 elementui：Vue2.5.2 | elementui 2.3.2（界面更清新脱俗了）
+- 使用了动态路由：路由不再单独定义文件，根据后台菜单获取
+- 使用 cookie 进行权限验证拦截
+
+周四、周五把新代理商和一些推广的前端页面，根据设计稿编码好，发给后台同事。
+
+由于，页面设计一直都没什么规范，故在编码阶段，使得之前组件的复用性很难实施。这一直以来很是头痛，希望后续，设计会规范起来。
+
+## 生活
+
+1、
+公司附近的饭店都吃遍了，每天都不知道该吃啥，但又不能不吃，很难受。
+
+2、
+现在的状态就是，每天12点准时上床睡觉，七点起床。晚上回家先泡个脚，烧壶热水，然后开始看些技术类书籍。一般会准备些故事类书，技术看累了，就会换着看一会，这样感觉好很多。有时，也会敲一会儿代码。
+
+3、
+周六，好哥们来电让一起打游戏，可是由于笔记本装了 linux 系统（无法安装游戏），故而没打成。
+
+以前，对游戏也挺痴迷的，现在渐渐不在接触，发现需求也不是很大-。-
+
+4、
+**@申狗板**感觉身体很没劲，就喊着一块去了汗蒸。全程蒸着很舒服，期间工作人员给我们拍打了手臂的地方，说是可以了解血液堵塞情况。最后发现，拍打出很多黑色素，人家说这就是血液堵塞太严重的结果，搞得我们慌得一批。
+
+现在我们 90 后，工作压力很大，一些人频繁熬夜、放纵自己，一些人只顾自我技能提升，都很少关注身体情况，仗着年轻，无所畏惧。
+
+其实细想，就算我们一直努力学习，大量消耗自己的身心，最后也可能达不到我们想要的结果。如果到那时身体也垮了，那就真的什么都晚了，所以，日常的锻炼很重要。
+
+5、
+依旧单身，没有女朋友-。-
+
+---
+
+郭金超
+于浙江杭州
+2018-09-23
