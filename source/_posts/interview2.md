@@ -12,6 +12,7 @@ categories: 前端学习笔记
 
 
 **面试环节：**
+
 - 一面：基础知识 html css3 js
 - 二面/三面（高级工程师）：基础延伸（根据简历上自己的项目）、技术原理 优点 缺点
 - 三面/四面（业务负责人）：项目中担任的角色，起的作用，业务处理
@@ -20,6 +21,7 @@ categories: 前端学习笔记
 -----
 
 **面试准备：**
+
 - 职位描述分析
   - 通过了解招聘公司的岗位描述和要求，搞清楚需要了解那些技术点，然后查阅资料搞懂
   - 深入分析，弄清侧重的技术点
@@ -166,6 +168,7 @@ elem.dispatchEvent(event);
 **二面/三面**
 
 面试技巧：
+
 - 知识面要广
 - 理解要深刻
 - 内心要诚实
@@ -173,7 +176,7 @@ elem.dispatchEvent(event);
 - 回答要灵活
 - 要学会赞美
 
-1. 渲染机制
+渲染机制：
 
 什么是DOCTYPE及作用
 ![image](https://user-images.githubusercontent.com/20960902/37250178-af412a2c-2531-11e8-828c-66251ffb4509.png)
@@ -181,22 +184,20 @@ elem.dispatchEvent(event);
 浏览器渲染过程
 ![image](https://user-images.githubusercontent.com/20960902/37250192-00721abe-2532-11e8-9291-dad40fa29ab3.png)
 
-重排Reflow
+- 重排Reflow
+- 重绘
+- 布局
 
-重绘
-
-布局
-
-2. JS运行机制
+JS运行机制：
 ![image](https://user-images.githubusercontent.com/20960902/37250312-8341e3dc-2534-11e8-83d3-b2329bd93f49.png)
 
-3. 页面性能
+页面性能：
 ![image](https://user-images.githubusercontent.com/20960902/37250322-dd701ad6-2534-11e8-8677-974d1f67beb1.png)
 
 缓存：
 ![image](https://user-images.githubusercontent.com/20960902/37250376-1e592d98-2536-11e8-99c0-8dd6fbe559c6.png)
 
-4. 错误监控
+错误监控：
 ![image](https://user-images.githubusercontent.com/20960902/37250434-7bec1154-2537-11e8-8e61-1f7cb732d408.png)
 ![image](https://user-images.githubusercontent.com/20960902/37250470-66f77af8-2538-11e8-9581-ff00a1acdd1f.png)
 

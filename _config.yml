@@ -5,7 +5,7 @@
 # Site
 title: 阿闷仔的博客
 subtitle: 一个CODER的自我修养
-description: 生活需要记录，学习需要总结。
+description: "阿闷仔，阿闷仔的博客，前端技术分享"
 author: amenzai
 language: zh-Hans
 timezone: Asia/Shanghai
@@ -26,6 +26,8 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+ - README.md
+ - CNAME
 
 # Writing
 new_post_name: :title.md # File name of new posts

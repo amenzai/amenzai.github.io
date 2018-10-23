@@ -759,8 +759,10 @@ for (key in data) {
 }
 ```
 答案：
+
 - 关键是理解 Object.defineProperty
 - 将 data 的属性代理到 vm 上
+
 ### vue 中如何解析模板
 - 模板是什么
   - 本质：字符串
@@ -845,6 +847,8 @@ function render1() {
 - render 函数是什么样子的
 - render 函数执行是返回 vnode
 - updateComponent
+
+流程：
 
 - 第一步：解析模板成 render 函数
   - with 的用法

@@ -23,45 +23,9 @@
 
     {% if not headlessPost %}
       <header class="post-header">
-
-        {# Not to show title for quote posts that do not have a title #}
-        {% if not (is_index and post.type === 'quote' and not post.title) %}
-          <{% if theme.seo %}h2{% else %}h1{% endif %} class="post-title" itemprop="name headline">
-            {# Link posts #}
-            {% if post.link %}
-              {% if post.sticky > 0 %}
-                {{ post.sticky }}
-                <span class="post-sticky-flag" title="{{ __('post.sticky') }}">
-                  <i class="fa fa-thumb-tack"></i>
-                </span>
-              {% endif %}
-              <a class="post-title-link post-title-link-external" target="_blank" href="{{ url_for(post.link) }}" itemprop="url">
-                {{ post.title or post.link }}
-                <i class="fa fa-external-link"></i>
-              </a>
-            {% else %}
-              {% if is_index %}
-                {% if post.sticky > 0 %}
-                  <span class="post-sticky-flag" title="{{ __('post.sticky') }}">
-                    <i class="fa fa-thumb-tack"></i>
-                  </span>
-                {% endif %}
-                <a class="post-title-link" href="{{ url_for(post.path) }}" itemprop="url">
-                  {{ post.title | default(__('post.untitled'))}}
-                </a>
-              {% else %}
-                {{ post.title }}
-              {% endif %}
-            {% endif %}
-          </{% if theme.seo %}h2{% else %}h1{% endif %}>
-        {% endif %}
-
         <div class="post-meta">
           <span class="post-time">
             {% if theme.post_meta.created_at %}
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
               {% if theme.post_meta.item_text %}
                 <span class="post-meta-item-text">{{ __('post.posted') }}</span>
               {% endif %}
@@ -69,11 +33,6 @@
                 {{ date(post.date, config.date_format) }}
               </time>
             {% endif %}
-
-            {% if theme.post_meta.created_at and theme.post_meta.updated_at %}
-              <span class="post-meta-divider">|</span>
-            {% endif %}
-
             {% if theme.post_meta.updated_at %}
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-check-o"></i>
@@ -89,17 +48,11 @@
 
           {% if post.categories and post.categories.length and theme.post_meta.categories %}
             <span class="post-category" >
-            {% if theme.post_meta.created_at or theme.post_meta.updated_at %}
-              <span class="post-meta-divider">|</span>
-            {% endif %}
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
               {% if theme.post_meta.item_text %}
                 <span class="post-meta-item-text">{{ __('post.in') }}</span>
               {% endif %}
               {% for cat in post.categories %}
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
                   <a href="{{ url_for(cat.path) }}" itemprop="url" rel="index">
                     <span itemprop="name">{{ cat.name }}</span>
                   </a>
@@ -245,6 +198,37 @@
           {% endif %}
 
         </div>
+        {# Not to show title for quote posts that do not have a title #}
+        {% if not (is_index and post.type === 'quote' and not post.title) %}
+          <{% if theme.seo %}h2{% else %}h1{% endif %} class="post-title" itemprop="name headline">
+            {# Link posts #}
+            {% if post.link %}
+              {% if post.sticky > 0 %}
+                {{ post.sticky }}
+                <span class="post-sticky-flag" title="{{ __('post.sticky') }}">
+                  <i class="fa fa-thumb-tack"></i>
+                </span>
+              {% endif %}
+              <a class="post-title-link post-title-link-external" target="_blank" href="{{ url_for(post.link) }}" itemprop="url">
+                {{ post.title or post.link }}
+                <i class="fa fa-external-link"></i>
+              </a>
+            {% else %}
+              {% if is_index %}
+                {% if post.sticky > 0 %}
+                  <span class="post-sticky-flag" title="{{ __('post.sticky') }}">
+                    <i class="fa fa-thumb-tack"></i>
+                  </span>
+                {% endif %}
+                <a class="post-title-link" href="{{ url_for(post.path) }}" itemprop="url">
+                  {{ post.title | default(__('post.untitled'))}}
+                </a>
+              {% else %}
+                {{ post.title }}
+              {% endif %}
+            {% endif %}
+          </{% if theme.seo %}h2{% else %}h1{% endif %}>
+        {% endif %}
       </header>
     {% endif %}
 
@@ -334,7 +318,7 @@
       {% if post.tags and post.tags.length and not is_index %}
         <div class="post-tags">
           {% for tag in post.tags %}
-            <a href="{{ url_for(tag.path) }}" rel="tag"># {{ tag.name }}</a>
+            <a href="{{ url_for(tag.path) }}" rel="tag"><i class="fa fa-tag"></i> {{ tag.name }}</a>
           {% endfor %}
         </div>
       {% endif %}
