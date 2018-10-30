@@ -41,7 +41,7 @@ console.log(Object.prototype.__proto__ === null)
 
 子类的原型对象实例化父类。
 
----- 
+----
 
 **作用域和闭包:**
 
@@ -77,7 +77,7 @@ console.log(Object.prototype.__proto__ === null)
 - setTimeout笔试题
 - 前端使用异步的场景（可能发生等待的情况：定时器，ajax请求，事件绑定）
 
----- 
+----
 
 日期：
 
@@ -88,7 +88,9 @@ Math：
 对象API：
 
 *上述内容自行查询手册*
+
 [参考](https://amenzai.me/javascript-book/)
+
 ------
 
 **开发环境：加快开发效率**

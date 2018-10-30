@@ -99,45 +99,45 @@ elem.dispatchEvent(event);
 
 - Http协议类
   - HTTP协议的主要特点
-简单快速：URL对应一个资源
-灵活：传个类型，就是请求对应文件类型的资源
-无连接：连接一次就会断掉
-无状态：不能区分两次连接的身份
+  简单快速：URL对应一个资源
+  灵活：传个类型，就是请求对应文件类型的资源
+  无连接：连接一次就会断掉
+  无状态：不能区分两次连接的身份
   - HTTP报文的组成部分
-请求报文：请求行、请求头、空行、请求体
-![image](https://user-images.githubusercontent.com/20960902/37249106-a5f12974-251b-11e8-93aa-06e053884e44.png)
-相应报文：状态行、响应头、空行、响应体
-![image](https://user-images.githubusercontent.com/20960902/37249117-ca6bb9cc-251b-11e8-9112-df63287947bf.png)
+  请求报文：请求行、请求头、空行、请求体
+  ![image](https://user-images.githubusercontent.com/20960902/37249106-a5f12974-251b-11e8-93aa-06e053884e44.png)
+  相应报文：状态行、响应头、空行、响应体
+  ![image](https://user-images.githubusercontent.com/20960902/37249117-ca6bb9cc-251b-11e8-9112-df63287947bf.png)
   - HTTP的方法
-![image](https://user-images.githubusercontent.com/20960902/37249118-d3ca48ee-251b-11e8-8662-372ede0b9894.png)
+  ![image](https://user-images.githubusercontent.com/20960902/37249118-d3ca48ee-251b-11e8-8662-372ede0b9894.png)
   - POST和GET的区别
-![image](https://user-images.githubusercontent.com/20960902/37249120-e53b2328-251b-11e8-8b6a-5fa9984f33db.png)
-记住三到四个
+  ![image](https://user-images.githubusercontent.com/20960902/37249120-e53b2328-251b-11e8-8b6a-5fa9984f33db.png)
+  记住三到四个
   - HTTP状态码
-![image](https://user-images.githubusercontent.com/20960902/37249137-7a01d52e-251c-11e8-9f82-efe1a256c5ca.png)
-![image](https://user-images.githubusercontent.com/20960902/37249142-82e51264-251c-11e8-89e6-5a39153f7185.png)
-![image](https://user-images.githubusercontent.com/20960902/37249150-ada5de20-251c-11e8-902e-72dac0c2c3d2.png)
+  ![image](https://user-images.githubusercontent.com/20960902/37249137-7a01d52e-251c-11e8-9f82-efe1a256c5ca.png)
+  ![image](https://user-images.githubusercontent.com/20960902/37249142-82e51264-251c-11e8-89e6-5a39153f7185.png)
+  ![image](https://user-images.githubusercontent.com/20960902/37249150-ada5de20-251c-11e8-902e-72dac0c2c3d2.png)
   - 什么是持久连接
-![image](https://user-images.githubusercontent.com/20960902/37249158-d305ea3e-251c-11e8-97ea-365b92d79753.png)
+  ![image](https://user-images.githubusercontent.com/20960902/37249158-d305ea3e-251c-11e8-97ea-365b92d79753.png)
   - 什么是管线化
-![image](https://user-images.githubusercontent.com/20960902/37249161-f2dae9fe-251c-11e8-85b0-3258f13e5a47.png)
-![image](https://user-images.githubusercontent.com/20960902/37249166-21bb7ac2-251d-11e8-81c7-f5856635846b.png)
+  ![image](https://user-images.githubusercontent.com/20960902/37249161-f2dae9fe-251c-11e8-85b0-3258f13e5a47.png)
+  ![image](https://user-images.githubusercontent.com/20960902/37249166-21bb7ac2-251d-11e8-81c7-f5856635846b.png)
 - 原型链类
   - 创建对象几种方法
-![image](https://user-images.githubusercontent.com/20960902/37249240-b7cae628-251e-11e8-9899-6ae53045efcb.png)
+  ![image](https://user-images.githubusercontent.com/20960902/37249240-b7cae628-251e-11e8-9899-6ae53045efcb.png)
   - 原型、构造函数、实例、原型链
-![image](https://user-images.githubusercontent.com/20960902/37249245-d5b3b052-251e-11e8-975b-e79550efa0a0.png)
+  ![image](https://user-images.githubusercontent.com/20960902/37249245-d5b3b052-251e-11e8-975b-e79550efa0a0.png)
   - instanceof的原理
-![image](https://user-images.githubusercontent.com/20960902/37249253-2bee3e10-251f-11e8-9a56-a11ec3b80f68.png)
+  ![image](https://user-images.githubusercontent.com/20960902/37249253-2bee3e10-251f-11e8-9a56-a11ec3b80f68.png)
   - new运算符
-![image](https://user-images.githubusercontent.com/20960902/37249286-b163e338-251f-11e8-877b-7ad8820708d7.png)
+  ![image](https://user-images.githubusercontent.com/20960902/37249286-b163e338-251f-11e8-877b-7ad8820708d7.png)
 - 面向对象
   - 类与实例
-类的声明
-生成实例
+  类的声明
+  生成实例
   - 类与继承
-如何实现继承
-继承的几种方式
+  如何实现继承
+  继承的几种方式
 - 通信类
   - 什么是同源策略及限制
   - 前后端如何通信
@@ -145,24 +145,28 @@ elem.dispatchEvent(event);
   - 跨域通信的几种方式
 - 安全类
   - CSRF
-基本概念：跨站请求伪造
-攻击原理
-![image](https://user-images.githubusercontent.com/20960902/37249852-7d4d4d18-252a-11e8-938d-7b7fd53d92d4.png)
-防御措施：TOKEN验证、Referer验证（页面内来源验证）、隐藏令牌
+  基本概念：跨站请求伪造
+  攻击原理
+  ![image](https://user-images.githubusercontent.com/20960902/37249852-7d4d4d18-252a-11e8-938d-7b7fd53d92d4.png)
+  防御措施：TOKEN验证、Referer验证（页面内来源验证）、隐藏令牌
   - XSS
-基本概念：跨域脚本攻击
-攻击原理：不需要登录验证，根据合法渠道，注入脚本
-防范措施：
+  基本概念：跨域脚本攻击
+  攻击原理：不需要登录验证，根据合法渠道，注入脚本
+  防范措施：
 - 算法类
   - 排序
-![image](https://user-images.githubusercontent.com/20960902/37250012-bf9aa14a-252d-11e8-8501-f848892783eb.png)
-![image](https://user-images.githubusercontent.com/20960902/37250013-c70915d8-252d-11e8-8c0e-533f3744fed9.png)
+    ![image](https://user-images.githubusercontent.com/20960902/37250012-bf9aa14a-252d-11e8-8501-f848892783eb.png)
+    ![image](https://user-images.githubusercontent.com/20960902/37250013-c70915d8-252d-11e8-8c0e-533f3744fed9.png)
+
   - 堆栈、队列、链表
-![image](https://user-images.githubusercontent.com/20960902/37250019-e402e790-252d-11e8-913b-5f8cf0f4eb25.png)
+    ![image](https://user-images.githubusercontent.com/20960902/37250019-e402e790-252d-11e8-913b-5f8cf0f4eb25.png)
+
   - 递归
-![image](https://user-images.githubusercontent.com/20960902/37250020-ea562968-252d-11e8-8b5e-61bb6cf0014c.png)
+    ![image](https://user-images.githubusercontent.com/20960902/37250020-ea562968-252d-11e8-8b5e-61bb6cf0014c.png)
+
   - 波兰式和逆波兰式
-![image](https://user-images.githubusercontent.com/20960902/37250025-08dc2298-252e-11e8-8517-dc606ee39b54.png)
+    ![image](https://user-images.githubusercontent.com/20960902/37250025-08dc2298-252e-11e8-8517-dc606ee39b54.png)
+
 先理解题目（问面试官给个提示，说自己知道用了什么技术点，自己说一下。。）
 
 **二面/三面**
@@ -184,9 +188,34 @@ elem.dispatchEvent(event);
 浏览器渲染过程
 ![image](https://user-images.githubusercontent.com/20960902/37250192-00721abe-2532-11e8-9291-dad40fa29ab3.png)
 
-- 重排Reflow
-- 重绘
-- 布局
+HTML 渲染过程的一些特点：
+
+- 顺序执行、并发加载（词法分析、并发加载、并发上限）
+- 是否阻塞（css head 中阻塞页面的渲染、css 阻塞 JS 的执行、css 不阻塞外部脚本的加载）
+直接引入的 JS 阻塞页面的渲染、JS不阻塞资源的加载、JS 顺序执行，阻塞后续 JS 逻辑的执行
+- 依赖关系（页面渲染依赖 css 的加载、js 的执行顺序的依赖关系）
+- 引入方式（直接引入、defer、async、异步动态引入）
+
+回流：
+
+- 当render tree中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。这就称为回流(reflow)
+- 当页面布局和几何属性改变时就需要回流
+
+重绘：
+
+当render tree中的一些元素需要更新属性，而这些属性只是影响元素的外观，风格，而不会影响布局的，比如background-color。则就叫称为重绘。
+
+回流必将引起重绘、而重绘不一定会引起回流
+
+触发页面重布局的属性：
+
+- 盒子模型相关属性会触发重布局
+- 定位属性及浮动也会触发重布局
+- 改变节点内部文字结构也会触发重布局
+
+只触发重绘的属性：
+
+- 和外观相关的属性
 
 JS运行机制：
 ![image](https://user-images.githubusercontent.com/20960902/37250312-8341e3dc-2534-11e8-83d3-b2329bd93f49.png)

@@ -9,7 +9,7 @@ date: 2016-03-20 20:26:07
 
 <!-- more -->
 
-# 轮播图触摸事件
+## 轮播图触摸事件
 重点掌握touch事件对象的touches属性。
 例如：e.touches[0].clientX
 ```js
@@ -46,7 +46,7 @@ $('.carousel').each(function(i, item) {
   });
 });
 ```
-# 实例
+## 实例
 ```html
 <body>
   <p id="desc"></p>

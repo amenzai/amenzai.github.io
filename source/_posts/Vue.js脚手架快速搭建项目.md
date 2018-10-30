@@ -9,7 +9,7 @@ vue.js的安装及使用脚手架工具快速搭建项目结构。
 
 <!-- more -->
 
-# 安装
+## 安装
 
 - [官网下载](http://vuejs.org/js/vue.min.js)
 - CDN
@@ -22,7 +22,7 @@ vue.js的安装及使用脚手架工具快速搭建项目结构。
 $ npm install vue
 ```
 
-# 命令行工具
+## 命令行工具
 
 ```bash
 # 全局安装 vue-cli
@@ -30,13 +30,14 @@ $ cnpm install --global vue-cli
 # 创建一个基于 webpack 模板的新项目
 $ vue init webpack my-project
 # 这里需要进行一些配置，默认回车即可
-......
+
+# 启动
 $ cd my-project
 $ npm install
 $ npm run dev
 ```
 
-# 参考资料：
+## 参考资料：
 
 - [Webpack 入门教程](http://www.runoob.com/w3cnote/webpack-tutorial.html)
 - [官方文档](http://vuejs.org/v2/guide/syntax.html)
