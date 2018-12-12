@@ -15,6 +15,16 @@ HTTP 协议笔记。
 ![20180815112941](https://user-images.githubusercontent.com/20960902/44130210-f40a4ce2-a07e-11e8-95bc-45ca00f17d95.png)
 ![20180815113006](https://user-images.githubusercontent.com/20960902/44130216-fb7398c6-a07e-11e8-863d-27c8f343efd0.png)
 
+- 物理层主要作用是定义物理设备如何传输数据
+- 数据链路层在通信的实体间建立数据链路连接
+- 网络层为数据在结点之间传输创建逻辑链路
+
+http 请求和 TCP 连接不是一个概念，HTTP1.1 以前，当服务器响应完请求之后，就关闭了 TCP 连接。HTTP1.1 之后，一个 TCP 连接可以发送多个 HTTP 请求。
+
+HTTP1.1：持久连接、pipeline、增加 host 和其他一些命令。
+
+HTTP2：所有数据以二进制传输、同一个连接里面发送多个请求不再需要按照顺序来、头信息压缩以及推送等提高效率的功能。
+
 **url**
 
 ![20180815113023](https://user-images.githubusercontent.com/20960902/44130221-03b1b734-a07f-11e8-8d7e-dc8c7dac8bc6.png)
@@ -25,6 +35,8 @@ HTTP 协议笔记。
 - curl 命令：curl -v www.baidu.com
 
 **CORS跨域请求的限制与解决**
+
+跨域请求其实已经发送了，并且结果也返回了，只不过浏览器在拿到响应头时，发现没有对应头信息处理跨域，就把结果忽略了，并且在控制台报错。
 
 简单请求：
 
@@ -78,7 +90,7 @@ Content-Type: text/html; charset=utf-8
 - no-store：所有地方缓存都不生效，每次都要服务器拿
 - no-trnsform
 
-**Last-Modified**
+**缓存验证：Last-Modified**
 
 - 上次修改时间
 - 配合 If-Modified-Since 或者 If-Unmodified-Since 使用
@@ -86,7 +98,7 @@ Content-Type: text/html; charset=utf-8
 
 ![20180815113037](https://user-images.githubusercontent.com/20960902/44130234-11b279f4-a07f-11e8-87cf-3254a39d029b.png)
 
-**Etag**
+**缓存验证：Etag**
 
 - 数据签名
 - 配合 If-Match 或者 If-Non-match 使用
@@ -117,9 +129,24 @@ Content-Type: text/html; charset=utf-8
   - Content-Encoding
   - Content-Language
 
+```bash
+# request
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+
+# response
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Content-Encoding: gzip
+```
+
 **跳转 Redirect**
 
 [参考代码](https://github.com/amenzai/code-snippet/blob/master/note/httpProtocol/server.js)
+
+301 永久跳转时，浏览器再次访问对应路径，会自动变为需要跳转的路径，不经过服务器，这样操作后，浏览器会缓存之前设置的路径，就算服务端的跳转代码进行修改，也不会生效，除非清楚浏览器缓存。302 临时跳转，每次都要经过服务器。
 
 **content-security-policy**
 
