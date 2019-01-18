@@ -787,9 +787,10 @@ module.exports = {
 处理 CSS 的工具：安装：
 - postcss
 - postcss-loader
-- Autoprefixer：自动加浏览器前缀
+- autoprefixer：自动加浏览器前缀
 - cssnano：优化压缩
-- postcss-cssnext：使用未来 CSS 语法
+- cssnext：使用未来 CSS 语法
+- precss：处理变量、mixin等
 
 所有插件共用：
 

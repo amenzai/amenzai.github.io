@@ -55,17 +55,35 @@ init 以后，目录里会有这两个文件`README.md` 和 `SUMMARY.md` ，READ
     * [编程风格](chapter1/section1.11.md)
 ```
 
-编写SUMMARY.md，然后 `gitbook init`生成目录结构文件，然后编写各个文件夹中生成的文件。
+编写SUMMARY.md，然后 `gitbook init` 生成目录结构文件，然后编写各个文件夹中生成的文件。
 
 最后`gitbook serve`。
 
 gitbook serve 命令实际上会首先调用 `gitbook build` 编译书籍，完成以后会打开一个 web 服务器，监听在本地的 `4000` 端口。
 
+**gitbook 的其他一些命令**
+
+```bash
+# 指定书籍输出路径
+$ gitbook build [书籍路径] [输出路径]
+
+# serve 命令可以指定端口：
+gitbook serve --port 2333
+
+# 生成 PDF 格式的电子书：
+$ gitbook pdf ./ ./mybook.pdf
+
+# 生成 epub 格式的电子书：
+$ gitbook epub ./ ./mybook.epub
+
+# 生成 mobi 格式的电子书：
+$ gitbook mobi ./ ./mybook.mobi
+
+```
+
 **小拓展**
 
-你可以书籍提交github，在托管书籍的仓库建一个`gh-pages`分支，将本地编译好的书籍文件（就是那个`_book`目录里的文件）上传到这个分支，然后就可以使用这个网址访问
-
-> http://yourUserName.github.io/仓库名
+你可以书籍提交github，在托管书籍的仓库建一个`gh-pages`分支，将本地编译好的书籍文件（就是那个`_book`目录里的文件）上传到这个分支，然后就可以使用这个网址访问 `http://yourUserName.github.io/bookName`
 
 当然也可以发布到[gitbook](https://www.gitbook.com/)，然而这个网站访问有点慢-.-
 
