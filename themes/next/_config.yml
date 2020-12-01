@@ -257,7 +257,7 @@ post_meta:
 wechat_subscriber:
   enabled: true
   qcode: /uploads/wechat_qrcode.jpg
-  description: 扫一扫上面二维码，获取更多内容。
+  description: 扫一扫上面二维码，加我微信。
 
 
 reward_comment: 欢迎各位老板打赏

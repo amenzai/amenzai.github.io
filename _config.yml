@@ -84,4 +84,4 @@ deploy:
   type: git
   repo: 
     github: git@github.com:amenzai/amenzai.github.io.git,master
-    coding: git@git.coding.net:amenzai/amenzai.coding.me.git,master
+    coding: git@e.coding.net:amenzai/amenzai.coding.me.git,master
