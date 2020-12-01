@@ -1,0 +1,969 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HTML5," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="HTML5新增内容的整理。">
+<meta name="keywords" content="HTML5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5总结">
+<meta property="og:url" content="http://amenzai.me/2016/06/10/html5/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="HTML5新增内容的整理。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.388Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML5总结">
+<meta name="twitter:description" content="HTML5新增内容的整理。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2016/06/10/html5/"/>
+
+
+
+
+
+  <title> HTML5总结 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2016/06/10/html5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-10T20:26:07+08:00">
+                2016-06-10
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/前端学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">前端学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                HTML5总结
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>HTML5新增内容的整理。</p>
+<a id="more"></a>
+<h1 id="新标签"><a href="#新标签" class="headerlink" title="新标签"></a>新标签</h1><h2 id="更语义化的标签"><a href="#更语义化的标签" class="headerlink" title="更语义化的标签"></a>更语义化的标签</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aside</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artical</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">figcaption</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="应用程序功能标签"><a href="#应用程序功能标签" class="headerlink" title="应用程序功能标签"></a>应用程序功能标签</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 模拟下拉列表 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">list</span>=<span class="string">"teachers"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">datalist</span> <span class="attr">id</span>=<span class="string">"teachers"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"段誉"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"乔峰"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"方世玉"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">datalist</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 模拟菜单 仅仅火狐支持--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">menu</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">command</span> <span class="attr">type</span>=<span class="string">"command"</span> <span class="attr">disabled</span> <span class="attr">label</span>=<span class="string">"Publish"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">menu</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 点击查看详情 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">details</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">summary</span>&gt;</span>HTML 5<span class="tag">&lt;/<span class="name">summary</span>&gt;</span></span><br><span class="line">  This slide deck teaches you everything you need to know about HTML 5.</span><br><span class="line"><span class="tag">&lt;/<span class="name">details</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- meta --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meter</span> <span class="attr">min</span>=<span class="string">"0"</span> <span class="attr">max</span>=<span class="string">"100"</span> <span class="attr">low</span>=<span class="string">"40"</span> <span class="attr">high</span>=<span class="string">"90"</span> <span class="attr">optimum</span>=<span class="string">"100"</span> <span class="attr">value</span>=<span class="string">"91"</span>&gt;</span>A+<span class="tag">&lt;/<span class="name">meter</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 进度条 在不同操作系统上显示不同 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">progress</span>&gt;</span>working...<span class="tag">&lt;/<span class="name">progress</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">progress</span> <span class="attr">value</span>=<span class="string">"75"</span> <span class="attr">max</span>=<span class="string">"100"</span>&gt;</span>3/4 complete<span class="tag">&lt;/<span class="name">progress</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="新属性"><a href="#新属性" class="headerlink" title="新属性"></a>新属性</h1><h2 id="ARIA-属性"><a href="#ARIA-属性" class="headerlink" title="ARIA 属性"></a>ARIA 属性</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 盲人用户如何知道当前浏览区域就是网站主导航？ --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"mainnav"</span> <span class="attr">role</span>=<span class="string">"navigation"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://news.qq.com/"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>新闻<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://v.qq.com/"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>视频<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://ent.qq.com/"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>娱乐<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 如何让盲人用户知道我们使用li标签是用来模拟标准select控件？ --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"dropdown"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span> <span class="attr">role</span>=<span class="string">"combobox"</span> <span class="attr">aria-autocomplete</span>=<span class="string">"list"</span> <span class="attr">aria-owns</span>=<span class="string">"question-list"</span> <span class="attr">aria-expanded</span>=<span class="string">"true"</span>&gt;</span>选择提示问题<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"question-list"</span> <span class="attr">role</span>=<span class="string">"listbox"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">role</span>=<span class="string">"option"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span>&gt;</span>我妈妈的名字是？<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">role</span>=<span class="string">"option"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span>&gt;</span>我爸爸的名字是？<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">role</span>=<span class="string">"option"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span>&gt;</span>我爱人的名字是？<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="data属性"><a href="#data属性" class="headerlink" title="data属性"></a>data属性</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 标签绑定数据 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item"</span> <span class="attr">data-id</span>=<span class="string">"1"</span> <span class="attr">data-age</span>=<span class="string">"18"</span> <span class="attr">data-gender</span>=<span class="string">"true"</span>&gt;</span>text<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">// 设置data属性</span></span></span><br><span class="line"><span class="javascript">  DOM.setAttribute(<span class="string">'data-name'</span>, <span class="string">'text'</span>);</span></span><br><span class="line"><span class="javascript">  <span class="comment">// 获取data属性</span></span></span><br><span class="line"><span class="javascript">  DOM.dataset[<span class="string">'age'</span>]</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="新的表单类型"><a href="#新的表单类型" class="headerlink" title="新的表单类型"></a>新的表单类型</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type = [&apos;search&apos;,&apos;date&apos;,&apos;range&apos;,&apos;number&apos;,&apos;color&apos;,&apos;email&apos;,&apos;url&apos;,&apos;tel&apos;]</span><br></pre></td></tr></table></figure>
+<h1 id="多媒体元素"><a href="#多媒体元素" class="headerlink" title="多媒体元素"></a>多媒体元素</h1><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">h5-vedio or h5-audio //在sublime中定义好了代码段，直接输入+tab</span><br><span class="line"><span class="comment">&lt;!-- 滚动字体 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">style</span>=<span class="string">"width: 388px; height: 200px"</span> <span class="attr">scrollamount</span>=<span class="string">"2"</span> <span class="attr">direction</span>=<span class="string">"up"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>日不落的夏天中了50元酒店信用住超值红包<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>悠悠youyou中了20元酒店信用住超值红包<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>xiaomogu中了100元酒店信用住超值红包<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h1><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">//svg文件的引入方式</span><br><span class="line"><span class="comment">&lt;!-- 第一种方式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"famoustiger.svg"</span> <span class="attr">style</span>=<span class="string">"border:none; width:550px; height:540px; background: white;"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 第二种方式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">"famoustiger.svg"</span> <span class="attr">style</span>=<span class="string">"border:none; width:550px; height:540px; background: white;"</span> <span class="attr">type</span>=<span class="string">"image/svg+xml"</span> <span class="attr">pluginspage</span>=<span class="string">"http://www.adobe.com/svg/viewer/install/"</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 第三种方式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">object</span> <span class="attr">type</span>=<span class="string">"image/svg+xml"</span> <span class="attr">style</span>=<span class="string">"border:none; width:550px; height:540px; background: white;"</span> <span class="attr">data</span>=<span class="string">"famoustiger.svg"</span> <span class="attr">codebase</span>=<span class="string">"http://www.adobe.com/svg/viewer/install/"</span>&gt;</span><span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>SVG可以看成个页面，因此用上述方法引入时无法更改其样式。</p>
+<p>所以通常我们会这样引入：通过Js将SVG文档根元素，插入到本文档，这样我们可以对其样式进行更改。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">data-src</span>=<span class="string">"demo.svg"</span>&gt;</span><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">var svgs = $('svg');</span><br><span class="line">for (var i = 0; i <span class="tag">&lt; <span class="attr">svgs.length</span>; <span class="attr">i</span>++) &#123;</span></span><br><span class="line"><span class="tag">  <span class="attr">var</span> <span class="attr">src</span> = <span class="string">$(svgs[i]).data(</span>'<span class="attr">src</span>');</span></span><br><span class="line"><span class="tag">  // 向服务器发送请求 得到<span class="attr">svg</span></span></span><br><span class="line"><span class="tag">  $<span class="attr">.get</span>(<span class="attr">src</span>, <span class="attr">function</span>(<span class="attr">data</span>) &#123;</span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">var</span> <span class="attr">el</span> = <span class="string">data.documentElement;</span></span></span><br><span class="line"><span class="tag">    $(<span class="attr">document.body</span>)<span class="attr">.append</span>($(<span class="attr">el</span>));</span></span><br><span class="line"><span class="tag">  &#125;);</span></span><br><span class="line"><span class="tag">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="JS-API"><a href="#JS-API" class="headerlink" title="JS-API"></a>JS-API</h1><h2 id="新的选择器"><a href="#新的选择器" class="headerlink" title="新的选择器"></a>新的选择器</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(selector) <span class="comment">//可以通过CSS选择器的语法找到匹配的第一个DOM元素</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(selector) <span class="comment">//可以通过CSS选择器的语法找到匹配的所有DOM元素</span></span><br></pre></td></tr></table></figure>
+<h2 id="Class-List"><a href="#Class-List" class="headerlink" title="Class List"></a>Class List</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> demoClassList = demoElement.classList; <span class="comment">//返回一个数组</span></span><br><span class="line">demoClassList.add(<span class="string">'bordered'</span>); <span class="comment">// 添加一个类名</span></span><br><span class="line">demoClassList.remove(<span class="string">'highlighted'</span>); <span class="comment">// 删除一个类名</span></span><br><span class="line"><span class="keyword">var</span> isAnimated = demoClassList.contains(<span class="string">'animated'</span>); <span class="comment">// 获取是否存在指定类名</span></span><br><span class="line">demoClassList.toggle(<span class="string">'animated'</span>, !isAnimated); <span class="comment">// 根据第二个参数切换一个类名</span></span><br></pre></td></tr></table></figure>
+<h2 id="history-api"><a href="#history-api" class="headerlink" title="history-api"></a>history-api</h2><p>界面上的所有JS操作不会被浏览器记住，就无法回到之前的状态。</p>
+<p>在HTML5中可以通过window.history操作访问历史状态，让一个页面可以有多个历史状态<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.history.forward(); <span class="comment">// 前进</span></span><br><span class="line"><span class="built_in">window</span>.history.back(); <span class="comment">// 后退</span></span><br><span class="line"><span class="built_in">window</span>.history.go(); <span class="comment">// 刷新</span></span><br><span class="line">history.pushState(放入历史中的状态数据, 设置title(现在浏览器不支持)， 改变历史状态)</span><br><span class="line"><span class="built_in">window</span>的popstate事件当前进或后退触发。</span><br><span class="line">e.state得到“放入历史中的状态数据”</span><br><span class="line">单页应用程序（记录js中的事件，可以返回）</span><br></pre></td></tr></table></figure></p>
+<h2 id="全屏-API"><a href="#全屏-API" class="headerlink" title="全屏 API"></a>全屏 API</h2><p>JavaScript中可以通过调用<code>requestFullScreen()</code>方式实现指定元素的全屏显示。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> element = <span class="built_in">document</span>.querySelector(<span class="string">'...'</span>);</span><br><span class="line">element.requestFullScreen();</span><br><span class="line"></span><br><span class="line">fullScreen(element)</span><br><span class="line"><span class="comment">// 让元素全屏的方法，全平时背景是黑的，要给每个元素设置背景才行</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fullScreen</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (element.webkitRequestFullScreen) &#123;</span><br><span class="line">    element.webkitRequestFullScreen();</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element.mozRequestFullScreen) &#123;</span><br><span class="line">    element.mozRequestFullScreen();</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element.requestFullScreen) &#123;</span><br><span class="line">    element.requestFullScreen();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 锁定鼠标</span></span><br><span class="line">  <span class="keyword">if</span> (element.requestPointerLock)</span><br><span class="line">    element.requestPointerLock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Application-Cache"><a href="#Application-Cache" class="headerlink" title="Application Cache"></a>Application Cache</h2><p>对HTML元素加一个manifest属性，根目录创建一个cache.manifest文件，高速浏览器将会缓存里面编写的文件，以后不用到服务器加载，版本更新的话，把里面的version改了就行。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span> <span class="attr">manifest</span>=<span class="string">"cache.manifest"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- cache.manifest文件内容 --&gt;</span></span><br><span class="line">CACHE MANIFEST</span><br><span class="line"># version 1.0.7</span><br><span class="line"></span><br><span class="line">CACHE:</span><br><span class="line">  cache.css //路径写正确</span><br><span class="line">  cache.js</span><br><span class="line">  05-application-cache.html</span><br><span class="line">  toy.png</span><br><span class="line"></span><br><span class="line">NETWORK:</span><br><span class="line">  *</span><br></pre></td></tr></table></figure></p>
+<h2 id="Web-Storage-本地存储"><a href="#Web-Storage-本地存储" class="headerlink" title="Web Storage(本地存储)"></a>Web Storage(本地存储)</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">localStorage <span class="comment">//永久存储，除非用户删除了</span></span><br><span class="line">sessionStorage <span class="comment">//网页关闭即删除</span></span><br><span class="line">localStorage.setItem(key,value); <span class="comment">//设置键值对</span></span><br><span class="line">localStorage.getItem(key); 获取存储的键值</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML5/" rel="tag"><i class="fa fa-tag"></i> HTML5</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/20/responsive-img/" rel="next" title="响应式图片解决方案">
+                <i class="fa fa-chevron-left"></i> 响应式图片解决方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/20/git/" rel="prev" title="git使用指南">
+                git使用指南 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#新标签"><span class="nav-number">1.</span> <span class="nav-text">新标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更语义化的标签"><span class="nav-number">1.1.</span> <span class="nav-text">更语义化的标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用程序功能标签"><span class="nav-number">1.2.</span> <span class="nav-text">应用程序功能标签</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新属性"><span class="nav-number">2.</span> <span class="nav-text">新属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ARIA-属性"><span class="nav-number">2.1.</span> <span class="nav-text">ARIA 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data属性"><span class="nav-number">2.2.</span> <span class="nav-text">data属性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新的表单类型"><span class="nav-number">3.</span> <span class="nav-text">新的表单类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多媒体元素"><span class="nav-number">4.</span> <span class="nav-text">多媒体元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SVG"><span class="nav-number">5.</span> <span class="nav-text">SVG</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JS-API"><span class="nav-number">6.</span> <span class="nav-text">JS-API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新的选择器"><span class="nav-number">6.1.</span> <span class="nav-text">新的选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Class-List"><span class="nav-number">6.2.</span> <span class="nav-text">Class List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#history-api"><span class="nav-number">6.3.</span> <span class="nav-text">history-api</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全屏-API"><span class="nav-number">6.4.</span> <span class="nav-text">全屏 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-Cache"><span class="nav-number">6.5.</span> <span class="nav-text">Application Cache</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-Storage-本地存储"><span class="nav-number">6.6.</span> <span class="nav-text">Web Storage(本地存储)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

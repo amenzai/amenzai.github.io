@@ -1,0 +1,1065 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AngularJS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="这一篇讲解一下AngularJS。">
+<meta name="keywords" content="AngularJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AngularJS笔记">
+<meta property="og:url" content="http://amenzai.me/2017/04/08/AngularJS笔记/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="这一篇讲解一下AngularJS。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.366Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AngularJS笔记">
+<meta name="twitter:description" content="这一篇讲解一下AngularJS。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2017/04/08/AngularJS笔记/"/>
+
+
+
+
+
+  <title> AngularJS笔记 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2017/04/08/AngularJS笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T20:26:07+08:00">
+                2017-04-08
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/前端学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">前端学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                AngularJS笔记
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这一篇讲解一下AngularJS。</p>
+<a id="more"></a>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>AngularJS 是一个 JavaScript 框架。它可通过 <code>&lt;script&gt;</code>标签添加到 HTML 页面。</p>
+<p>AngularJS 通过 指令 扩展了 HTML，且通过 表达式 绑定数据到 HTML。</p>
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="模块（module）"><a href="#模块（module）" class="headerlink" title="模块（module）"></a>模块（module）</h2><p>AngularJS很重要的一个特性就是实现模块化编程，我们可以通过以下方式创建一个模块，对页面进行功能业务上的划分。</p>
+<p>也可以将重复使用的指令或过滤器之类的做成模块便于复用。</p>
+<p>注意必须指定第二个参数，否则变成找到已经定义的模块。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> myApp = angular.module(<span class="string">"MyApp"</span>, []);</span><br></pre></td></tr></table></figure></p>
+<h2 id="控制器（controller）"><a href="#控制器（controller）" class="headerlink" title="控制器（controller）"></a>控制器（controller）</h2><p>调度逻辑的集合。</p>
+<p>控制器常用注入：’$scope’, ‘$location’, ‘MainService’, ‘$routeParams’,’$http’,’$window’,’$document’</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'myApp'</span>, []);</span><br><span class="line">app.controller(<span class="string">'personCtrl'</span>, [<span class="string">'$scope'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;</span><br><span class="line">    $scope.firstName = <span class="string">"John"</span>;</span><br><span class="line">    $scope.lastName = <span class="string">"Doe"</span>;</span><br><span class="line">    $scope.fullName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> $scope.firstName + <span class="string">" "</span> + $scope.lastName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+<p>控制器的三个主要职责：</p>
+<ol>
+<li>为应用中的模型设置初始状态</li>
+<li>通过$scope对象把数据模型或函数行为暴露给视图</li>
+<li>监视模型的变化，做出相应的动作</li>
+</ol>
+<p>代码示例：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$scope.$watch(‘totalCart’, calculateDiscount);</span><br><span class="line"></span><br><span class="line">$scope.$watch(<span class="string">'user.username'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">now, old</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 当user.username发生变化时触发这个函数</span></span><br><span class="line">        <span class="comment">// console.log('now is ' + now);</span></span><br><span class="line">        <span class="comment">// console.log('old is ' + old);</span></span><br><span class="line">        <span class="keyword">if</span> (now) &#123;</span><br><span class="line">          <span class="keyword">if</span> (now.length &lt; <span class="number">7</span>) &#123;</span><br><span class="line">            $scope.message = <span class="string">'输入格式不合法'</span>;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $scope.message = <span class="string">''</span>;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          $scope.message = <span class="string">'请输入用户名'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="scope（上下文模型）"><a href="#scope（上下文模型）" class="headerlink" title="$scope（上下文模型）"></a>$scope（上下文模型）</h2><ul>
+<li>视图和控制器之间的桥梁</li>
+<li>用于在视图和控制器之间传递数据</li>
+<li>利用$scope暴露数据模型（数据，行为）</li>
+</ul>
+<p>谷歌插件：<code>AngularJS batarang</code>调试<code>$scope</code></p>
+<h2 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h2><p>使用表达式把数据绑定到html，类似 <code>ng-bind</code> 指令。</p>
+<p>表达式可以包含文字、运算符、变量，支持过滤器。</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#123;expression&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>建议更多的使用指令</p>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><p>AngularJS 有一套完整的、可扩展的、用来帮助 Web 应用开发的指令集。</p>
+<p>在 DOM 编译期间，和 HTML 关联着的指令会被检测到，并且被执行。</p>
+<p>在 AngularJS 中将前缀为 ng- 这种属性称之为指令，其作用就是为 DOM 元素调用方法、定义行为绑定数据等。</p>
+<p>简单说：当一个 Angular 应用启动，Angular 就会遍历 DOM 树来解析 HTML，根据指令不同，完成不同操作。</p>
+<p>指令如下：</p>
+<h3 id="ng-app"><a href="#ng-app" class="headerlink" title="ng-app"></a>ng-app</h3><ul>
+<li>ng-app指令用来标明一个AngularJS应用程序</li>
+<li>标记在一个AngularJS的作用范围的根对象上</li>
+<li>系统执行时会自动的执行根对象范围内的其他指令</li>
+<li>可以在同一个页面创建多个ng-app节点</li>
+</ul>
+<h3 id="ng-cloak"><a href="#ng-cloak" class="headerlink" title="ng-cloak"></a>ng-cloak</h3><p>添加一下样式，并且在body中添加此属性。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">  <span class="selector-attr">[ng\:cloak]</span>,</span></span><br><span class="line"><span class="css">  <span class="selector-attr">[ng-cloak]</span>,</span></span><br><span class="line"><span class="css">  <span class="selector-attr">[data-ng-cloak]</span>,</span></span><br><span class="line"><span class="css">  <span class="selector-attr">[x-ng-cloak]</span>,</span></span><br><span class="line"><span class="css">  <span class="selector-class">.ng-cloak</span>,</span></span><br><span class="line"><span class="css">  <span class="selector-class">.x-ng-cloak</span>,</span></span><br><span class="line"><span class="css">  <span class="selector-class">.ng-hide</span><span class="selector-pseudo">:not(.ng-hide-animate)</span> &#123;</span></span><br><span class="line"><span class="undefined">    display: none !important;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">  <span class="selector-tag">ng</span>\<span class="selector-pseudo">:form</span> &#123;</span></span><br><span class="line"><span class="undefined">    display: block;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">  <span class="selector-class">.ng-animate-shim</span> &#123;</span></span><br><span class="line"><span class="undefined">    visibility: hidden;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">  <span class="selector-class">.ng-anchor</span> &#123;</span></span><br><span class="line"><span class="undefined">    position: absolute;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-app</span> <span class="attr">ng-cloak</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="ng-repeat"><a href="#ng-repeat" class="headerlink" title="ng-repeat"></a>ng-repeat</h3><p>ng-repeat指令用来编译一个数组重复创建当前元素，如果数组中有重复的项，则需要早后面加<code>track by $index</code>如<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"messages"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"item in messages track by $index"</span>&gt;</span></span><br><span class="line">        &#123;&#123;item&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="ng-class"><a href="#ng-class" class="headerlink" title="ng-class"></a>ng-class</h3><p>ng-class指令可以设置一个键值对，用于决定是否添加一个特定的类名，键为class名，值为bool类型表示是否添加该类名。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"messages"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"item in messages track by $index"</span> <span class="attr">ng-class</span>=<span class="string">"&#123;red:item.read&#125;"</span>&gt;</span></span><br><span class="line">        &#123;&#123;item.content&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="ng-show-ng-hide"><a href="#ng-show-ng-hide" class="headerlink" title="ng-show/ng-hide"></a>ng-show/ng-hide</h3><p>ng-show/ng-hide指令会根据属性值去确定是否展示当前元素，例如ng-show=false则不会展示该元素。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"messages"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"item in messages track by $index"</span> <span class="attr">ng-show</span>=<span class="string">"item.read"</span>&gt;</span></span><br><span class="line">        &#123;&#123;item.content&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="ng-link-ng-src"><a href="#ng-link-ng-src" class="headerlink" title="ng-link/ng-src"></a>ng-link/ng-src</h3><p>ng-link/ng-src指令用于解决当链接类型的数据绑定时造成的加载BUG，如<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 浏览器在解析HTML时会去请求&#123;&#123;item.url&#125;&#125;文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;item.url&#125;&#125;"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 可以使用ng-src解决该问题 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">ng-src</span>=<span class="string">"&#123;&#123;item.url&#125;&#125;"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="ng-switch"><a href="#ng-switch" class="headerlink" title="ng-switch"></a>ng-switch</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-app</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">ng-model</span>=<span class="string">"selected"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-switch</span>=<span class="string">"selected"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-switch-when</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">      你选择的是1</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-switch-when</span>=<span class="string">"2"</span>&gt;</span></span><br><span class="line">      你选择的是2</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-switch-when</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">      你选择的是3</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-switch-default</span>&gt;</span></span><br><span class="line">      你什么都没选</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h3><ul>
+<li>ng-model</li>
+<li>ng-click</li>
+<li>ng-dbclick</li>
+<li>ng-if：指是否存在DOM元素</li>
+<li>ng-checked</li>
+<li>ng-selected</li>
+<li>ng-disabled</li>
+<li>ng-readonly</li>
+<li>ng-blur</li>
+<li>ng-change</li>
+<li>ng-focus</li>
+<li>ng-submit</li>
+</ul>
+<h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">var demoApp = angular.module('demoApp', []);</span><br><span class="line"></span><br><span class="line">// 第一个参数是指令的名字，第二个参数任然应该使用一个数组，数组的最后一个元素是一个函数</span><br><span class="line">// 定义指令的名字，应该使用驼峰命名法</span><br><span class="line">demoApp.directive('itcastButton', [function() &#123;</span><br><span class="line">  // 该函数应该返回一个指令对象</span><br><span class="line">  return &#123;</span><br><span class="line">    template:'<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"itcast"</span> <span class="attr">class</span>=<span class="string">"btn btn-lg btn-primary btn-block"</span> /&gt;</span>'</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;]);</span><br><span class="line"><span class="comment">&lt;!-- html中使用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">itcast-button</span>&gt;</span><span class="tag">&lt;/<span class="name">itcast-button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//详细说明</span><br><span class="line">demoApp.directive('breadcrumb', [function() &#123;</span><br><span class="line">  // Runs during compile</span><br><span class="line">  return &#123;</span><br><span class="line">    // 指定当前指令的类型什么样的</span><br><span class="line">    // restrict: 'EA',</span><br><span class="line">    // // E = Element, A = Attribute, C = Class, M = Comment</span><br><span class="line">    // template: '', // 模版字符串</span><br><span class="line">    templateUrl: 'tmpls/breadcrumb.html',</span><br><span class="line">    replace: true,</span><br><span class="line">    // transclude: true,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;]);</span><br><span class="line"></span><br><span class="line">// demoApp.directive('btn', [function() &#123;</span><br><span class="line">//   return&#123;</span><br><span class="line">//     scope:&#123;</span><br><span class="line">//       primary:'@',</span><br><span class="line">//       lg:'@',</span><br><span class="line">//       block:'@',</span><br><span class="line">//     &#125;,</span><br><span class="line">//     template:'<span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn &#123;&#123;primary==\'true\'?\'btn-primary\':\'\'&#125;&#125;"</span>&gt;</span>button<span class="tag">&lt;/<span class="name">button</span>&gt;</span>'</span><br><span class="line">//   &#125;</span><br><span class="line">// &#125;]);</span><br><span class="line"></span><br><span class="line">// demoApp.directive('btn', [function() &#123;</span><br><span class="line">//   return &#123;</span><br><span class="line">//     // 指令对象的transclude必须设置为true才可以在模版中使用ng-transclude指令</span><br><span class="line">//     transclude: true,</span><br><span class="line">//     replace: true, // 替换指令在HTML中绑定的元素</span><br><span class="line">//     template: '<span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn btn-primary btn-lg"</span> <span class="attr">ng-transclude</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span>'</span><br><span class="line">//   &#125;;</span><br><span class="line">// &#125;]);</span><br></pre></td></tr></table></figure>
+<h1 id="AngularJS过滤器"><a href="#AngularJS过滤器" class="headerlink" title="AngularJS过滤器"></a>AngularJS过滤器</h1><p>过滤器的主要用途就是一个格式化数据的小工具，一般用于服务端存储的数据转换为用户界面可以理解的数据。</p>
+<h2 id="currency"><a href="#currency" class="headerlink" title="currency"></a>currency</h2><p>格式化数字为货币格式。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#123; (quantity * price) | currency &#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h2><p>从数组项中选择一个子集，其中test是我们在文本框中输入的值进行过滤。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ng-model</span>=<span class="string">"test"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"x in names | filter:test | orderBy:'country'"</span>&gt;</span></span><br><span class="line">    &#123;&#123; (x.name | uppercase) + ', ' + x.country &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="lowercase"><a href="#lowercase" class="headerlink" title="lowercase"></a>lowercase</h2><p>格式化字符串为小写。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#123; lastName | lowercase &#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="orderBy"><a href="#orderBy" class="headerlink" title="orderBy"></a>orderBy</h2><p>根据某个表达式排列数组。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"x in names | orderBy:'country'"</span>&gt;</span></span><br><span class="line">    &#123;&#123; x.name + ', ' + x.country &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="uppercase"><a href="#uppercase" class="headerlink" title="uppercase"></a>uppercase</h2><p>格式化字符串为大写。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#123; lastName | uppercase &#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#123;&apos;itcast.cn,itcast.com,itheima.com&apos; | limitTo:10:10&#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;&#123;p1 | json:8&#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;&#123;1288323623006 | date:&apos;fullDate&apos;&#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;&#123;1112123.141592635 | number:10&#125;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="自定义过滤器"><a href="#自定义过滤器" class="headerlink" title="自定义过滤器"></a>自定义过滤器</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;你&#123;&#123;weight|weight&#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">angular.module('app', [])</span></span><br><span class="line"><span class="regexp">      .filter('checkmark', function() &#123;</span></span><br><span class="line"><span class="regexp">        return function(input, style) &#123;</span></span><br><span class="line"><span class="regexp">          style = style || 1; /</span><span class="regexp">/ 短路运算符</span></span><br><span class="line"><span class="regexp">          switch (style) &#123;</span></span><br><span class="line"><span class="regexp">            case 1:</span></span><br><span class="line"><span class="regexp">              return input ? '\u2713' : '\u2718';</span></span><br><span class="line"><span class="regexp">            case 2:</span></span><br><span class="line"><span class="regexp">              return input ? '\u2714' : '\u2719';</span></span><br><span class="line"><span class="regexp">          &#125;</span></span><br><span class="line"><span class="regexp">        &#125;;</span></span><br><span class="line"><span class="regexp">      &#125;)</span></span><br><span class="line"><span class="regexp">      .filter('weight', function() &#123;</span></span><br><span class="line"><span class="regexp">        return function(input) &#123;</span></span><br><span class="line"><span class="regexp">          if (input &gt; 100) &#123;</span></span><br><span class="line"><span class="regexp">            return '太胖了';</span></span><br><span class="line"><span class="regexp">          &#125; else &#123;</span></span><br><span class="line"><span class="regexp">            return '太瘦了';</span></span><br><span class="line"><span class="regexp">          &#125;</span></span><br><span class="line"><span class="regexp">        &#125;;</span></span><br><span class="line"><span class="regexp">      &#125;);</span></span><br></pre></td></tr></table></figure>
+<h1 id="AngularJS表单"><a href="#AngularJS表单" class="headerlink" title="AngularJS表单"></a>AngularJS表单</h1><h1 id="AngularJS服务"><a href="#AngularJS服务" class="headerlink" title="AngularJS服务"></a>AngularJS服务</h1><ul>
+<li>公用（公共）的业务逻辑集中存放的一段代码</li>
+<li>主要用于对重复业务的封装，重用</li>
+<li>一般主要封装针对于Model的CRUD</li>
+</ul>
+<h2 id="创建服务"><a href="#创建服务" class="headerlink" title="创建服务"></a>创建服务</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> myApp = angular.module(<span class="string">'MyApp'</span>, []);</span><br><span class="line"><span class="comment">// 通过factory方法创建一个公用的service</span></span><br><span class="line"><span class="keyword">var</span> userService = myApp.service(<span class="string">'UserService'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> users = &#123; <span class="number">1</span>: <span class="string">'zhangsan1'</span>, <span class="number">2</span>: <span class="string">'zhangsan2'</span> &#125;;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        getUser: <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> users[id];</span><br><span class="line">        &#125;,</span><br><span class="line">        addUser: <span class="function"><span class="keyword">function</span>(<span class="params">id, name</span>) </span>&#123;</span><br><span class="line">            users[id] = name;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="location服务"><a href="#location服务" class="headerlink" title="$location服务"></a>$location服务</h2><p>类似<code>window.location</code>对象，使用<code>$location.path()</code>获取<code>url</code>中锚点值后的字符串。</p>
+<h2 id="http服务"><a href="#http服务" class="headerlink" title="$http服务"></a>$http服务</h2><p>$http服务是AngularJS中处理AJAX的服务。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Simple GET request example:</span></span><br><span class="line">$http(&#123;</span><br><span class="line">  method: <span class="string">'GET'</span>,</span><br><span class="line">  url: <span class="string">'/someUrl'</span></span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> <span class="title">successCallback</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// this callback will be called asynchronously</span></span><br><span class="line">    <span class="comment">// when the response is available</span></span><br><span class="line">  &#125;, <span class="function"><span class="keyword">function</span> <span class="title">errorCallback</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// called asynchronously if an error occurs</span></span><br><span class="line">    <span class="comment">// or server returns response with an error status.</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// get</span></span><br><span class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'myApp'</span>, []);</span><br><span class="line">app.controller(<span class="string">'myCtrl'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $http</span>) </span>&#123;</span><br><span class="line">    $http.get(<span class="string">"welcome.htm"</span>).then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">        $scope.myWelcome = response.data;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="timeout服务"><a href="#timeout服务" class="headerlink" title="$timeout服务"></a>$timeout服务</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'myApp'</span>, []);</span><br><span class="line">app.controller(<span class="string">'myCtrl'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $timeout</span>) </span>&#123;</span><br><span class="line">    $scope.myHeader = <span class="string">"Hello World!"</span>;</span><br><span class="line">    $timeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        $scope.myHeader = <span class="string">"How are you today?"</span>;</span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="interval服务"><a href="#interval服务" class="headerlink" title="$interval服务"></a>$interval服务</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'myApp'</span>, []);</span><br><span class="line">app.controller(<span class="string">'myCtrl'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $interval</span>) </span>&#123;</span><br><span class="line">    $scope.theTime = <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleTimeString();</span><br><span class="line">    $interval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        $scope.theTime = <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleTimeString();</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="AngularJS路由"><a href="#AngularJS路由" class="headerlink" title="AngularJS路由"></a>AngularJS路由</h1><p>请求过来，判断用哪个控制器来处理。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-view</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">"a_tmpl"</span> <span class="attr">type</span>=<span class="string">"text/ng-template"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="xml">  <span class="comment">&lt;!-- 只有type="text/javascript"的script节点才会被当做JS执行 --&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="comment">&lt;!-- script中的内容就算不能执行，也不可以显示在界面上 --&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> app = angular.module(<span class="string">'app'</span>, [<span class="string">'ngRoute'</span>]);</span></span><br><span class="line"><span class="javascript">  app.config([<span class="string">'$routeProvider'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$routeProvider</span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">    $routeProvider</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 某一类特定地址</span></span></span><br><span class="line"><span class="javascript">      .when(<span class="string">'/students/:name?'</span>, &#123;</span></span><br><span class="line"><span class="javascript">        controller: <span class="string">'StudentsController'</span>,</span></span><br><span class="line"><span class="javascript">        templateUrl: <span class="string">'a_tmpl'</span></span></span><br><span class="line"><span class="undefined">      &#125;)</span></span><br><span class="line"><span class="javascript">      .when(<span class="string">'/a'</span>, &#123;</span></span><br><span class="line"><span class="javascript">        controller: <span class="string">'AController'</span>,</span></span><br><span class="line"><span class="javascript">        templateUrl: <span class="string">'a_tmpl'</span></span></span><br><span class="line"><span class="undefined">      &#125;)</span></span><br><span class="line"><span class="javascript">      .when(<span class="string">'/b'</span>, &#123;</span></span><br><span class="line"><span class="javascript">        controller: <span class="string">'BController'</span>,</span></span><br><span class="line"><span class="javascript">        templateUrl: <span class="string">'a_tmpl'</span></span></span><br><span class="line"><span class="undefined">      &#125;)</span></span><br><span class="line"><span class="javascript">      .when(<span class="string">'/c'</span>, &#123;</span></span><br><span class="line"><span class="javascript">        controller: <span class="string">'CController'</span>,</span></span><br><span class="line"><span class="javascript">        templateUrl: <span class="string">'a_tmpl'</span></span></span><br><span class="line"><span class="undefined">      &#125;)</span></span><br><span class="line"><span class="javascript">      <span class="comment">// 别的请求</span></span></span><br><span class="line"><span class="undefined">      .otherwise(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 跳转到一个地址</span></span></span><br><span class="line"><span class="javascript">        redirectTo: <span class="string">'/a'</span></span></span><br><span class="line"><span class="undefined">      &#125;);</span></span><br><span class="line"><span class="undefined">  &#125;]);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  app.controller(<span class="string">'StudentsController'</span>, [<span class="string">'$scope'</span>, <span class="string">'$routeParams'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $routeParams</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    $scope.title = <span class="string">'你好'</span> + $routeParams[<span class="string">'name'</span>] + <span class="string">'这是A控制器'</span>;</span></span><br><span class="line"><span class="undefined">  &#125;]);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  app.controller(<span class="string">'AController'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    $scope.title = <span class="string">'这是A控制器'</span>;</span></span><br><span class="line"><span class="undefined">  &#125;]);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  app.controller(<span class="string">'BController'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    $scope.title = <span class="string">'这是B控制器'</span>;</span></span><br><span class="line"><span class="undefined">  &#125;]);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  app.controller(<span class="string">'CController'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    $scope.title = <span class="string">'这是C控制器'</span>;</span></span><br><span class="line"><span class="undefined">  &#125;]);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><p>依赖注入（Dependency Injection，简称DI）是一种软件设计模式，在这种模式下，一个或更多的依赖（或服务）被注入（或者通过引用传递）到一个独立的对象（或客户端）中，然后成为了该客户端状态的一部分。</p>
+<p>该模式分离了客户端依赖本身行为的创建，这使得程序设计变得松耦合，并遵循了依赖反转和单一职责原则。与服务定位器模式形成直接对比的是，它允许客户端了解客户端如何使用该系统找到依赖。</p>
+<p>AngularJS 提供很好的依赖注入机制。以下5个核心组件用来作为依赖注入：</p>
+<h2 id="value"><a href="#value" class="headerlink" title="value"></a>value</h2><p>Value 是一个简单的 javascript 对象，用于向控制器传递值（配置阶段）：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个模块</span></span><br><span class="line"><span class="keyword">var</span> mainApp = angular.module(<span class="string">"mainApp"</span>, []);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 value 对象 "defaultInput" 并传递数据</span></span><br><span class="line">mainApp.value(<span class="string">"defaultInput"</span>, <span class="number">5</span>);</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将 "defaultInput" 注入到控制器</span></span><br><span class="line">mainApp.controller(<span class="string">'CalcController'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, CalcService, defaultInput</span>) </span>&#123;</span><br><span class="line">   $scope.number = defaultInput;</span><br><span class="line">   $scope.result = CalcService.square($scope.number);</span><br><span class="line">   </span><br><span class="line">   $scope.square = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      $scope.result = CalcService.square($scope.number);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="factory"><a href="#factory" class="headerlink" title="factory"></a>factory</h2><p>factory 是一个函数用于返回值。在 service 和 controller 需要时创建。<br>通常我们使用 factory 函数来计算或返回值。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个模块</span></span><br><span class="line"><span class="keyword">var</span> mainApp = angular.module(<span class="string">"mainApp"</span>, []);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 factory "MathService" 用于两数的乘积 provides a method multiply to return multiplication of two numbers</span></span><br><span class="line">mainApp.factory(<span class="string">'MathService'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> factory = &#123;&#125;;</span><br><span class="line">   </span><br><span class="line">   factory.multiply = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> a * b</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> factory;</span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 在 service 中注入 factory "MathService"</span></span><br><span class="line">mainApp.service(<span class="string">'CalcService'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">MathService</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.square = <span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> MathService.multiply(a,a);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="provider"><a href="#provider" class="headerlink" title="provider"></a>provider</h2><p>AngularJS 中通过 provider 创建一个 service、factory等(配置阶段)。</p>
+<p>Provider 中提供了一个 factory 方法 get()，它用于返回 value/service/factory。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个模块</span></span><br><span class="line"><span class="keyword">var</span> mainApp = angular.module(<span class="string">"mainApp"</span>, []);</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 provider 创建 service 定义一个方法用于计算两数乘积</span></span><br><span class="line">mainApp.config(<span class="function"><span class="keyword">function</span>(<span class="params">$provide</span>) </span>&#123;</span><br><span class="line">   $provide.provider(<span class="string">'MathService'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.$get = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> factory = &#123;&#125;;  </span><br><span class="line">         </span><br><span class="line">         factory.multiply = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> a * b; </span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> factory;</span><br><span class="line">      &#125;;</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="constant"><a href="#constant" class="headerlink" title="constant"></a>constant</h2><p>constant(常量)用来在配置阶段传递数值，注意这个常量在配置阶段是不可用的。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mainApp.constant(&quot;configParam&quot;, &quot;constant value&quot;);</span><br></pre></td></tr></table></figure></p>
+<h1 id="传参和获取参数"><a href="#传参和获取参数" class="headerlink" title="传参和获取参数"></a>传参和获取参数</h1><h2 id="angular中"><a href="#angular中" class="headerlink" title="angular中"></a>angular中</h2><p>例如：/:status</p>
+<p>控制器注入$routeParams，用$routeParams.status可获取对应参数。</p>
+<p>更新url地址参数，匹配路由:</p>
+<p>控制器中注入$route,使用$route.updateParams({ category: ‘search’, q: $scope.input })方法可以更新url中的参数。</p>
+<h2 id="ionic中"><a href="#ionic中" class="headerlink" title="ionic中"></a>ionic中</h2><p>例如：/:typeNumber</p>
+<p>控制器注入$stateParams，用$stateParams.typeNumber可获取对应参数。</p>
+<p>跳转如下：</p>
+<p>控制器注入$state。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//用在控制器中</span><br><span class="line"></span><br><span class="line">$state.go(&apos;goodsList&apos;,&#123;typeNumber:666&#125;);</span><br><span class="line"></span><br><span class="line">//用在视图中</span><br><span class="line">ui-sref=&quot;goodsList(&#123;typeNumber:&#123;&#123;item.typeNumber&#125;&#125;&#125;)”</span><br><span class="line"></span><br><span class="line">//直接跳转</span><br><span class="line">&lt;a href=&quot;#/goodsList/34&quot;&gt;跳转到商品详细页面&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>其实$state.go 与ui-sref一样，后面的参数是路由的名称。</p>
+<h1 id="项目目录及代码示例"><a href="#项目目录及代码示例" class="headerlink" title="项目目录及代码示例"></a>项目目录及代码示例</h1><p>一般主页面会有一个<code>&lt;ng-view&gt;&lt;/ng-view&gt;</code>标签，用来放置各类子页面</p>
+<h2 id="todomvc"><a href="#todomvc" class="headerlink" title="todomvc"></a>todomvc</h2><p>只有一个页面，在服务中编写好对应的方法，然后控制器调用并向视图暴露数据和方法。</p>
+<p>处理好模块依赖，一般都让主模块依赖控制器模块和服务模块，然后依次编写控制器模块和服务模块。</p>
+<p>熟练各种指令，了解获取路由的参数。</p>
+<p>项目目录：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">css</span><br><span class="line">    app.css //个人定制css</span><br><span class="line">js </span><br><span class="line">    app.js //主模块，并且配置路由</span><br><span class="line">    controllers.js //控制器，调度逻辑</span><br><span class="line">    services.js //各种服务，curd操作</span><br><span class="line">index.html // 入口文件</span><br></pre></td></tr></table></figure></p>
+<h2 id="moviecat"><a href="#moviecat" class="headerlink" title="moviecat"></a>moviecat</h2><p>如果页面布局相似，直接抽象出一个模块公用，在此用了列表模块公用。</p>
+<p>项目目录：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">css</span><br><span class="line">    app.css //custom style</span><br><span class="line">movie_list</span><br><span class="line">    controller.js // 配置路由，写逻辑</span><br><span class="line">    view.html</span><br><span class="line">movie_detail</span><br><span class="line">    controller.js </span><br><span class="line">    view.html</span><br><span class="line">components</span><br><span class="line">    auto-focus.js </span><br><span class="line">    http.js </span><br><span class="line">app.js //主模块，并且配置路由。</span><br></pre></td></tr></table></figure></p>
+<p>注意主模块中依赖顺序。主模块中配置常量在控制器里可以直接注入，主模块中定义的控制器要在视图中用指令绑定上去，并且只执行一次，如果需执行多次，请执行$watch()方法监控$scope中暴露出的对应数据。</p>
+<p>抽象出的共用模块，配置路由时使用参数的形式：/:category/:page</p>
+<p>$scope.$apply(); // 跨域请求数据以后，使用此方法将数据绑定到视图。</p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><p><strong>1. app.js</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Declare app level module which depends on views, and components</span></span><br><span class="line">angular.module(<span class="string">'moviecat'</span>, [</span><br><span class="line">    <span class="string">'ngRoute'</span>,</span><br><span class="line">    <span class="string">'moviecat.movie_detail'</span>,</span><br><span class="line">    <span class="string">'moviecat.movie_list'</span>,</span><br><span class="line">    <span class="string">'moviecat.directives.auto_focus'</span>,</span><br><span class="line">  ])</span><br><span class="line">  <span class="comment">// 为模块定义一些常量</span></span><br><span class="line">  .constant(<span class="string">'AppConfig'</span>, &#123;</span><br><span class="line">    pageSize: <span class="number">10</span>,</span><br><span class="line">    listApiAddress: <span class="string">'http://api.douban.com/v2/movie/'</span>,</span><br><span class="line">    detailApiAddress: <span class="string">'http://api.douban.com/v2/movie/subject/'</span></span><br><span class="line">  &#125;)</span><br><span class="line">  .config([<span class="string">'$routeProvider'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$routeProvider</span>) </span>&#123;</span><br><span class="line">    $routeProvider.otherwise(&#123; <span class="attr">redirectTo</span>: <span class="string">'/in_theaters/1'</span> &#125;);</span><br><span class="line">  &#125;])</span><br><span class="line">  .controller(<span class="string">'SearchController'</span>, [</span><br><span class="line">    <span class="string">'$scope'</span>,</span><br><span class="line">    <span class="string">'$route'</span>,</span><br><span class="line">    <span class="string">'AppConfig'</span>,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $route, AppConfig</span>) </span>&#123;</span><br><span class="line">      $scope.input = <span class="string">''</span>; <span class="comment">// 取文本框中的输入</span></span><br><span class="line">      $scope.search = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// console.log($scope.input);</span></span><br><span class="line">        $route.updateParams(&#123; <span class="attr">category</span>: <span class="string">'search'</span>, <span class="attr">q</span>: $scope.input &#125;);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  ]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// .controller('NavController', [</span></span><br><span class="line"><span class="comment">//   '$scope',</span></span><br><span class="line"><span class="comment">//   '$location',</span></span><br><span class="line"><span class="comment">//   function($scope, $location) &#123;</span></span><br><span class="line"><span class="comment">//     $scope.$location = $location;</span></span><br><span class="line"><span class="comment">//     $scope.$watch('$location.path()', function(now) &#123;</span></span><br><span class="line"><span class="comment">//       if (now.startsWith('/in_theaters')) &#123;</span></span><br><span class="line"><span class="comment">//         $scope.type = 'in_theaters';</span></span><br><span class="line"><span class="comment">//       &#125; else if (now.startsWith('/coming_soon')) &#123;</span></span><br><span class="line"><span class="comment">//         $scope.type = 'coming_soon';</span></span><br><span class="line"><span class="comment">//       &#125; else if (now.startsWith('/top250')) &#123;</span></span><br><span class="line"><span class="comment">//         $scope.type = 'top250';</span></span><br><span class="line"><span class="comment">//       &#125;</span></span><br><span class="line"><span class="comment">//       console.log($scope.type);</span></span><br><span class="line"><span class="comment">//     &#125;);</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"><span class="comment">// ])</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>2. movie_list.js</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">angular</span>) </span>&#123;</span><br><span class="line"><span class="meta">  'use strict'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 创建正在热映模块</span></span><br><span class="line">  <span class="keyword">var</span> <span class="built_in">module</span> = angular.module(</span><br><span class="line">    <span class="string">'moviecat.movie_list'</span>, [</span><br><span class="line">      <span class="string">'ngRoute'</span>,</span><br><span class="line">      <span class="string">'moviecat.services.http'</span></span><br><span class="line">    ]);</span><br><span class="line">  <span class="comment">// 配置模块的路由</span></span><br><span class="line">  <span class="built_in">module</span>.config([<span class="string">'$routeProvider'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$routeProvider</span>) </span>&#123;</span><br><span class="line">    $routeProvider.when(<span class="string">'/:category/:page'</span>, &#123;</span><br><span class="line">      templateUrl: <span class="string">'movie_list/view.html'</span>,</span><br><span class="line">      controller: <span class="string">'MovieListController'</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;]);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">module</span>.controller(<span class="string">'MovieListController'</span>, [</span><br><span class="line">    <span class="string">'$scope'</span>,</span><br><span class="line">    <span class="string">'$route'</span>,</span><br><span class="line">    <span class="string">'$routeParams'</span>,</span><br><span class="line">    <span class="string">'HttpService'</span>,</span><br><span class="line">    <span class="string">'AppConfig'</span>,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $route, $routeParams, HttpService, AppConfig</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> count = AppConfig.pageSize; <span class="comment">// 每一页的条数</span></span><br><span class="line">      <span class="keyword">var</span> page = <span class="built_in">parseInt</span>($routeParams.page); <span class="comment">// 当前第几页</span></span><br><span class="line">      <span class="keyword">var</span> start = (page - <span class="number">1</span>) * count; <span class="comment">// 当前页从哪开始</span></span><br><span class="line">      <span class="comment">// 控制器 分为两步： 1. 设计暴露数据，2. 设计暴露的行为</span></span><br><span class="line">      $scope.loading = <span class="literal">true</span>; <span class="comment">// 开始加载</span></span><br><span class="line">      $scope.subjects = [];</span><br><span class="line">      $scope.title = <span class="string">'Loading...'</span>;</span><br><span class="line">      $scope.message = <span class="string">''</span>;</span><br><span class="line">      $scope.totalCount = <span class="number">0</span>;</span><br><span class="line">      $scope.totalPages = <span class="number">0</span>;</span><br><span class="line">      $scope.currentPage = page;</span><br><span class="line">      HttpService.jsonp(</span><br><span class="line">        AppConfig.listApiAddress + $routeParams.category,</span><br><span class="line">        <span class="comment">// $routeParams 的数据来源：1.路由匹配出来的，2.?参数</span></span><br><span class="line">        &#123; <span class="attr">start</span>: start, <span class="attr">count</span>: count, <span class="attr">q</span>: $routeParams.q &#125;,</span><br><span class="line">        <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">          $scope.title = data.title;</span><br><span class="line">          $scope.subjects = data.subjects;</span><br><span class="line">          $scope.totalCount = data.total;</span><br><span class="line">          $scope.totalPages = <span class="built_in">Math</span>.ceil($scope.totalCount / count);</span><br><span class="line">          $scope.loading = <span class="literal">false</span>;</span><br><span class="line">          $scope.$apply();</span><br><span class="line">          <span class="comment">// $apply的作用就是让指定的表达式重新同步</span></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 暴露一个上一页下一页的行为</span></span><br><span class="line">      $scope.go = <span class="function"><span class="keyword">function</span>(<span class="params">page</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 传过来的是第几页我就跳第几页</span></span><br><span class="line">        <span class="comment">// 一定要做一个合法范围校验</span></span><br><span class="line">        <span class="keyword">if</span> (page &gt;= <span class="number">1</span> &amp;&amp; page &lt;= $scope.totalPages)</span><br><span class="line">          $route.updateParams(&#123; <span class="attr">page</span>: page &#125;);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  ]);</span><br><span class="line">&#125;)(angular);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// var doubanApiAddress = 'http://api.douban.com/v2/movie/in_theaters';</span></span><br><span class="line"><span class="comment">// // 测试$http服务</span></span><br><span class="line"><span class="comment">// // 在Angular中使用JSONP的方式做跨域请求，</span></span><br><span class="line"><span class="comment">// // 就必须给当前地址加上一个参数 callback=JSON_CALLBACK</span></span><br><span class="line"><span class="comment">// $http.jsonp(doubanApiAddress+'?callback=JSON_CALLBACK').then(function(res) &#123;</span></span><br><span class="line"><span class="comment">//   // 此处代码是在异步请求完成过后才执行（需要等一段时间）</span></span><br><span class="line"><span class="comment">//   if (res.status == 200) &#123;</span></span><br><span class="line"><span class="comment">//     $scope.subjects = res.data.subjects;</span></span><br><span class="line"><span class="comment">//   &#125; else &#123;</span></span><br><span class="line"><span class="comment">//     $scope.message = '获取数据错误，错误信息：' + res.statusText;</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"><span class="comment">// &#125;, function(err) &#123;</span></span><br><span class="line"><span class="comment">//   console.log(err);</span></span><br><span class="line"><span class="comment">//   $scope.message = '获取数据错误，错误信息：' + err.statusText;</span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>3. movie_detail.js</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">angular</span>) </span>&#123;</span><br><span class="line"><span class="meta">  'use strict'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 创建正在热映模块</span></span><br><span class="line">  <span class="keyword">var</span> <span class="built_in">module</span> = angular.module(</span><br><span class="line">    <span class="string">'moviecat.movie_detail'</span>, [</span><br><span class="line">      <span class="string">'ngRoute'</span>,</span><br><span class="line">      <span class="string">'moviecat.services.http'</span></span><br><span class="line">    ]);</span><br><span class="line">  <span class="comment">// 配置模块的路由</span></span><br><span class="line">  <span class="built_in">module</span>.config([<span class="string">'$routeProvider'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$routeProvider</span>) </span>&#123;</span><br><span class="line">    $routeProvider.when(<span class="string">'/detail/:id'</span>, &#123;</span><br><span class="line">      templateUrl: <span class="string">'movie_detail/view.html'</span>,</span><br><span class="line">      controller: <span class="string">'MovieDetailController'</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;]);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">module</span>.controller(<span class="string">'MovieDetailController'</span>, [</span><br><span class="line">    <span class="string">'$scope'</span>,</span><br><span class="line">    <span class="string">'$route'</span>,</span><br><span class="line">    <span class="string">'$routeParams'</span>,</span><br><span class="line">    <span class="string">'HttpService'</span>,</span><br><span class="line">    <span class="string">'AppConfig'</span>,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $route, $routeParams, HttpService, AppConfig</span>) </span>&#123;</span><br><span class="line">      $scope.movie = &#123;&#125;;</span><br><span class="line">      $scope.loading = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">var</span> id = $routeParams.id;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> apiAddress =</span><br><span class="line">        AppConfig.detailApiAddress + id;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 跨域的方式</span></span><br><span class="line">      HttpService.jsonp(apiAddress, &#123;&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">        $scope.movie = data;</span><br><span class="line">        $scope.loading = <span class="literal">false</span>;</span><br><span class="line">        $scope.$apply();</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  ]);</span><br><span class="line">&#125;)(angular);</span><br></pre></td></tr></table></figure>
+<p><strong>4. auto-focus.js自定义指令</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">angular</span>) </span>&#123;</span><br><span class="line">  angular.module(<span class="string">'moviecat.directives.auto_focus'</span>, [])</span><br><span class="line">    .directive(<span class="string">'autoFocus'</span>, [<span class="string">'$location'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$location</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// Runs during compile</span></span><br><span class="line">      <span class="comment">// var path = $location.path(); // /coming_soon/1</span></span><br><span class="line">      <span class="comment">// console.log(path);</span></span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        restrict: <span class="string">'A'</span>, <span class="comment">// E = Element, A = Attribute, C = Class, M = Comment</span></span><br><span class="line">        link: <span class="function"><span class="keyword">function</span>(<span class="params">$scope, iElm, iAttrs, controller</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">          $scope.$location = $location;</span><br><span class="line">          $scope.$watch(<span class="string">'$location.path()'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">now</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 当path发生变化时执行，now是变化后的值</span></span><br><span class="line">            <span class="keyword">var</span> aLink = iElm.children().attr(<span class="string">'href'</span>);</span><br><span class="line">            <span class="keyword">var</span> type = aLink.replace(<span class="regexp">/#(\/.+?)\/\d+/</span>, <span class="string">'$1'</span>); <span class="comment">// /coming_soon</span></span><br><span class="line">            <span class="keyword">if</span> (now.startsWith(type)) &#123;</span><br><span class="line">              <span class="comment">// 访问的是当前链接</span></span><br><span class="line">              iElm.parent().children().removeClass(<span class="string">'active'</span>);</span><br><span class="line">              iElm.addClass(<span class="string">'active'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">          <span class="comment">// iElm.on('click', function() &#123;</span></span><br><span class="line">          <span class="comment">//   iElm.parent().children().removeClass('active');</span></span><br><span class="line">          <span class="comment">//   iElm.addClass('active');</span></span><br><span class="line">          <span class="comment">// &#125;);</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;]);</span><br><span class="line">&#125;)(angular);</span><br></pre></td></tr></table></figure>
+<p><strong>5. http.js跨域服务</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 由于默认angular提供的异步请求对象不支持自定义回调函数名</span></span><br><span class="line"><span class="comment">// angular随机分配的回调函数名称不被豆瓣支持</span></span><br><span class="line"><span class="keyword">var</span> http = angular.module(<span class="string">'moviecat.services.http'</span>, []);</span><br><span class="line">http.service(<span class="string">'HttpService'</span>, [<span class="string">'$window'</span>, <span class="string">'$document'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$window, $document</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// url : http://api.douban.com/vsdfsdf -&gt; &lt;script&gt; -&gt; html就可自动执行</span></span><br><span class="line">  <span class="keyword">this</span>.jsonp = <span class="function"><span class="keyword">function</span>(<span class="params">url, data, callback</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// if (typeof data == 'function') &#123;</span></span><br><span class="line">    <span class="comment">//   callback = data;</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="keyword">var</span> querystring = url.indexOf(<span class="string">'?'</span>) == <span class="number">-1</span> ? <span class="string">'?'</span> : <span class="string">'&amp;'</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> data) &#123;</span><br><span class="line">      querystring += key + <span class="string">'='</span> + data[key] + <span class="string">'&amp;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> fnSuffix = <span class="built_in">Math</span>.random().toString().replace(<span class="string">'.'</span>, <span class="string">''</span>);</span><br><span class="line">    <span class="keyword">var</span> cbFuncName = <span class="string">'my_json_cb_'</span> + fnSuffix;</span><br><span class="line">    querystring += <span class="string">'callback='</span> + cbFuncName;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> scriptElement = $<span class="built_in">document</span>[<span class="number">0</span>].createElement(<span class="string">'script'</span>);</span><br><span class="line">    scriptElement.src = url + querystring;</span><br><span class="line">    <span class="comment">// 不推荐</span></span><br><span class="line">    $<span class="built_in">window</span>[cbFuncName] = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">      callback(data);</span><br><span class="line">      $<span class="built_in">document</span>[<span class="number">0</span>].body.removeChild(scriptElement);</span><br><span class="line">    &#125;;</span><br><span class="line">    $<span class="built_in">document</span>[<span class="number">0</span>].body.appendChild(scriptElement);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AngularJS/" rel="tag"><i class="fa fa-tag"></i> AngularJS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/06/SeaJS笔记/" rel="next" title="SeaJS笔记">
+                <i class="fa fa-chevron-left"></i> SeaJS笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/10/ionic笔记/" rel="prev" title="Ionic笔记">
+                Ionic笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础"><span class="nav-number">2.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模块（module）"><span class="nav-number">2.1.</span> <span class="nav-text">模块（module）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制器（controller）"><span class="nav-number">2.2.</span> <span class="nav-text">控制器（controller）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scope（上下文模型）"><span class="nav-number">2.3.</span> <span class="nav-text">$scope（上下文模型）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式"><span class="nav-number">2.4.</span> <span class="nav-text">表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令"><span class="nav-number">2.5.</span> <span class="nav-text">指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ng-app"><span class="nav-number">2.5.1.</span> <span class="nav-text">ng-app</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ng-cloak"><span class="nav-number">2.5.2.</span> <span class="nav-text">ng-cloak</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ng-repeat"><span class="nav-number">2.5.3.</span> <span class="nav-text">ng-repeat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ng-class"><span class="nav-number">2.5.4.</span> <span class="nav-text">ng-class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ng-show-ng-hide"><span class="nav-number">2.5.5.</span> <span class="nav-text">ng-show/ng-hide</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ng-link-ng-src"><span class="nav-number">2.5.6.</span> <span class="nav-text">ng-link/ng-src</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ng-switch"><span class="nav-number">2.5.7.</span> <span class="nav-text">ng-switch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他常用命令"><span class="nav-number">2.5.8.</span> <span class="nav-text">其他常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义指令"><span class="nav-number">2.5.9.</span> <span class="nav-text">自定义指令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AngularJS过滤器"><span class="nav-number">3.</span> <span class="nav-text">AngularJS过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#currency"><span class="nav-number">3.1.</span> <span class="nav-text">currency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#filter"><span class="nav-number">3.2.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lowercase"><span class="nav-number">3.3.</span> <span class="nav-text">lowercase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orderBy"><span class="nav-number">3.4.</span> <span class="nav-text">orderBy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uppercase"><span class="nav-number">3.5.</span> <span class="nav-text">uppercase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">3.6.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义过滤器"><span class="nav-number">3.7.</span> <span class="nav-text">自定义过滤器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AngularJS表单"><span class="nav-number">4.</span> <span class="nav-text">AngularJS表单</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AngularJS服务"><span class="nav-number">5.</span> <span class="nav-text">AngularJS服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建服务"><span class="nav-number">5.1.</span> <span class="nav-text">创建服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#location服务"><span class="nav-number">5.2.</span> <span class="nav-text">$location服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http服务"><span class="nav-number">5.3.</span> <span class="nav-text">$http服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#timeout服务"><span class="nav-number">5.4.</span> <span class="nav-text">$timeout服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#interval服务"><span class="nav-number">5.5.</span> <span class="nav-text">$interval服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AngularJS路由"><span class="nav-number">6.</span> <span class="nav-text">AngularJS路由</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖注入"><span class="nav-number">7.</span> <span class="nav-text">依赖注入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#value"><span class="nav-number">7.1.</span> <span class="nav-text">value</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#factory"><span class="nav-number">7.2.</span> <span class="nav-text">factory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#provider"><span class="nav-number">7.3.</span> <span class="nav-text">provider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#constant"><span class="nav-number">7.4.</span> <span class="nav-text">constant</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传参和获取参数"><span class="nav-number">8.</span> <span class="nav-text">传参和获取参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#angular中"><span class="nav-number">8.1.</span> <span class="nav-text">angular中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ionic中"><span class="nav-number">8.2.</span> <span class="nav-text">ionic中</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目目录及代码示例"><span class="nav-number">9.</span> <span class="nav-text">项目目录及代码示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#todomvc"><span class="nav-number">9.1.</span> <span class="nav-text">todomvc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#moviecat"><span class="nav-number">9.2.</span> <span class="nav-text">moviecat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码示例"><span class="nav-number">9.3.</span> <span class="nav-text">代码示例</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

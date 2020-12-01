@@ -1,0 +1,13 @@
+# hexo robots.txt
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/
+
+Disallow: /js/
+Disallow: /css/
+Disallow: /lib/
+
+Sitemap: http://amenzai.me/sitemap.xml
+Sitemap: http://amenzai.me/baidusitemap.xml

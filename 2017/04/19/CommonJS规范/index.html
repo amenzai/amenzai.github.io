@@ -1,0 +1,1092 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="模块化,node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="概述Node应用由模块组成，采用CommonJS模块规范。 根据这个规范，每个文件就是一个模块，有自己的作用域。在一个文件里面定义的变量、函数、类，都是私有的，对其他文件不可见。">
+<meta name="keywords" content="模块化,node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CommonJS规范">
+<meta property="og:url" content="http://amenzai.me/2017/04/19/CommonJS规范/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="概述Node应用由模块组成，采用CommonJS模块规范。 根据这个规范，每个文件就是一个模块，有自己的作用域。在一个文件里面定义的变量、函数、类，都是私有的，对其他文件不可见。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.381Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CommonJS规范">
+<meta name="twitter:description" content="概述Node应用由模块组成，采用CommonJS模块规范。 根据这个规范，每个文件就是一个模块，有自己的作用域。在一个文件里面定义的变量、函数、类，都是私有的，对其他文件不可见。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2017/04/19/CommonJS规范/"/>
+
+
+
+
+
+  <title> CommonJS规范 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2017/04/19/CommonJS规范/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-19T10:26:07+08:00">
+                2017-04-19
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                CommonJS规范
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>Node应用由模块组成，采用CommonJS模块规范。</p>
+<p>根据这个规范，每个文件就是一个模块，有自己的作用域。在一个文件里面定义的变量、函数、类，都是私有的，对其他文件不可见。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// example.js</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">var</span> addX = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value + x;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，变量<code>x</code>和函数<code>addX</code>，是当前文件<code>example.js</code>私有的，其他文件不可见。</p>
+<p>如果想在多个文件分享变量，必须定义为<code>global</code>对象的属性。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">global.warning = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+<p>上面代码的<code>warning</code>变量，可以被所有文件读取。当然，这样写法是不推荐的。</p>
+<p>CommonJS规范规定，每个模块内部，<code>module</code>变量代表当前模块。这个变量是一个对象，它的<code>exports</code>属性（即<code>module.exports</code>）是对外的接口。加载某个模块，其实是加载该模块的<code>module.exports</code>属性。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">var</span> addX = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value + x;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">module</span>.exports.x = x;</span><br><span class="line"><span class="built_in">module</span>.exports.addX = addX;</span><br></pre></td></tr></table></figure>
+<p>上面代码通过<code>module.exports</code>输出变量<code>x</code>和函数<code>addX</code>。</p>
+<p><code>require</code>方法用于加载模块。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> example = <span class="built_in">require</span>(<span class="string">'./example.js'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(example.x); <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">console</span>.log(example.addX(<span class="number">1</span>)); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+<p><code>require</code>方法的详细解释参见《Require命令》一节。</p>
+<p>CommonJS模块的特点如下。</p>
+<ul>
+<li>所有代码都运行在模块作用域，不会污染全局作用域。</li>
+<li>模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。</li>
+<li>模块加载的顺序，按照其在代码中出现的顺序。</li>
+</ul>
+<h1 id="module对象"><a href="#module对象" class="headerlink" title="module对象"></a>module对象</h1><p>Node内部提供一个<code>Module</code>构建函数。所有模块都是<code>Module</code>的实例。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Module</span>(<span class="params">id, parent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.id = id;</span><br><span class="line">  <span class="keyword">this</span>.exports = &#123;&#125;;</span><br><span class="line">  <span class="keyword">this</span>.parent = parent;</span><br><span class="line">  <span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<p>每个模块内部，都有一个<code>module</code>对象，代表当前模块。它有以下属性。</p>
+<ul>
+<li><code>module.id</code> 模块的识别符，通常是带有绝对路径的模块文件名。</li>
+<li><code>module.filename</code> 模块的文件名，带有绝对路径。</li>
+<li><code>module.loaded</code> 返回一个布尔值，表示模块是否已经完成加载。</li>
+<li><code>module.parent</code> 返回一个对象，表示调用该模块的模块。</li>
+<li><code>module.children</code> 返回一个数组，表示该模块要用到的其他模块。</li>
+<li><code>module.exports</code> 表示模块对外输出的值。</li>
+</ul>
+<p>下面是一个示例文件，最后一行输出module变量。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// example.js</span></span><br><span class="line"><span class="keyword">var</span> jquery = <span class="built_in">require</span>(<span class="string">'jquery'</span>);</span><br><span class="line">exports.$ = jquery;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">module</span>);</span><br></pre></td></tr></table></figure>
+<p>执行这个文件，命令行会输出如下信息。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123; <span class="attr">id</span>: <span class="string">'.'</span>,</span><br><span class="line">  exports: &#123; <span class="string">'$'</span>: [<span class="built_in">Function</span>] &#125;,</span><br><span class="line">  parent: <span class="literal">null</span>,</span><br><span class="line">  filename: <span class="string">'/path/to/example.js'</span>,</span><br><span class="line">  loaded: <span class="literal">false</span>,</span><br><span class="line">  children:</span><br><span class="line">   [ &#123; <span class="attr">id</span>: <span class="string">'/path/to/node_modules/jquery/dist/jquery.js'</span>,</span><br><span class="line">       exports: [<span class="built_in">Function</span>],</span><br><span class="line">       parent: [Circular],</span><br><span class="line">       filename: <span class="string">'/path/to/node_modules/jquery/dist/jquery.js'</span>,</span><br><span class="line">       loaded: <span class="literal">true</span>,</span><br><span class="line">       children: [],</span><br><span class="line">       paths: [<span class="built_in">Object</span>] &#125; ],</span><br><span class="line">  paths:</span><br><span class="line">   [ <span class="string">'/home/user/deleted/node_modules'</span>,</span><br><span class="line">     <span class="string">'/home/user/node_modules'</span>,</span><br><span class="line">     <span class="string">'/home/node_modules'</span>,</span><br><span class="line">     <span class="string">'/node_modules'</span> ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果在命令行下调用某个模块，比如<code>node something.js</code>，那么<code>module.parent</code>就是<code>undefined</code>。如果是在脚本之中调用，比如<code>require(&#39;./something.js&#39;)</code>，那么<code>module.parent</code>就是调用它的模块。利用这一点，可以判断当前模块是否为入口脚本。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">module</span>.parent) &#123;</span><br><span class="line">    <span class="comment">// ran with `node something.js`</span></span><br><span class="line">    app.listen(<span class="number">8088</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'app listening on port 8088'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// used with `require('/.something.js')`</span></span><br><span class="line">    <span class="built_in">module</span>.exports = app;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="module-exports属性"><a href="#module-exports属性" class="headerlink" title="module.exports属性"></a>module.exports属性</h2><p><code>module.exports</code>属性表示当前模块对外输出的接口，其他文件加载该模块，实际上就是读取<code>module.exports</code>变量。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="keyword">new</span> EventEmitter();</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">module</span>.exports.emit(<span class="string">'ready'</span>);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>上面模块会在加载后1秒后，发出ready事件。其他文件监听该事件，可以写成下面这样。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>);</span><br><span class="line">a.on(<span class="string">'ready'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'module a is ready'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="exports变量"><a href="#exports变量" class="headerlink" title="exports变量"></a>exports变量</h2><p>为了方便，Node为每个模块提供一个exports变量，指向module.exports。这等同在每个模块头部，有一行这样的命令。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> exports = <span class="built_in">module</span>.exports;</span><br></pre></td></tr></table></figure>
+<p>造成的结果是，在对外输出模块接口时，可以向exports对象添加方法。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">exports.area = <span class="function"><span class="keyword">function</span> (<span class="params">r</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.PI * r * r;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">exports.circumference = <span class="function"><span class="keyword">function</span> (<span class="params">r</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">2</span> * <span class="built_in">Math</span>.PI * r;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>注意，不能直接将exports变量指向一个值，因为这样等于切断了<code>exports</code>与<code>module.exports</code>的联系。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">exports = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;<span class="built_in">console</span>.log(x)&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面这样的写法是无效的，因为<code>exports</code>不再指向<code>module.exports</code>了。</p>
+<p>下面的写法也是无效的。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">exports.hello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'hello'</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="string">'Hello world'</span>;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>hello</code>函数是无法对外输出的，因为<code>module.exports</code>被重新赋值了。</p>
+<p>这意味着，如果一个模块的对外接口，就是一个单一的值，不能使用<code>exports</code>输出，只能使用<code>module.exports</code>输出。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">x</span>)</span>&#123; <span class="built_in">console</span>.log(x);&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果你觉得，<code>exports</code>与<code>module.exports</code>之间的区别很难分清，一个简单的处理方法，就是放弃使用<code>exports</code>，只使用<code>module.exports</code>。</p>
+<h1 id="AMD规范与CommonJS规范的兼容性"><a href="#AMD规范与CommonJS规范的兼容性" class="headerlink" title="AMD规范与CommonJS规范的兼容性"></a>AMD规范与CommonJS规范的兼容性</h1><p>CommonJS规范加载模块是同步的，也就是说，只有加载完成，才能执行后面的操作。AMD规范则是非同步加载模块，允许指定回调函数。由于Node.js主要用于服务器编程，模块文件一般都已经存在于本地硬盘，所以加载起来比较快，不用考虑非同步加载的方式，所以CommonJS规范比较适用。但是，如果是浏览器环境，要从服务器端加载模块，这时就必须采用非同步模式，因此浏览器端一般采用AMD规范。</p>
+<p>AMD规范使用define方法定义模块，下面就是一个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">define([<span class="string">'package/lib'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">lib</span>)</span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    lib.log(<span class="string">'hello world!'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    foo: foo</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>AMD规范允许输出的模块兼容CommonJS规范，这时<code>define</code>方法需要写成下面这样：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span> (<span class="params">require, exports, module</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> someModule = <span class="built_in">require</span>(<span class="string">"someModule"</span>);</span><br><span class="line">  <span class="keyword">var</span> anotherModule = <span class="built_in">require</span>(<span class="string">"anotherModule"</span>);</span><br><span class="line"></span><br><span class="line">  someModule.doTehAwesome();</span><br><span class="line">  anotherModule.doMoarAwesome();</span><br><span class="line"></span><br><span class="line">  exports.asplode = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    someModule.doTehAwesome();</span><br><span class="line">    anotherModule.doMoarAwesome();</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="require命令"><a href="#require命令" class="headerlink" title="require命令"></a>require命令</h1><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><p>Node使用CommonJS模块规范，内置的<code>require</code>命令用于加载模块文件。</p>
+<p><code>require</code>命令的基本功能是，读入并执行一个JavaScript文件，然后返回该模块的exports对象。如果没有发现指定模块，会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// example.js</span></span><br><span class="line"><span class="keyword">var</span> invisible = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"invisible"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.message = <span class="string">"hi"</span>;</span><br><span class="line"></span><br><span class="line">exports.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行下面的命令，可以输出exports对象。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> example = <span class="built_in">require</span>(<span class="string">'./example.js'</span>);</span><br><span class="line">example</span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   message: "hi",</span></span><br><span class="line"><span class="comment">//   say: [Function]</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+<p>如果模块输出的是一个函数，那就不能定义在exports对象上面，而要定义在<code>module.exports</code>变量上面。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"hello world"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./example2.js'</span>)()</span><br></pre></td></tr></table></figure>
+<p>上面代码中，require命令调用自身，等于是执行<code>module.exports</code>，因此会输出 hello world。</p>
+<h2 id="加载规则"><a href="#加载规则" class="headerlink" title="加载规则"></a>加载规则</h2><p><code>require</code>命令用于加载文件，后缀名默认为<code>.js</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="built_in">require</span>(<span class="string">'foo'</span>);</span><br><span class="line"><span class="comment">//  等同于</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="built_in">require</span>(<span class="string">'foo.js'</span>);</span><br></pre></td></tr></table></figure>
+<p>根据参数的不同格式，<code>require</code>命令去不同路径寻找模块文件。</p>
+<p>（1）如果参数字符串以“/”开头，则表示加载的是一个位于绝对路径的模块文件。比如，<code>require(&#39;/home/marco/foo.js&#39;)</code>将加载<code>/home/marco/foo.js</code>。</p>
+<p>（2）如果参数字符串以“./”开头，则表示加载的是一个位于相对路径（跟当前执行脚本的位置相比）的模块文件。比如，<code>require(&#39;./circle&#39;)</code>将加载当前脚本同一目录的<code>circle.js</code>。</p>
+<p>（3）如果参数字符串不以“./“或”/“开头，则表示加载的是一个默认提供的核心模块（位于Node的系统安装目录中），或者一个位于各级node_modules目录的已安装模块（全局安装或局部安装）。</p>
+<p>举例来说，脚本<code>/home/user/projects/foo.js</code>执行了<code>require(&#39;bar.js&#39;)</code>命令，Node会依次搜索以下文件。</p>
+<ul>
+<li>/usr/local/lib/node/bar.js</li>
+<li>/home/user/projects/node_modules/bar.js</li>
+<li>/home/user/node_modules/bar.js</li>
+<li>/home/node_modules/bar.js</li>
+<li>/node_modules/bar.js</li>
+</ul>
+<p>这样设计的目的是，使得不同的模块可以将所依赖的模块本地化。</p>
+<p>（4）如果参数字符串不以“./“或”/“开头，而且是一个路径，比如<code>require(&#39;example-module/path/to/file&#39;)</code>，则将先找到<code>example-module</code>的位置，然后再以它为参数，找到后续路径。</p>
+<p>（5）如果指定的模块文件没有发现，Node会尝试为文件名添加<code>.js</code>、<code>.json</code>、<code>.node</code>后，再去搜索。<code>.js</code>件会以文本格式的JavaScript脚本文件解析，<code>.json</code>文件会以JSON格式的文本文件解析，<code>.node</code>文件会以编译后的二进制文件解析。</p>
+<p>（6）如果想得到<code>require</code>命令加载的确切文件名，使用<code>require.resolve()</code>方法。</p>
+<h2 id="目录的加载规则"><a href="#目录的加载规则" class="headerlink" title="目录的加载规则"></a>目录的加载规则</h2><p>通常，我们会把相关的文件会放在一个目录里面，便于组织。这时，最好为该目录设置一个入口文件，让<code>require</code>方法可以通过这个入口文件，加载整个目录。</p>
+<p>在目录中放置一个<code>package.json</code>文件，并且将入口文件写入<code>main</code>字段。下面是一个例子。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line">&#123; <span class="string">"name"</span> : <span class="string">"some-library"</span>,</span><br><span class="line">  <span class="string">"main"</span> : <span class="string">"./lib/some-library.js"</span> &#125;</span><br></pre></td></tr></table></figure>
+<p><code>require</code>发现参数字符串指向一个目录以后，会自动查看该目录的<code>package.json</code>文件，然后加载<code>main</code>字段指定的入口文件。如果<code>package.json</code>文件没有<code>main</code>字段，或者根本就没有<code>package.json</code>文件，则会加载该目录下的<code>index.js</code>文件或<code>index.node</code>文件。</p>
+<h2 id="模块的缓存"><a href="#模块的缓存" class="headerlink" title="模块的缓存"></a>模块的缓存</h2><p>第一次加载某个模块时，Node会缓存该模块。以后再加载该模块，就直接从缓存取出该模块的<code>module.exports</code>属性。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">'./example.js'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./example.js'</span>).message = <span class="string">"hello"</span>;</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./example.js'</span>).message</span><br><span class="line"><span class="comment">// "hello"</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，连续三次使用<code>require</code>命令，加载同一个模块。第二次加载的时候，为输出的对象添加了一个<code>message</code>属性。但是第三次加载的时候，这个message属性依然存在，这就证明<code>require</code>命令并没有重新加载模块文件，而是输出了缓存。</p>
+<p>如果想要多次执行某个模块，可以让该模块输出一个函数，然后每次<code>require</code>这个模块的时候，重新执行一下输出的函数。</p>
+<p>所有缓存的模块保存在<code>require.cache</code>之中，如果想删除模块的缓存，可以像下面这样写。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 删除指定模块的缓存</span></span><br><span class="line"><span class="keyword">delete</span> <span class="built_in">require</span>.cache[moduleName];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除所有模块的缓存</span></span><br><span class="line"><span class="built_in">Object</span>.keys(<span class="built_in">require</span>.cache).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">delete</span> <span class="built_in">require</span>.cache[key];</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>注意，缓存是根据绝对路径识别模块的，如果同样的模块名，但是保存在不同的路径，<code>require</code>命令还是会重新加载该模块。</p>
+<h2 id="环境变量NODE-PATH"><a href="#环境变量NODE-PATH" class="headerlink" title="环境变量NODE_PATH"></a>环境变量NODE_PATH</h2><p>Node执行一个脚本时，会先查看环境变量<code>NODE_PATH</code>。它是一组以冒号分隔的绝对路径。在其他位置找不到指定模块时，Node会去这些路径查找。</p>
+<p>可以将NODE_PATH添加到<code>.bashrc</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> NODE_PATH=<span class="string">"/usr/local/lib/node"</span></span><br></pre></td></tr></table></figure>
+<p>所以，如果遇到复杂的相对路径，比如下面这样。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> myModule = <span class="built_in">require</span>(<span class="string">'../../../../lib/myModule'</span>);</span><br></pre></td></tr></table></figure>
+<p>有两种解决方法，一是将该文件加入<code>node_modules</code>目录，二是修改<code>NODE_PATH</code>环境变量，<code>package.json</code>文件可以采用下面的写法。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"node_path"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"start"</span>: <span class="string">"NODE_PATH=lib node index.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>NODE_PATH</code>是历史遗留下来的一个路径解决方案，通常不应该使用，而应该使用<code>node_modules</code>目录机制。</p>
+<h2 id="模块的循环加载"><a href="#模块的循环加载" class="headerlink" title="模块的循环加载"></a>模块的循环加载</h2><p>如果发生模块的循环加载，即A加载B，B又加载A，则B将加载A的不完整版本。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line">exports.x = <span class="string">'a1'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a.js '</span>, <span class="built_in">require</span>(<span class="string">'./b.js'</span>).x);</span><br><span class="line">exports.x = <span class="string">'a2'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.js</span></span><br><span class="line">exports.x = <span class="string">'b1'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'b.js '</span>, <span class="built_in">require</span>(<span class="string">'./a.js'</span>).x);</span><br><span class="line">exports.x = <span class="string">'b2'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'main.js '</span>, <span class="built_in">require</span>(<span class="string">'./a.js'</span>).x);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'main.js '</span>, <span class="built_in">require</span>(<span class="string">'./b.js'</span>).x);</span><br></pre></td></tr></table></figure>
+<p>上面代码是三个JavaScript文件。其中，a.js加载了b.js，而b.js又加载a.js。这时，Node返回a.js的不完整版本，所以执行结果如下。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node main.js</span><br><span class="line">b.js  a1</span><br><span class="line">a.js  b2</span><br><span class="line">main.js  a2</span><br><span class="line">main.js  b2</span><br></pre></td></tr></table></figure>
+<p>修改main.js，再次加载a.js和b.js。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'main.js '</span>, <span class="built_in">require</span>(<span class="string">'./a.js'</span>).x);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'main.js '</span>, <span class="built_in">require</span>(<span class="string">'./b.js'</span>).x);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'main.js '</span>, <span class="built_in">require</span>(<span class="string">'./a.js'</span>).x);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'main.js '</span>, <span class="built_in">require</span>(<span class="string">'./b.js'</span>).x);</span><br></pre></td></tr></table></figure>
+<p>执行上面代码，结果如下。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node main.js</span><br><span class="line">b.js  a1</span><br><span class="line">a.js  b2</span><br><span class="line">main.js  a2</span><br><span class="line">main.js  b2</span><br><span class="line">main.js  a2</span><br><span class="line">main.js  b2</span><br></pre></td></tr></table></figure>
+<p>上面代码中，第二次加载a.js和b.js时，会直接从缓存读取exports属性，所以a.js和b.js内部的console.log语句都不会执行了。</p>
+<h2 id="require-main"><a href="#require-main" class="headerlink" title="require.main"></a>require.main</h2><p><code>require</code>方法有一个<code>main</code>属性，可以用来判断模块是直接执行，还是被调用执行。</p>
+<p>直接执行的时候（<code>node module.js</code>），<code>require.main</code>属性指向模块本身。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">require</span>.main === <span class="built_in">module</span></span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>调用执行的时候（通过<code>require</code>加载该脚本执行），上面的表达式返回false。</p>
+<h1 id="模块的加载机制"><a href="#模块的加载机制" class="headerlink" title="模块的加载机制"></a>模块的加载机制</h1><p>CommonJS模块的加载机制是，输入的是被输出的值的拷贝。也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。请看下面这个例子。</p>
+<p>下面是一个模块文件<code>lib.js</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// lib.js</span></span><br><span class="line"><span class="keyword">var</span> counter = <span class="number">3</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">incCounter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  counter++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  counter: counter,</span><br><span class="line">  incCounter: incCounter,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面代码输出内部变量<code>counter</code>和改写这个变量的内部方法<code>incCounter</code>。</p>
+<p>然后，加载上面的模块。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">var</span> counter = <span class="built_in">require</span>(<span class="string">'./lib'</span>).counter;</span><br><span class="line"><span class="keyword">var</span> incCounter = <span class="built_in">require</span>(<span class="string">'./lib'</span>).incCounter;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(counter);  <span class="comment">// 3</span></span><br><span class="line">incCounter();</span><br><span class="line"><span class="built_in">console</span>.log(counter); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>上面代码说明，<code>counter</code>输出以后，<code>lib.js</code>模块内部的变化就影响不到<code>counter</code>了。</p>
+<h2 id="require的内部处理流程"><a href="#require的内部处理流程" class="headerlink" title="require的内部处理流程"></a>require的内部处理流程</h2><p><code>require</code>命令是CommonJS规范之中，用来加载其他模块的命令。它其实不是一个全局命令，而是指向当前模块的<code>module.require</code>命令，而后者又调用Node的内部命令<code>Module._load</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Module._load = <span class="function"><span class="keyword">function</span>(<span class="params">request, parent, isMain</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 1. 检查 Module._cache，是否缓存之中有指定模块</span></span><br><span class="line">  <span class="comment">// 2. 如果缓存之中没有，就创建一个新的Module实例</span></span><br><span class="line">  <span class="comment">// 3. 将它保存到缓存</span></span><br><span class="line">  <span class="comment">// 4. 使用 module.load() 加载指定的模块文件，</span></span><br><span class="line">  <span class="comment">//    读取文件内容之后，使用 module.compile() 执行文件代码</span></span><br><span class="line">  <span class="comment">// 5. 如果加载/解析过程报错，就从缓存删除该模块</span></span><br><span class="line">  <span class="comment">// 6. 返回该模块的 module.exports</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面的第4步，采用<code>module.compile()</code>执行指定模块的脚本，逻辑如下。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Module.prototype._compile = <span class="function"><span class="keyword">function</span>(<span class="params">content, filename</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 1. 生成一个require函数，指向module.require</span></span><br><span class="line">  <span class="comment">// 2. 加载其他辅助方法到require</span></span><br><span class="line">  <span class="comment">// 3. 将文件内容放到一个函数之中，该函数可调用 require</span></span><br><span class="line">  <span class="comment">// 4. 执行该函数</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面的第1步和第2步，<code>require</code>函数及其辅助方法主要如下。</p>
+<ul>
+<li><code>require()</code>: 加载外部模块</li>
+<li><code>require.resolve()</code>：将模块名解析到一个绝对路径</li>
+<li><code>require.main</code>：指向主模块</li>
+<li><code>require.cache</code>：指向所有缓存的模块</li>
+<li><code>require.extensions</code>：根据文件的后缀名，调用不同的执行函数</li>
+</ul>
+<p>一旦<code>require</code>函数准备完毕，整个所要加载的脚本内容，就被放到一个新的函数之中，这样可以避免污染全局环境。该函数的参数包括<code>require</code>、<code>module</code>、<code>exports</code>，以及其他一些参数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">exports, require, module, __filename, __dirname</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// YOUR CODE INJECTED HERE!</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>Module._compile</code>方法是同步执行的，所以<code>Module._load</code>要等它执行完成，才会向用户返回<code>module.exports</code>的值。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/模块化/" rel="tag"><i class="fa fa-tag"></i> 模块化</a>
+          
+            <a href="/tags/node/" rel="tag"><i class="fa fa-tag"></i> node</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/19/Node应用程序开发/" rel="next" title="Node应用程序开发">
+                <i class="fa fa-chevron-left"></i> Node应用程序开发
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/19/package.json文件/" rel="prev" title="package.json文件">
+                package.json文件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#module对象"><span class="nav-number">2.</span> <span class="nav-text">module对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#module-exports属性"><span class="nav-number">2.1.</span> <span class="nav-text">module.exports属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exports变量"><span class="nav-number">2.2.</span> <span class="nav-text">exports变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AMD规范与CommonJS规范的兼容性"><span class="nav-number">3.</span> <span class="nav-text">AMD规范与CommonJS规范的兼容性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#require命令"><span class="nav-number">4.</span> <span class="nav-text">require命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">4.1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载规则"><span class="nav-number">4.2.</span> <span class="nav-text">加载规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录的加载规则"><span class="nav-number">4.3.</span> <span class="nav-text">目录的加载规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块的缓存"><span class="nav-number">4.4.</span> <span class="nav-text">模块的缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量NODE-PATH"><span class="nav-number">4.5.</span> <span class="nav-text">环境变量NODE_PATH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块的循环加载"><span class="nav-number">4.6.</span> <span class="nav-text">模块的循环加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#require-main"><span class="nav-number">4.7.</span> <span class="nav-text">require.main</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块的加载机制"><span class="nav-number">5.</span> <span class="nav-text">模块的加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#require的内部处理流程"><span class="nav-number">5.1.</span> <span class="nav-text">require的内部处理流程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

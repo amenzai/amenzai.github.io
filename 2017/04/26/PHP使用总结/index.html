@@ -1,0 +1,976 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PHP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="php使用总结。">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php使用总结">
+<meta property="og:url" content="http://amenzai.me/2017/04/26/PHP使用总结/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="php使用总结。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.384Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php使用总结">
+<meta name="twitter:description" content="php使用总结。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2017/04/26/PHP使用总结/"/>
+
+
+
+
+
+  <title> php使用总结 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2017/04/26/PHP使用总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-26T16:36:21+08:00">
+                2017-04-26
+              </time>
+            
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                php使用总结
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>php使用总结。</p>
+<a id="more"></a>
+<h1 id="配置文件代码示例"><a href="#配置文件代码示例" class="headerlink" title="配置文件代码示例"></a>配置文件代码示例</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//对每个文件进行编码</span></span><br><span class="line">header(<span class="string">"content-type:text/html; charset=utf-8"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//数据库服务器连接，@符表示屏蔽错误信息</span></span><br><span class="line">$link=@mysql_connect(<span class="string">"localhost"</span>,<span class="string">"root"</span>,<span class="string">"775166"</span>) <span class="keyword">or</span> <span class="keyword">die</span> (<span class="string">"连接服务器失败失败"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//选择数据库</span></span><br><span class="line">mysql_select_db(<span class="string">"212db"</span>,$link) <span class="keyword">or</span> <span class="keyword">die</span> (<span class="string">"连接数据库失败"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//数据库编码</span></span><br><span class="line">mysql_query(<span class="string">"set names 'utf8'"</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">//次函数表示转义我们在文本域中使用的换行和空格</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">htmtocode</span><span class="params">($content)</span> </span>&#123;</span><br><span class="line">    $content = str_replace(<span class="string">"\n"</span>, <span class="string">"&lt;br&gt;"</span>, str_replace(<span class="string">" "</span>, <span class="string">"&amp;nbsp;"</span>, $content));</span><br><span class="line">    <span class="keyword">return</span> $content;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">自定义常量：</span><br><span class="line"><span class="comment">/** 数据库的名称 */</span></span><br><span class="line">define(<span class="string">'DB_NAME'</span>, <span class="string">'myblog'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/** MySQL数据库用户名 */</span></span><br><span class="line">define(<span class="string">'DB_USER'</span>, <span class="string">'root'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/** MySQL数据库密码 */</span></span><br><span class="line">define(<span class="string">'DB_PASSWORD'</span>, <span class="string">'775166'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/** MySQL主机 */</span></span><br><span class="line">define(<span class="string">'DB_HOST'</span>, <span class="string">'localhost'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 创建数据表时默认的文字编码 */</span></span><br><span class="line">define(<span class="string">'DB_CHARSET'</span>, <span class="string">'utf8'</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="注册用户逻辑"><a href="#注册用户逻辑" class="headerlink" title="注册用户逻辑"></a>注册用户逻辑</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加载配置文件</span></span><br><span class="line"><span class="keyword">include</span> (<span class="string">"config.php"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断是否填写数据，如果有则执行</span></span><br><span class="line"><span class="keyword">if</span> ($_POST[<span class="string">'submit'</span>])&#123;</span><br><span class="line">    $username = $_POST[<span class="string">'username'</span>];</span><br><span class="line">    $password = $_POST[<span class="string">'password'</span>];</span><br><span class="line">    $email = $_POST[<span class="string">'email'</span>];</span><br><span class="line">    $sql=<span class="string">"select * from user where username='$_POST[username]'"</span>;</span><br><span class="line">    $check=mysql_query($sql);</span><br><span class="line">    $row=mysql_fetch_array($check);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//继续判断是否有相似用户名，如果有则执行</span></span><br><span class="line">    <span class="keyword">if</span>($row)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('脫脙禄搂脙没脰脴赂麓拢隆');window.location='reg.php'&lt;/script&gt;"</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//加密密码，并插入数据库</span></span><br><span class="line">    $password = MD5($password);</span><br><span class="line">    $sql=<span class="string">"insert into user(id,username,password,email,regtime) values ('','$username','$password','$email',now())"</span>;</span><br><span class="line">    $query=mysql_query($sql);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('脳垄虏谩鲁脡鹿娄,脟毛碌脟脗陆拢隆');window.location='login.php'&lt;/script&gt;"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="登录逻辑"><a href="#登录逻辑" class="headerlink" title="登录逻辑"></a>登录逻辑</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">include</span> (<span class="string">"config.php"</span>);</span><br><span class="line"><span class="keyword">if</span> ($_SESSION[<span class="string">'username'</span>]) &#123;</span><br><span class="line">    header(<span class="string">"Location: index.php"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//保留登录信息</span></span><br><span class="line">session_start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断是否填写用户信息</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">    $username = $_POST[<span class="string">'username'</span>];</span><br><span class="line">    $password = MD5($_POST[<span class="string">'password'</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//到数据库校验是否匹配</span></span><br><span class="line">    $sql=<span class="string">"select * from user where username='$username'and password='$password'"</span>;</span><br><span class="line">    $query=mysql_query($sql);</span><br><span class="line">    $row=mysql_fetch_array($query);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果匹配则保留登录信息，否则重新填写</span></span><br><span class="line">    <span class="keyword">if</span>($row)&#123;</span><br><span class="line">            $_SESSION[<span class="string">'username'</span>]=$username;</span><br><span class="line">            &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('ÓÃ»§Ãû»òÃÜÂë´íÎó');location.href='login.php';&lt;/script&gt;"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$sql=&quot;select * from  artical order by id desc limit 6&quot;;</span><br><span class="line">$query=mysql_query($sql);</span><br><span class="line"></span><br><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;?php while($rs=mysql_fetch_array($query))&#123;?&gt;</span><br><span class="line">&lt;li&gt;&lt;a href=&quot;artical.php?id=&lt;?php echo $rs[&apos;id&apos;]?&gt;&quot;&gt;&lt;?php echo $rs[&apos;title&apos;] ?&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">&lt;?php </span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="sql语句"><a href="#sql语句" class="headerlink" title="sql语句"></a>sql语句</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 命令行中输入并加分号。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择数据库</span></span><br><span class="line">use RUNOOB</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置使用的字符集</span></span><br><span class="line"><span class="built_in">set</span> names utf8;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取数据表的信息</span></span><br><span class="line">SELECT * FROM Websites</span><br></pre></td></tr></table></figure>
+<h2 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">SELECT * FROM Websites;</span><br><span class="line"></span><br><span class="line">SELECT name,country FROM Websites;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从 "Websites" 表的 "country" 列中选取唯一不同的值，也就是去掉 "country" 列重复值</span></span><br><span class="line">SELECT DISTINCT country FROM Websites;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用where获取满足情况的数据</span></span><br><span class="line">SELECT * FROM Websites WHERE country=<span class="string">'CN'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加入or和and</span></span><br><span class="line">SELECT * FROM Websites WHERE country=<span class="string">'CN'</span> AND alexa &gt; 50;</span><br><span class="line">SELECT * FROM Websites WHERE country=<span class="string">'USA'</span> OR country=<span class="string">'CN'</span>;</span><br><span class="line">SELECT * FROM Websites WHERE alexa &gt; 15 AND (country=<span class="string">'CN'</span> OR country=<span class="string">'USA'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用order，其中alexa是表中的一个字段</span></span><br><span class="line">SELECT * FROM Websites ORDER BY alexa;</span><br><span class="line">SELECT * FROM Websites ORDER BY alexa DESC;</span><br><span class="line">SELECT * FROM Websites ORDER BY country,alexa;</span><br></pre></td></tr></table></figure>
+<p>where子句中的运算符：</p>
+<ul>
+<li>=   等于</li>
+<li>&lt;&gt;  不等于。在 SQL 的一些版本中，该操作符可被写成 !=</li>
+<li><blockquote>
+<p>  大于</p>
+</blockquote>
+</li>
+<li>&lt;   小于</li>
+<li><blockquote>
+<p>=  大于等于</p>
+</blockquote>
+</li>
+<li>&lt;=  小于等于</li>
+<li>BETWEEN 在某个范围内</li>
+<li>LIKE    搜索某种模式</li>
+<li>IN  指定针对某个列的多个可能值</li>
+</ul>
+<h2 id="INSERT-INTO"><a href="#INSERT-INTO" class="headerlink" title="INSERT INTO"></a>INSERT INTO</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">INSERT INTO Websites (name, url, alexa, country) VALUES (<span class="string">'百度'</span>,<span class="string">'https://www.baidu.com/'</span>,<span class="string">'4'</span>,<span class="string">'CN'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定列插入数据</span></span><br><span class="line">INSERT INTO Websites (name, url, country) VALUES (<span class="string">'stackoverflow'</span>, <span class="string">'http://stackoverflow.com/'</span>, <span class="string">'IND'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="UPDATE"><a href="#UPDATE" class="headerlink" title="UPDATE"></a>UPDATE</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">UPDATE Websites SET alexa=<span class="string">'5000'</span>, country=<span class="string">'USA'</span> WHERE name=<span class="string">'菜鸟教程'</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">DELETE FROM Websites WHERE name=<span class="string">'百度'</span> AND country=<span class="string">'CN'</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="PHP中的Mysql"><a href="#PHP中的Mysql" class="headerlink" title="PHP中的Mysql"></a>PHP中的Mysql</h1><p>操作MySQL的函数：</p>
+<ul>
+<li>mysqli_connect($connect)</li>
+<li>mysqli_query($connect,”SQL 语句”)</li>
+<li>mysqli_fetch_array()</li>
+<li>mysqli_close()</li>
+</ul>
+<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$dbhost = &apos;localhost:3306&apos;;  // mysql服务器主机地址</span><br><span class="line">$dbuser = &apos;root&apos;;            // mysql用户名</span><br><span class="line">$dbpass = &apos;123456&apos;;          // mysql用户名密码</span><br><span class="line">$conn = mysqli_connect($dbhost, $dbuser, $dbpass);</span><br><span class="line">if(! $conn )</span><br><span class="line">&#123;</span><br><span class="line">    die(&apos;Could not connect: &apos; . mysqli_error());</span><br><span class="line">&#125;</span><br><span class="line">echo &apos;数据库连接成功！&apos;;</span><br><span class="line"></span><br><span class="line">//创建数据库</span><br><span class="line">$sql = &apos;CREATE DATABASE RUNOOB&apos;;</span><br><span class="line">$retval = mysqli_query($conn,$sql );</span><br><span class="line">if(! $retval )</span><br><span class="line">&#123;</span><br><span class="line">    die(&apos;创建数据库失败: &apos; . mysqli_error($conn));</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;数据库 RUNOOB 创建成功\n&quot;;</span><br><span class="line"></span><br><span class="line">//删除数据库</span><br><span class="line">$sql = &apos;DROP DATABASE RUNOOB&apos;;</span><br><span class="line">$retval = mysqli_query( $conn, $sql );</span><br><span class="line">if(! $retval )</span><br><span class="line">&#123;</span><br><span class="line">    die(&apos;删除数据库失败: &apos; . mysqli_error($conn));</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;数据库 RUNOOB 删除成功\n&quot;;</span><br><span class="line"></span><br><span class="line">//选择数据库</span><br><span class="line">mysqli_select_db($conn, &apos;RUNOOB&apos; );</span><br><span class="line"></span><br><span class="line">//创建数据表</span><br><span class="line">$sql = &quot;CREATE TABLE runoob_tbl( &quot;.</span><br><span class="line">        &quot;runoob_id INT NOT NULL AUTO_INCREMENT, &quot;.</span><br><span class="line">        &quot;runoob_title VARCHAR(100) NOT NULL, &quot;.</span><br><span class="line">        &quot;runoob_author VARCHAR(40) NOT NULL, &quot;.</span><br><span class="line">        &quot;submission_date DATE, &quot;.</span><br><span class="line">        &quot;PRIMARY KEY ( runoob_id ))ENGINE=InnoDB DEFAULT CHARSET=utf8; &quot;;</span><br><span class="line">mysqli_select_db( $conn, &apos;RUNOOB&apos; );</span><br><span class="line">$retval = mysqli_query( $conn, $sql );</span><br><span class="line">if(! $retval )</span><br><span class="line">&#123;</span><br><span class="line">    die(&apos;数据表创建失败: &apos; . mysqli_error($conn));</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;数据表创建成功\n&quot;;</span><br><span class="line"></span><br><span class="line">//删除数据表</span><br><span class="line">$sql = &quot;DROP TABLE runoob_tbl&quot;;</span><br><span class="line">mysqli_select_db( $conn, &apos;RUNOOB&apos; );</span><br><span class="line">$retval = mysqli_query( $conn, $sql );</span><br><span class="line">if(! $retval )</span><br><span class="line">&#123;</span><br><span class="line">  die(&apos;数据表删除失败: &apos; . mysqli_error($conn));</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;数据表删除成功\n&quot;;</span><br><span class="line"></span><br><span class="line">mysqli_close($conn);</span><br></pre></td></tr></table></figure>
+<h1 id="mysql命令"><a href="#mysql命令" class="headerlink" title="mysql命令"></a>mysql命令</h1><h2 id="登录数据库服务器"><a href="#登录数据库服务器" class="headerlink" title="登录数据库服务器"></a>登录数据库服务器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从命令行登录MySQL数据库服务器 1、登录使用默认3306端口的MySQL</span></span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过TCP连接管理不同端口的多个MySQL（注意：MySQL4.1以上版本才有此项功能）</span></span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p --protocol=tcp --host=localhost --port=3307</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过socket套接字管理不同端口的多个MySQL</span></span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p --socket=/tmp/mysql3307.sock</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过端口和IP管理不同端口的多个MySQL</span></span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p -P 3306 -h 127.0.0.1</span><br></pre></td></tr></table></figure>
+<h2 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看已有数据库</span></span><br><span class="line">SHOW DATABASES;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建名称为rewin的数据库</span></span><br><span class="line">CREATE DATABASE rewin;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除名称为rewin的数据库</span></span><br><span class="line">DROP DATABASE rewin;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择rewin数据库</span></span><br><span class="line">USE rewin;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示当前数据库中存在什么表</span></span><br><span class="line">SHOW TABLES;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建数据库表zhangyan</span></span><br><span class="line">CREATE TABLE `zhangyan` ( `id` INT( 5 ) UNSIGNED NOT NULL AUTO_INCREMENT , `username` VARCHAR( 20 ) NOT NULL , `password` CHAR( 32 ) NOT NULL , `time` DATETIME NOT NULL , `number` FLOAT( 10 ) NOT NULL , `content` TEXT NOT NULL , PRIMARY KEY ( `id` ) ) ENGINE = MYISAM ;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看zhangyan表结构</span></span><br><span class="line">DESCRIBE zhangyan;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从表中检索所有记录</span></span><br><span class="line">SELECT * FROM zhangyan;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从zhangyan表中检索特定的行</span></span><br><span class="line">SELECT * FROM zhangyan WHERE username = abc AND number=1 ORDER BY id DESC;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从zhangyan表中检索指定的字段</span></span><br><span class="line">SELECT username, password FROM zhangyan;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从zhangyan表中检索出唯一的不重复记录：</span></span><br><span class="line">SELECT DISTINCT username FROM zhangyan;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 插入信息到zhangyan表</span></span><br><span class="line">INSERT INTO zhangyan (id, username, password, time, number, content) VALUES (, abc, 123456, 2007-08-06 14:32:12, 23.41, hello world);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新zhangyan表中的指定信息</span></span><br><span class="line">UPDATE zhangyan SET content = hello china WHERE username = abc;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除zhangyan表中的指定信息</span></span><br><span class="line">DELETE FROM zhangyan WHERE id = 1;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清空zhangyan表</span></span><br><span class="line">DELETE FROM zhangyan;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除zhangyan表</span></span><br><span class="line">DROP TABLE zhangyan;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更改表结构，将zhangyan表username字段的字段类型改为CHAR(25)</span></span><br><span class="line">ALTER TABLE zhangyan CHANGE username username CHAR(25);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将当前目录下的mysql.sql导入数据库</span></span><br><span class="line">SOURCE ./mysql.sql;</span><br></pre></td></tr></table></figure>
+<h2 id="数据库权限操作SQL语句"><a href="#数据库权限操作SQL语句" class="headerlink" title="数据库权限操作SQL语句"></a>数据库权限操作SQL语句</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个具有root权限，可从任何IP登录的用户sina，密码为zhangyan</span></span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO sina@% IDENTIFIED BY zhangyan;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个具有"数据操作"、"结构操作"权限，只能从192.168.1.***登录的用户sina，密码为zhangyan</span></span><br><span class="line">GRANT SELECT , INSERT , UPDATE , DELETE , FILE , CREATE , DROP , INDEX , ALTER , CREATE TEMPORARY TABLES , CREATE VIEW , SHOW VIEW , CREATE ROUTINE, ALTER ROUTINE, EXECUTE ON *.* TO sina@192.168.1.% IDENTIFIED BY zhangyan;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个只拥有"数据操作"权限，只能从192.168.1.24登录，只能操作rewin数据库的zhangyan表的用户sina，密码为zhangyan</span></span><br><span class="line">GRANT SELECT , INSERT , UPDATE , DELETE ON  rewin.zhangyan TO sina@192.168.1.24 IDENTIFIED BY zhangyan;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个拥有"数据操作"、"结构操作"权限，可从任何IP登录，只能操作rewin数据库的用户sina，密码为zhangyan </span></span><br><span class="line">GRANT SELECT , INSERT , UPDATE , DELETE , CREATE , DROP , INDEX , ALTER , CREATE TEMPORARY TABLES , CREATE VIEW , SHOW VIEW , CREATE ROUTINE, ALTER ROUTINE, EXECUTE ON rewin.* TO sina@% IDENTIFIED BY zhangyan;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除用户</span></span><br><span class="line">DROP USER sina@%;</span><br><span class="line"></span><br><span class="line"><span class="comment"># MySQL中将字符串aaa批量替换为bbb的SQL语句</span></span><br><span class="line">UPDATE 表名 SET 字段名 = REPLACE (字段名, aaa, bbb);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修复损坏的表 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用root帐号从命令行登录MySQL</span></span><br><span class="line">mysql -u root -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入root帐号的密码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 选定数据库名（本例中的数据库名为student）</span></span><br><span class="line">use student</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修复损坏的表（本例中要修复的表为smis_user_student）</span></span><br><span class="line">repair table smis_user_student;udent</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"><i class="fa fa-tag"></i> PHP</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/19/Node.js概述/" rel="next" title="Node.js概述">
+                <i class="fa fa-chevron-left"></i> Node.js概述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/06/react使用笔记/" rel="prev" title="react使用笔记">
+                react使用笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置文件代码示例"><span class="nav-number">1.</span> <span class="nav-text">配置文件代码示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注册用户逻辑"><span class="nav-number">2.</span> <span class="nav-text">注册用户逻辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#登录逻辑"><span class="nav-number">3.</span> <span class="nav-text">登录逻辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sql语句"><span class="nav-number">4.</span> <span class="nav-text">sql语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SELECT"><span class="nav-number">4.1.</span> <span class="nav-text">SELECT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#INSERT-INTO"><span class="nav-number">4.2.</span> <span class="nav-text">INSERT INTO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UPDATE"><span class="nav-number">4.3.</span> <span class="nav-text">UPDATE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DELETE"><span class="nav-number">4.4.</span> <span class="nav-text">DELETE</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP中的Mysql"><span class="nav-number">5.</span> <span class="nav-text">PHP中的Mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#连接数据库"><span class="nav-number">5.1.</span> <span class="nav-text">连接数据库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql命令"><span class="nav-number">6.</span> <span class="nav-text">mysql命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#登录数据库服务器"><span class="nav-number">6.1.</span> <span class="nav-text">登录数据库服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增删改查"><span class="nav-number">6.2.</span> <span class="nav-text">增删改查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库权限操作SQL语句"><span class="nav-number">6.3.</span> <span class="nav-text">数据库权限操作SQL语句</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

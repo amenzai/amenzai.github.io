@@ -1,0 +1,955 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="移动端," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="移动端touch事件总结">
+<meta name="keywords" content="移动端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端touch事件">
+<meta property="og:url" content="http://amenzai.me/2016/03/20/touch/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="移动端touch事件总结">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.400Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端touch事件">
+<meta name="twitter:description" content="移动端touch事件总结">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2016/03/20/touch/"/>
+
+
+
+
+
+  <title> 移动端touch事件 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2016/03/20/touch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-20T20:26:07+08:00">
+                2016-03-20
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/前端学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">前端学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                移动端touch事件
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>移动端touch事件总结</p>
+<a id="more"></a>
+<h2 id="轮播图触摸事件"><a href="#轮播图触摸事件" class="headerlink" title="轮播图触摸事件"></a>轮播图触摸事件</h2><p>重点掌握touch事件对象的touches属性。<br>例如：e.touches[0].clientX<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//规定偏移多少要进行翻页</span></span><br><span class="line"><span class="keyword">var</span> OFFSET = <span class="number">50</span>;</span><br><span class="line"><span class="comment">// 轮播图触摸</span></span><br><span class="line">$(<span class="string">'.carousel'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">i, item</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> startX, endX;</span><br><span class="line">  item.addEventListener(<span class="string">'touchstart'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// console.log(e);</span></span><br><span class="line">    startX = e.touches[<span class="number">0</span>].clientX;</span><br><span class="line">    <span class="built_in">console</span>.log(startX);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'start'</span>);</span><br><span class="line">    e.preventDefault();</span><br><span class="line">  &#125;);</span><br><span class="line">  item.addEventListener(<span class="string">'touchmove'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    endX = e.touches[<span class="number">0</span>].clientX;</span><br><span class="line">    <span class="built_in">console</span>.log(endX);</span><br><span class="line"></span><br><span class="line">    e.preventDefault();</span><br><span class="line">  &#125;);</span><br><span class="line">  item.addEventListener(<span class="string">'touchend'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'over'</span>);</span><br><span class="line">    <span class="keyword">var</span> offsetX = endX - startX;</span><br><span class="line">    <span class="built_in">console</span>.log(offsetX);</span><br><span class="line">    <span class="keyword">if</span> (offsetX &gt; OFFSET) &#123;</span><br><span class="line">      <span class="comment">// 上一张</span></span><br><span class="line">      $(<span class="keyword">this</span>).carousel(<span class="string">'prev'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (offsetX &lt; -OFFSET) &#123;</span><br><span class="line">      <span class="comment">// 上一张</span></span><br><span class="line">      $(<span class="keyword">this</span>).carousel(<span class="string">'next'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"desc"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"touchPad"</span> <span class="attr">class</span>=<span class="string">"touchpad"</span>&gt;</span>触摸板<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"ball"</span> <span class="attr">class</span>=<span class="string">"ball"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../js/zepto.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> touchpad = <span class="built_in">document</span>.querySelector(<span class="string">'#touchPad'</span>),</span></span><br><span class="line"><span class="javascript">    ball = <span class="built_in">document</span>.querySelector(<span class="string">'#ball'</span>),</span></span><br><span class="line"><span class="javascript">    desc = <span class="built_in">document</span>.querySelector(<span class="string">'#desc'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">//获取touch的点(兼容mouse事件)</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> getTouchPos = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> touches = e.touches;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (touches &amp;&amp; touches[<span class="number">0</span>]) &#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">        x: touches[0].clientX,</span></span><br><span class="line"><span class="undefined">        y: touches[0].clientY</span></span><br><span class="line"><span class="undefined">      &#125;;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">      x: e.clientX,</span></span><br><span class="line"><span class="undefined">      y: e.clientY</span></span><br><span class="line"><span class="undefined">    &#125;;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">//计算两点之间距离</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> getDist = <span class="function"><span class="keyword">function</span>(<span class="params">p1, p2</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">if</span> (!p1 || !p2) <span class="keyword">return</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="comment">//计算两点之间所成角度</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> getAngle = <span class="function"><span class="keyword">function</span>(<span class="params">p1, p2</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> r = <span class="built_in">Math</span>.atan2(p2.y - p1.y, p2.x - p1.x);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> a = r * <span class="number">180</span> / <span class="built_in">Math</span>.PI;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> a;</span></span><br><span class="line"><span class="undefined">  &#125;;</span></span><br><span class="line"><span class="javascript">  <span class="comment">//获取swipe的方向</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> getSwipeDirection = <span class="function"><span class="keyword">function</span>(<span class="params">p2, p1</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> dx = p2.x - p1.x;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> dy = -p2.y + p1.y;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> angle = <span class="built_in">Math</span>.atan2(dy, dx) * <span class="number">180</span> / <span class="built_in">Math</span>.PI;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (angle &lt; <span class="number">45</span> &amp;&amp; angle &gt; <span class="number">-45</span>) <span class="keyword">return</span> <span class="string">"right"</span>;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (angle &gt;= <span class="number">45</span> &amp;&amp; angle &lt; <span class="number">135</span>) <span class="keyword">return</span> <span class="string">"top"</span>;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (angle &gt;= <span class="number">135</span> || angle &lt; <span class="number">-135</span>) <span class="keyword">return</span> <span class="string">"left"</span>;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (angle &gt;= <span class="number">-135</span> &amp;&amp; angle &lt;= <span class="number">-45</span>) <span class="keyword">return</span> <span class="string">"bottom"</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> startEvtHandler = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> pos = getTouchPos(e);</span></span><br><span class="line"><span class="javascript">    ball.style.left = pos.x + <span class="string">'px'</span>;</span></span><br><span class="line"><span class="javascript">    ball.style.top = pos.y + <span class="string">'px'</span>;</span></span><br><span class="line"><span class="javascript">    ball.style.display = <span class="string">'block'</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> touches = e.touches;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (!touches || touches.length == <span class="number">1</span>) &#123; <span class="comment">//touches为空，代表鼠标点击</span></span></span><br><span class="line"><span class="undefined">      point_start = getTouchPos(e);</span></span><br><span class="line"><span class="javascript">      time_start = <span class="built_in">Date</span>.now();</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> moveEvtHandler = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> pos = getTouchPos(e);</span></span><br><span class="line"><span class="javascript">    ball.style.left = pos.x + <span class="string">'px'</span>;</span></span><br><span class="line"><span class="javascript">    ball.style.top = pos.y + <span class="string">'px'</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    point_end = getTouchPos(e);</span></span><br><span class="line"><span class="undefined">    e.preventDefault();</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">//touchend的touches和targetTouches没有对象，只有changeTouches才有</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> endEvtHandler = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    ball.style.display = <span class="string">'none'</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> time_end = <span class="built_in">Date</span>.now();</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="comment">//距离和时间都符合</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (getDist(point_start, point_end) &gt; SWIPE_DISTANCE &amp;&amp; time_start - time_end &lt; SWIPE_TIME) &#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> dir = getSwipeDirection(point_end, point_start);</span></span><br><span class="line"><span class="javascript">      touchPad.innerHTML = <span class="string">'swipe'</span> + dir;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> SWIPE_DISTANCE = <span class="number">30</span>; <span class="comment">//移动30px之后才认为swipe事件</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> SWIPE_TIME = <span class="number">500</span>; <span class="comment">//swipe最大经历时间</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> point_start,</span></span><br><span class="line"><span class="undefined">    point_end,</span></span><br><span class="line"><span class="undefined">    time_start,</span></span><br><span class="line"><span class="undefined">    time_end;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">//判断是PC或者移动设备</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> startEvt, moveEvt, endEvt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">if</span> (<span class="string">"ontouchstart"</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</span></span><br><span class="line"><span class="javascript">    startEvt = <span class="string">"touchstart"</span>;</span></span><br><span class="line"><span class="javascript">    moveEvt = <span class="string">"touchmove"</span>;</span></span><br><span class="line"><span class="javascript">    endEvt = <span class="string">"touchend"</span>;</span></span><br><span class="line"><span class="javascript">  &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">    startEvt = <span class="string">"mousedown"</span>;</span></span><br><span class="line"><span class="javascript">    moveEvt = <span class="string">"mousemove"</span>;</span></span><br><span class="line"><span class="javascript">    endEvt = <span class="string">"mouseup"</span>;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">  touchpad.addEventListener(startEvt, startEvtHandler);</span></span><br><span class="line"><span class="undefined">  touchpad.addEventListener(moveEvt, moveEvtHandler);</span></span><br><span class="line"><span class="undefined">  touchpad.addEventListener(endEvt, endEvtHandler);</span></span><br><span class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/移动端/" rel="tag"><i class="fa fa-tag"></i> 移动端</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/01/moble/" rel="next" title="移动端笔记（meta标签）">
+                <i class="fa fa-chevron-left"></i> 移动端笔记（meta标签）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/08/BDL2.0笔记/" rel="prev" title="BDL2.0笔记">
+                BDL2.0笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#轮播图触摸事件"><span class="nav-number">1.</span> <span class="nav-text">轮播图触摸事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">2.</span> <span class="nav-text">实例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

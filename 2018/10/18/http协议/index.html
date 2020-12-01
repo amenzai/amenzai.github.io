@@ -1,0 +1,1063 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="协议," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="HTTP 协议笔记。">
+<meta name="keywords" content="协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP 协议笔记">
+<meta property="og:url" content="http://amenzai.me/2018/10/18/http协议/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="HTTP 协议笔记。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/44130210-f40a4ce2-a07e-11e8-95bc-45ca00f17d95.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/44130216-fb7398c6-a07e-11e8-863d-27c8f343efd0.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/44130221-03b1b734-a07f-11e8-8d7e-dc8c7dac8bc6.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/44130234-11b279f4-a07f-11e8-87cf-3254a39d029b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/44130243-1c1e7a50-a07f-11e8-95b6-8ad60995f25a.png">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.388Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP 协议笔记">
+<meta name="twitter:description" content="HTTP 协议笔记。">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/20960902/44130210-f40a4ce2-a07e-11e8-95bc-45ca00f17d95.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2018/10/18/http协议/"/>
+
+
+
+
+
+  <title> HTTP 协议笔记 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2018/10/18/http协议/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-18T01:14:43+08:00">
+                2018-10-18
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/前端学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">前端学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                HTTP 协议笔记
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>HTTP 协议笔记。</p>
+<a id="more"></a>
+<p><strong>http基础</strong></p>
+<p><img src="https://user-images.githubusercontent.com/20960902/44130210-f40a4ce2-a07e-11e8-95bc-45ca00f17d95.png" alt="20180815112941"><br><img src="https://user-images.githubusercontent.com/20960902/44130216-fb7398c6-a07e-11e8-863d-27c8f343efd0.png" alt="20180815113006"></p>
+<ul>
+<li>物理层主要作用是定义物理设备如何传输数据</li>
+<li>数据链路层在通信的实体间建立数据链路连接</li>
+<li>网络层为数据在结点之间传输创建逻辑链路</li>
+</ul>
+<p>http 请求和 TCP 连接不是一个概念，HTTP1.1 以前，当服务器响应完请求之后，就关闭了 TCP 连接。HTTP1.1 之后，一个 TCP 连接可以发送多个 HTTP 请求。</p>
+<p>HTTP1.1：持久连接、pipeline、增加 host 和其他一些命令。</p>
+<p>HTTP2：所有数据以二进制传输、同一个连接里面发送多个请求不再需要按照顺序来、头信息压缩以及推送等提高效率的功能。</p>
+<p><strong>url</strong></p>
+<p><img src="https://user-images.githubusercontent.com/20960902/44130221-03b1b734-a07f-11e8-8d7e-dc8c7dac8bc6.png" alt="20180815113023"></p>
+<p><strong>http 客户端</strong></p>
+<ul>
+<li>浏览器</li>
+<li>curl 命令：curl -v <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></li>
+</ul>
+<p><strong>CORS跨域请求的限制与解决</strong></p>
+<p>跨域请求其实已经发送了，并且结果也返回了，只不过浏览器在拿到响应头时，发现没有对应头信息处理跨域，就把结果忽略了，并且在控制台报错。</p>
+<p>简单请求：</p>
+<ul>
+<li>请求方法为：HEAD or GET or POST</li>
+<li>头信息<ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Last-Event-ID</li>
+<li>Content-Type：只限于三个值：application/x-www-form-urlencoded or multipart/form-data or text/plain</li>
+</ul>
+</li>
+</ul>
+<p>凡是不同时满足上面两个条件，就属于非简单请求。一句话，简单请求就是简单的 HTTP 方法与简单的 HTTP 头信息的结合。</p>
+<p>cors 的 http 响应：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http://api.bob.com</span><br><span class="line">Access-Control-Allow-Credentials: true</span><br><span class="line">Access-Control-Expose-Headers: FooBar</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br></pre></td></tr></table></figure></p>
+<p>（1）Access-Control-Allow-Origin</p>
+<p>该字段是必须的。它的值要么是请求时Origin字段的值，要么是一个*，表示接受任意域名的请求。</p>
+<p>（2）Access-Control-Allow-Credentials</p>
+<p>该字段可选。它的值是一个布尔值，表示是否允许发送 Cookie。默认情况下，Cookie 不包括在 CORS 请求之中。设为true，即表示服务器明确许可，浏览器可以把 Cookie 包含在请求中，一起发给服务器。这个值也只能设为true，如果服务器不要浏览器发送 Cookie，不发送该字段即可。</p>
+<p>（3）Access-Control-Expose-Headers</p>
+<p>该字段可选。CORS 请求时，XMLHttpRequest对象的getResponseHeader()方法只能拿到6个服务器返回的基本字段：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma。如果想拿到其他字段，就必须在Access-Control-Expose-Headers里面指定。上面的例子指定，getResponseHeader(‘FooBar’)可以返回FooBar字段的值。</p>
+<p>非简单请求：</p>
+<p>非简单请求是那种对服务器提出特殊要求的请求，比如请求方法是PUT或DELETE，或者Content-Type字段的类型是application/json。</p>
+<p>非简单请求的 CORS 请求，会在正式通信之前，增加一次 HTTP 查询请求，称为“预检”请求（preflight）。浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些 HTTP 动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。这是为了防止这些新增的请求，对传统的没有 CORS 支持的服务器形成压力，给服务器一个提前拒绝的机会，这样可以防止服务器大量收到DELETE和PUT请求，这些传统的表单不可能跨域发出的请求。</p>
+<p><strong>Cache-Control</strong></p>
+<ul>
+<li>public：http请求 经过的任何地方都可以缓存</li>
+<li>private：只有浏览器才可以缓存</li>
+<li>no-cache：会先服务器验证</li>
+<li><code>max-age=&lt;seconds&gt;</code>：多长时间缓存过期</li>
+<li><code>s-maxage=&lt;seconds&gt;</code>：用于代理服务器缓存</li>
+<li><code>max-stale=&lt;seconds&gt;</code>：即便缓存过期，只要没有超过这里设置的如期，仍可去缓存取</li>
+<li>must-revalidate：重新验证</li>
+<li>proxy-revalidate</li>
+<li>no-store：所有地方缓存都不生效，每次都要服务器拿</li>
+<li>no-trnsform</li>
+</ul>
+<p><strong>缓存验证：Last-Modified</strong></p>
+<ul>
+<li>上次修改时间</li>
+<li>配合 If-Modified-Since 或者 If-Unmodified-Since 使用</li>
+<li>对比上次修改时间以验证资源是否需要更新</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/20960902/44130234-11b279f4-a07f-11e8-87cf-3254a39d029b.png" alt="20180815113037"></p>
+<p><strong>缓存验证：Etag</strong></p>
+<ul>
+<li>数据签名</li>
+<li>配合 If-Match 或者 If-Non-match 使用</li>
+<li>对比资源的签名判断是否使用缓存</li>
+</ul>
+<p><strong>Cookie</strong></p>
+<ul>
+<li>通过 Set-Cookie 设置</li>
+<li>下次请求会带上</li>
+<li>键值对，可以多个</li>
+<li>max-age 和 expires 设置过期时间</li>
+<li>Secure 只在 https 的时候发送</li>
+<li>HttpOnly 无法通过 document.cookie 访问</li>
+</ul>
+<p><strong>HTTP 长连接</strong></p>
+<ul>
+<li>Connection: keep-Alive / close</li>
+<li>浏览器并发连接数有限制：chrome 6个</li>
+</ul>
+<p><strong>数据协商</strong></p>
+<ul>
+<li>request<ul>
+<li>Accept</li>
+<li>Accept-Encoding</li>
+<li>Accept-Language</li>
+<li>User-Agent</li>
+</ul>
+</li>
+<li>response<ul>
+<li>Content-type</li>
+<li>Content-Encoding</li>
+<li>Content-Language</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># request</span></span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line"></span><br><span class="line"><span class="comment"># response</span></span><br><span class="line">X-Content-Type-Options: nosniff</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Content-Encoding: gzip</span><br></pre></td></tr></table></figure>
+<p><strong>跳转 Redirect</strong></p>
+<p><a href="https://github.com/amenzai/code-snippet/blob/master/note/httpProtocol/server.js" target="_blank" rel="noopener">参考代码</a></p>
+<p>301 永久跳转时，浏览器再次访问对应路径，会自动变为需要跳转的路径，不经过服务器，这样操作后，浏览器会缓存之前设置的路径，就算服务端的跳转代码进行修改，也不会生效，除非清楚浏览器缓存。302 临时跳转，每次都要经过服务器。</p>
+<p><strong>content-security-policy</strong></p>
+<p>限制资源获取</p>
+<p><strong>Nginx</strong></p>
+<p>下载地址：<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">http://nginx.org/en/download.html</a></p>
+<p><strong>Nginx代理配置和代理缓存</strong></p>
+<p>安装目录下的<code>conf&gt;nginx.conf</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 自定义配置文件</span></span><br><span class="line"><span class="comment"># nginx.conf 中添加此内容</span></span><br><span class="line">include          servers/*.conf;</span><br><span class="line"></span><br><span class="line"><span class="comment"># test.conf文件内容如下：</span></span><br><span class="line">proxy_cache_path cache levels=1:2 keys_zone=my_cache:10m; <span class="comment"># 代理缓存配置</span></span><br><span class="line"><span class="comment"># server &#123;</span></span><br><span class="line"><span class="comment">#   listen       80;</span></span><br><span class="line"><span class="comment">#   server_name  test.com; # 代理 test.com 到 http://127.0.0.1:8888</span></span><br><span class="line"><span class="comment">#   location / &#123;</span></span><br><span class="line"><span class="comment">#     proxy_cache       my_cache; # 设置代理缓存，如果设置了浏览器缓存，那么代理也会实施缓存，那么使用其他浏览器访问，就会从代理缓存取数据（或者其他用户进行访问）</span></span><br><span class="line"><span class="comment">#     proxy_pass        http://127.0.0.1:8888;</span></span><br><span class="line"><span class="comment">#     proxy_set_header  Host $host; # 代理头 设置host为test.com</span></span><br><span class="line"><span class="comment">#   &#125;</span></span><br><span class="line"><span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">  listen       80 default_server; <span class="comment"># 自动跳转 https</span></span><br><span class="line">  listen       [::]:80 default_server;</span><br><span class="line">  server_name  test.com;</span><br><span class="line">  <span class="built_in">return</span> 302 https://<span class="variable">$server_name</span><span class="variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">  <span class="comment"># listen       443; # 配置https</span></span><br><span class="line">  listen       443 http2; <span class="comment"># 配置http2</span></span><br><span class="line">  server_name  test.com;</span><br><span class="line">  http2_push_preload on; <span class="comment"># http2配置 服务端推送</span></span><br><span class="line"></span><br><span class="line">  ssl on;</span><br><span class="line">  ssl_certificate_key ../certs/localhost-privkey.pem; <span class="comment"># 那个命令生成的两个文件的地址</span></span><br><span class="line">  ssl_certificate ../certs/localhost-cert.pem;</span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line">    proxy_cache       my_cache;</span><br><span class="line">    proxy_pass        http://127.0.0.1:8888;</span><br><span class="line">    proxy_set_header  Host <span class="variable">$host</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代理服务器可以很容易修改http请求的请求和响应内容，因为 http 请求是明文传输，可以解析得到，https 是不可以的，因为 https 进行了加密</p>
+<p><strong>HTTPS解析</strong></p>
+<ul>
+<li>http明文传输，可以拦截取到</li>
+<li>私钥、公钥</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/20960902/44130243-1c1e7a50-a07f-11e8-95b6-8ad60995f25a.png" alt="20180815113052"></p>
+<p><strong>Nginx部署HTTPS</strong></p>
+<p>本地生成 公钥私钥<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git bash 执行命令 生成两个文件</span></span><br><span class="line">openssl req -x509 -newkey rsa:2048 -nodes -sha256 -keyout localhost-privkey.pem -out localhost-cert.pem</span><br></pre></td></tr></table></figure></p>
+<p><strong>http2</strong></p>
+<p>浏览器并发 TCP连接数 限制</p>
+<ul>
+<li>优势<ul>
+<li>信道复用（一个 TCP 链接就行）</li>
+<li>分帧传输</li>
+<li>server push(服务端主动推送内容)</li>
+</ul>
+</li>
+</ul>
+<p>ALPN nginx 兼容处理 http2:<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 测试</span></span><br><span class="line">curl -v -k https://test.com</span><br><span class="line">curl -v -k --http1.1 https://test.com <span class="comment"># 使用http1.1</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/协议/" rel="tag"><i class="fa fa-tag"></i> 协议</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/15/book01/" rel="next" title="《人性的弱点》摘录">
+                <i class="fa fa-chevron-left"></i> 《人性的弱点》摘录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/21/weekly-report06/" rel="prev" title="周记06">
+                周记06 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

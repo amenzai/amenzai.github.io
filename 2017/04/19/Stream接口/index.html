@@ -1,0 +1,1186 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="数据读写可以看作是事件模式（Event）的特例，不断发送的数据块好比一个个的事件。读数据是read事件，写数据是write事件，而数据块是事件附带的信息。Node 为这类情况提供了一个特殊接口Stream。">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stream接口">
+<meta property="og:url" content="http://amenzai.me/2017/04/19/Stream接口/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="数据读写可以看作是事件模式（Event）的特例，不断发送的数据块好比一个个的事件。读数据是read事件，写数据是write事件，而数据块是事件附带的信息。Node 为这类情况提供了一个特殊接口Stream。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.385Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Stream接口">
+<meta name="twitter:description" content="数据读写可以看作是事件模式（Event）的特例，不断发送的数据块好比一个个的事件。读数据是read事件，写数据是write事件，而数据块是事件附带的信息。Node 为这类情况提供了一个特殊接口Stream。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2017/04/19/Stream接口/"/>
+
+
+
+
+
+  <title> Stream接口 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2017/04/19/Stream接口/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-19T00:00:00+08:00">
+                2017-04-19
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Stream接口
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>数据读写可以看作是事件模式（Event）的特例，不断发送的数据块好比一个个的事件。读数据是<code>read</code>事件，写数据是<code>write</code>事件，而数据块是事件附带的信息。Node 为这类情况提供了一个特殊接口<code>Stream</code>。</p>
+<a id="more"></a>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>”数据流“（stream）是处理系统缓存的一种方式。操作系统采用数据块（chunk）的方式读取数据，每收到一次数据，就存入缓存。Node应用程序有两种缓存的处理方式，第一种是等到所有数据接收完毕，一次性从缓存读取，这就是传统的读取文件的方式；第二种是采用“数据流”的方式，收到一块数据，就读取一块，即在数据还没有接收完成时，就开始处理它。</p>
+<p>第一种方式先将数据全部读入内存，然后处理，优点是符合直觉，流程非常自然，缺点是如果遇到大文件，要花很长时间，才能进入数据处理的步骤。第二种方式每次只读入数据的一小块，像“流水”一样，每当系统读入了一小块数据，就会触发一个事件，发出“新数据块”的信号。应用程序只要监听这个事件，就能掌握数据读取的进展，做出相应处理，这样就提高了程序的性能。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line">fs</span><br><span class="line">.createReadStream(<span class="string">'./data/customers.csv'</span>)</span><br><span class="line">.pipe(process.stdout);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>fs.createReadStream</code>方法就是以”数据流“的方式读取文件，这可以在文件还没有读取完的情况下，就输出到标准输出。这显然对大文件的读取非常有利。</p>
+<p>Unix操作系统从很早以前，就有“数据流”这个概念，它是不同进程之间传递数据的一种方式。管道命令（pipe）就起到在不同命令之间，连接数据流的作用。“数据流”相当于把较大的数据拆成很小的部分，一个命令只要部署了数据流接口，就可以把一个流的输出接到另一个流的输入。Node引入了这个概念，通过数据流接口为异步读写数据提供的统一接口，无论是硬盘数据、网络数据，还是内存数据，都可以采用这个接口读写。</p>
+<p>数据流接口最大特点就是通过事件通信，具有<code>readable</code>、<code>writable</code>、<code>drain</code>、<code>data</code>、<code>end</code>、<code>close</code>等事件，既可以读取数据，也可以写入数据。读写数据时，每读入（或写入）一段数据，就会触发一次<code>data</code>事件，全部读取（或写入）完毕，触发<code>end</code>事件。如果发生错误，则触发<code>error</code>事件。</p>
+<p>一个对象只要部署了数据流接口，就可以从它读取数据，或者写入数据。Node内部很多涉及IO处理的对象，都部署了Stream接口，下面就是其中的一些。</p>
+<ul>
+<li>文件读写</li>
+<li>HTTP 请求的读写</li>
+<li>TCP 连接</li>
+<li>标准输入输出</li>
+</ul>
+<h1 id="可读数据流"><a href="#可读数据流" class="headerlink" title="可读数据流"></a>可读数据流</h1><p>Stream 接口分成三类。</p>
+<ul>
+<li>可读数据流接口，用于对外提供数据。</li>
+<li>可写数据流接口，用于写入数据。</li>
+<li>双向数据流接口，用于读取和写入数据，比如Node的tcp sockets、zlib、crypto都部署了这个接口。</li>
+</ul>
+<p>“可读数据流”用来产生数据。它表示数据的来源，只要一个对象提供“可读数据流”，就表示你可以从其中读取数据。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Readable = <span class="built_in">require</span>(<span class="string">'stream'</span>).Readable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> rs = <span class="keyword">new</span> Readable();</span><br><span class="line">rs.push(<span class="string">'beep '</span>);</span><br><span class="line">rs.push(<span class="string">'boop\n'</span>);</span><br><span class="line">rs.push(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">rs.pipe(process.stdout);</span><br></pre></td></tr></table></figure>
+<p>上面代码产生了一个可写数据流，最后将其写入标注输出。可读数据流的<code>push</code>方法，用来将数据输入缓存。<code>rs.push(null)</code>中的null，用来告诉rs，数据输入完毕。</p>
+<p>“可读数据流”有两种状态：流动态和暂停态。处于流动态时，数据会尽快地从数据源导向用户的程序；处于暂停态时，必须显式调用<code>stream.read()</code>等指令，“可读数据流”才会释放数据。刚刚新建的时候，“可读数据流”处于暂停态。</p>
+<p>三种方法可以让暂停态转为流动态。</p>
+<ul>
+<li>添加data事件的监听函数</li>
+<li>调用resume方法</li>
+<li>调用pipe方法将数据送往一个可写数据流</li>
+</ul>
+<p>如果转为流动态时，没有data事件的监听函数，也没有pipe方法的目的地，那么数据将遗失。</p>
+<p>以下两种方法可以让流动态转为暂停态。</p>
+<ul>
+<li>不存在pipe方法的目的地时，调用pause方法</li>
+<li>存在pipe方法的目的地时，移除所有data事件的监听函数，并且调用unpipe方法，移除所有pipe方法的目的地</li>
+</ul>
+<p>注意，只移除data事件的监听函数，并不会自动引发数据流进入“暂停态”。另外，存在pipe方法的目的地时，调用pause方法，并不能保证数据流总是处于暂停态，一旦那些目的地发出数据请求，数据流有可能会继续提供数据。</p>
+<p>每当系统有新的数据，该接口可以监听到data事件，从而回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> readableStream = fs.createReadStream(<span class="string">'file.txt'</span>);</span><br><span class="line"><span class="keyword">var</span> data = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">readableStream.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line"></span><br><span class="line">readableStream.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">  data+=chunk;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">readableStream.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，fs模块的createReadStream方法，是部署了Stream接口的文件读取方法。该方法对指定的文件，返回一个对象。该对象只要监听data事件，回调函数就能读到数据。</p>
+<p>除了data事件，监听readable事件，也可以读到数据。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> readableStream = fs.createReadStream(<span class="string">'file.txt'</span>);</span><br><span class="line"><span class="keyword">var</span> data = <span class="string">''</span>;</span><br><span class="line"><span class="keyword">var</span> chunk;</span><br><span class="line"></span><br><span class="line">readableStream.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line"></span><br><span class="line">readableStream.on(<span class="string">'readable'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">while</span> ((chunk=readableStream.read()) !== <span class="literal">null</span>) &#123;</span><br><span class="line">    data += chunk;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">readableStream.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>readable事件表示系统缓冲之中有可读的数据，使用read方法去读出数据。如果没有数据可读，read方法会返回null。</p>
+<p>“可读数据流”除了read方法，还有以下方法。</p>
+<ul>
+<li>Readable.pause() ：暂停数据流。已经存在的数据，也不再触发data事件，数据将保留在缓存之中，此时的数据流称为静态数据流。如果对静态数据流再次调用pause方法，数据流将重新开始流动，但是缓存中现有的数据，不会再触发data事件。</li>
+<li>Readable.resume()：恢复暂停的数据流。</li>
+<li>readable.unpipe()：从管道中移除目的地数据流。如果该方法使用时带有参数，会阻止“可读数据流”进入某个特定的目的地数据流。如果使用时不带有参数，则会移除所有的目的地数据流。</li>
+</ul>
+<h2 id="readable-属性"><a href="#readable-属性" class="headerlink" title="readable 属性"></a>readable 属性</h2><p>一个数据流的<code>readable</code>属性返回一个布尔值。如果数据流是一个仍然打开的可读数据流，就返回<code>true</code>，否则返回<code>false</code>。</p>
+<h2 id="read"><a href="#read" class="headerlink" title="read()"></a>read()</h2><p>read方法从系统缓存读取并返回数据。如果读不到数据，则返回null。</p>
+<p>该方法可以接受一个整数作为参数，表示所要读取数据的数量，然后会返回该数量的数据。如果读不到足够数量的数据，返回null。如果不提供这个参数，默认返回系统缓存之中的所有数据。</p>
+<p>只在“暂停态”时，该方法才有必要手动调用。“流动态”时，该方法是自动调用的，直到系统缓存之中的数据被读光。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> readable = getReadableStreamSomehow();</span><br><span class="line">readable.on(<span class="string">'readable'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> chunk;</span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">null</span> !== (chunk = readable.read())) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'got %d bytes of data'</span>, chunk.length);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如果该方法返回一个数据块，那么它就触发了data事件。</p>
+<h2 id="read-1"><a href="#read-1" class="headerlink" title="_read()"></a>_read()</h2><p>可读数据流的<code>_read</code>方法，可以将数据放入可读数据流。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Readable = <span class="built_in">require</span>(<span class="string">'stream'</span>).Readable;</span><br><span class="line"><span class="keyword">var</span> rs = Readable();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="number">97</span>;</span><br><span class="line">rs._read = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  rs.push(<span class="built_in">String</span>.fromCharCode(c++));</span><br><span class="line">  <span class="keyword">if</span> (c &gt; <span class="string">'z'</span>.charCodeAt(<span class="number">0</span>)) rs.push(<span class="literal">null</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">rs.pipe(process.stdout);</span><br></pre></td></tr></table></figure>
+<p>运行结果如下。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node read1.js</span><br><span class="line">abcdefghijklmnopqrstuvwxyz</span><br></pre></td></tr></table></figure>
+<h2 id="setEncoding"><a href="#setEncoding" class="headerlink" title="setEncoding()"></a>setEncoding()</h2><p>调用该方法，会使得数据流返回指定编码的字符串，而不是缓存之中的二进制对象。比如，调用<code>setEncoding(&#39;utf8&#39;)</code>，数据流会返回UTF-8字符串，调用<code>setEncoding(&#39;hex&#39;)</code>，数据流会返回16进制的字符串。</p>
+<p><code>setEncoding</code>的参数是字符串的编码方法，比如<code>utf8</code>、<code>ascii</code>、<code>base64</code>等。</p>
+<p>该方法会正确处理多字节的字符，而缓存的方法<code>buf.toString(encoding)</code>不会。所以如果想要从数据流读取字符串，应该总是使用该方法。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> readable = getReadableStreamSomehow();</span><br><span class="line">readable.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line">readable.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">  assert.equal(<span class="keyword">typeof</span> chunk, <span class="string">'string'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'got %d characters of string data'</span>, chunk.length);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="resume"><a href="#resume" class="headerlink" title="resume()"></a>resume()</h2><p><code>resume</code>方法会使得“可读数据流”继续释放<code>data</code>事件，即转为流动态。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 新建一个readable数据流</span></span><br><span class="line"><span class="keyword">var</span> readable = getReadableStreamSomehow();</span><br><span class="line">readable.resume();</span><br><span class="line">readable.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'数据流到达尾部，未读取任务数据'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，调用<code>resume</code>方法使得数据流进入流动态，只定义<code>end</code>事件的监听函数，不定义<code>data</code>事件的监听函数，表示不从数据流读取任何数据，只监听数据流到达尾部。</p>
+<h2 id="pause"><a href="#pause" class="headerlink" title="pause()"></a>pause()</h2><p><code>pause</code>方法使得流动态的数据流，停止释放<code>data</code>事件，转而进入暂停态。任何此时已经可以读到的数据，都将停留在系统缓存。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 新建一个readable数据流</span></span><br><span class="line"><span class="keyword">var</span> readable = getReadableStreamSomehow();</span><br><span class="line">readable.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'读取%d字节的数据'</span>, chunk.length);</span><br><span class="line">  readable.pause();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'接下来的1秒内不读取数据'</span>);</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'数据恢复读取'</span>);</span><br><span class="line">    readable.resume();</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="isPaused"><a href="#isPaused" class="headerlink" title="isPaused()"></a>isPaused()</h2><p>该方法返回一个布尔值，表示“可读数据流”被客户端手动暂停（即调用了pause方法），目前还没有调用resume方法。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> readable = <span class="keyword">new</span> stream.Readable</span><br><span class="line"></span><br><span class="line">readable.isPaused() <span class="comment">// === false</span></span><br><span class="line">readable.pause()</span><br><span class="line">readable.isPaused() <span class="comment">// === true</span></span><br><span class="line">readable.resume()</span><br><span class="line">readable.isPaused() <span class="comment">// === false</span></span><br></pre></td></tr></table></figure>
+<h2 id="pipe"><a href="#pipe" class="headerlink" title="pipe()"></a>pipe()</h2><p>pipe方法是自动传送数据的机制，就像管道一样。它从“可读数据流”读出所有数据，将其写出指定的目的地。整个过程是自动的。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">src.pipe(dst)</span><br></pre></td></tr></table></figure>
+<p>pipe方法必须在可读数据流上调用，它的参数必须是可写数据流。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> readableStream = fs.createReadStream(<span class="string">'file1.txt'</span>);</span><br><span class="line"><span class="keyword">var</span> writableStream = fs.createWriteStream(<span class="string">'file2.txt'</span>);</span><br><span class="line"></span><br><span class="line">readableStream.pipe(writableStream);</span><br></pre></td></tr></table></figure>
+<p>上面代码使用pipe方法，将file1的内容写入file2。整个过程由pipe方法管理，不用手动干预，所以可以将传送数据写得很简洁。</p>
+<p>pipe方法返回目的地的数据流，因此可以使用链式写法，将多个数据流操作连在一起。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">a.pipe(b).pipe(c).pipe(d)</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">a.pipe(b);</span><br><span class="line">b.pipe(c);</span><br><span class="line">c.pipe(d);</span><br></pre></td></tr></table></figure>
+<p>下面是一个例子。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> zlib = <span class="built_in">require</span>(<span class="string">'zlib'</span>);</span><br><span class="line"></span><br><span class="line">fs.createReadStream(<span class="string">'input.txt.gz'</span>)</span><br><span class="line">  .pipe(zlib.createGunzip())</span><br><span class="line">  .pipe(fs.createWriteStream(<span class="string">'output.txt'</span>));</span><br></pre></td></tr></table></figure>
+<p>上面代码采用链式写法，先读取文件，然后进行压缩，最后输出。</p>
+<p>下面的写法模拟了Unix系统的cat命令，将标准输出写入标准输入。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">process.stdin.pipe(process.stdout);</span><br></pre></td></tr></table></figure>
+<p>当来源地的数据流读取完成，默认会调用目的地的end方法，就不再能够写入。对pipe方法传入第二个参数<code>{ end: false }</code>，可以让目的地的数据流保持打开。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">reader.pipe(writer, &#123; <span class="attr">end</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">reader.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  writer.end(<span class="string">'Goodbye\n'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，目的地数据流默认不会调用end方法，只能手动调用，因此“Goodbye”会被写入。</p>
+<h2 id="unpipe"><a href="#unpipe" class="headerlink" title="unpipe()"></a>unpipe()</h2><p>该方法移除pipe方法指定的数据流目的地。如果没有参数，则移除所有的pipe方法目的地。如果有参数，则移除该参数指定的目的地。如果没有匹配参数的目的地，则不会产生任何效果。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> readable = getReadableStreamSomehow();</span><br><span class="line"><span class="keyword">var</span> writable = fs.createWriteStream(<span class="string">'file.txt'</span>);</span><br><span class="line">readable.pipe(writable);</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'停止写入file.txt'</span>);</span><br><span class="line">  readable.unpipe(writable);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'手动关闭file.txt的写入数据流'</span>);</span><br><span class="line">  writable.end();</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>上面代码写入file.txt的时间，只有1秒钟，然后就停止写入。</p>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>下面代码中，<code>s</code>是一个readable数据流，它可以监听以下事件。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">s.on(&apos;data&apos;, f);    // 收到新的数据时，data事件就会发生，触发f()</span><br><span class="line">s.on(&apos;end&apos;, f);     // 数据读取完以后，不会再收到数据了，end事件发生，触发f()</span><br><span class="line">s.on(&apos;error&apos;, f);   // 发生错误时，error事件发生，触发f()</span><br><span class="line">s.readable          // =&gt; true if it is a readable stream that is still open</span><br><span class="line">s.pause();          // Pause &quot;data&quot; events.  For throttling uploads, e.g.</span><br><span class="line">s.resume();         // Resume again</span><br><span class="line"></span><br><span class="line">（1）readable</span><br><span class="line"></span><br><span class="line">readable事件在数据流能够向外提供数据时触发。</span><br><span class="line"></span><br><span class="line">```javascript</span><br><span class="line">var readable = getReadableStreamSomehow();</span><br><span class="line">readable.on(&apos;readable&apos;, function() &#123;</span><br><span class="line">  // there is some data to read now</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>下面是一个例子。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">process.stdin.on(<span class="string">'readable'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> buf = process.stdin.read();</span><br><span class="line">  <span class="built_in">console</span>.dir(buf);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码将标准输入的数据读出。</p>
+<p>read方法接受一个整数作为参数，表示以多少个字节为单位进行读取。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">process.stdin.on(<span class="string">'readable'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> buf = process.stdin.read(<span class="number">3</span>);</span><br><span class="line">    <span class="built_in">console</span>.dir(buf);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码将以3个字节为单位进行输出内容。</p>
+<p>（2）data</p>
+<p>对于那些没有显式暂停的数据流，添加data事件监听函数，会将数据流切换到流动态，尽快向外提供数据。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> readable = getReadableStreamSomehow();</span><br><span class="line">readable.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'got %d bytes of data'</span>, chunk.length);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>（3）end</p>
+<p>无法再读取到数据时，会触发end事件。也就是说，只有当前数据被完全读取完，才会触发end事件，比如不停地调用read方法。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> readable = getReadableStreamSomehow();</span><br><span class="line">readable.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'got %d bytes of data'</span>, chunk.length);</span><br><span class="line">&#125;);</span><br><span class="line">readable.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'there will be no more data.'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>（4）close</p>
+<p>数据源关闭时，close事件被触发。并不是所有的数据流都支持这个事件。</p>
+<p>（5）error</p>
+<p>当读取数据发生错误时，error事件被触发。</p>
+<h1 id="继承可读数据流接口"><a href="#继承可读数据流接口" class="headerlink" title="继承可读数据流接口"></a>继承可读数据流接口</h1><p>可读数据流又分成两种，一种是 pull 模式，自己拉数据，就好像用吸管吸水，只有你吸了，水才会上来；另一种是 push 模式，数据自动推送给你，就好像水从水龙头自动涌出来。如果监听<code>data</code>事件，那么自动激活 push 模式；如果自己从数据流读取数据，那就是在使用 pull 模式。</p>
+<p>任何对象都可以部署可读数据流的接口。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Readable = <span class="built_in">require</span>(<span class="string">'stream'</span>).Readable;</span><br><span class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyObject</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (! (<span class="keyword">this</span> <span class="keyword">instanceof</span> MyObject)) <span class="keyword">return</span> <span class="keyword">new</span> MyObject(options);</span><br><span class="line">  <span class="keyword">if</span> (! options) options = &#123;&#125;;</span><br><span class="line">  options.objectMode = <span class="literal">true</span>;</span><br><span class="line">  Readable.call(<span class="keyword">this</span>, options);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">util.inherits(MyObject, Readable);</span><br><span class="line"></span><br><span class="line">MyObject.prototype._read = <span class="function"><span class="keyword">function</span> <span class="title">read</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">  someMethodGetData(<span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) self.emit(<span class="string">'error'</span>, err);</span><br><span class="line">    <span class="keyword">else</span> self.push(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，构造函数<code>MyObject</code>继承了读数据流的接口。<code>options.objectMode</code>设为<code>true</code>，是为了设置数据流处理的是对象，而不是字符串或者 buffer。此外，还要在<code>MyObject.prototype</code>上部署<code>_read</code>方法，每当数据流要读取数据，就会调用这个方法。在这个方法里面，我们取到数据，使用<code>stream.push(data)</code>将数据放进数据流。</p>
+<p>然后，<code>MyObject</code>的实例就可以使用“读数据流”的接口了。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> myObj = <span class="keyword">new</span> MyObject();</span><br><span class="line"></span><br><span class="line">myObj.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面是 push 模式，下面是 pull 模式。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> myObj = <span class="keyword">new</span> MyObject();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> data = myObj.read();</span><br></pre></td></tr></table></figure>
+<p><code>myObj</code>也可以暂停/恢复读数据。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">myObj.pause();</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  myObj.resume();</span><br><span class="line">&#125;, <span class="number">5000</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="实例：-fs-模块的读数据流"><a href="#实例：-fs-模块的读数据流" class="headerlink" title="实例： fs 模块的读数据流"></a>实例： fs 模块的读数据流</h2><p><code>fs</code>模块的<code>createReadStream</code>方法，就可以创建一个读取数据的数据流。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> stream = fs.createReadStream(<span class="string">'readme.txt'</span>);</span><br><span class="line">stream.setEncoding(<span class="string">'utf8'</span>);</span><br></pre></td></tr></table></figure>
+<p>上面代码创建了一个文本文件<code>readme.txt</code>的数据流。由于这个数据流会当作文本处理，所以要用<code>setEncoding</code>方法设定编码。</p>
+<p>然后，监听<code>data</code>事件，获取每一个数据块；监听<code>end</code>事件，当数据传送结束，再统一处理。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="string">''</span>;</span><br><span class="line">stream.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">  data += chunk;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">stream.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Data length: %d'</span>, data.length);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>监听<code>readable</code>事件，也可以取得与监听<code>data</code>事件同样的效果。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="string">''</span>;</span><br><span class="line">stream.on(<span class="string">'readable'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> chunk;</span><br><span class="line">  <span class="keyword">while</span>(chunk = stream.read()) &#123;</span><br><span class="line">    data += chunk;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>数据流还有<code>pause</code>和<code>resume</code>方法，可以暂停和恢复数据传送。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 暂停</span></span><br><span class="line">stream.pause();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1秒后恢复</span></span><br><span class="line">setTimeout(stream.resume(), <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>注意，数据流新建以后，默认状态是暂停，只有指定了<code>data</code>事件的回调函数，或者调用了<code>resume</code>方法，数据才会开发发送。</p>
+<p>如果要同时使用<code>readable</code>与<code>data</code>事件，可以像下面这样写。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">stream.pause();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pulledData = <span class="string">''</span>;</span><br><span class="line"><span class="keyword">var</span> pushedData = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">stream.on(<span class="string">'readable'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> chunk;</span><br><span class="line">  <span class="keyword">while</span>(chunk = stream.read()) &#123;</span><br><span class="line">    pulledData += chunk;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">stream.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">  pushedData += chunk;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，显式调用<code>pause</code>方法，会使得<code>readable</code>事件释放一个<code>data</code>事件，否则<code>data</code>监听无效。</p>
+<p>如果觉得<code>data</code>事件和<code>end</code>事件写起来太麻烦，Stream 接口还提供了<code>pipe</code>方法，自动处理这两个事件。数据流通过<code>pipe</code>方法，可以方便地导向其他具有Stream接口的对象。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> zlib = <span class="built_in">require</span>(<span class="string">'zlib'</span>);</span><br><span class="line"></span><br><span class="line">fs.createReadStream(<span class="string">'wow.txt'</span>)</span><br><span class="line">  .pipe(zlib.createGzip())</span><br><span class="line">  .pipe(process.stdout);</span><br></pre></td></tr></table></figure>
+<p>上面代码先打开文本文件<code>wow.txt</code>，然后压缩，再导向标准输出。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">fs.createReadStream(<span class="string">'wow.txt'</span>)</span><br><span class="line">  .pipe(zlib.createGzip())</span><br><span class="line">  .pipe(fs.createWriteStream(<span class="string">'wow.gz'</span>));</span><br></pre></td></tr></table></figure>
+<p>上面代码压缩文件<code>wow.txt</code>以后，又将其写回压缩文件。</p>
+<p>下面代码新建一个Stream实例，然后指定写入事件和终止事件的回调函数，再将其接到标准输入之上。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> stream = <span class="built_in">require</span>(<span class="string">'stream'</span>);</span><br><span class="line"><span class="keyword">var</span> Stream = stream.Stream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ws = <span class="keyword">new</span> Stream;</span><br><span class="line">ws.writable = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">ws.write = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"input="</span> + data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ws.end = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"bye"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">process.stdin.pipe(ws);</span><br></pre></td></tr></table></figure>
+<p>调用上面的脚本，会产生以下结果。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node pipe_out.js</span><br><span class="line">hello</span><br><span class="line">input=hello</span><br><span class="line">^d</span><br><span class="line"><span class="built_in">bye</span></span><br></pre></td></tr></table></figure>
+<p>上面代码调用脚本下，键入<code>hello</code>，会输出<code>input=hello</code>。然后按下<code>ctrl-d</code>，会输出<code>bye</code>。使用管道命令，可以看得更清楚。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> hello | node pipe_out.js</span><br><span class="line">input=hello</span><br><span class="line"></span><br><span class="line"><span class="built_in">bye</span></span><br></pre></td></tr></table></figure>
+<h1 id="可写数据流"><a href="#可写数据流" class="headerlink" title="可写数据流"></a>可写数据流</h1><p>“可读数据流”用来对外释放数据，“可写数据流”则是用来接收数据。它允许你将数据写入某个目的地。它是数据写入的一种抽象，不同的数据目的地部署了这个接口以后，就可以用统一的方法写入。</p>
+<p>以下是部署了可写数据流的一些场合。</p>
+<ul>
+<li>客户端的http requests</li>
+<li>服务器的http responses</li>
+<li>fs write streams</li>
+<li>zlib streams</li>
+<li>crypto streams</li>
+<li>tcp sockets</li>
+<li>child process stdin</li>
+<li>process.stdout, process.stderr</li>
+</ul>
+<p>只要调用<code>stream.write(o)</code>，就能将数据写入可读数据流。<code>stream.write(payload, callback)</code>可以指定回调函数<code>callback</code>，一旦缓存中的数据释放（<code>payload</code>），就会调用这个回调函数。</p>
+<p>部署“可写数据流”，必须继承<code>stream.Writable</code>，以及实现<code>stream._write</code>方法。下面是一个例子，数据库的写入接口部署“可写数据流”接口。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Writable = <span class="built_in">require</span>(<span class="string">'stream'</span>).Writable;</span><br><span class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = DatabaseWriteStream;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DatabaseWriteStream</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (! (<span class="keyword">this</span> <span class="keyword">instanceof</span> DatabaseWriteStream))</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> DatabaseWriteStream(options);</span><br><span class="line">  <span class="keyword">if</span> (! options) options = &#123;&#125;;</span><br><span class="line">  options.objectMode = <span class="literal">true</span>;</span><br><span class="line">  Writable.call(<span class="keyword">this</span>, options);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">util.inherits(DatabaseWriteStream, Writable);</span><br><span class="line"></span><br><span class="line">DatabaseWriteStream.prototype._write = <span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params">doc, encoding, callback</span>) </span>&#123;</span><br><span class="line">  insertIntoDatabase(<span class="built_in">JSON</span>.stringify(doc), callback);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>_write</code>方法执行实际的写入操作，它必须接受三个参数。</p>
+<ul>
+<li><code>chunk</code>：要写入的数据块</li>
+<li><code>encoding</code>：如果写入的是字符串，必须字符串的编码</li>
+<li><code>callback</code>：写入完成后或发生错误时的回调函数</li>
+</ul>
+<p>下面是用法的例子。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> DbWriteStream = <span class="built_in">require</span>(<span class="string">'./db_write_stream'</span>);</span><br><span class="line"><span class="keyword">var</span> db = DbWriteStream();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Thermometer = <span class="built_in">require</span>(<span class="string">'./thermometer'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> thermomether = Thermometer();</span><br><span class="line"></span><br><span class="line">thermomether.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">temp</span>) </span>&#123;</span><br><span class="line">  db.write(&#123;<span class="attr">when</span>: <span class="built_in">Date</span>.now(), <span class="attr">temperature</span>: temp&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>下面是fs模块的可写数据流的例子。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> readableStream = fs.createReadStream(<span class="string">'file1.txt'</span>);</span><br><span class="line"><span class="keyword">var</span> writableStream = fs.createWriteStream(<span class="string">'file2.txt'</span>);</span><br><span class="line"></span><br><span class="line">readableStream.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line"></span><br><span class="line">readableStream.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">  writableStream.write(chunk);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，fs模块的<code>createWriteStream</code>方法针对特定文件，创建了一个“可写数据流”，本质上就是对写入操作部署了<code>Stream</code>接口。然后，“可写数据流”的<code>write</code>方法，可以将数据写入文件。</p>
+<h2 id="writable属性"><a href="#writable属性" class="headerlink" title="writable属性"></a>writable属性</h2><p><code>writable</code>属性返回一个布尔值。如果数据流仍然打开，并且可写，就返回<code>true</code>，否则返回<code>false</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">s.writeable</span><br></pre></td></tr></table></figure>
+<h2 id="write"><a href="#write" class="headerlink" title="write()"></a>write()</h2><p><code>write</code>方法用于向“可写数据流”写入数据。它接受两个参数，一个是写入的内容，可以是字符串，也可以是一个<code>stream</code>对象（比如可读数据流）或<code>buffer</code>对象（表示二进制数据），另一个是写入完成后的回调函数，它是可选的。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">s.write(buffer);          <span class="comment">// 写入二进制数据</span></span><br><span class="line">s.write(string, encoding) <span class="comment">// 写入字符串，编码默认为utf-8</span></span><br></pre></td></tr></table></figure>
+<p><code>write</code>方法返回一个布尔值，表示本次数据是否处理完成。如果返回<code>true</code>，就表示可以写入新的数据了。如果等待写入的数据被缓存了，就返回<code>false</code>，表示此时不能立刻写入新的数据。不过，返回<code>false</code>的情况下，也可以继续传入新的数据等待写入。只是这时，新的数据不会真的写入，只会缓存在内存中。为了避免内存消耗，比较好的做法还是等待该方法返回<code>true</code>，然后再写入。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> ws = fs.createWriteStream(<span class="string">'message.txt'</span>);</span><br><span class="line"></span><br><span class="line">ws.write(<span class="string">'beep '</span>);</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  ws.end(<span class="string">'boop\n'</span>);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>上面代码调用end方法，数据就不再写入了。</p>
+<h2 id="cork-，uncork"><a href="#cork-，uncork" class="headerlink" title="cork()，uncork()"></a>cork()，uncork()</h2><p>cork方法可以强制等待写入的数据进入缓存。当调用uncork方法或end方法时，缓存的数据就会吐出。</p>
+<h2 id="setDefaultEncoding"><a href="#setDefaultEncoding" class="headerlink" title="setDefaultEncoding()"></a>setDefaultEncoding()</h2><p>setDefaultEncoding方法用于将写入的数据编码成新的格式。它返回一个布尔值，表示编码是否成功，如果返回false就表示编码失败。</p>
+<h2 id="end"><a href="#end" class="headerlink" title="end()"></a>end()</h2><p><code>end</code>方法用于终止“可写数据流”。该方法可以接受三个参数，全部都是可选参数。第一个参数是最后所要写入的数据，可以是字符串，也可以是<code>stream</code>对象或<code>buffer</code>对象；第二个参数是写入编码；第三个参数是一个回调函数，<code>finish</code>事件发生时，会触发这个回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">s.end()                  <span class="comment">// 关闭可写数据流</span></span><br><span class="line">s.end(buffer)            <span class="comment">// 最后一段写入二进制数据，然后关闭可写数据流</span></span><br><span class="line">s.end(str, encoding)     <span class="comment">// 最后一段写入字符串，然后关闭可写数据流</span></span><br></pre></td></tr></table></figure>
+<p>下面是一个例子。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> file = fs.createWriteStream(<span class="string">'example.txt'</span>);</span><br><span class="line">file.write(<span class="string">'hello, '</span>);</span><br><span class="line">file.end(<span class="string">'world!'</span>);</span><br></pre></td></tr></table></figure>
+<p>上面代码会在数据写入结束时，在尾部写入“world！”。</p>
+<p>调用end方法之后，再写入数据会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> file = fs.createWriteStream(<span class="string">'example.txt'</span>);</span><br><span class="line">file.end(<span class="string">'world!'</span>);</span><br><span class="line">file.write(<span class="string">'hello, '</span>); <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<h2 id="事件-1"><a href="#事件-1" class="headerlink" title="事件"></a>事件</h2><p>（1）drain事件</p>
+<p><code>writable.write(chunk)</code>返回<code>false</code>以后，当缓存数据全部写入完成，可以继续写入时，会触发<code>drain</code>事件，表示缓存空了。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">s.on(<span class="string">'drain'</span>, f);</span><br></pre></td></tr></table></figure>
+<p>下面是一个例子。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">writeOneMillionTimes</span>(<span class="params">writer, data, encoding, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">1000000</span>;</span><br><span class="line">  write();</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ok = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">      i -= <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span> (i === <span class="number">0</span>) &#123;</span><br><span class="line">        writer.write(data, encoding, callback);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ok = writer.write(data, encoding);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">while</span> (i &gt; <span class="number">0</span> &amp;&amp; ok);</span><br><span class="line">    <span class="keyword">if</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      writer.once(<span class="string">'drain'</span>, write);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码是一个写入100万次的例子，通过drain事件得到可以继续写入的通知。</p>
+<p>（2）finish事件</p>
+<p>调用end方法时，所有缓存的数据释放，触发finish事件。该事件的回调函数没有参数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> writer = getWritableStreamSomehow();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i ++) &#123;</span><br><span class="line">  writer.write(<span class="string">'hello, #'</span> + i + <span class="string">'!\n'</span>);</span><br><span class="line">&#125;</span><br><span class="line">writer.end(<span class="string">'this is the end\n'</span>);</span><br><span class="line">writer.on(<span class="string">'finish'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(<span class="string">'all writes are now complete.'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>（3）pipe事件</p>
+<p>“可写数据流”调用pipe方法，将数据流导向写入目的地时，触发该事件。</p>
+<p>该事件的回调函数，接受发出该事件的“可读数据流”对象作为参数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> writer = getWritableStreamSomehow();</span><br><span class="line"><span class="keyword">var</span> reader = getReadableStreamSomehow();</span><br><span class="line">writer.on(<span class="string">'pipe'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">src</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(<span class="string">'something is piping into the writer'</span>);</span><br><span class="line">  assert.equal(src, reader);</span><br><span class="line">&#125;);</span><br><span class="line">reader.pipe(writer);</span><br></pre></td></tr></table></figure>
+<p>（4）unpipe事件</p>
+<p>“可读数据流”调用unpipe方法，将可写数据流移出写入目的地时，触发该事件。</p>
+<p>该事件的回调函数，接受发出该事件的“可读数据流”对象作为参数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> writer = getWritableStreamSomehow();</span><br><span class="line"><span class="keyword">var</span> reader = getReadableStreamSomehow();</span><br><span class="line">writer.on(<span class="string">'unpipe'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">src</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(<span class="string">'something has stopped piping into the writer'</span>);</span><br><span class="line">  assert.equal(src, reader);</span><br><span class="line">&#125;);</span><br><span class="line">reader.pipe(writer);</span><br><span class="line">reader.unpipe(writer);</span><br></pre></td></tr></table></figure>
+<p>（5）error事件</p>
+<p>如果写入数据或pipe数据时发生错误，就会触发该事件。</p>
+<p>该事件的回调函数，接受一个Error对象作为参数。</p>
+<h1 id="pipe-方法"><a href="#pipe-方法" class="headerlink" title="pipe 方法"></a>pipe 方法</h1><p>你可能会问为什么数据库要部署“可写数据流”接口，而不是直接使用原始的写入接口。答案就是为了可以使用<code>pipe</code>方法。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> DbWriteStream = <span class="built_in">require</span>(<span class="string">'./db_write_stream'</span>);</span><br><span class="line"><span class="keyword">var</span> db = DbWriteStream();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Thermometer = <span class="built_in">require</span>(<span class="string">'./thermometer'</span>);</span><br><span class="line"><span class="keyword">var</span> thermomether = Thermometer();</span><br><span class="line"></span><br><span class="line">thermomether.pipe(db);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 10秒后断开连接</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  thermometer.unpipe(db);</span><br><span class="line">&#125;, <span class="number">10e3</span>);</span><br></pre></td></tr></table></figure>
+<p>当可读数据流与可写数据流通过<code>readable.pipe(writable)</code>结合在一起时，数据会自动调整到消费者的速率。在内部，<code>pipe</code>使用“可写数据流”的<code>.write()</code>方法的返回值，来决定是否是否暂停读数据：如果<code>writable.write</code>返回<code>true</code>，表明数据已经写入完毕，缓存已经空了；如果返回<code>false</code>，就表示<code>可写数据流</code>正在缓存写入的数据，这意味着可以读取数据。等到”可写数据流“排空，就会释放<code>drain</code>事件，告诉数据源可以恢复释放数据了。</p>
+<h1 id="转换数据流"><a href="#转换数据流" class="headerlink" title="转换数据流"></a>转换数据流</h1><p>转换数据流用于将可读数据流释放的数据，转换成另一种格式，然后再发给可写数据流。</p>
+<p>下面的例子是将一个JavaScript对象的数据流，转为JSON字符串的数据流。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// json_encode_stream.js</span></span><br><span class="line"><span class="keyword">var</span> Transform = <span class="built_in">require</span>(<span class="string">'stream'</span>).Transform;</span><br><span class="line"><span class="keyword">var</span> inherits = <span class="built_in">require</span>(<span class="string">'util'</span>).inherits;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = JSONEncode;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">JSONEncode</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> ( ! (<span class="keyword">this</span> <span class="keyword">instanceof</span> JSONEncode))</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> JSONEncode(options);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (! options) options = &#123;&#125;;</span><br><span class="line">  options.objectMode = <span class="literal">true</span>;</span><br><span class="line">  Transform.call(<span class="keyword">this</span>, options);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inherits(JSONEncode, Transform);</span><br><span class="line"></span><br><span class="line">JSONEncode.prototype._transform = <span class="function"><span class="keyword">function</span> <span class="title">_transform</span>(<span class="params">obj, encoding, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    obj = <span class="built_in">JSON</span>.stringify(obj);</span><br><span class="line">  &#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">    <span class="keyword">return</span> callback(err);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.push(obj);</span><br><span class="line">  callback();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>_transform</code>方法接受原始的JavaScript对象，将它们转为JSON字符串。</p>
+<p>然后，可读数据流与可写数据流之间，就可以用转换数据流连起来。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> DbWriteStream = <span class="built_in">require</span>(<span class="string">'./db_write_stream'</span>);</span><br><span class="line"><span class="keyword">var</span> db = DbWriteStream();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> JSONEncodeStream = <span class="built_in">require</span>(<span class="string">'./json_encode_stream'</span>);</span><br><span class="line"><span class="keyword">var</span> json = JSONEncodeStream();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Thermometer = <span class="built_in">require</span>(<span class="string">'../thermometer'</span>);</span><br><span class="line"><span class="keyword">var</span> thermometer = Thermometer();</span><br><span class="line"></span><br><span class="line">thermometer.pipe(json).pipe(db);</span><br></pre></td></tr></table></figure>
+<h1 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h1><p>HTTP对象使用Stream接口，实现网络数据的读写。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// req is an http.IncomingMessage, which is a Readable Stream</span></span><br><span class="line">  <span class="comment">// res is an http.ServerResponse, which is a Writable Stream</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> body = <span class="string">''</span>;</span><br><span class="line">  <span class="comment">// we want to get the data as utf8 strings</span></span><br><span class="line">  <span class="comment">// If you don't set an encoding, then you'll get Buffer objects</span></span><br><span class="line">  req.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Readable streams emit 'data' events once a listener is added</span></span><br><span class="line">  req.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">    body += chunk;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// the end event tells you that you have entire body</span></span><br><span class="line">  req.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(body);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (er) &#123;</span><br><span class="line">      <span class="comment">// uh oh!  bad json!</span></span><br><span class="line">      res.statusCode = <span class="number">400</span>;</span><br><span class="line">      <span class="keyword">return</span> res.end(<span class="string">'error: '</span> + er.message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// write back something interesting to the user:</span></span><br><span class="line">    res.write(<span class="keyword">typeof</span> data);</span><br><span class="line">    res.end();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">1337</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// $ curl localhost:1337 -d '&#123;&#125;'</span></span><br><span class="line"><span class="comment">// object</span></span><br><span class="line"><span class="comment">// $ curl localhost:1337 -d '"foo"'</span></span><br><span class="line"><span class="comment">// string</span></span><br><span class="line"><span class="comment">// $ curl localhost:1337 -d 'not json'</span></span><br><span class="line"><span class="comment">// error: Unexpected token o</span></span><br></pre></td></tr></table></figure>
+<p>data事件表示读取或写入了一块数据。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">req.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">buf</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// Do something with the Buffer</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>使用req.setEncoding方法，可以设定字符串编码。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">req.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line">req.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// Do something with the String</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>end事件，表示读取或写入数据完毕。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>);</span><br><span class="line">    req.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        res.write(data);</span><br><span class="line">    &#125;);</span><br><span class="line">    req.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        res.end();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;).listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+<p>上面代码相当于建立了“回声”服务，将HTTP请求的数据体，用HTTP回应原样发送回去。</p>
+<p>system模块提供了pump方法，有点像Linux系统的管道功能，可以将一个数据流，原封不动得转给另一个数据流。所以，上面的例子也可以用pump方法实现。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>),</span><br><span class="line">    sys = <span class="built_in">require</span>(<span class="string">'sys'</span>);</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>);</span><br><span class="line">    sys.pump(req, res);</span><br><span class="line">&#125;).listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="fs模块"><a href="#fs模块" class="headerlink" title="fs模块"></a>fs模块</h1><p>fs模块的createReadStream方法用于新建读取数据流，createWriteStream方法用于新建写入数据流。使用这两个方法，可以做出一个用于文件复制的脚本copy.js。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// copy.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(process.argv[<span class="number">2</span>], <span class="string">'-&gt;'</span>, process.argv[<span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> readStream = fs.createReadStream(process.argv[<span class="number">2</span>]);</span><br><span class="line"><span class="keyword">var</span> writeStream = fs.createWriteStream(process.argv[<span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line">readStream.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">  writeStream.write(chunk);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">readStream.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  writeStream.end();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">readStream.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"ERROR"</span>, err);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">writeStream.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"ERROR"</span>, err);</span><br><span class="line">&#125;);d all your errors, you wouldn<span class="string">'t need to use domains.</span></span><br></pre></td></tr></table></figure>
+<p>上面代码非常容易理解，使用的时候直接提供源文件路径和目标文件路径，就可以了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">node cp.js src.txt dest.txt</span><br></pre></td></tr></table></figure>
+<p>Streams对象都具有pipe方法，起到管道作用，将一个数据流输入另一个数据流。所以，上面代码可以重写成下面这样：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(process.argv[<span class="number">2</span>], <span class="string">'-&gt;'</span>, process.argv[<span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> readStream = fs.createReadStream(process.argv[<span class="number">2</span>]);</span><br><span class="line"><span class="keyword">var</span> writeStream = fs.createWriteStream(process.argv[<span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line">readStream.on(<span class="string">'open'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  readStream.pipe(writeStream);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">readStream.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  writeStream.end();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h1><p>下面是压缩后发送文件的代码。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// set the content headers</span></span><br><span class="line">  fs.createReadStream(<span class="string">'filename.txt'</span>)</span><br><span class="line">  .pipe(zlib.createGzip())</span><br><span class="line">  .pipe(res)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>上面的代码没有部署错误处理机制，一旦发生错误，就无法处理。所以，需要加上error事件的监听函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// set the content headers</span></span><br><span class="line">  fs.createReadStream(<span class="string">'filename.txt'</span>)</span><br><span class="line">  .on(<span class="string">'error'</span>, onerror)</span><br><span class="line">  .pipe(zlib.createGzip())</span><br><span class="line">  .on(<span class="string">'error'</span>, onerror)</span><br><span class="line">  .pipe(res)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">onerror</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.error(err.stack)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>上面的代码还是存在问题，如果客户端中断下载，写入的数据流就会收不到close事件，一直处于等待状态，从而造成内存泄漏。因此，需要使用<a href="https://github.com/jshttp/on-finished" target="_blank" rel="noopener">on-finished模块</a>用来处理这种情况。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> stream = fs.createReadStream(<span class="string">'filename.txt'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set the content headers</span></span><br><span class="line">  stream</span><br><span class="line">  .on(<span class="string">'error'</span>, onerror)</span><br><span class="line">  .pipe(zlib.createGzip())</span><br><span class="line">  .on(<span class="string">'error'</span>, onerror)</span><br><span class="line">  .pipe(res)</span><br><span class="line"></span><br><span class="line">  onFinished(res, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// make sure the stream is always destroyed</span></span><br><span class="line">    stream.destroy()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"><i class="fa fa-tag"></i> node</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/19/os模块/" rel="next" title="os模块">
+                <i class="fa fa-chevron-left"></i> os模块
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/19/Child Process模块/" rel="prev" title="Child Process模块">
+                Child Process模块 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可读数据流"><span class="nav-number">2.</span> <span class="nav-text">可读数据流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#readable-属性"><span class="nav-number">2.1.</span> <span class="nav-text">readable 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#read"><span class="nav-number">2.2.</span> <span class="nav-text">read()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#read-1"><span class="nav-number">2.3.</span> <span class="nav-text">_read()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setEncoding"><span class="nav-number">2.4.</span> <span class="nav-text">setEncoding()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#resume"><span class="nav-number">2.5.</span> <span class="nav-text">resume()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pause"><span class="nav-number">2.6.</span> <span class="nav-text">pause()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isPaused"><span class="nav-number">2.7.</span> <span class="nav-text">isPaused()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pipe"><span class="nav-number">2.8.</span> <span class="nav-text">pipe()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unpipe"><span class="nav-number">2.9.</span> <span class="nav-text">unpipe()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件"><span class="nav-number">2.10.</span> <span class="nav-text">事件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承可读数据流接口"><span class="nav-number">3.</span> <span class="nav-text">继承可读数据流接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实例：-fs-模块的读数据流"><span class="nav-number">3.1.</span> <span class="nav-text">实例： fs 模块的读数据流</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可写数据流"><span class="nav-number">4.</span> <span class="nav-text">可写数据流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#writable属性"><span class="nav-number">4.1.</span> <span class="nav-text">writable属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#write"><span class="nav-number">4.2.</span> <span class="nav-text">write()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cork-，uncork"><span class="nav-number">4.3.</span> <span class="nav-text">cork()，uncork()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setDefaultEncoding"><span class="nav-number">4.4.</span> <span class="nav-text">setDefaultEncoding()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#end"><span class="nav-number">4.5.</span> <span class="nav-text">end()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件-1"><span class="nav-number">4.6.</span> <span class="nav-text">事件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pipe-方法"><span class="nav-number">5.</span> <span class="nav-text">pipe 方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转换数据流"><span class="nav-number">6.</span> <span class="nav-text">转换数据流</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP请求"><span class="nav-number">7.</span> <span class="nav-text">HTTP请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fs模块"><span class="nav-number">8.</span> <span class="nav-text">fs模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误处理"><span class="nav-number">9.</span> <span class="nav-text">错误处理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1021 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="概述基本用法Node.js默认单进程运行，对于32位系统最高可以使用512MB内存，对于64位最高可以使用1GB内存。对于多核CPU的计算机来说，这样做效率很低，因为只有一个核在运行，其他核都在闲置。cluster模块就是为了解决这个问题而提出的。 cluster模块允许设立一个主进程和若干个worker进程，由主进程监控和协调worker进程的运行。worker之间采用进程间通信交换消息，clu">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cluster模块">
+<meta property="og:url" content="http://amenzai.me/2017/04/19/Cluster模块/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="概述基本用法Node.js默认单进程运行，对于32位系统最高可以使用512MB内存，对于64位最高可以使用1GB内存。对于多核CPU的计算机来说，这样做效率很低，因为只有一个核在运行，其他核都在闲置。cluster模块就是为了解决这个问题而提出的。 cluster模块允许设立一个主进程和若干个worker进程，由主进程监控和协调worker进程的运行。worker之间采用进程间通信交换消息，clu">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.381Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cluster模块">
+<meta name="twitter:description" content="概述基本用法Node.js默认单进程运行，对于32位系统最高可以使用512MB内存，对于64位最高可以使用1GB内存。对于多核CPU的计算机来说，这样做效率很低，因为只有一个核在运行，其他核都在闲置。cluster模块就是为了解决这个问题而提出的。 cluster模块允许设立一个主进程和若干个worker进程，由主进程监控和协调worker进程的运行。worker之间采用进程间通信交换消息，clu">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2017/04/19/Cluster模块/"/>
+
+
+
+
+
+  <title> Cluster模块 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2017/04/19/Cluster模块/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-19T00:00:00+08:00">
+                2017-04-19
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cluster模块
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><p>Node.js默认单进程运行，对于32位系统最高可以使用512MB内存，对于64位最高可以使用1GB内存。对于多核CPU的计算机来说，这样做效率很低，因为只有一个核在运行，其他核都在闲置。cluster模块就是为了解决这个问题而提出的。</p>
+<p>cluster模块允许设立一个主进程和若干个worker进程，由主进程监控和协调worker进程的运行。worker之间采用进程间通信交换消息，cluster模块内置一个负载均衡器，采用Round-robin算法协调各个worker进程之间的负载。运行时，所有新建立的链接都由主进程完成，然后主进程再把TCP连接分配给指定的worker进程。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> cluster = <span class="built_in">require</span>(<span class="string">'cluster'</span>);</span><br><span class="line"><span class="keyword">var</span> os = <span class="built_in">require</span>(<span class="string">'os'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (cluster.isMaster)&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, n = os.cpus().length; i &lt; n; i += <span class="number">1</span>)&#123;</span><br><span class="line">    cluster.fork();</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>);</span><br><span class="line">    res.end(<span class="string">"hello world\n"</span>);</span><br><span class="line">  &#125;).listen(<span class="number">8000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码先判断当前进程是否为主进程（cluster.isMaster），如果是的，就按照CPU的核数，新建若干个worker进程；如果不是，说明当前进程是worker进程，则在该进程启动一个服务器程序。</p>
+<p>上面这段代码有一个缺点，就是一旦work进程挂了，主进程无法知道。为了解决这个问题，可以在主进程部署online事件和exit事件的监听函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> cluster = <span class="built_in">require</span>(<span class="string">'cluster'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(cluster.isMaster) &#123;</span><br><span class="line">  <span class="keyword">var</span> numWorkers = <span class="built_in">require</span>(<span class="string">'os'</span>).cpus().length;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Master cluster setting up '</span> + numWorkers + <span class="string">' workers...'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; numWorkers; i++) &#123;</span><br><span class="line">    cluster.fork();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  cluster.on(<span class="string">'online'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">worker</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Worker '</span> + worker.process.pid + <span class="string">' is online'</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  cluster.on(<span class="string">'exit'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">worker, code, signal</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Worker '</span> + worker.process.pid + <span class="string">' died with code: '</span> + code + <span class="string">', and signal: '</span> + signal);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Starting a new worker'</span>);</span><br><span class="line">    cluster.fork();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，主进程一旦监听到worker进程的exit事件，就会重启一个worker进程。worker进程一旦启动成功，可以正常运行了，就会发出online事件。</p>
+<h2 id="worker对象"><a href="#worker对象" class="headerlink" title="worker对象"></a>worker对象</h2><p>worker对象是<code>cluster.fork()</code>的返回值，代表一个worker进程。</p>
+<p>它的属性和方法如下。</p>
+<p>（1）worker.id</p>
+<p>worker.id返回当前worker的独一无二的进程编号。这个编号也是cluster.workers中指向当前进程的索引值。</p>
+<p>（2）worker.process</p>
+<p>所有的worker进程都是用child_process.fork()生成的。child_process.fork()返回的对象，就被保存在worker.process之中。通过这个属性，可以获取worker所在的进程对象。</p>
+<p>（3）worker.send()</p>
+<p>该方法用于在主进程中，向子进程发送信息。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (cluster.isMaster) &#123;</span><br><span class="line">  <span class="keyword">var</span> worker = cluster.fork();</span><br><span class="line">  worker.send(<span class="string">'hi there'</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (cluster.isWorker) &#123;</span><br><span class="line">  process.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</span><br><span class="line">    process.send(msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码的作用是，worker进程对主进程发出的每个消息，都做回声。</p>
+<p>在worker进程中，要向主进程发送消息，使用<code>process.send(message)</code>；要监听主进程发出的消息，使用下面的代码。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">process.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>发出的消息可以字符串，也可以是JSON对象。下面是一个发送JSON对象的例子。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">worker.send(&#123;</span><br><span class="line">  type: <span class="string">'task 1'</span>,</span><br><span class="line">  <span class="keyword">from</span>: <span class="string">'master'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    <span class="comment">// the data that you want to transfer</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="cluster-workers对象"><a href="#cluster-workers对象" class="headerlink" title="cluster.workers对象"></a>cluster.workers对象</h2><p>该对象只有主进程才有，包含了所有worker进程。每个成员的键值就是一个worker进程对象，键名就是该worker进程的worker.id属性。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eachWorker</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> id <span class="keyword">in</span> cluster.workers) &#123;</span><br><span class="line">    callback(cluster.workers[id]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">eachWorker(<span class="function"><span class="keyword">function</span>(<span class="params">worker</span>) </span>&#123;</span><br><span class="line">  worker.send(<span class="string">'big announcement to all workers'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码用来遍历所有worker进程。</p>
+<p>当前socket的data事件，也可以用id属性识别worker进程。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">socket.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> worker = cluster.workers[id];</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="cluster模块的属性与方法"><a href="#cluster模块的属性与方法" class="headerlink" title="cluster模块的属性与方法"></a>cluster模块的属性与方法</h1><h2 id="isMaster，isWorker"><a href="#isMaster，isWorker" class="headerlink" title="isMaster，isWorker"></a>isMaster，isWorker</h2><p>isMaster属性返回一个布尔值，表示当前进程是否为主进程。这个属性由process.env.NODE_UNIQUE_ID决定，如果process.env.NODE_UNIQUE_ID为未定义，就表示该进程是主进程。</p>
+<p>isWorker属性返回一个布尔值，表示当前进程是否为work进程。它与isMaster属性的值正好相反。</p>
+<h2 id="fork"><a href="#fork" class="headerlink" title="fork()"></a>fork()</h2><p>fork方法用于新建一个worker进程，上下文都复制主进程。只有主进程才能调用这个方法。</p>
+<p>该方法返回一个worker对象。</p>
+<h2 id="kill"><a href="#kill" class="headerlink" title="kill()"></a>kill()</h2><p>kill方法用于终止worker进程。它可以接受一个参数，表示系统信号。</p>
+<p>如果当前是主进程，就会终止与worker.process的联络，然后将系统信号法发向worker进程。如果当前是worker进程，就会终止与主进程的通信，然后退出，返回0。</p>
+<p>在以前的版本中，该方法也叫做 worker.destroy() 。</p>
+<h2 id="listening事件"><a href="#listening事件" class="headerlink" title="listening事件"></a>listening事件</h2><p>worker进程调用listening方法以后，“listening”事件就传向该进程的服务器，然后传向主进程。</p>
+<p>该事件的回调函数接受两个参数，一个是当前worker对象，另一个是地址对象，包含网址、端口、地址类型（IPv4、IPv6、Unix socket、UDP）等信息。这对于那些服务多个网址的Node应用程序非常有用。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">cluster.on(<span class="string">'listening'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">worker, address</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"A worker is now connected to "</span> + address.address + <span class="string">":"</span> + address.port);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="不中断地重启Node服务"><a href="#不中断地重启Node服务" class="headerlink" title="不中断地重启Node服务"></a>不中断地重启Node服务</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>重启服务需要关闭后再启动，利用cluster模块，可以做到先启动一个worker进程，再把原有的所有work进程关闭。这样就能实现不中断地重启Node服务。</p>
+<p>首先，主进程向worker进程发出重启信号。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">workers[wid].send(&#123;<span class="attr">type</span>: <span class="string">'shutdown'</span>, <span class="attr">from</span>: <span class="string">'master'</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>worker进程监听message事件，一旦发现内容是shutdown，就退出。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">process.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(message.type === <span class="string">'shutdown'</span>) &#123;</span><br><span class="line">    process.exit(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>下面是一个关闭所有worker进程的函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">restartWorkers</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> wid, workerIds = [];</span><br><span class="line">  <span class="keyword">for</span>(wid <span class="keyword">in</span> cluster.workers) &#123;</span><br><span class="line">    workerIds.push(wid);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  workerIds.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">wid</span>) </span>&#123;</span><br><span class="line">    cluster.workers[wid].send(&#123;</span><br><span class="line">      text: <span class="string">'shutdown'</span>,</span><br><span class="line">      <span class="keyword">from</span>: <span class="string">'master'</span></span><br><span class="line">     &#125;);</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(cluster.workers[wid]) &#123;</span><br><span class="line">        cluster.workers[wid].kill(<span class="string">'SIGKILL'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, <span class="number">5000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>下面是一个完整的实例，先是主进程的代码master.js。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> cluster = <span class="built_in">require</span>(<span class="string">'cluster'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'started master with '</span> + process.pid);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新建一个worker进程</span></span><br><span class="line">cluster.fork();</span><br><span class="line"></span><br><span class="line">process.on(<span class="string">'SIGHUP'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Reloading...'</span>);</span><br><span class="line">  <span class="keyword">var</span> new_worker = cluster.fork();</span><br><span class="line">  new_worker.once(<span class="string">'listening'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 关闭所有其他worker进程</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> id <span class="keyword">in</span> cluster.workers) &#123;</span><br><span class="line">      <span class="keyword">if</span> (id === new_worker.id.toString()) <span class="keyword">continue</span>;</span><br><span class="line">      cluster.workers[id].kill(<span class="string">'SIGTERM'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，主进程监听SIGHUP事件，如果发生该事件就关闭其他所有worker进程。之所以是SIGHUP事件，是因为nginx服务器监听到这个信号，会创造一个新的worker进程，重新加载配置文件。另外，关闭worker进程时，主进程发送SIGTERM信号，这是因为Node允许多个worker进程监听同一个端口。</p>
+<p>下面是worker进程的代码server.js。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> cluster = <span class="built_in">require</span>(<span class="string">'cluster'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (cluster.isMaster) &#123;</span><br><span class="line">  <span class="built_in">require</span>(<span class="string">'./master'</span>);</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">'ha fsdgfds gfds gfd!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.createServer(app).listen(<span class="number">8080</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'http://localhost:8080'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>使用时代码如下。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node server.js</span><br><span class="line">started master with 10538</span><br><span class="line">http://localhost:8080</span><br></pre></td></tr></table></figure>
+<p>然后，向主进程连续发出两次SIGHUP信号。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">kill</span> -SIGHUP 10538</span><br><span class="line">$ <span class="built_in">kill</span> -SIGHUP 10538</span><br></pre></td></tr></table></figure>
+<p>主进程会连续两次新建一个worker进程，然后关闭所有其他worker进程，显示如下。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Reloading...</span><br><span class="line">http://localhost:8080</span><br><span class="line">Reloading...</span><br><span class="line">http://localhost:8080</span><br></pre></td></tr></table></figure>
+<p>最后，向主进程发出SIGTERM信号，关闭主进程。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">kill</span> 10538</span><br></pre></td></tr></table></figure>
+<h1 id="PM2模块"><a href="#PM2模块" class="headerlink" title="PM2模块"></a>PM2模块</h1><p>PM2模块是cluster模块的一个包装层。它的作用是尽量将cluster模块抽象掉，让用户像使用单进程一样，部署多进程Node应用。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.writeHead(<span class="number">200</span>);</span><br><span class="line">  res.end(<span class="string">"hello world"</span>);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<p>上面代码是标准的Node架设Web服务器的方式，然后用PM2从命令行启动这段代码。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$ pm2 start app.js -i <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<p>上面代码的i参数告诉PM2，这段代码应该在cluster_mode启动，且新建worker进程的数量是4个。如果i参数的值是0，那么当前机器有几个CPU内核，PM2就会启动几个worker进程。</p>
+<p>如果一个worker进程由于某种原因挂掉了，会立刻重启该worker进程。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 重启所有worker进程</span></span><br><span class="line">$ pm2 reload all</span><br></pre></td></tr></table></figure>
+<p>每个worker进程都有一个id，可以用下面的命令查看单个worker进程的详情。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pm2 show &lt;worker id&gt;</span><br></pre></td></tr></table></figure>
+<p>正确情况下，PM2采用fork模式新建worker进程，即主进程fork自身，产生一个worker进程。<code>pm2 reload</code>命令则会用spawn方式启动，即一个接一个启动worker进程，一个新的worker启动成功，再杀死一个旧的worker进程。采用这种方式，重新部署新版本时，服务器就不会中断服务。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pm2 reload &lt;脚本文件名&gt;</span><br></pre></td></tr></table></figure>
+<p>关闭worker进程的时候，可以部署下面的代码，让worker进程监听shutdown消息。一旦收到这个消息，进行完毕收尾清理工作再关闭。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">process.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (msg === <span class="string">'shutdown'</span>) &#123;</span><br><span class="line">    close_all_connections();</span><br><span class="line">    delete_logs();</span><br><span class="line">    server.close();</span><br><span class="line">    process.exit(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"><i class="fa fa-tag"></i> node</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/19/Events模块/" rel="next" title="Events模块">
+                <i class="fa fa-chevron-left"></i> Events模块
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/19/process对象/" rel="prev" title="process对象">
+                process对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">1.1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#worker对象"><span class="nav-number">1.2.</span> <span class="nav-text">worker对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cluster-workers对象"><span class="nav-number">1.3.</span> <span class="nav-text">cluster.workers对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cluster模块的属性与方法"><span class="nav-number">2.</span> <span class="nav-text">cluster模块的属性与方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#isMaster，isWorker"><span class="nav-number">2.1.</span> <span class="nav-text">isMaster，isWorker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fork"><span class="nav-number">2.2.</span> <span class="nav-text">fork()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kill"><span class="nav-number">2.3.</span> <span class="nav-text">kill()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#listening事件"><span class="nav-number">2.4.</span> <span class="nav-text">listening事件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不中断地重启Node服务"><span class="nav-number">3.</span> <span class="nav-text">不中断地重启Node服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">3.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">3.2.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PM2模块"><span class="nav-number">4.</span> <span class="nav-text">PM2模块</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

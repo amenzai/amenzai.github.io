@@ -1,0 +1,980 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ide," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="SublimeText可谓是前端工程师的代码编辑神器，用了一定会爱上她。">
+<meta name="keywords" content="ide">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SublimeText安装及常用插件推荐">
+<meta property="og:url" content="http://amenzai.me/2015/07/30/sublime-intro/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="SublimeText可谓是前端工程师的代码编辑神器，用了一定会爱上她。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.400Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SublimeText安装及常用插件推荐">
+<meta name="twitter:description" content="SublimeText可谓是前端工程师的代码编辑神器，用了一定会爱上她。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2015/07/30/sublime-intro/"/>
+
+
+
+
+
+  <title> SublimeText安装及常用插件推荐 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2015/07/30/sublime-intro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-30T20:26:07+08:00">
+                2015-07-30
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/前端工具/" itemprop="url" rel="index">
+                    <span itemprop="name">前端工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                SublimeText安装及常用插件推荐
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>SublimeText可谓是前端工程师的代码编辑神器，用了一定会爱上她。</p>
+<a id="more"></a>
+<h1 id="SublimeText安装"><a href="#SublimeText安装" class="headerlink" title="SublimeText安装"></a>SublimeText安装</h1><p><a href="http://www.sublimetext.com/3" target="_blank" rel="noopener">官网下载</a>根据自己的电脑系统下载相应的版本。</p>
+<h1 id="SublimeText-插件安装"><a href="#SublimeText-插件安装" class="headerlink" title="SublimeText 插件安装"></a>SublimeText 插件安装</h1><p>安装之前我们需要先安装package control组件。</p>
+<h2 id="package-control安装"><a href="#package-control安装" class="headerlink" title="package control安装"></a>package control安装</h2><h3 id="在线安装"><a href="#在线安装" class="headerlink" title="在线安装"></a>在线安装</h3><p><a href="https://packagecontrol.io/installation#st3" target="_blank" rel="noopener">点击此处</a>选择左边SublimeText3栏目下面的代码复制，在SublimeText编辑器中按 ctrl+` 调出console面板，进行粘贴。</p>
+<h3 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h3><p>点击Preferences 选择Browse Packages ，打开其上一级文件夹Data并进入Installed Packages文件夹，将下载的<a href="https://packagecontrol.io/Package%20Control.sublime-package" target="_blank" rel="noopener">Package Control.sublime-package</a>文件复制进去，再重启SublimeText。</p>
+<h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><h3 id="在线安装-1"><a href="#在线安装-1" class="headerlink" title="在线安装"></a>在线安装</h3><p>按下Ctrl+Shift+P调出命令面板，输入install选择Install Package 选项并回车，再输入你要安装的插件名称(例如sublime tmpl)，然后在列表中选中要安装的插件。</p>
+<p>安装成功后一般在Perferences-&gt;package settings中可看到，有些插件有可能在列表中搜索不到，你可以选择手动安装。</p>
+<h3 id="手动安装-1"><a href="#手动安装-1" class="headerlink" title="手动安装"></a>手动安装</h3><p>进入<a href="https://packagecontrol.io/" target="_blank" rel="noopener">sublimetext安装包管理器官网</a>，在搜索框里输入你所需要的插件名称。</p>
+<p>进入插件的github页面（点击Details下面的github.com），点击右侧的clone or download -&gt; Download ZIP，将下载的压缩包解压后放在Preferences-&gt;Browse Packages（即packages文件夹）里面，并重命名（去掉文件名中的##master），重启Sublimetext3即可安装成功。</p>
+<h1 id="SublimeText插件推荐"><a href="#SublimeText插件推荐" class="headerlink" title="SublimeText插件推荐"></a>SublimeText插件推荐</h1><h2 id="emmet"><a href="#emmet" class="headerlink" title="emmet"></a>emmet</h2><p>让html css的编写更加迅速。<a href="http://docs.emmet.io/cheat##sheet/" target="_blank" rel="noopener">语法参考</a></p>
+<h2 id="ConvertToUTF8"><a href="#ConvertToUTF8" class="headerlink" title="ConvertToUTF8"></a>ConvertToUTF8</h2><p>文件转码成utf##8</p>
+<h2 id="IMESupport"><a href="#IMESupport" class="headerlink" title="IMESupport"></a>IMESupport</h2><p>sublime中文输入法</p>
+<h2 id="Nodejs"><a href="#Nodejs" class="headerlink" title="Nodejs"></a>Nodejs</h2><p>node代码提示</p>
+<h2 id="AutoFileName"><a href="#AutoFileName" class="headerlink" title="AutoFileName"></a>AutoFileName</h2><p>快捷输入文件名</p>
+<h2 id="Doc​Blockr"><a href="#Doc​Blockr" class="headerlink" title="Doc​Blockr"></a>Doc​Blockr</h2><p>生成优美注释</p>
+<h2 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h2><p>jQ函数提示</p>
+<h2 id="Bracket-Highlighter"><a href="#Bracket-Highlighter" class="headerlink" title="Bracket Highlighter"></a>Bracket Highlighter</h2><p>可匹配[]， ()， {}， “”， ”， <tag></tag>，高亮标记，便于查看起始和结束标记</p>
+<h2 id="LESS"><a href="#LESS" class="headerlink" title="LESS"></a>LESS</h2><p>LESS高亮插件</p>
+<h2 id="JSFormat"><a href="#JSFormat" class="headerlink" title="JSFormat"></a>JSFormat</h2><p>JavaScript的代码格式化插件</p>
+<h2 id="Color-Highlighter"><a href="#Color-Highlighter" class="headerlink" title="Color Highlighter"></a>Color Highlighter</h2><p>快捷选取颜色选中还有颜色显示</p>
+<h2 id="CSS-Comments"><a href="#CSS-Comments" class="headerlink" title="CSS Comments"></a>CSS Comments</h2><p>各种css注释快捷书写</p>
+<h2 id="HTML-CSS-JS-Prettify"><a href="#HTML-CSS-JS-Prettify" class="headerlink" title="HTML-CSS-JS Prettify"></a>HTML-CSS-JS Prettify</h2><p>格式化上述类型文件</p>
+<h2 id="markdownpreview"><a href="#markdownpreview" class="headerlink" title="markdownpreview"></a>markdownpreview</h2><p>可以预览markdown文件，以及生成HTML页面。</p>
+<h2 id="Minifier"><a href="#Minifier" class="headerlink" title="Minifier"></a>Minifier</h2><p>压缩JS和CSS文件</p>
+<h2 id="SideBarEnhancements"><a href="#SideBarEnhancements" class="headerlink" title="SideBarEnhancements"></a>SideBarEnhancements</h2><p>侧边目录树内容更加丰富</p>
+<h2 id="SublimeTmpl"><a href="#SublimeTmpl" class="headerlink" title="SublimeTmpl"></a>SublimeTmpl</h2><p>新建模板文件</p>
+<h2 id="File-Header"><a href="#File-Header" class="headerlink" title="File Header"></a>File Header</h2><p>生成文件头，记录更新情况。</p>
+<p>以上这些基本上就是前端常用的插件，使用方法可以自行百度(太懒就木有写使用方法0.0)</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ide/" rel="tag"><i class="fa fa-tag"></i> ide</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/28/h5bp/" rel="next" title="前端开发模板HTML5 Boilerplate">
+                <i class="fa fa-chevron-left"></i> 前端开发模板HTML5 Boilerplate
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/06/node-install/" rel="prev" title="nodejs在windows下的安装配置">
+                nodejs在windows下的安装配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SublimeText安装"><span class="nav-number">1.</span> <span class="nav-text">SublimeText安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SublimeText-插件安装"><span class="nav-number">2.</span> <span class="nav-text">SublimeText 插件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#package-control安装"><span class="nav-number">2.1.</span> <span class="nav-text">package control安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在线安装"><span class="nav-number">2.1.1.</span> <span class="nav-text">在线安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手动安装"><span class="nav-number">2.1.2.</span> <span class="nav-text">手动安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件安装"><span class="nav-number">2.2.</span> <span class="nav-text">插件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在线安装-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">在线安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手动安装-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">手动安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SublimeText插件推荐"><span class="nav-number">3.</span> <span class="nav-text">SublimeText插件推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#emmet"><span class="nav-number">3.1.</span> <span class="nav-text">emmet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConvertToUTF8"><span class="nav-number">3.2.</span> <span class="nav-text">ConvertToUTF8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IMESupport"><span class="nav-number">3.3.</span> <span class="nav-text">IMESupport</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nodejs"><span class="nav-number">3.4.</span> <span class="nav-text">Nodejs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AutoFileName"><span class="nav-number">3.5.</span> <span class="nav-text">AutoFileName</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Doc​Blockr"><span class="nav-number">3.6.</span> <span class="nav-text">Doc​Blockr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery"><span class="nav-number">3.7.</span> <span class="nav-text">jQuery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bracket-Highlighter"><span class="nav-number">3.8.</span> <span class="nav-text">Bracket Highlighter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LESS"><span class="nav-number">3.9.</span> <span class="nav-text">LESS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSFormat"><span class="nav-number">3.10.</span> <span class="nav-text">JSFormat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Color-Highlighter"><span class="nav-number">3.11.</span> <span class="nav-text">Color Highlighter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-Comments"><span class="nav-number">3.12.</span> <span class="nav-text">CSS Comments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-CSS-JS-Prettify"><span class="nav-number">3.13.</span> <span class="nav-text">HTML-CSS-JS Prettify</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#markdownpreview"><span class="nav-number">3.14.</span> <span class="nav-text">markdownpreview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Minifier"><span class="nav-number">3.15.</span> <span class="nav-text">Minifier</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SideBarEnhancements"><span class="nav-number">3.16.</span> <span class="nav-text">SideBarEnhancements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SublimeTmpl"><span class="nav-number">3.17.</span> <span class="nav-text">SublimeTmpl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-Header"><span class="nav-number">3.18.</span> <span class="nav-text">File Header</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

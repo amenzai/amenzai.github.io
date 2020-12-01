@@ -1,0 +1,1202 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="面试," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前端JS基础知识总结，以及相关面试内容。">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 JS 初级面试">
+<meta property="og:url" content="http://amenzai.me/2018/06/14/interview1/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="前端JS基础知识总结，以及相关面试内容。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.388Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 JS 初级面试">
+<meta name="twitter:description" content="前端JS基础知识总结，以及相关面试内容。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2018/06/14/interview1/"/>
+
+
+
+
+
+  <title> 前端 JS 初级面试 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2018/06/14/interview1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-14T17:12:35+08:00">
+                2018-06-14
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/前端学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">前端学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                前端 JS 初级面试
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前端JS基础知识总结，以及相关面试内容。</p>
+<a id="more"></a>
+<p><strong>JS基础考题：</strong></p>
+<ul>
+<li>变量的类型和计算</li>
+<li>原型和原型链</li>
+<li>作用域和闭包</li>
+</ul>
+<hr>
+<p><strong>原型和原型链: </strong></p>
+<ul>
+<li>Object是超级对象，原型链的顶端到Object.prototype，其中Object.prototype.<strong>proto</strong>为null。</li>
+<li>所有引用类型都有一个隐式原型对象：<strong>proto</strong></li>
+<li>普通函数都有一个prototype对象，他是一个普通对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(fn.__proto__ === <span class="built_in">Function</span>.prototype)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Function</span>.prototype.__proto__ === <span class="built_in">Object</span>.prototype)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>instanceof:</strong></p>
+<ul>
+<li>fn instanceof Foo查找逻辑<ul>
+<li>看fn的<strong>Proto</strong>一层层往上，能否对应到Foo.prototype</li>
+</ul>
+</li>
+</ul>
+<p><strong>原型链继承：</strong></p>
+<p>子类的原型对象实例化父类。</p>
+<hr>
+<p><strong>作用域和闭包:</strong></p>
+<ul>
+<li>变量提升的理解</li>
+<li>this的几种使用场景</li>
+<li>10个a标签，点击弹出对应序号</li>
+<li>如何理解作用域</li>
+<li>实际开发中闭包的应用</li>
+</ul>
+<p><strong>执行上下文：</strong></p>
+<ul>
+<li>一段script标签或一个函数：生成一个执行上下文</li>
+</ul>
+<p><strong>this:</strong></p>
+<ul>
+<li>this要在执行时才能确认值，定义时无法确认。</li>
+<li>使用场景<ul>
+<li>作为构造函数中执行</li>
+<li>作为对象属性执行</li>
+<li>作为普通函数执行</li>
+<li>call bind apply</li>
+</ul>
+</li>
+</ul>
+<p>当前作用域没有定义的变量称为自由变量。</p>
+<p><strong>闭包的使用场景：</strong></p>
+<ul>
+<li>函数作为函数返回值</li>
+<li>函数作为函数参数 </li>
+</ul>
+<hr>
+<p><strong>异步和单线程</strong></p>
+<ul>
+<li>同步异步区别，分别举一个例子（定时器，alert）</li>
+<li>setTimeout笔试题</li>
+<li>前端使用异步的场景（可能发生等待的情况：定时器，ajax请求，事件绑定）</li>
+</ul>
+<hr>
+<p>日期：</p>
+<p>Math：</p>
+<p>数组API：</p>
+<p>对象API：</p>
+<p><em>上述内容自行查询手册</em></p>
+<p><a href="https://amenzai.me/javascript-book/">参考</a></p>
+<hr>
+<p><strong>开发环境：加快开发效率</strong></p>
+<ul>
+<li>IDE（写代码的效率）</li>
+<li>Git（代码版本管理，多人协作开发）</li>
+<li>JS模块化</li>
+<li>打包工具</li>
+<li>上线回滚的流程</li>
+</ul>
+<hr>
+<p><strong>IDE：</strong></p>
+<ul>
+<li>webstorm：收费</li>
+<li>sublime：轻量级，打开快</li>
+<li>vscode：微软轻量版VS</li>
+<li>atom：github开源的编辑器</li>
+</ul>
+<p>后面三个编辑器，本身功能不多，需要依赖插件进行编码。</p>
+<hr>
+<p><strong>Git：</strong></p>
+<ul>
+<li>正式项目都需要代码版本管理、版本回退等</li>
+<li>大型项目多人协作，解决代码合并问题</li>
+<li>git linux同一个作者</li>
+</ul>
+<p>免费的git服务：coding.net github.com</p>
+<p>一般公司都有自己的git服务器（搭建工作无需了解太多）</p>
+<p>git基本命令和操作…..</p>
+<hr>
+<p><strong>模块化：</strong></p>
+<p>假如有三个JS文件，until.js  a-until.js a.js，a.js依赖a-until.js中的函数，a-until.js依赖until.js里的函数</p>
+<p><strong>不使用模块化情况：</strong></p>
+<ul>
+<li>每个JS文件依次引入，并且until.js  a-until.js中外界需要用到的函数都暴露到全局，污染全局变量</li>
+<li>依赖关系不明显（负责编写a.js文件的人，并不一定知道需要用到until.js文件）</li>
+</ul>
+<p><strong>使用模块化情况：</strong></p>
+<ul>
+<li>页面只需引a.js，其他的根据依赖关系自动引入</li>
+<li>until.js  a-until.js中暴露的函数无需做成全局</li>
+</ul>
+<p><strong>AMD:require.js</strong></p>
+<ul>
+<li>全局define函数</li>
+<li>全局require函数</li>
+<li>依赖JS会自动、异步加载</li>
+</ul>
+<p><strong>CommonJs(服务器端，硬盘同步读取):</strong></p>
+<ul>
+<li>nodejs模块化规范，前端开发的依赖（插件和库）都可以npm下载（package.json）</li>
+<li>构建工具高度自动化（自动编译、压缩、打包）</li>
+<li>同步一次性加载</li>
+</ul>
+<p><strong>对比：</strong></p>
+<ul>
+<li>异步加载JS，用AMD</li>
+<li>用npm用CommonJS</li>
+</ul>
+<hr>
+<p><strong>构建工具：</strong></p>
+<ul>
+<li>grunt</li>
+<li>gulp</li>
+<li>fis3</li>
+<li>webpack(目前常用)</li>
+</ul>
+<hr>
+<p><strong>上线回滚：</strong></p>
+<ul>
+<li>基本流程</li>
+<li>linux基本命令（买个服务器练练）</li>
+</ul>
+<p><strong>基本流程：</strong></p>
+<p>上线</p>
+<ul>
+<li>将测试完成的代码提交master分支</li>
+<li>将当前服务器的代码全部打包并记录版本号，备份</li>
+<li>master分支代码提交覆盖到线上服务器，生成新的版本号</li>
+</ul>
+<p>回滚</p>
+<ul>
+<li>将当前服务器的代码全部打包并记录版本号，备份</li>
+<li>将备份的上一个版本解压，覆盖到线上服务器，并生成新的版本号</li>
+</ul>
+<p><strong>linux基本命令：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># login</span></span><br><span class="line">ssh name@server <span class="comment"># 回车会让你输入用户名、密码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建目录</span></span><br><span class="line">mkdir content</span><br><span class="line">ls</span><br><span class="line">ll</span><br><span class="line"><span class="built_in">cd</span> content </span><br><span class="line"><span class="built_in">pwd</span></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">rm -rf content</span><br><span class="line">cp a.js a1.js</span><br><span class="line">mv a1.js src/a1.js</span><br><span class="line">rm a.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># vi编辑器</span></span><br><span class="line">vi a.js</span><br><span class="line">i</span><br><span class="line">esc</span><br><span class="line">esc:w </span><br><span class="line">esc:q</span><br><span class="line">wsc:wq</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看文件内容</span></span><br><span class="line">cat a.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看前一些</span></span><br><span class="line">head a.js</span><br><span class="line">head -n 1 a.js</span><br><span class="line"><span class="comment"># 查看后面一些</span></span><br><span class="line">tail a.js</span><br><span class="line">tail -n 2 a.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索操作</span></span><br><span class="line">grep <span class="string">'2'</span> a.js</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>运行环境：（浏览器）</strong></p>
+<ul>
+<li>浏览器通过访问链接来得到页面内容</li>
+<li>通过绘制和渲染，显示出页面最终样子</li>
+<li>整个过程中需考虑的问题<ul>
+<li>页面加载过程</li>
+<li>性能优化</li>
+<li>安全性</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>页面加载：</strong></p>
+<ul>
+<li>输入URL到得到html的详细过程</li>
+<li>window.onload（页面全部资源加载完才执行，包括媒体资源）和DOMContentLoaded（DOM渲染完即可执行）区别</li>
+</ul>
+<p>加载资源的形式、加载一个资源的过程、浏览器渲染页面的过程</p>
+<p><strong>加载资源的形式：</strong></p>
+<ul>
+<li>输入URL或跳转 加载HTML</li>
+<li>加载html中的静态资源</li>
+</ul>
+<p><strong>加载一个资源的过程：</strong></p>
+<ul>
+<li>浏览器根据DNS服务器得到域名的IP地址</li>
+<li>向这个IP的机器发送http请求</li>
+<li>服务器收到、处理并返回http请求</li>
+<li>浏览器得到返回内容</li>
+</ul>
+<p><strong>浏览器渲染页面过程：</strong></p>
+<ul>
+<li>根据HTML结构生成生成DOM树</li>
+<li>根据CSS生成CSSOM</li>
+<li>将DOM和CSSOM整合形成RenderTree（渲染树）</li>
+<li>根据 RenderTree 开始渲染和展示</li>
+<li>遇到script标签时，会执行并阻塞渲染（JS可能更改DOM树，所以等待JS加载执行）</li>
+</ul>
+<p><strong>思考：</strong></p>
+<ul>
+<li>CSS放到head中（如果不，出现跳动卡东、性能太差、渲染了两次）</li>
+<li>JS放到body下面（防止页面渲染阻塞）</li>
+<li>图片是异步加载</li>
+</ul>
+<hr>
+<p><strong>性能优化：</strong></p>
+<ul>
+<li>多使用内存、缓存或者其他方法</li>
+<li>减少CPU计算、减少网络</li>
+</ul>
+<p><strong>从这里入手：</strong></p>
+<ul>
+<li>加载页面和静态资源</li>
+<li>页面渲染</li>
+</ul>
+<p><strong>加载资源优化：</strong></p>
+<ul>
+<li>静态资源合并压缩</li>
+<li>静态资源缓存（浏览器策略）</li>
+<li>使用CDN让资源加载更快</li>
+<li>使用SSR后端渲染，数据直接输出到HTML中</li>
+</ul>
+<p><strong>渲染优化：</strong></p>
+<ul>
+<li>CSS放前面，JS放后面</li>
+<li>懒加载（图片懒加载，下拉加载更多）</li>
+<li>减少DOM查询，对DOM查询做缓存</li>
+<li>减少DOM操作，多个操作尽量合并在一起执行</li>
+<li>事件节流(多次同一个事件操作，可以设置个定时器（每次判断是否有这个定时器，若有则清除定时器），直到最后一次操作，则会执行一次定时器的逻辑)</li>
+<li>尽早执行操作（如DOMContentLoaded）</li>
+</ul>
+<hr>
+<p><strong>安全性：</strong></p>
+<p>大多是后端做的（数据库，服务器层面的）</p>
+<ul>
+<li>XSS跨站请求攻击</li>
+<li>XSRF跨站请求伪造</li>
+</ul>
+<p><strong>XSS：</strong></p>
+<ul>
+<li>写博客插入一段script标签</li>
+<li>攻击代码中，获取cookie，发送自己的服务器</li>
+</ul>
+<p><strong>预防：</strong></p>
+<ul>
+<li>替换： &lt;为&amp;lt 等</li>
+<li>后端替换</li>
+</ul>
+<p><strong>XSRF:</strong></p>
+<ul>
+<li>登录购物网站，正在浏览商品</li>
+<li>付费接口是xxxxx.com/pay?id=100，但没有任何验证</li>
+<li>收到一封邮件，隐藏着一个图片，地址就是付费接口</li>
+</ul>
+<p><strong>预防：</strong></p>
+<ul>
+<li>增加验证流程（输入指纹、密码、短信验证码）</li>
+<li>后端验证</li>
+</ul>
+<hr>
+<p><strong>面试技巧：</strong></p>
+<ul>
+<li>简历</li>
+<li>过程</li>
+</ul>
+<p><strong>简历：</strong></p>
+<ul>
+<li>简洁明了，重点突出项目经历和解决方案（项目简介、用了什么技术、难点，怎么解决）</li>
+<li>个人博客放在简历中，定期维护更新博客</li>
+<li>开源项目放在简历中，并维护</li>
+<li>简历别造假（能力经历真实性）</li>
+</ul>
+<p><strong>过程：</strong></p>
+<ul>
+<li>如何看待加班（加班就像借钱，救急不救穷）</li>
+<li>不可挑战面试官，不要反考面试官</li>
+<li>学会给面试官惊喜，但不要太多</li>
+<li>遇到不会回答的问题，说出你知道的也可以</li>
+<li>谈谈你的缺点（说说你最近正在学什么就可以了）</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"><i class="fa fa-tag"></i> 面试</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/28/mpvue/" rel="next" title="mpvue 使用">
+                <i class="fa fa-chevron-left"></i> mpvue 使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/14/interview2/" rel="prev" title="前端 JS 中级面试">
+                前端 JS 中级面试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

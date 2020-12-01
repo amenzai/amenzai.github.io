@@ -1,0 +1,1064 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="js面向对象基础知识杂谈">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js面向对象基础知识杂谈">
+<meta property="og:url" content="http://amenzai.me/2016/01/20/js-oop/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="js面向对象基础知识杂谈">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.390Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js面向对象基础知识杂谈">
+<meta name="twitter:description" content="js面向对象基础知识杂谈">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2016/01/20/js-oop/"/>
+
+
+
+
+
+  <title> js面向对象基础知识杂谈 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2016/01/20/js-oop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-01-20T20:26:07+08:00">
+                2016-01-20
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/前端学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">前端学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                js面向对象基础知识杂谈
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>js面向对象基础知识杂谈</p>
+<a id="more"></a>
+<p>万事万物皆为对象。</p>
+<p>编程方式的比较：</p>
+<p>传统的编程方式：通过声明变量给变量赋值，然后将其绑定到需要这些值的元素上<br>element.innerHtml = var;<br>给相应元素绑定事件</p>
+<p>json方式：是把数据存放到json对象里，然后绑定给需要的元素。</p>
+<p>面向对象方式：创建用到的对象，对每个对象添加相关的属性和方法。</p>
+<p>面向对象编程方式：<br>先分析需要哪些工具包<br>然后依次开发每个工具包<br>然后再使用已经写好的工具包实现我们想要的功能</p>
+<p>好处：<br>将代码分类管理<br>    将产品相关代码放在一起<br>    将购物车相关代码放在一起<br>    使用的时候只需要使用某个工具即可<br>    将一坨代码用函数包装起来，看做一个整体<br>代码清晰<br>容易维护<br>容易发现问题<br>代码可读性好<br>易于团队化作战 – 一个制造工具，一个使用工具<br>更多好处等待大家发现</p>
+<p>开发思想：</p>
+<p>面向对象编程就是先把工具包开发出来，这些工具包中包含很多小工具。</p>
+<p>然后我们使用一个一个工具将整体功能就像搭积木一样搭建出来，而不是一句一句的，一坨一坨的毫无组织，毫无纪律的编写代码。</p>
+<p>开发时，先看需要什么对象，然后对每个对象进行开发，抽象然后实例化。例如列表我们队每个列表进行实例，可以把它们放到数组里进行遍历。</p>
+<p>json:<br>json就是对象的一个实例。直接使用。<br>后台给我们：json 字符串 xml 二进制数据<br>json协议 传递数据使用json格式<br>ajax中，后台给我们传的数据是json字符串（json协议）<br>JSON.stringify(obj)将JSON转为字符串<br>通过eval() 函数可以将JSON字符串转化为对象。<br>JSON.parse(string)将字符串转为JSON对象；</p>
+<p>json xml 都是一种通用数据传输协议  都是用来描述数据</p>
+<p>json体积小 传递速度快  带宽小 没XML那么通用  可以和JS对象互换</p>
+<p>xml: 以XML格式描述一些内容  他是一种规范<br>Xml只是描述数据的一种结构，比如大家常用的html就是采用这种结构描述的。。<br>HTML就是XML</p>
+<p>面向对象的三个作用：</p>
+<ol>
+<li>保存一些常用的工具来简化我们的开发工作（封装功能）<br>单一职责：解耦合（互不影响）<br>大的工程拆分成多个模块（架构师要做的），每个模块互不影响。</li>
+<li>描述数据</li>
+<li>框架</li>
+</ol>
+<p>初始化<br>绑定<br>交互<br>目标：</p>
+<ul>
+<li>理解什么是对象</li>
+<li>会用面向对象分析网络上常见的网页案例</li>
+<li>新闻</li>
+<li>商城</li>
+<li>教育平台</li>
+<li>众筹</li>
+<li>P2P</li>
+<li>面向对象编程</li>
+<li>对象的三个作用</li>
+</ul>
+<p>从生活场景或网站开发场景提炼出对象的属性和方法。</p>
+<h1 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h1><p>先宏观思考需要哪些对象，针对每个对象编写其所需的属性和方法。然后实例化对象，定义属性值（所需数据），获取页面DOM元素，然后让DOM元素绑定数据。</p>
+<p>获取DOM元素，可以定义为对象的一个属性，绑定数据可以在对象原型里定义这样一个方法。</p>
+<h1 id="传统编程方式"><a href="#传统编程方式" class="headerlink" title="传统编程方式"></a>传统编程方式</h1><ol>
+<li>普通形式<ul>
+<li>定义变量 - 产品（名称，描述啥的）</li>
+<li>获取元素</li>
+<li>绑定元素</li>
+<li>绑定事件</li>
+</ul>
+</li>
+<li>json保存数据<ul>
+<li>定义编程需要的数据（json保存产品标题描述啥的）</li>
+<li>购物车（购物车名称总价格啥的）</li>
+<li>获取元素 产品</li>
+<li>获取元素 购物车</li>
+<li>绑定数据 - 产品</li>
+<li>绑定事件 - 产品</li>
+<li>绑定数据 - 购物车</li>
+<li>绑定事件 - 购物车</li>
+</ul>
+</li>
+<li>对象方式（需要几个工具包）<ul>
+<li>产品工具包 - 保存和产品有关的工具</li>
+<li>购物车工具包 - 保存和购物车有关的工具</li>
+<li>绑定各自数据和事件</li>
+</ul>
+</li>
+</ol>
+<h1 id="对象的创建方式"><a href="#对象的创建方式" class="headerlink" title="对象的创建方式"></a>对象的创建方式</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Product() &#123;</span><br><span class="line">    this.name =&apos;&apos;;</span><br><span class="line">    this.price=&apos;&apos;;</span><br><span class="line">    this.description = &apos;&apos;;</span><br><span class="line">    this.doms = &#123;</span><br><span class="line">      attr: document.getElementById(&apos;we&apos;),</span><br><span class="line">      attr: document.getElementById(&apos;we&apos;),</span><br><span class="line">      attr: document.getElementById(&apos;we&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Product.prototype=&#123;</span><br><span class="line">  bindDom:function()&#123;</span><br><span class="line">      this.doms.title.innerHTML=this.title;</span><br><span class="line">      this.doms.author.innerHTML=this.author;</span><br><span class="line">      this.doms.date.innerHTML=this.date;</span><br><span class="line">      this.doms.source.innerHTML=this.source;</span><br><span class="line">      this.doms.content.innerHTML=this.content;</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">    getPrice:function() &#123;</span><br><span class="line">        return this.price</span><br><span class="line">    &#125;,</span><br><span class="line">    addToCart:function()&#123;</span><br><span class="line">      alert(&apos;haha&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var iphone = new Product();</span><br><span class="line">iphone.name = &apos;aaa&apos;;</span><br><span class="line">iphone.name = &apos;aaa&apos;;</span><br></pre></td></tr></table></figure>
+<h1 id="面向对象与列表"><a href="#面向对象与列表" class="headerlink" title="面向对象与列表"></a>面向对象与列表</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//产品对象</span><br><span class="line">/*对象内如何使用对象的属性和方法：this，对象外如何使用：先实例化，后用点语法*/</span><br><span class="line">function Product() &#123;</span><br><span class="line">    /*属性 行为*/</span><br><span class="line">    this.name =&apos;&apos;;</span><br><span class="line">    this.price=&apos;&apos;;</span><br><span class="line">    this.description = &apos;&apos;;</span><br><span class="line">    this.youhuijia=&apos;&apos;;</span><br><span class="line">    this.zhekou = &apos;&apos;</span><br><span class="line">    this.sales = &apos;&apos;</span><br><span class="line">    this.image=&apos;&apos;</span><br><span class="line">&#125;</span><br><span class="line">Product.prototype=&#123;</span><br><span class="line">    bindDom:function()&#123;</span><br><span class="line">        var str=&apos;&apos;</span><br><span class="line">        str+=&apos;&lt;dl&gt;&apos;</span><br><span class="line">            str+=&apos;&lt;dt&gt;&lt;a&gt;&lt;img src=&quot;&apos;+this.image+&apos;&quot; width=&quot;384&quot; height=&quot;225&quot; /&gt;&lt;/a&gt;&lt;/dt&gt;&apos;</span><br><span class="line">            str+=&apos;&lt;dd&gt;&apos;</span><br><span class="line">                str+=&apos;&lt;span&gt;&lt;a&gt;&lt;em&gt;&apos;+this.zhekou+&apos;折/&lt;/em&gt;&apos;+this.name+&apos;&lt;/a&gt;&lt;/span&gt;&apos;</span><br><span class="line">            str+=&apos;&lt;/dd&gt;&apos;</span><br><span class="line">            str+=&apos;&lt;dd class=&quot;price&quot;&gt;&apos;</span><br><span class="line">                str+=&apos;&lt;em&gt;￥&apos;+this.price+&apos;&lt;/em&gt;&apos;</span><br><span class="line">                str+=&apos;&lt;del&gt;￥&apos;+this.youhuijia+&apos;&lt;/del&gt;&apos;</span><br><span class="line">                str+=&apos;&lt;i&gt;售量：&apos;+this.sales+&apos;&lt;/i&gt;&apos;</span><br><span class="line">            str+=&apos;&lt;/dd&gt;&apos;</span><br><span class="line">        str+=&apos;&lt;/dl&gt;&apos;</span><br><span class="line">        return str;</span><br><span class="line">    &#125;,</span><br><span class="line">    bindEvents:function()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*搭积木开发 -- 代码可读性极高*/</span><br><span class="line">window.onload=function() &#123;</span><br><span class="line">  /*假设这是ajax获取的json数据 -- 假设这是后台给你的数据*/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /*实例1*/</span><br><span class="line">    var product1 = new Product()</span><br><span class="line">    product1.name = &apos;SKII&apos;</span><br><span class="line">    product1.price = 1111</span><br><span class="line">    product1.youhuijia = 1000</span><br><span class="line">    product1.sales = 300</span><br><span class="line">    product1.zhekou = 3.5</span><br><span class="line">    product1.image = &apos;img/boutque10_r2_c2.jpg&apos;</span><br><span class="line"></span><br><span class="line">    /*实例2*/</span><br><span class="line">    var product2 = new Product()</span><br><span class="line">    product2.name = &apos;玉兰油&apos;</span><br><span class="line">    product2.price = 1111</span><br><span class="line">    product2.youhuijia = 1000</span><br><span class="line">    product2.sales = 300</span><br><span class="line">    product2.zhekou = 3.5</span><br><span class="line">    product2.image = &apos;img/boutque10_r2_c2.jpg&apos;</span><br><span class="line"></span><br><span class="line">    /*实例3*/</span><br><span class="line">    var product3 = new Product()</span><br><span class="line">    product3.name = &apos;兰蔻&apos;</span><br><span class="line">    product3.price = 1111</span><br><span class="line">    product3.youhuijia = 1000</span><br><span class="line">    product3.sales = 300</span><br><span class="line">    product3.zhekou = 3.5</span><br><span class="line">    product3.image = &apos;img/boutque10_r2_c2.jpg&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /*表示有多个产品  我们需要定义多个实例*/</span><br><span class="line">    var products = [product1,product2,product3]</span><br><span class="line"></span><br><span class="line">    /*前端代码*/</span><br><span class="line">    /*前后台开发不影响，我们不必等待后端人员给我们数据*/</span><br><span class="line">    var str=&apos;&apos;</span><br><span class="line">    for(var i = 0,len=products.length;i&lt;len;i++) &#123;</span><br><span class="line">        str+= products[i].bindDom()</span><br><span class="line">    &#125;</span><br><span class="line">    var container = document.getElementById(&apos;container&apos;)</span><br><span class="line">    container.innerHTML=str</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="JS面向对象进阶"><a href="#JS面向对象进阶" class="headerlink" title="JS面向对象进阶"></a>JS面向对象进阶</h1><p>目标</p>
+<ul>
+<li>构造函数进阶</li>
+<li>属性进阶</li>
+<li>属性进阶2：共有私有属性</li>
+<li>实例进阶</li>
+<li>对象的作用进阶</li>
+<li>使用对象封装框架</li>
+<li>绑定进阶 - formateString</li>
+<li>绑定进阶 - 模板技术</li>
+</ul>
+<h2 id="属性的set-get"><a href="#属性的set-get" class="headerlink" title="属性的set get"></a>属性的set get</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    function dateFormat(date,format) &#123;</span><br><span class="line">        var o = &#123;</span><br><span class="line">            &quot;M+&quot; : date.getMonth()+1, //month</span><br><span class="line">            &quot;d+&quot; : date.getDate(),    //day</span><br><span class="line">            &quot;h+&quot; : date.getHours(),   //hour</span><br><span class="line">            &quot;m+&quot; : date.getMinutes(), //minute</span><br><span class="line">            &quot;s+&quot; : date.getSeconds(), //second</span><br><span class="line">            &quot;q+&quot; : Math.floor((date.getMonth()+3)/3),  //quarter</span><br><span class="line">            &quot;S&quot; : date.getMilliseconds() //millisecond</span><br><span class="line">        &#125;</span><br><span class="line">        if(/(y+)/.test(format)) format=format.replace(RegExp.$1,</span><br><span class="line">                (date.getFullYear()+&quot;&quot;).substr(4- RegExp.$1.length));</span><br><span class="line">        for(var k in o)if(new RegExp(&quot;(&quot;+ k +&quot;)&quot;).test(format))</span><br><span class="line">            format = format.replace(RegExp.$1,</span><br><span class="line">                    RegExp.$1.length==1? o[k] :</span><br><span class="line">                            (&quot;00&quot;+ o[k]).substr((&quot;&quot;+ o[k]).length));</span><br><span class="line">        return format;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //产品对象</span><br><span class="line">    /*对象内如何使用对象的属性和方法：this，对象外如何使用：先实例化，后用点语法*/</span><br><span class="line">    /*类 -- 抽象对象*/</span><br><span class="line">    function Product(name,price) &#123;</span><br><span class="line">        /*属性 行为 可以为空或者给默认值*/</span><br><span class="line">        this.name=name</span><br><span class="line">        this.price=0;</span><br><span class="line">        this.description = &apos;&apos;;</span><br><span class="line">        this.zhekou = &apos;&apos;</span><br><span class="line">        this.sales = &apos;&apos;</span><br><span class="line">        this.produceDate</span><br><span class="line">        /*我们的需求：自动计算打折后的价格*/</span><br><span class="line">        Object.defineProperty(this, &quot;price&quot;, &#123;</span><br><span class="line">            get: function () &#123;return price*0.9;&#125;,</span><br><span class="line">            set: function (value) &#123;</span><br><span class="line">                /*大概普通产品的价格都在0--1万*/</span><br><span class="line">                if(value&gt;10000)</span><br><span class="line">                &#123;</span><br><span class="line">                    alert(&apos;产品价格必须在0--1万之间&apos;);</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    price = value;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        Object.defineProperty(this, &quot;produceDate&quot;, &#123;</span><br><span class="line">            get: function () &#123;</span><br><span class="line">                return dateFormat(produceDate,&apos;yyyy-MM-dd&apos;);</span><br><span class="line">            &#125;,</span><br><span class="line">            set: function (value) &#123;</span><br><span class="line">                produceDate = value;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //定义对象的两种方式</span><br><span class="line">    Product.prototype=&#123;</span><br><span class="line">        getPrice:function() &#123;</span><br><span class="line">            return this.price</span><br><span class="line">        &#125;,</span><br><span class="line">        addToCart:function()&#123;</span><br><span class="line">            alert(&apos;将物品添加到购物车&apos;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    Product.prototype.buy=function()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    Product.prototype.addToCart=function()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /*获取元素*/</span><br><span class="line">    var btn = document.getElementById(&apos;btn&apos;)</span><br><span class="line">    var name = document.getElementById(&apos;pname&apos;)</span><br><span class="line">    var price = document.getElementById(&apos;pprice&apos;)</span><br><span class="line">    var sum = document.getElementById(&apos;sum&apos;)</span><br><span class="line">    var des = document.getElementById(&apos;pdes&apos;)</span><br><span class="line">    var youhuijia = document.getElementById(&apos;pyouhui&apos;)</span><br><span class="line">    var zhekou = document.getElementById(&apos;pzhekou&apos;)</span><br><span class="line">    var sales = document.getElementById(&apos;psales&apos;)</span><br><span class="line">    var date = document.getElementById(&apos;date&apos;)</span><br><span class="line"></span><br><span class="line">    /*搭积木开发 -- 代码可读性极高*/</span><br><span class="line">    window.onload=function() &#123;</span><br><span class="line">        /*实例化 -- 实例 -- 具体*/</span><br><span class="line">        //如何使用</span><br><span class="line">        //对象的使用必须先实例化，对象定义好之后，都是抽象的，必须实例化成具体</span><br><span class="line">        var iphone = new Product()</span><br><span class="line"></span><br><span class="line">        /*给对象的赋值赋值，也可以新增属性*/</span><br><span class="line">        iphone.name=&apos;iphone7&apos;</span><br><span class="line">        iphone.price=6000</span><br><span class="line">        iphone.description=&apos;手机中的战斗机&apos;</span><br><span class="line">        iphone.youhuijia=3000</span><br><span class="line">        iphone.zhekou=3.0</span><br><span class="line">        iphone.sales=40000</span><br><span class="line">        iphone.produceDate=new Date()</span><br><span class="line"></span><br><span class="line">        /*绑定元素*/</span><br><span class="line">        /*通过点语法访问对象中的属性或者方法*/</span><br><span class="line">        name.innerHTML=iphone.name</span><br><span class="line">        price.innerHTML=iphone.price</span><br><span class="line">        des.innerHTML=iphone.description</span><br><span class="line">        youhuijia.innerHTML=iphone.youhuijia</span><br><span class="line">        zhekou.innerHTML=iphone.zhekou</span><br><span class="line">        sales.innerHTML=iphone.sales</span><br><span class="line">        date.innerHTML=iphone.produceDate</span><br><span class="line"></span><br><span class="line">        /*绑定事件*/</span><br><span class="line">        btn.onclick = function()&#123;</span><br><span class="line">            iphone.addToCart()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="对象的公有属性-私有属性"><a href="#对象的公有属性-私有属性" class="headerlink" title="对象的公有属性-私有属性"></a>对象的公有属性-私有属性</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    function dateFormat(date,format)&#123;</span><br><span class="line">        var o = &#123;</span><br><span class="line">            &quot;M+&quot; : date.getMonth()+1, //month</span><br><span class="line">            &quot;d+&quot; : date.getDate(),    //day</span><br><span class="line">            &quot;h+&quot; : date.getHours(),   //hour</span><br><span class="line">            &quot;m+&quot; : date.getMinutes(), //minute</span><br><span class="line">            &quot;s+&quot; : date.getSeconds(), //second</span><br><span class="line">            &quot;q+&quot; : Math.floor((date.getMonth()+3)/3),  //quarter</span><br><span class="line">            &quot;S&quot; : date.getMilliseconds() //millisecond</span><br><span class="line">        &#125;</span><br><span class="line">        if(/(y+)/.test(format)) format=format.replace(RegExp.$1,</span><br><span class="line">                (date.getFullYear()+&quot;&quot;).substr(4- RegExp.$1.length));</span><br><span class="line">        for(var k in o)if(new RegExp(&quot;(&quot;+ k +&quot;)&quot;).test(format))</span><br><span class="line">            format = format.replace(RegExp.$1,</span><br><span class="line">                    RegExp.$1.length==1? o[k] :</span><br><span class="line">                            (&quot;00&quot;+ o[k]).substr((&quot;&quot;+ o[k]).length));</span><br><span class="line">        return format;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //产品对象</span><br><span class="line">    /*对象内如何使用对象的属性和方法：this，对象外如何使用：先实例化，后用点语法*/</span><br><span class="line">    /*类 -- 抽象对象*/</span><br><span class="line">    function Product(name,price) &#123;</span><br><span class="line">        /*属性 行为 可以为空或者给默认值*/</span><br><span class="line">        this.name=name</span><br><span class="line">        this.price=1000;</span><br><span class="line">        this.description = &apos;&apos;;</span><br><span class="line">        this.zhekou = &apos;&apos;</span><br><span class="line">        this.sales = &apos;&apos;</span><br><span class="line">        this.produceDate</span><br><span class="line">        /*我们的需求：自动计算打折后的价格*/</span><br><span class="line">        Object.defineProperty(this, &quot;price&quot;, &#123;</span><br><span class="line">            value:5000000,</span><br><span class="line">            writable: false,</span><br><span class="line">        &#125;);</span><br><span class="line">        Object.defineProperty(this, &quot;produceDate&quot;, &#123;</span><br><span class="line">            get: function () &#123;</span><br><span class="line">                return dateFormat(produceDate,&apos;yyyy年MM月dd日&apos;);</span><br><span class="line">            &#125;,</span><br><span class="line">            set: function (value) &#123;</span><br><span class="line">                produceDate = value;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        var that = this;</span><br><span class="line">        this.config = &#123;</span><br><span class="line">            btn: document.getElementById(&apos;btn&apos;),</span><br><span class="line">            name :  document.getElementById(&apos;pname&apos;),</span><br><span class="line">            price :  document.getElementById(&apos;pprice&apos;),</span><br><span class="line">            sum :  document.getElementById(&apos;sum&apos;),</span><br><span class="line">            des :  document.getElementById(&apos;pdes&apos;),</span><br><span class="line">            youhuijia :  document.getElementById(&apos;pyouhui&apos;),</span><br><span class="line">            zhekou :  document.getElementById(&apos;pzhekou&apos;),</span><br><span class="line">            sales :  document.getElementById(&apos;psales&apos;),</span><br><span class="line">            date :  document.getElementById(&apos;date&apos;)</span><br><span class="line">        &#125;</span><br><span class="line">        function bindDOM()&#123;</span><br><span class="line">            /*绑定元素*/</span><br><span class="line">            /*通过点语法访问对象中的属性或者方法*/</span><br><span class="line">            that.config.name.innerHTML=that.name</span><br><span class="line">            that.config.price.innerHTML=that.price</span><br><span class="line">            that.config.des.innerHTML=that.description</span><br><span class="line">            that.config.youhuijia.innerHTML=that.youhuijia</span><br><span class="line">            that.config.zhekou.innerHTML=that.zhekou</span><br><span class="line">            that.config.sales.innerHTML=that.sales</span><br><span class="line">            that.config.date.innerHTML=that.produceDate</span><br><span class="line">        &#125;</span><br><span class="line">        function bindEvents()&#123;</span><br><span class="line">            /*绑定事件*/</span><br><span class="line">            that.config.btn.onclick = function()&#123;</span><br><span class="line">                that.addToCart()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        this.init = function()&#123;</span><br><span class="line">            bindDOM()</span><br><span class="line">            bindEvents()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //定义对象的两种方式</span><br><span class="line">    Product.prototype=&#123;</span><br><span class="line"></span><br><span class="line">        getPrice:function() &#123;</span><br><span class="line">            return this.price</span><br><span class="line">        &#125;,</span><br><span class="line">        addToCart:function()&#123;</span><br><span class="line">            alert(&apos;将物品添加到购物车&apos;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    Product.prototype.buy=function()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    Product.prototype.addToCart=function()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /*搭积木开发 -- 代码可读性极高*/</span><br><span class="line">    window.onload=function() &#123;</span><br><span class="line"></span><br><span class="line">        /*实例化 -- 实例 -- 具体*/</span><br><span class="line">        //如何使用</span><br><span class="line">        //对象的使用必须先实例化，对象定义好之后，都是抽象的，必须实例化成具体</span><br><span class="line">        var iphone = new Product()</span><br><span class="line"></span><br><span class="line">        /*给对象的赋值赋值，也可以新增属性*/</span><br><span class="line">        iphone.name=&apos;iphone7&apos;</span><br><span class="line">        iphone.price=6000</span><br><span class="line">        iphone.description=&apos;手机中的战斗机&apos;</span><br><span class="line">        iphone.youhuijia=3000</span><br><span class="line">        iphone.zhekou=3.0</span><br><span class="line">        iphone.sales=40000</span><br><span class="line">        iphone.produceDate=new Date()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        /*无法使用私有成员*/</span><br><span class="line">//        iphone.bindDOM()</span><br><span class="line">//        iphone.bindEvents()</span><br><span class="line">        /*只能使用共有成员*/</span><br><span class="line">        iphone.init()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="数据类型检测"><a href="#数据类型检测" class="headerlink" title="数据类型检测"></a>数据类型检测</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var num = 1</span><br><span class="line">var str = &apos;传智播客&apos;</span><br><span class="line">var bool=false;</span><br><span class="line">var arr=[];</span><br><span class="line">var obj=&#123;name:&apos;传智播客&apos;&#125;;</span><br><span class="line">var date = new Date();</span><br><span class="line">var fn = function()&#123;&#125;</span><br><span class="line"></span><br><span class="line">console.log(typeof &quot;abc&quot;)  //&apos;string&apos;</span><br><span class="line"></span><br><span class="line">console.log(toString.call(123))          //[object Number]</span><br><span class="line"></span><br><span class="line">console.log(Object.prototype.toString.call(str) === &apos;[object String]&apos;)   //-------&gt; true;</span><br><span class="line"></span><br><span class="line">console.log(arr instanceof Array)     //---------------&gt; true</span><br><span class="line"></span><br><span class="line">console.log(date.constructor === Date)   //-----------&gt; true</span><br></pre></td></tr></table></figure>
+<h2 id="原型对象进阶"><a href="#原型对象进阶" class="headerlink" title="原型对象进阶"></a>原型对象进阶</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 删除本对象拷贝的对象 --&gt;</span><br><span class="line">delete product.name</span><br><span class="line">//然后就可以访问到原型对象里的name属性了</span><br><span class="line"></span><br><span class="line">//hasOwnProperty : 看是不是对象自身下面的属性</span><br><span class="line">function Product()&#123;</span><br><span class="line">    this.name=&apos;iphone&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Product.prototype=&#123;</span><br><span class="line">    age:100</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var iphone = new Product()</span><br><span class="line">console.log(iphone.hasOwnProperty(&apos;name&apos;))</span><br><span class="line">console.log(iphone.hasOwnProperty(&apos;age&apos;))</span><br><span class="line"></span><br><span class="line">//给对象扩充功能</span><br><span class="line">//在JS源码 : 系统对象也是基于原型的程序</span><br><span class="line"> function Array()&#123;</span><br><span class="line"> this.lenglth = 0;</span><br><span class="line"> &#125;</span><br><span class="line"> Array.prototype.push = function()&#123;&#125;;</span><br><span class="line"> Array.prototype.sort = function()&#123;&#125;;*/</span><br><span class="line">//尽量不要去修改或者添加系统对象下面的方法和属性</span><br></pre></td></tr></table></figure>
+<h2 id="面向对象总结"><a href="#面向对象总结" class="headerlink" title="面向对象总结"></a>面向对象总结</h2><ul>
+<li>封装框架<ul>
+<li>将一些常用的函数功能封装起来</li>
+</ul>
+</li>
+<li>面向对象编程<ul>
+<li>定义对象，编写属性和方法</li>
+</ul>
+</li>
+<li>数据描述<ul>
+<li>常用数据绑定：字符串相加方式，动态创建标签绑定，formateString，模板技术</li>
+</ul>
+</li>
+</ul>
+<p>引用类型、值类型、堆和栈、内存的生命周期、多种方式创建对象</p>
+<h1 id="多种方式创建对象"><a href="#多种方式创建对象" class="headerlink" title="多种方式创建对象"></a>多种方式创建对象</h1><ul>
+<li><p>工厂模式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">    /*一般游戏名称是我们自己取的，其他事默认值*/</span><br><span class="line">    /*那么怎么做呢？*/</span><br><span class="line">    function createPerson(name)&#123;</span><br><span class="line">        //1.原料</span><br><span class="line">        var obj = new Object();</span><br><span class="line">        //2.加工</span><br><span class="line">        obj.name = name;</span><br><span class="line">        obj.HP=100;</span><br><span class="line">        obj.MP=100;</span><br><span class="line">        obj.technologys=[&apos;普通攻击&apos;,&apos;横扫千军&apos;,&apos;地狱火&apos;,&apos;漫天飞雪&apos;];</span><br><span class="line">        obj.attack = function()&#123;</span><br><span class="line">            alert(obj.name+&apos;发出攻击，导致对方10点伤害值&apos;)</span><br><span class="line">        &#125;;</span><br><span class="line">        obj.run = function()&#123;</span><br><span class="line">        &#125;;</span><br><span class="line">        //3.出场</span><br><span class="line">        return obj;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var boy = createPerson(&apos;剑侠客&apos;);</span><br><span class="line">    boy.attack();</span><br><span class="line">    boy.run()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var girl = createPerson(&apos;炫舞天使&apos;);</span><br><span class="line">    girl.attack();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>构造函数-原型对象：</p>
+</li>
+</ul>
+<p>因为在原型对象中引用类型的值存在问题，就是一个对象将其更改，则其他对象都会受影响。</p>
+<ul>
+<li>字面量形式</li>
+<li><p>拷贝模式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//拷贝一个</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    //-------------------------拷贝创建对象核心代码--------------------------</span><br><span class="line"></span><br><span class="line">    /*函数的用处：就是将一个json对象 所有属性拷贝给另外一个对象*/</span><br><span class="line">    /*source：原始对象*/</span><br><span class="line">    /*target：目标对象*/</span><br><span class="line">    function extend(target,source) &#123;</span><br><span class="line">        //遍历对象</span><br><span class="line">        for(var i in source)&#123;</span><br><span class="line">            target[i] = source[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return target;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //游戏随机生成名字</span><br><span class="line">       var boy = &#123;</span><br><span class="line">        name:&apos;郭靖&apos;</span><br><span class="line">        ,image:&apos;男性头像&apos;</span><br><span class="line">        ,age:20</span><br><span class="line">        ,sex:&apos;男&apos;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    var girl = &#123;</span><br><span class="line">        name:&apos;黄蓉&apos;</span><br><span class="line">        ,age:18</span><br><span class="line">        ,image:&apos;女性头像&apos;</span><br><span class="line">        ,sex:&apos;女&apos;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    /*六大神器之一*/</span><br><span class="line"></span><br><span class="line">    var zuixiake = extend(&#123;&#125;, boy);</span><br><span class="line">    var huangrong = extend(&#123;&#125;,girl)</span><br><span class="line">    alert(zuixiake.name);</span><br><span class="line">    alert(zuixiake.sex);</span><br><span class="line">    console.log(huangrong.name)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">//拷贝多个</span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">    //extend2实现的功能：extend(target,obj1,obj2,obj3)</span><br><span class="line">    /*功能：将多个多个json拷贝给目标*/</span><br><span class="line">    /*原理：*/</span><br><span class="line">    /*首先找到target   --arguments[0]*/</span><br><span class="line">   function extend () &#123;</span><br><span class="line">        var key,i = 0,len = arguments.length,target = null,copy;</span><br><span class="line">        if(len === 0)&#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;else if(len === 1)&#123;</span><br><span class="line">            target = this;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            i++;</span><br><span class="line">            target = arguments[0];</span><br><span class="line">        &#125;</span><br><span class="line">        for(; i &lt; len; i++)&#123;</span><br><span class="line">            for(key in arguments[i])&#123;</span><br><span class="line">                copy = arguments[i][key];</span><br><span class="line">                target[key] = copy;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return target;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /*hasOwnProperty*/</span><br><span class="line">    function extend2()&#123;</span><br><span class="line">        for (var p in source) &#123;</span><br><span class="line">            if (source.hasOwnProperty(p)) &#123;</span><br><span class="line">                target[p] = source[p];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return target;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //游戏随机生成名字</span><br><span class="line">    var boy = &#123;</span><br><span class="line">        name:&apos;无忌&apos;</span><br><span class="line">        ,image:&apos;男性头像&apos;</span><br><span class="line">        ,age:20</span><br><span class="line">        ,sex:&apos;男&apos;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //技能名称，等级，伤害值，需要的魔法</span><br><span class="line">    var technology = &#123;tname:&apos;亡灵复活&apos;,tlevel:10,tstrength:3000,tmagic:30&#125;;</span><br><span class="line"></span><br><span class="line">    var shenqi = &#123;sname:&apos;霜之哀伤&apos;,slevel:30,sstrength:3000&#125;</span><br><span class="line">    //当这个人有了穿上盔甲，圣衣，六神合体，戴上魔法戒指之后，自动也拥有一个技能</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //第一种用法</span><br><span class="line">    var zuixiake = extend(&#123;&#125;, technology,shenqi);</span><br><span class="line">    zuixiake.name=&apos;醉侠客&apos;;</span><br><span class="line">    alert(zuixiake.name);</span><br><span class="line">    alert(zuixiake.tname);</span><br><span class="line">    alert(zuixiake.sname);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //第二种用法</span><br><span class="line">    extend(boy,technology,shenqi);</span><br><span class="line">    alert(boy.name);</span><br><span class="line">    alert(boy.tname);</span><br><span class="line">    alert(boy.sname);</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line">//使用封装的框架</span><br><span class="line">//第一种用法  醉侠客加入丐帮之后学到的技能</span><br><span class="line">var zuixiake = $$.extendMany(&#123;&#125;, gaibang,shaolin);</span><br><span class="line">zuixiake.name=&apos;醉侠客&apos;;</span><br><span class="line">console.log(zuixiake.name);</span><br><span class="line">zuixiake.XL18.attack()</span><br><span class="line">zuixiake.DLJGS.attack()</span><br><span class="line"></span><br><span class="line">//第二种用法  无忌加入丐帮</span><br><span class="line">$$.extendMany(boy,gaibang,shaolin);</span><br><span class="line">console.log(boy.name);</span><br><span class="line">boy.XL18.attack()</span><br><span class="line">boy.DLJGS.attack()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用第三方框架</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var Person = Class.extend(&#123;</span><br><span class="line">    init: function(isDancing)&#123;</span><br><span class="line">        this.dancing = isDancing;</span><br><span class="line">    &#125;,</span><br><span class="line">    dance: function()&#123;</span><br><span class="line">        return this.dancing;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">其他参考案例</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Number.__proto__ === Function.prototype  // true</span><br><span class="line">Boolean.__proto__ === Function.prototype // true</span><br><span class="line">String.__proto__ === Function.prototype  // true</span><br><span class="line">Object.__proto__ === Function.prototype  // true</span><br><span class="line">Function.__proto__ === Function.prototype //true </span><br><span class="line">Array.__proto__ === Function.prototype   // true</span><br><span class="line">RegExp.__proto__ === Function.prototype  // true</span><br><span class="line">Error.__proto__ === Function.prototype   // true</span><br><span class="line">Date.__proto__ === Function.prototype    // true</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/10/js/" rel="next" title="js常用代码块">
+                <i class="fa fa-chevron-left"></i> js常用代码块
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/20/xml/" rel="prev" title="XML简介">
+                XML简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开发流程"><span class="nav-number">1.</span> <span class="nav-text">开发流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传统编程方式"><span class="nav-number">2.</span> <span class="nav-text">传统编程方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象的创建方式"><span class="nav-number">3.</span> <span class="nav-text">对象的创建方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象与列表"><span class="nav-number">4.</span> <span class="nav-text">面向对象与列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JS面向对象进阶"><span class="nav-number">5.</span> <span class="nav-text">JS面向对象进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性的set-get"><span class="nav-number">5.1.</span> <span class="nav-text">属性的set get</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的公有属性-私有属性"><span class="nav-number">5.2.</span> <span class="nav-text">对象的公有属性-私有属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型检测"><span class="nav-number">5.3.</span> <span class="nav-text">数据类型检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型对象进阶"><span class="nav-number">5.4.</span> <span class="nav-text">原型对象进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象总结"><span class="nav-number">5.5.</span> <span class="nav-text">面向对象总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多种方式创建对象"><span class="nav-number">6.</span> <span class="nav-text">多种方式创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">6.1.</span> <span class="nav-text">继承</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1324 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="BDL," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="这一篇讲解一下genero bdl语言。">
+<meta name="keywords" content="BDL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BDL2.0笔记">
+<meta property="og:url" content="http://amenzai.me/2016/04/08/BDL2.0笔记/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="这一篇讲解一下genero bdl语言。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/02.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/03.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/01.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/04.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/05.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/06.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/07.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/08.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/09.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/10.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/11.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/12.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/13.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/14.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/15.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/16.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/17.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/18.jpg">
+<meta property="og:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/19.jpg">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.367Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BDL2.0笔记">
+<meta name="twitter:description" content="这一篇讲解一下genero bdl语言。">
+<meta name="twitter:image" content="http://amenzai.me/2016/04/08/BDL2.0笔记/02.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2016/04/08/BDL2.0笔记/"/>
+
+
+
+
+
+  <title> BDL2.0笔记 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2016/04/08/BDL2.0笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-08T20:26:07+08:00">
+                2016-04-08
+              </time>
+            
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                BDL2.0笔记
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这一篇讲解一下genero bdl语言。</p>
+<a id="more"></a>
+<h1 id="Genero-BDL-架构"><a href="#Genero-BDL-架构" class="headerlink" title="Genero BDL 架构"></a>Genero BDL 架构</h1><p>DATABASE：资料库<br>GLOBAL：程式所使用的外部变数<br>MAIN：主程式<br>FUNCTION：函式<br>REPORT：报表</p>
+<p>.4gl-.42m<br>.per-.42f</p>
+<p>Genero BDL 语言特点：</p>
+<ul>
+<li>切分为 Client、Server 架构（GDC 与fgl），增进运行效率</li>
+<li>以 XML Bsae 做为Client 及Server 端数据传递的架构</li>
+<li>支持更多不同平台（OS）及数据库系统</li>
+<li>可在运行阶段动态调整画面输出的格式（Layout Styles）</li>
+<li>在部份新增的功能中引入基本的对象（Object）概念</li>
+</ul>
+<p>看第一章，第三章，第四章，第八章，第九章，第十章</p>
+<h1 id="画面档FORM组成"><a href="#画面档FORM组成" class="headerlink" title="画面档FORM组成"></a>画面档FORM组成</h1><p>扩展名：per</p>
+<h2 id="SCHEMA-section（非必要部分）"><a href="#SCHEMA-section（非必要部分）" class="headerlink" title="SCHEMA section（非必要部分）"></a>SCHEMA section（非必要部分）</h2><p>设置设计画面时，所需要引用到的数据库。</p>
+<p>如果在『per』中没有指定SCHEMA，系统缺省为FORMONLY，即表示此不引用数据库中字段型态、长度等数据。若未设置，则对后续SECTION 影响有下列二点：</p>
+<ul>
+<li>不得使用 TABLES SECTION。</li>
+<li>需于 ATTRIBUTES SECTION 中指定字段型态。</li>
+</ul>
+<p>每一个 Form 都可以设置一个 SCHEMA section ，且可以定义任何 Database SCHEMA，当 FORM 字段被定义时会参考到此处所指定的 SCHEMA。</p>
+<p>SCHEMA section 需注意到的重点是：</p>
+<ul>
+<li>若制作 FORM 时，字段都不参考 SCHEMA 内容时，则 SCHEMA section 可写为 SCHEMA FORMONLY，在 ATTRIBUTES Section 中字段可用 FORMONLY.字段名称来定义字段 内容。</li>
+<li>若设为 SCHEMA FORMONLY 时，不得使用 TABLES SECTION。</li>
+<li>若设置为 SCHEMA db  【实际 database  schema 时】，且设置 TABLE  section 时，可参照 引用字段型态、长度进入 ATTRIBUTES section 段。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SCHEMA FORMONLY</span><br><span class="line"></span><br><span class="line">LAYOUT (TEXT=&quot;SCHEMA SECTION&quot;)</span><br><span class="line">    GRID grid_id</span><br><span class="line">        &#123;</span><br><span class="line">            Name [a ]</span><br><span class="line">        &#125;</span><br><span class="line">    END --GRID </span><br><span class="line">END --LAYOUT</span><br><span class="line"></span><br><span class="line">ATTRIBUTES</span><br><span class="line">    EDIT a = FORMONLY.a;</span><br></pre></td></tr></table></figure>
+<p>或<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SCHEMA example_database</span><br><span class="line"></span><br><span class="line">LAYOUT (TEXT=&quot;SCHEMA SECTION&quot;)</span><br><span class="line">    GRID grid_id</span><br><span class="line">        &#123;</span><br><span class="line">            Name [a ]</span><br><span class="line">        &#125;</span><br><span class="line">    END --GRID </span><br><span class="line">END --LAYOUT</span><br><span class="line"></span><br><span class="line">TABLES example_table </span><br><span class="line"></span><br><span class="line">ATTRIBUTES</span><br><span class="line">    EDIT a = a;</span><br></pre></td></tr></table></figure></p>
+<h2 id="ACTION-DEFAULT-section（非必要部分）"><a href="#ACTION-DEFAULT-section（非必要部分）" class="headerlink" title="ACTION DEFAULT section（非必要部分）"></a>ACTION DEFAULT section（非必要部分）</h2><p>定义 ACTION 显示于画面上的名称值及快速键设置。</p>
+<p>ACTION DEFAULTS 主要是定义功能按键（Action）的属性，包含显示在画面文件上的文字、快速键（1.31 以上版本允许设置至多三组）、显示图片（注）、弹出式说明（Hint、Comments） 等属性，须搭配 4GL 程序才会有作用。</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ACTION DEFAULTS</span><br><span class="line">    Action add (text=&quot;Append&quot;, ACCELERATOR=CONTROL-V )</span><br><span class="line">    Action del (text=&quot;Delete&quot;, ACCELERATOR=SHIFT-F2 )</span><br><span class="line">    Action zoom (text=&quot;Zoom&quot;, COMMENT=&quot;Open Zoom Window&quot; )</span><br><span class="line">    Action quit (text=&quot;Quit&quot;, ACCELERATOR=SHIFT-F5, IMAGE=&quot;quit&quot; )</span><br><span class="line">END</span><br><span class="line">LAYOUT (TEXT=&quot;ACTION DEFAULT SECTION&quot;)</span><br><span class="line">    GRID grid_id</span><br><span class="line">        &#123;</span><br><span class="line">            Name [a ]</span><br><span class="line">        &#125;</span><br><span class="line">    END --GRID</span><br><span class="line">END --LAYOUT</span><br><span class="line"></span><br><span class="line">ATTRIBUTES</span><br><span class="line">    EDIT a=FORMONLY.a;</span><br></pre></td></tr></table></figure>
+<p>编译之后可以得到如下的运行画面：</p>
+<h2 id="TOPMENU-section（非必要部分）"><a href="#TOPMENU-section（非必要部分）" class="headerlink" title="TOPMENU section（非必要部分）"></a>TOPMENU section（非必要部分）</h2><p>定义画面中的 TOPMENU 结构。</p>
+<h2 id="TOOLBAR-section（非必要部分）"><a href="#TOOLBAR-section（非必要部分）" class="headerlink" title="TOOLBAR section（非必要部分）"></a>TOOLBAR section（非必要部分）</h2><p>定义画面中的 TOOLBAR 结构。</p>
+<h2 id="LAYOUT-section（非必要部分）"><a href="#LAYOUT-section（非必要部分）" class="headerlink" title="LAYOUT section（非必要部分）"></a>LAYOUT section（非必要部分）</h2><p>定义画面样式的主要 SECTION，在本SECTION 中须采用对象的概念，任何的设置均应以Container 视之，在结束处需加上END 注记以标示结束。</p>
+<h2 id="TABLES-section（非必要部分）"><a href="#TABLES-section（非必要部分）" class="headerlink" title="TABLES section（非必要部分）"></a>TABLES section（非必要部分）</h2><p>设置屏幕画面的显示字段所对应的数据库的 TABLE 名称。</p>
+<h2 id="ATTRIBUTES-section（非必要部分）"><a href="#ATTRIBUTES-section（非必要部分）" class="headerlink" title="ATTRIBUTES section（非必要部分）"></a>ATTRIBUTES section（非必要部分）</h2><p>在 LAYOUT SECTION 中出现的字段、TAG 等，均需在此段中定义其类型或属性。</p>
+<h2 id="INSTRUCTION-section（非必要部分）"><a href="#INSTRUCTION-section（非必要部分）" class="headerlink" title="INSTRUCTION section（非必要部分）"></a>INSTRUCTION section（非必要部分）</h2><p>定义屏幕数组。当使用屏幕数组时才需定义。</p>
+<p>画面档（PER）中只可用『–』作为批注符号，标示处至行尾均视为批注。</p>
+<h1 id="变量及运算"><a href="#变量及运算" class="headerlink" title="变量及运算"></a>变量及运算</h1><h2 id="变量的定义"><a href="#变量的定义" class="headerlink" title="变量的定义"></a>变量的定义</h2><h3 id="直接定义"><a href="#直接定义" class="headerlink" title="直接定义"></a>直接定义</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DEFINE employee_no CHAR(10)</span><br></pre></td></tr></table></figure>
+<h3 id="对应数据库字段"><a href="#对应数据库字段" class="headerlink" title="对应数据库字段"></a>对应数据库字段</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DATABASE database_id</span><br><span class="line">DEFINE p_employee_no LIKE employee_file.employee_no</span><br></pre></td></tr></table></figure>
+<p>上面的示范，定义p_employee_no 与数据库中的employee_file 这个table 的employee_no 字段有相同的数据型态。</p>
+<h2 id="变量的型态"><a href="#变量的型态" class="headerlink" title="变量的型态"></a>变量的型态</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CHAR</span><br><span class="line">VARCHAR</span><br><span class="line">STRING</span><br><span class="line"></span><br><span class="line">DATE</span><br><span class="line">DATETIME</span><br><span class="line"></span><br><span class="line">INTEGER 4</span><br><span class="line">SMALLINT 2</span><br><span class="line">FLOAT 8</span><br><span class="line">SMALLFLOAT 4</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">DECIMAL(p,s)</span><br><span class="line">MONEY</span><br></pre></td></tr></table></figure>
+<h2 id="变量的集合（Records）"><a href="#变量的集合（Records）" class="headerlink" title="变量的集合（Records）"></a>变量的集合（Records）</h2><h3 id="直接定义-1"><a href="#直接定义-1" class="headerlink" title="直接定义"></a>直接定义</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DEFINE rec RECORD</span><br><span class="line">        id INTEGER,</span><br><span class="line">        name VARCHAR(100),</span><br><span class="line">        birth DATE</span><br><span class="line">        END RECORD</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
+<p>此示范中，直接定义 rec 这个Records 中的各个变量型态。</p>
+<h3 id="对应数据库字段-1"><a href="#对应数据库字段-1" class="headerlink" title="对应数据库字段"></a>对应数据库字段</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DATABASE example_database</span><br><span class="line">MAIN</span><br><span class="line">    DEFINE cust01 RECORD LIKE customer.*</span><br><span class="line">    DEFINE cust02 RECORD</span><br><span class="line">        id LIKE customer.id,</span><br><span class="line">        name LIKE customer.name,</span><br><span class="line">        birth LIKE customer.birth,</span><br><span class="line">        sales LIKE salesman.name</span><br><span class="line">        END RECORD</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
+<p>此示范中，定义cust01 这个Record 的变量与数据库中的customer 这个table 的字段有相同<br>的名称及数据型态。若在这组变量中有穿插非同一TABLE 字段，或是需要做顺序上的调动，<br>则必需参照cust02 的作法，将变量组中的每一个项目独立写出。</p>
+<h2 id="变数的设置"><a href="#变数的设置" class="headerlink" title="变数的设置"></a>变数的设置</h2><p>语法：LET variable = expression</p>
+<p>示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DATABASE ds</span><br><span class="line">MAIN</span><br><span class="line">    DEFINE c1, c2 CHAR(10)</span><br><span class="line">    LET c1 = &quot;Genero&quot;</span><br><span class="line">    LET c2 = c1</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure></p>
+<p>注：若变量类型为 CHAR 和变量类型为VARCHAR 时，指定给予的值有差异。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DATABASE ds</span><br><span class="line">MAIN</span><br><span class="line">    DEFINE c1, c2 CHAR(10)</span><br><span class="line">    DEFINE c3 VARCHAR(10)</span><br><span class="line">    LET c1 = &quot;Genero&quot;</span><br><span class="line">    LET c2 = c1</span><br><span class="line">    LET c3 = c1</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
+<h2 id="初始化一组变数的值"><a href="#初始化一组变数的值" class="headerlink" title="初始化一组变数的值"></a>初始化一组变数的值</h2><p>若要初始化一组 RECORD 变数为NULL，或者是初始化为数据库Table 的缺省值，可利用<br>INITIALIZE。</p>
+<p>语法：INITIALIZE 变数串行 { LIKE 字段串行 | TO NULL }</p>
+<p>示范：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DATABASE ds</span><br><span class="line">MAIN</span><br><span class="line">    DEFINE cr RECORD LIKE customer.*</span><br><span class="line">    INITIALIZE cr.cust_name TO NULL</span><br><span class="line">    INITIALIZE cr.* LIKE customer.*</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
+<h2 id="预定义完成变数"><a href="#预定义完成变数" class="headerlink" title="预定义完成变数"></a>预定义完成变数</h2><p>以下说明一些系统的预先定义变量及用途：</p>
+<ul>
+<li>INT_FLAG：当设置DEFER INTERRUPT 时，系统即会在用户每次按下『中断键』时，将此变数设置为『TRUE』，须要程序恢复回原值（FALSE）。</li>
+<li>STATUS：储存每次SQL 的运行状态。</li>
+</ul>
+<h2 id="常数的定义"><a href="#常数的定义" class="headerlink" title="常数的定义"></a>常数的定义</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CONSTANT c1 = &quot;Drink&quot; -- 自行宣告为 STRING</span><br><span class="line">CONSTANT c2 = 4711 -- 自行宣告为 INTEGER</span><br><span class="line">CONSTANT c3 SMALLINT = 12000 -- 自行修正为 INTEGER</span><br><span class="line">CONSTANT c4 CHAR(10) = &quot;abc&quot; -- 遵照设置为 CHAR(10)</span><br></pre></td></tr></table></figure>
+<h2 id="预定义完成常数"><a href="#预定义完成常数" class="headerlink" title="预定义完成常数"></a>预定义完成常数</h2><ul>
+<li>NULL：即表示NULL。</li>
+<li>TRUE：表示布尔逻辑中的『非零』值，缺省为『1』，但不可视为『1』运算。</li>
+<li>FALSE：表示布尔逻辑中的『零』值，缺省为『0』，但不可视为『0』运算。</li>
+<li>NOTFOUND：表示SQL 信息中的『找不到notfound』，缺省为『100』，但不可视为『100』运算。</li>
+</ul>
+<h2 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h2><h3 id="比较表达式"><a href="#比较表达式" class="headerlink" title="比较表达式"></a>比较表达式</h3><h3 id="数值表达式"><a href="#数值表达式" class="headerlink" title="数值表达式"></a>数值表达式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DEFINE i,j SMALLINT</span><br><span class="line">    LET i = 9</span><br><span class="line">    LET j = 2</span><br><span class="line">    DISPLAY i + j</span><br><span class="line">    DISPLAY i - j</span><br><span class="line">    DISPLAY i * j</span><br><span class="line">    DISPLAY i / j</span><br><span class="line">    DISPLAY j ** i</span><br><span class="line">    DISPLAY i mod j</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
+<h3 id="字符串表达式"><a href="#字符串表达式" class="headerlink" title="字符串表达式"></a>字符串表达式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DEFINE i,j,k CHAR(20)</span><br><span class="line">    LET i = &quot;TIPTOP GP&quot;</span><br><span class="line">    LET j = &quot;Genero BDL&quot;</span><br><span class="line">    DISPLAY i , j CLIPPED</span><br><span class="line">    DISPLAY i || j CLIPPED</span><br><span class="line">    DISPLAY i || j || k</span><br><span class="line">    DISPLAY i[4,6]</span><br><span class="line">    DISPLAY i CLIPPED , j CLIPPED</span><br><span class="line">    DISPLAY 5 SPACES,i</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
+<p>字符串链接：,<br>||</p>
+<p>str[m,n]<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">    LET i = &quot;TIPTOP GP Genero BDL&quot;</span><br><span class="line">    LET j= i[1,9]</span><br><span class="line">    DISPLAY &quot; i= &quot;, i</span><br><span class="line">Show: i=TIPTOP GP</span><br></pre></td></tr></table></figure></p>
+<p>USING：针对数值或日期设置其打印或显示于画面上的格式，若需设置时，须注意溢位（overflow）的问题。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LET salary =1000</span><br><span class="line">PRINT salary USING &quot; $##,### &quot;</span><br><span class="line">DISPLAY &quot;yyyy-mm-dd :&quot;,TODAY USING &quot;yyyy-mm-dd&quot;</span><br><span class="line">Show1: $ _1,000</span><br><span class="line">Show1: yyyy-mm-dd :2004-06-11</span><br></pre></td></tr></table></figure></p>
+<p><img src="02.jpg" alt="img"></p>
+<p><img src="03.jpg" alt="img"></p>
+<p>CLIPPED：清除尾部空白<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">    LET i = &quot;TIPTOP GP &quot;</span><br><span class="line">    LET j = &quot;Genero BDL&quot;</span><br><span class="line">    DISPLAY “i&amp;j=&quot;, i CLIPPED, j CLIPPED</span><br><span class="line">Show: i&amp;j= TIPTOP GP Genero BDL</span><br></pre></td></tr></table></figure></p>
+<p>SPACES：输出空白字符串<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">    LET i = &quot;TIPTOP GP &quot;</span><br><span class="line">    LET j = &quot;Genero BDL&quot;</span><br><span class="line">    DISPLAY “i&amp;j=&quot;, i ,8 SPACES, j CLIPPED</span><br><span class="line">Show: i&amp;j= TIPTOP GP Genero BDL</span><br></pre></td></tr></table></figure></p>
+<h3 id="逻辑、日期、字段表达式"><a href="#逻辑、日期、字段表达式" class="headerlink" title="逻辑、日期、字段表达式"></a>逻辑、日期、字段表达式</h3><p><img src="01.jpg" alt="img"></p>
+<h2 id="全域变数指定"><a href="#全域变数指定" class="headerlink" title="全域变数指定"></a>全域变数指定</h2><p>语法一：直接写定 GLOBALS 区块<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GLOBALS</span><br><span class="line">    declaration-statement</span><br><span class="line">    [,...]</span><br><span class="line">END GLOBALS</span><br></pre></td></tr></table></figure></p>
+<p>语法二：读入已写好的共同设置档（外部档案）。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GLOBALS &quot;filename&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="变数的生命周期"><a href="#变数的生命周期" class="headerlink" title="变数的生命周期"></a>变数的生命周期</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DATABASE ds</span><br><span class="line">GLOBALS</span><br><span class="line">    DEFINE g_employee CHAR(10)</span><br><span class="line">END GLOBALS</span><br><span class="line">    DEFINE g_tty CHAR(32)</span><br><span class="line">MAIN</span><br><span class="line">    DEFINE answer CHAR(1)</span><br><span class="line">END MAIN</span><br><span class="line">FUNCTION ins_employee()</span><br><span class="line">    DEFINE flag CHAR(1),</span><br><span class="line">        change SMALLINT</span><br><span class="line">END FUNCTION</span><br></pre></td></tr></table></figure>
+<h1 id="程控流程"><a href="#程控流程" class="headerlink" title="程控流程"></a>程控流程</h1><h2 id="Module-程序架构"><a href="#Module-程序架构" class="headerlink" title="Module 程序架构"></a>Module 程序架构</h2><p>程序部份可区分为MAIN( )函式、一般FUNCTION( )函式及报表结构定义REPORT( )函式等。</p>
+<h3 id="MAIN-函式"><a href="#MAIN-函式" class="headerlink" title="MAIN( ) 函式"></a>MAIN( ) 函式</h3><p>MAIN( )函式是程序运行的入口，一个完整可运行的程序必定仅含一个MAIN( )函式。</p>
+<p>示范：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DISPLAY &quot;Hello, world!&quot;</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
+<p>DEFER 设置</p>
+<p>此设置可定义程序是否要拦截『当用户按下中断（interrupt）或离开（quit）键』时所送出<br>的系统讯号。</p>
+<p>语法：DEFER { INTERRUPT | QUIT }</p>
+<p>OPTIONS 设置</p>
+<p>此段设置可变更系统缺省的选项。</p>
+<p>Exceptions 设置</p>
+<p>定义当遇到 SQL 错误时，系统要采取何种方式因应。此设置不限MAIN( )函式可设置，此设置在程序中想改变因应方式时可再次指定，即可以新设置方式处理。</p>
+<p>语法：WHENEVER [ANY] ERROR { CONTINUE | STOP | CALL function | GOTO label }</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    OPTIONS #改变一些系统缺省值</span><br><span class="line">        FORM LINE FIRST + 2, #画面开始的位置</span><br><span class="line">        MESSAGE LINE LAST, #信息显示的位置</span><br><span class="line">        PROMPT LINE LAST, #提示信息的位置</span><br><span class="line">        INPUT NO WRAP #录入的方式：不打转</span><br><span class="line">    DEFER INTERRUPT</span><br><span class="line">    WHENEVER ERROR STOP</span><br><span class="line">    DISPLAY “Change Exception!”</span><br><span class="line">    WHENEVER ERROR CALL chk_err #此处的CALL 是没有括号的</span><br><span class="line">END MAIN</span><br><span class="line">FUNCTION chk_err( )</span><br><span class="line">    DISPLAY “Error Happened!”</span><br><span class="line">END FUNCTION</span><br></pre></td></tr></table></figure>
+<h3 id="一般-FUNCTION-函式"><a href="#一般-FUNCTION-函式" class="headerlink" title="一般 FUNCTION( ) 函式"></a>一般 FUNCTION( ) 函式</h3><p>运行某个特定功能的子函式，程序中可将某些功能独立编写为一个个的子函式，以供互相呼叫之用，如此即可趋近模块化的目标。同一支完整作业内的Function 名称不能相同。</p>
+<p>示范：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    CALL sayIt()</span><br><span class="line">END MAIN</span><br><span class="line">FUNCTION sayIt()</span><br><span class="line">    DISPLAY &quot;Hello, world!&quot;</span><br><span class="line">END FUNCTION</span><br></pre></td></tr></table></figure>
+<h3 id="报表结构-REPORT-函式"><a href="#报表结构-REPORT-函式" class="headerlink" title="报表结构 REPORT( )函式"></a>报表结构 REPORT( )函式</h3><p>为函式的一种，专门用来设置报表打印格式，后续章节有详细的介绍。</p>
+<p>REPORT 结构示范：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">REPORT test_rep(sr)</span><br><span class="line">．．．</span><br><span class="line">    FORMAT</span><br><span class="line">        PAGE HEADER</span><br><span class="line">        BEFORE GROUP</span><br><span class="line">        ON EVERY ROW</span><br><span class="line">        AFTER GROUP</span><br><span class="line">    ．．．</span><br><span class="line">END REPORT</span><br></pre></td></tr></table></figure>
+<h3 id="4GL-批注符号"><a href="#4GL-批注符号" class="headerlink" title="4GL 批注符号"></a>4GL 批注符号</h3><ul>
+<li>{}：可以将某个范围做备注。</li>
+<li>#：将某行做备注。</li>
+<li>–：将某行做备注。</li>
+</ul>
+<h3 id="CALL"><a href="#CALL" class="headerlink" title="CALL"></a>CALL</h3><p>运行指定的函式（Function），若有回传值，以RETURNING 接回。</p>
+<p>语法：CALL function ( [ parameter [,…] ] ) [ RETURNING variable [,…] ]</p>
+<h3 id="RETURN"><a href="#RETURN" class="headerlink" title="RETURN"></a>RETURN</h3><p>传回原呼叫函式所需的变量值，并停止此子函式的运行。</p>
+<p>语法：RETURN [ value [,…] ]</p>
+<p>示范一：回传单一值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DEFINE var1 CHAR(10)</span><br><span class="line">    DEFINE var2 CHAR(2)</span><br><span class="line">    LET var1 = foo()</span><br><span class="line">    DISPLAY &quot;var1 = &quot; || var1</span><br><span class="line">    CALL foo() RETURNING var2</span><br><span class="line">    DISPLAY &quot;var2 = &quot; || var2</span><br><span class="line">END MAIN</span><br><span class="line">FUNCTION foo()</span><br><span class="line">    RETURN &quot;Hello&quot;</span><br><span class="line">END FUNCTION</span><br></pre></td></tr></table></figure>
+<p>示范二：回传单一值（布尔值）<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    IF foo() THEN</span><br><span class="line">        DISPLAY &quot;Choice is OK!”</span><br><span class="line">    END IF</span><br><span class="line">END MAIN</span><br><span class="line">FUNCTION foo()</span><br><span class="line">    RETURN TRUE</span><br><span class="line">END FUNCTION</span><br></pre></td></tr></table></figure></p>
+<p>示范三：回传多值<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DEFINE var1 CHAR(15)</span><br><span class="line">    DEFINE var2 CHAR(15)</span><br><span class="line">    CALL foo() RETURNING var1, var2</span><br><span class="line">    DISPLAY var1, var2</span><br><span class="line">END MAIN</span><br><span class="line">FUNCTION foo()</span><br><span class="line">    DEFINE r1 CHAR(15)</span><br><span class="line">    DEFINE r2 CHAR(15)</span><br><span class="line">    LET r1 = &quot;return value 1&quot;</span><br><span class="line">    LET r2 = &quot;return value 2&quot;</span><br><span class="line">    RETURN r1, r2</span><br><span class="line">END FUNCTION</span><br></pre></td></tr></table></figure></p>
+<p>示范4-1：(test1.4gl)<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DISPLAY &quot;MAIN FUNCTION&quot;</span><br><span class="line">    CALL a1()</span><br><span class="line">    CALL a2()</span><br><span class="line">    RUN &quot;fglrun test3&quot;</span><br><span class="line">END MAIN</span><br><span class="line">FUNCTION a1()</span><br><span class="line">    DISPLAY &quot;SUB FUNCTION a1()&quot;</span><br><span class="line">END FUNCTION</span><br></pre></td></tr></table></figure></p>
+<p>以上程序段会呼叫另外两个 Function，并且利用RUN 指令运行一道unix 指令。</p>
+<p>示范 4-2：(test2.4gl )<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">FUNCTION a2()</span><br><span class="line">    # a2 function</span><br><span class="line">    DISPLAY &quot;SUB FUNCTION a2()&quot;</span><br><span class="line">END FUNCTION</span><br></pre></td></tr></table></figure></p>
+<p>示范 4-3：(test3.4gl )<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DISPLAY &quot;This is test3.4gl&quot;</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure></p>
+<h3 id="IF"><a href="#IF" class="headerlink" title="IF"></a>IF</h3><p>依条件运行程序</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IF condition THEN</span><br><span class="line">    statement</span><br><span class="line">    [...]</span><br><span class="line">[ ELSE</span><br><span class="line">    statement</span><br><span class="line">    [...]</span><br><span class="line">]</span><br><span class="line">END IF</span><br></pre></td></tr></table></figure></p>
+<p>示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DEFINE name CHAR(20)</span><br><span class="line">    LET name = &quot;John Smith&quot;</span><br><span class="line">    IF name MATCHES &quot;John*&quot; THEN</span><br><span class="line">        DISPLAY &quot;The first name is too common to be displayed.&quot;</span><br><span class="line">        IF name MATCHES &quot;*Smith&quot; THEN</span><br><span class="line">            DISPLAY &quot;Even the last name is too common to be displayed.&quot;</span><br><span class="line">        END IF</span><br><span class="line">    ELSE</span><br><span class="line">        DISPLAY &quot;The name is &quot; , name , &quot;.&quot;</span><br><span class="line">    END IF</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure></p>
+<h3 id="CASE"><a href="#CASE" class="headerlink" title="CASE"></a>CASE</h3><p>运行符合条件的特定程序段</p>
+<p>语法一：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CASE expression-1</span><br><span class="line">    WHEN expression-2</span><br><span class="line">        &#123; statement | EXIT CASE &#125;</span><br><span class="line">        [...]</span><br><span class="line">    [ OTHERWISE</span><br><span class="line">        &#123; statement | EXIT CASE &#125;</span><br><span class="line">        [...]</span><br><span class="line">    ]</span><br><span class="line">END CASE</span><br></pre></td></tr></table></figure></p>
+<p>说明：若判别式很单纯，例如：只需判断一个数字的数值，因该值不同而有不同的选项时，<br>可采用此写法（如下列示范）。若判断式较复杂，或可能同时出现两种以上的条件（成立）<br>时，请改用语法二。</p>
+<p>示范：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DEFINE v CHAR(10)</span><br><span class="line">    LET v = &quot;C1&quot;</span><br><span class="line">    CASE v</span><br><span class="line">        WHEN &quot;C1&quot;</span><br><span class="line">            DISPLAY &quot;Value is C1&quot;</span><br><span class="line">        WHEN &quot;C2&quot;</span><br><span class="line">            DISPLAY &quot;Value is C2&quot;</span><br><span class="line">        WHEN &quot;C3&quot;</span><br><span class="line">            DISPLAY &quot;Value is C3&quot;</span><br><span class="line">        OTHERWISE</span><br><span class="line">            DISPLAY &quot;Unexpected value&quot;</span><br><span class="line">    END CASE</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
+<p>语法二：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CASE</span><br><span class="line">    WHEN boolean-expression</span><br><span class="line">        &#123; statement | EXIT CASE &#125;</span><br><span class="line">        [...]</span><br><span class="line">    [ OTHERWISE</span><br><span class="line">        &#123; statement | EXIT CASE &#125;</span><br><span class="line">        [...]</span><br><span class="line">    ]</span><br><span class="line">END CASE</span><br></pre></td></tr></table></figure></p>
+<p>示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DEFINE v CHAR(10)</span><br><span class="line">    LET v = &quot;C1&quot;</span><br><span class="line">    CASE</span><br><span class="line">        WHEN ( v=&quot;C1&quot; OR v=&quot;C2&quot; )</span><br><span class="line">            DISPLAY &quot;Value is either C1 or C2&quot;</span><br><span class="line">        WHEN ( v=&quot;C3&quot; OR v=&quot;C4&quot; )</span><br><span class="line">            DISPLAY &quot;Value is either C3 or C4&quot;</span><br><span class="line">        OTHERWISE</span><br><span class="line">            DISPLAY &quot;Unexpected value&quot;</span><br><span class="line">    END CASE</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure></p>
+<p>注：当采用此种语法时需注意：需避免同时有两种情况成立的情形发生。若在未注意<br>的状况下发生，则系统仅会走第一条符合条件的路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DEFINE a,b INT</span><br><span class="line">    LET a = b := 10</span><br><span class="line">    CASE</span><br><span class="line">        WHEN a=10 DISPLAY &quot; a is ok &quot;</span><br><span class="line">        WHEN b=20 DISPLAY &quot; b is ok &quot;</span><br><span class="line">        OTHERWISE DISPLAY &quot; nothing is ok &quot;</span><br><span class="line">    END CASE</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure></p>
+<p>画面仅会显示『 a is ok 』</p>
+<h3 id="FOR"><a href="#FOR" class="headerlink" title="FOR"></a>FOR</h3><p>依指定的次数运行程序</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">FOR counter = start TO finish [ STEP value ]</span><br><span class="line">    statement</span><br><span class="line">    [...]</span><br><span class="line">END FOR</span><br></pre></td></tr></table></figure></p>
+<p>示范：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DEFINE i, i_min, i_max INTEGER</span><br><span class="line">    LET i_min = 1</span><br><span class="line">    LET i_max = 10</span><br><span class="line">    DISPLAY &quot;Look how well I can count from &quot; , i_min , &quot; to &quot; , i_max</span><br><span class="line">    DISPLAY &quot;I can count forwards...&quot;</span><br><span class="line">    FOR i = i_min TO i_max</span><br><span class="line">        DISPLAY i</span><br><span class="line">    END FOR</span><br><span class="line">    DISPLAY &quot;... and backwards!&quot;</span><br><span class="line">    FOR i = i_max TO i_min STEP -1</span><br><span class="line">        DISPLAY i</span><br><span class="line">    END FOR</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
+<h3 id="WHILE"><a href="#WHILE" class="headerlink" title="WHILE"></a>WHILE</h3><p>运行程序直到条件式不成立为止</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">WHILE b-expression</span><br><span class="line">    statement</span><br><span class="line">    [...]</span><br><span class="line">END WHILE</span><br></pre></td></tr></table></figure></p>
+<p>示范：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DEFINE a,b INTEGER</span><br><span class="line">    LET a=20</span><br><span class="line">    LET b=1</span><br><span class="line">    WHILE a &gt; b</span><br><span class="line">        DISPLAY a , &quot; &gt; &quot; , b</span><br><span class="line">        LET b = b + 1</span><br><span class="line">    END WHILE</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
+<h3 id="CONTINUE"><a href="#CONTINUE" class="headerlink" title="CONTINUE"></a>CONTINUE</h3><p>重新运行循环</p>
+<p>语法：CONTINUE { FOR | FOREACH | MENU | CONSTRUCT | INPUT | WHILE }</p>
+<p>示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DEFINE i INTEGER</span><br><span class="line">    LET i = 0</span><br><span class="line">    WHILE i &lt; 5</span><br><span class="line">        LET i = i + 1</span><br><span class="line">        DISPLAY &quot;i=&quot; || i</span><br><span class="line">        CONTINUE WHILE</span><br><span class="line">        DISPLAY &quot;This will never be displayed !&quot;</span><br><span class="line">    END WHILE</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure></p>
+<h3 id="EXIT离开控制段"><a href="#EXIT离开控制段" class="headerlink" title="EXIT离开控制段"></a>EXIT离开控制段</h3><p>语法：EXIT { CASE | FOR | MENU | CONSTRUCT | FOREACH | REPORT | DISPLAY | INPUT | WHILE | PROGRAM（注） }</p>
+<p>示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DEFINE i INTEGER</span><br><span class="line">    LET i = 0</span><br><span class="line">    WHILE TRUE</span><br><span class="line">        DISPLAY &quot;This is an infinite loop. How would you get out of here ?&quot;</span><br><span class="line">        LET i = i + 1</span><br><span class="line">        IF i = 100 THEN</span><br><span class="line">            EXIT WHILE</span><br><span class="line">        END IF</span><br><span class="line">    END WHILE</span><br><span class="line">    DISPLAY &quot;Well done.&quot;</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure></p>
+<p>注：若程序运行到 EXIT PROGRAM，则表示『正常离开作业』（非异常中止），所以不会有任何stderr 码传出。但此指令后可跟随 exit_code，exit_code 可为8bit 的数值，系统传出时会转换为正整数，以供原呼叫此作业之程序判别状态。</p>
+<h3 id="SLEEP"><a href="#SLEEP" class="headerlink" title="SLEEP"></a>SLEEP</h3><p>程序依指定秒数暂停</p>
+<p>语法： SLEEP seconds</p>
+<p>注意：如果seconds &lt; 0 或 seconds IS NULL，则程序不会停止。</p>
+<p>示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DISPLAY &quot;Please wait 5 seconds...&quot;</span><br><span class="line">    SLEEP 5</span><br><span class="line">    DISPLAY &quot;Thank you.&quot;</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure></p>
+<h3 id="EL"><a href="#EL" class="headerlink" title="EL"></a>EL</h3><p>宣告程序注标。</p>
+<p>语法： LABEL label-id：</p>
+<p>注意：结尾处有一冒号（：）。</p>
+<h3 id="GOTO"><a href="#GOTO" class="headerlink" title="GOTO"></a>GOTO</h3><p>移到指定的程序段继续运行（为了程序的易读性与结构性，建议勿使用此指令）。</p>
+<p>语法： GOTO： label-id</p>
+<p>示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">    DISPLAY &quot;Before GOTO&quot;</span><br><span class="line">    GOTO: label_id1</span><br><span class="line">    DISPLAY &quot;Never Been Displayed&quot;</span><br><span class="line">    LABEL label_id1:</span><br><span class="line">    DISPLAY &quot;After GOTO&quot;</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure></p>
+<h1 id="CURSOR-的应用"><a href="#CURSOR-的应用" class="headerlink" title="CURSOR 的应用"></a>CURSOR 的应用</h1><h2 id="数据的查询、更改"><a href="#数据的查询、更改" class="headerlink" title="数据的查询、更改"></a>数据的查询、更改</h2><p>在处理数据时，若只有单笔数据的选取，则可用单纯的SQL 指令即可（本书设置各位读者对SQL 指令均已熟悉，故不再说明SQL 指令的写法，请参阅其它SQL 语言介绍专书）。</p>
+<p>若是要抓取多笔数据处理时，就会因抓取的特性不同（例如：一次只抓一笔数据处理，完成后再抓次笔，如『个人数据表』；或一次全部抓取，一起编辑，如『个人门禁进出记录表』等），而须使用不同的指标（CURSOR）。</p>
+<p>在介绍指标（CURSOR）前，先介绍其它将应用到的相关指令。</p>
+<h3 id="CONSTRUCT"><a href="#CONSTRUCT" class="headerlink" title="CONSTRUCT"></a>CONSTRUCT</h3><p>此指令可让用户在画面上录入查询条件（通称Query By Example；QBE），以取得用户的查询范围数据。用户的查询数据会组成一串WHERE 指令（参下页批注），并置入设置好的变数中。若用户未录入任何条件，即按下『确定』离开CONSTRUCT，系统也会自动于此变量中补入『1=1』。</p>
+<p><img src="04.jpg" alt="img"></p>
+<p>语法二：若字段名称和变量名称相同时，也可改采下列写法：<br>CONSTRUCT BY NAME char_variable ON column_list</p>
+<p>说明：</p>
+<ul>
+<li>char_variable 为接取用户录入数据的字符串变量（建议以STRING 格式变量接取）</li>
+<li>column_list 为对应到表格（TABLE）的字段名称清单（逗号隔开）</li>
+<li>field_list 为画面（WINDOW 或是FORM）上的字段代码清单（逗号隔开）</li>
+<li>若有增加控制区段（CONTROL BLOCK，如ON ACTION 等），则就要加上『ENDCONSTRUCT』</li>
+</ul>
+<p>示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CONSTRUCT BY NAME l_str ON employee , salary</span><br><span class="line">    ON IDLE 10</span><br><span class="line">        EXIT PROGRAM</span><br><span class="line">END CONSTRUCT</span><br></pre></td></tr></table></figure></p>
+<h3 id="PREPARE"><a href="#PREPARE" class="headerlink" title="PREPARE"></a>PREPARE</h3><p>若已经得到一个完整的WHERE 条件后，接下来即可将此条件，组合成SQL 字符串，再转换为一个完整且可以抓取符合条件的SQL 指令。</p>
+<p>运行完 CONSTRUCT 后，系统只能得到一个『SQL 字符串（如上页示范的l_str）』，并非为『可运行的指令』，因此必须透过PREPARE 指令，将此SQL 字符串转换成『可运行的SQL指令』PREPARE 会将字符串传入数据库检查语法的正确性，再回传予一个prepared-id 以供后续呼叫之用。</p>
+<p>语法：PREPARE statement-name FROM char_variable</p>
+<p>说明：</p>
+<ul>
+<li>statement-name 是为一个PREPARE 完成后的替代代码（prepared-id）</li>
+<li>运行 PREPARE 指令前须先组好SELECT 叙述。</li>
+</ul>
+<h3 id="FREE"><a href="#FREE" class="headerlink" title="FREE"></a>FREE</h3><p>释放 PREPARE 的记录。</p>
+<p>语法：FREE statement-name</p>
+<p>示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LET l_str = “employee=&apos;1000&apos; AND salary&gt;&apos;30000’ “</span><br><span class="line">LET l_sql = “ SELECT * FROM employee_file WHERE “,l_str</span><br><span class="line">PREPARE emp_pre FROM l_sql</span><br><span class="line">…</span><br><span class="line">FREE emp_pre</span><br></pre></td></tr></table></figure></p>
+<h2 id="数据的查询"><a href="#数据的查询" class="headerlink" title="数据的查询"></a>数据的查询</h2><p>Genero BDL 中有两种查询用的指标（CURSOR）可以运用在资料的查询：</p>
+<h3 id="SCROLLING-CURSOR"><a href="#SCROLLING-CURSOR" class="headerlink" title="SCROLLING CURSOR"></a>SCROLLING CURSOR</h3><p>通常运用在单档控制或查询类的程序，如『个人数据表』般的作业，可以随机抓取数据，一次一笔，再处理完后可以选择往前一比、往后一笔或往这个查询序列中的任何一笔数据移动的指针（CURSOR）。</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DECLARE cursor_id SCROLL CURSOR [WITH HOLD] FOR sql statement</span><br><span class="line">OPEN cursor_id [USING value]</span><br><span class="line">FETCH [first|last|previous|next| cursor_id INTO variable</span><br><span class="line">CLOSE cursor_id</span><br></pre></td></tr></table></figure></p>
+<h3 id="Non-SCROLLING-CURSOR"><a href="#Non-SCROLLING-CURSOR" class="headerlink" title="Non-SCROLLING CURSOR"></a>Non-SCROLLING CURSOR</h3><p>通常运用在双档控制程序或报表程序，如『个人出缺勤统计表』般的作业，抓取数据是依序（seguential）的方式，一次可以将合条件要求的资料一笔接着一笔的抓出，直到资料全数抓完（或被强制终止）为止。</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DECLARE cursor_id CURSOR [WITH HOLD] FOR sql statement</span><br><span class="line">FOREACH [first|last|previous|next| cursor_id INTO variable</span><br><span class="line">…</span><br><span class="line">END FOREACH</span><br></pre></td></tr></table></figure></p>
+<h3 id="SCROLLING-CURSOR-1"><a href="#SCROLLING-CURSOR-1" class="headerlink" title="SCROLLING CURSOR"></a>SCROLLING CURSOR</h3><p>在运行『个人基本数据』的查询时，大多都会希望调用出来的资料，一次只有一个人的数据，这样比较容易聚焦，待查询或编修等工作完成后，再选择上一笔（或下一笔、任何一笔）数据来继续处理。如这类的『一次仅叫用单笔数据』，即为SCROLLING CURSOR 的作业范围。组成SCROLLING CURSOR 需以下列指令组成：</p>
+<p>DECLARE 叙述</p>
+<p>语法：DECLARE cursor_id SCROLL CURSOR FROM [ prepared_id | char_variable ] 或 DECLARE cursor_id SCROLL CURSOR FOR select_statement</p>
+<p>说明：DECLARE 后面可用『FOR 接SQL 查询指令』或用『FROM 接prepared-id 或是一个SQL查询字符串（注）』。</p>
+<p>OPEN 叙述</p>
+<p>语法：OPEN cursor_id</p>
+<p>说明：</p>
+<ul>
+<li>本指令可用 STATUS 来检视是否运行成功。</li>
+<li>在后续要使用 cursor 时，之前要先将cursor OPEN 起来。</li>
+<li>此叙述仅决定符合的数据，并不是真正从数据库中撷取数据。</li>
+</ul>
+<p>注：在DECLARE 前可用PREPARE 指令运行SQL 字符串的转换及检查，除下列两种情况之外，其它情形均不一定需要写PREPARE 指令：</p>
+<ul>
+<li>SQL 查询指令中含有问号（Question Mark，参考本章中『USING 的用法』）</li>
+<li>SQL 查询指令中，拥有多组的数据可能来源（tables），如</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CASE condiction</span><br><span class="line">    WHEN “A” LET l_sql = “SELECT count(*) FROM abc_file “</span><br><span class="line">    WHEN “B” LET l_sql = “SELECT count(*) FROM def_file “</span><br><span class="line">END CASE</span><br></pre></td></tr></table></figure>
+<p>如上述情况，就必需使用 PREPARE 指令。</p>
+<p>FETCH 叙述</p>
+<p>语法：FETCH cursor_id INTO program_variable</p>
+<p>说明：当宣告为 SCROLLING CURSOR 时，可以配合以下移动Cursor 的指令：</p>
+<p><img src="05.jpg" alt="img"></p>
+<p>CLOSE 叙述</p>
+<p>语法：CLOSE cursor_id</p>
+<p>说明：关闭并释放指标（CURSOR）的储存空间。</p>
+<p>示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DATABASE ds</span><br><span class="line">MAIN</span><br><span class="line">  DEFINE a STRING</span><br><span class="line">  DEFINE b,c CHAR(10)</span><br><span class="line"></span><br><span class="line">  DECLARE test01 SCROLL CURSOR FOR</span><br><span class="line">    SELECT zz01 FROM zz_file WHERE zz01 = “axmt410”</span><br><span class="line">  OPEN test01</span><br><span class="line">  FETCH FIRST test01 INTO b</span><br><span class="line">  DISPLAY b</span><br><span class="line"></span><br><span class="line">  LET c = &quot;axmt410&quot;</span><br><span class="line">  LET a = &quot;SELECT zz01 FROM zz_file WHERE zz01=&apos;&quot;,c CLIPPED,&quot;&apos; &quot;</span><br><span class="line">  DECLARE test02 SCROLL CURSOR FROM a</span><br><span class="line">  OPEN test02</span><br><span class="line">  FETCH LAST test02 INTO b</span><br><span class="line">  DISPLAY b</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure></p>
+<p><img src="06.jpg" alt="img"></p>
+<h3 id="Non-SCROLLING-CURSOR-1"><a href="#Non-SCROLLING-CURSOR-1" class="headerlink" title="Non-SCROLLING CURSOR"></a>Non-SCROLLING CURSOR</h3><p>如查询『个人出缺勤统计表』（或打印）时，就会希望系统将指定人的数据全数列示出来（因为不希望看一笔、按键、再看一笔…），如果要达到这个动作，就必须改用Non-SCROLLINGCURSOR。以下分别列出Non-ScrollING 所需的控制指令：</p>
+<p>DECLARE 叙述</p>
+<p>语法：DECLARE cursor_id CURSOR FROM [ prepared_id | char_variable ]或DECLARE cursor_id CURSOR FOR select_statement</p>
+<p>说明：因为是『Non-SCROLLING CURSOR』，所以直接写『CURSOR』即可。</p>
+<p>FOREACH（LOOP）叙述</p>
+<p><img src="07.jpg" alt="img"></p>
+<p>示范：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">  DEFINE clist ARRAY[200] OF RECORD</span><br><span class="line">    cnum INTEGER,</span><br><span class="line">    cname CHAR(50)</span><br><span class="line">    END RECORD</span><br><span class="line">  DEFINE i INTEGER</span><br><span class="line">  DATABASE stores</span><br><span class="line">  DECLARE c1 CURSOR FOR SELECT customer_num, cust_name FROM customer</span><br><span class="line">  LET i=0</span><br><span class="line">  FOREACH c1 INTO clist[i+1].*</span><br><span class="line">    LET i=i+1</span><br><span class="line">    DISPLAY clist[i].*</span><br><span class="line">  END FOREACH</span><br><span class="line">  DISPLAY &quot;Number of rows found: &quot;, i</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
+<h2 id="数据的锁定"><a href="#数据的锁定" class="headerlink" title="数据的锁定"></a>数据的锁定</h2><p>当要进行数据的更改（UPDATE）时，最令人担心的就是有多人同时修到同一笔数据，因此，如何在开始编修前进行数据锁定（LOCK），以确保同时间只有一人能取得更改权，就成了在撰写程序时应注意的事。Genero BDL 中延续INFORMIX 4GL 的作法，采用LOCKINGCURSOR 对数据进行锁定。</p>
+<h3 id="LOCKING-CURSOR"><a href="#LOCKING-CURSOR" class="headerlink" title="LOCKING CURSOR"></a>LOCKING CURSOR</h3><p>又称『FOR UPDATE CURSOR』。通常运用在数据更新（UPDATE）程序段，将数据进行一个上锁的动作，以避免两组以上的联机同时再更新同一TABLE 下的同一笔数据（RECORD）。如果未作LOCK 的动作，可能再抓取数据的同时，有其它人正在进行数据的异动。此CURSOR 不属于数据查询的CURSOR，而需列为更新的CURSOR。</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DECLARE cursor_name CURSOR FOR sql statement FOR UPDATE [NOWAIT]</span><br><span class="line">OPEN cursor_id [USING value]</span><br><span class="line">FETCH cursor_id INTO variable</span><br><span class="line">CLOSE cursor_id</span><br></pre></td></tr></table></figure></p>
+<h3 id="DECLARE-叙述"><a href="#DECLARE-叙述" class="headerlink" title="DECLARE 叙述"></a>DECLARE 叙述</h3><p>语法：DECLARE cursor_name CURSOR FOR select_statement FOR UPDATE [NOWAIT]</p>
+<p>说明：</p>
+<ul>
+<li>此处与 SCROLL CURSOR 或Non-SCROLL CURSOR 最大的差异。在于SQL 查询指令的最后须加上『FOR UPDATE（ORACLE 数据库需再加上NOWAIT）』，以标明此CURSOR 为LOCKING CURSOR。</li>
+<li>此处亦可使用 FROM char_variable 方式来定义SQL 查询指令。</li>
+</ul>
+<h3 id="OPEN-叙述"><a href="#OPEN-叙述" class="headerlink" title="OPEN 叙述"></a>OPEN 叙述</h3><p>语法：OPEN cursor_id</p>
+<h3 id="FETCH-叙述"><a href="#FETCH-叙述" class="headerlink" title="FETCH 叙述"></a>FETCH 叙述</h3><p>语法：FETCH cursor_id INTO program_variable</p>
+<p>说明：此叙述除从数据库中取得资料外，在LOCKING CURSOR 的状态下，还会将所抓取到的资料锁住（LOCK），直到程序运行CLOSE cursor_id 的指令才会释放。</p>
+<h3 id="CLOSE-叙述"><a href="#CLOSE-叙述" class="headerlink" title="CLOSE 叙述"></a>CLOSE 叙述</h3><p>语法：CLOSE cursor_id</p>
+<p>说明：关闭并释放 CURSOR，待释放完成后，系统才会将被锁定的数据释放。</p>
+<p>示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DATABASE ds</span><br><span class="line">MAIN</span><br><span class="line">  DEFINE g_gav01 LIKE gav_file.gav01</span><br><span class="line">  DEFINE g_gav08 LIKE gav_file.gav08</span><br><span class="line">  LET g_forupd_sql = &quot;SELECT * from gav_file WHERE gav01=? AND gav08=? &quot;,</span><br><span class="line">  &quot; FOR UPDATE &quot;</span><br><span class="line">  DECLARE p_per_lock_u CURSOR FROM g_forupd_sql</span><br><span class="line">  OPEN p_per_lock_u USING g_gav01,g_gav08</span><br><span class="line">  OPEN p_per_lock_u USING g_gav01,g_gav08</span><br><span class="line">  IF STATUS THEN</span><br><span class="line">    CLOSE p_per_lock_u</span><br><span class="line">    RETURN</span><br><span class="line">  END IF</span><br><span class="line">  FETCH p_per_lock_u INTO g_gav_lock.*</span><br><span class="line">  IF SQLCA.sqlcode THEN</span><br><span class="line">    CLOSE p_per_lock_u</span><br><span class="line">    RETURN</span><br><span class="line">  END IF</span><br><span class="line">  CLOSE p_per_lock_u</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure></p>
+<h3 id="USING-的使用时机"><a href="#USING-的使用时机" class="headerlink" title="USING 的使用时机"></a>USING 的使用时机</h3><p>此处的『USING』和先前谈变量格式输出的USING 有不同的意义。</p>
+<p>有时，在组合 SQL 查询指令时，可能尚未取得相关的KEY 值供选取资料用，又不可以随意填不相关的值进入系统。</p>
+<p>如上方示范：在组查询的SQL 指令时，根本无法确知将要锁定的资料为何，因此『可以在SQL 查询指令中使用问号（？），待后续要使用此CURSOR 时，再将已知值用USING 传入』。</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LET sql statement = “SELECT * FROM table_id WHERE key_value = ? “</span><br><span class="line">DECLARE cursor_name CURSOR FOR sql statement FOR UPDATE [NOWAIT]</span><br><span class="line">OPEN cursor_id USING value</span><br></pre></td></tr></table></figure></p>
+<p>说明：</p>
+<ul>
+<li>问号（？）可以有多个。</li>
+<li>USING 必需跟在OPEN 后方，若有多个问绕，则此处需依序对映，并以逗号隔开。</li>
+</ul>
+<h3 id="TRANSACTION"><a href="#TRANSACTION" class="headerlink" title="TRANSACTION"></a>TRANSACTION</h3><p>当程序中运行『UPDATE』、『INSERT』、『DELETE』等指令时，都直接对数据库的数据进行异动，若有时数据需要多表格的同时连动时，会期望『所有的动作一起写入或一起毁弃』时，可采用『TRANSACTION』作法。</p>
+<p>在一个 TRANSACTION 开始后（以『BEGIN WORK』指令开始），所有的『UPDATE』、『INSERT』、『DELETE』指令均不会对实体数据库做动作，一直到结束后，依照不同的条件进行写入实体数据库（以『COMMIT WORK』指令做整批写入）、或运行变更毁弃（以『ROLLBACK WORK』指令进行）的动作。</p>
+<p>语法示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BEGIN WORK</span><br><span class="line">  [ UPDATE statement ]</span><br><span class="line">  [ INSERT statement ]</span><br><span class="line">  [ DELETE statement ]</span><br><span class="line">IF ( condiction ) THEN</span><br><span class="line">  COMMINT WORK</span><br><span class="line">ELSE</span><br><span class="line">  ROLLBACK WORK</span><br><span class="line">END IF</span><br></pre></td></tr></table></figure></p>
+<p>说明：</p>
+<ul>
+<li>BEGIN WORK 开始后，一定要有COMMIT WORK 或ROLLBACK WORK 做数据是否写入的判断。</li>
+<li>TRANSACTION 区中的程序尽量不要太长，以免影响需要调用同笔数据的其它用户（但用户本身不受影响，未COMMIT WORK 前仍可调用已变更数据）。</li>
+<li>有些 DDL 指令（如CREATE TABLE）会有自动COMMIT WORK 功能。</li>
+<li>当 COMMIT WORK（或ROLLBACK WORK）时，会自动关闭无宣告『WITH HOLD』的CURSOR。</li>
+</ul>
+<h3 id="大量运行同一-SQL-指令（EXECUTE）"><a href="#大量运行同一-SQL-指令（EXECUTE）" class="headerlink" title="大量运行同一 SQL 指令（EXECUTE）"></a>大量运行同一 SQL 指令（EXECUTE）</h3><p>当系统要运行大量的同一 SQL 指令（例如：要在工作数据中连续INSERT 十年的工作日数据），系统运行效能就会变成一个令人关心的议题。如塞入工作日数据，当然可以写做：</p>
+<p>INSERT INTO work_date VALUES ( “2005/07/01” , “Friday”, “Weekday”)</p>
+<p>然后再以一个 FOR LOOP 包起，这个作法一样可以运行，但效能还有可以改进的空间。程序的撰写若有强烈的效能考量，则可以考虑改用『EXECUTE』作法。</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PREPARE prepared_id FROM sql_statement</span><br><span class="line">EXECUTE prepared_id [USING variable_list ] [ INTO fvar [,...] ]</span><br><span class="line">FREE prepared_id</span><br></pre></td></tr></table></figure></p>
+<p>说明：</p>
+<ul>
+<li>EXECUTE 可以应用在『SELECT』、『UPDATE』、『INSERT』、『DELETE』等处。</li>
+<li>使用 EXECUTE 时，尽量将KEY 值或其它需要变异的值，保留至EXECUTE 指令时再以USING 方式传入。</li>
+</ul>
+<p>示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">FUNCTION update_customer_name( key, name )</span><br><span class="line">  DEFINE key INTEGER</span><br><span class="line">  DEFINE name CHAR(10)</span><br><span class="line">  PREPARE s1 FROM &quot;UPDATE customer SET name=? WHERE customer_num=?&quot;</span><br><span class="line">  EXECUTE s1 USING name, key</span><br><span class="line">  FREE s1</span><br><span class="line">END FUNCTION</span><br></pre></td></tr></table></figure></p>
+<h3 id="大量运行新增指令（PUT-FLUSH）"><a href="#大量运行新增指令（PUT-FLUSH）" class="headerlink" title="大量运行新增指令（PUT..FLUSH）"></a>大量运行新增指令（PUT..FLUSH）</h3><p>以上页塞入工作日数据示范来谈，除改用 EXECUTE 外还可以有更快速的作法，就是用『INSERT CURSOR』。Genero BDL 提供一INSERT CURSOR：『PUT…FLUSH』，示范如下所示：</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PREPARE prepared_id FROM INSERT_sql_statement</span><br><span class="line">DECLARE cursor_id [WITH HOLD] FOR prepared_id</span><br><span class="line">OPEN cursor_id</span><br><span class="line">PUT cursor_id FROM variable_list</span><br><span class="line">FLUSH cursor_id</span><br><span class="line">CLOSE cursor_id</span><br><span class="line">FREE cursor_id</span><br><span class="line">FREE prepared_id</span><br></pre></td></tr></table></figure></p>
+<p>示范：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAIN</span><br><span class="line">  DEFINE i INTEGER</span><br><span class="line">  DEFINE rec RECORD</span><br><span class="line">    key INTEGER,</span><br><span class="line">    name CHAR(30)</span><br><span class="line">    END RECORD</span><br><span class="line">  DATABASE stock</span><br><span class="line">  PREPARE is FROM &quot;INSERT INTO item VALUES (?,?)&quot;</span><br><span class="line">  DECLARE ic CURSOR FOR is</span><br><span class="line">  BEGIN WORK</span><br><span class="line">    OPEN ic</span><br><span class="line">    FOR i=1 TO 100</span><br><span class="line">      LET rec.key = i</span><br><span class="line">      LET rec.name = &quot;Item #&quot; || i</span><br><span class="line">      PUT ic FROM rec.*</span><br><span class="line">      IF i MOD 50 = 0 THEN</span><br><span class="line">        FLUSH ic</span><br><span class="line">      END IF</span><br><span class="line">    END FOR</span><br><span class="line">    CLOSE ic</span><br><span class="line">  COMMIT WORK</span><br><span class="line">  FREE ic</span><br><span class="line">  FREE is</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
+<h1 id="ARRAY-的应用"><a href="#ARRAY-的应用" class="headerlink" title="ARRAY 的应用"></a>ARRAY 的应用</h1><h2 id="ARRAY（数组）"><a href="#ARRAY（数组）" class="headerlink" title="ARRAY（数组）"></a>ARRAY（数组）</h2><p>数组可以依一维，二维或三维数组方式来储存数据</p>
+<p>固定数组（Static Array）定义<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ARRAY [ intconst [,intconst [,intconst] ] ] OF datatype</span><br></pre></td></tr></table></figure></p>
+<p>动态数组（Dynamic Array）定义<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DYNAMIC ARRAY [ WITH DIMENSION rank ] OF datatype</span><br></pre></td></tr></table></figure></p>
+<p>物件</p>
+<p><img src="08.jpg" alt="img"></p>
+<p><img src="09.jpg" alt="img"></p>
+<p><img src="10.jpg" alt="img"></p>
+<h2 id="INPUT-ARRAY"><a href="#INPUT-ARRAY" class="headerlink" title="INPUT ARRAY"></a>INPUT ARRAY</h2><p>Input Array 可以让用户透过Screen Record 录入数据</p>
+<p><img src="11.jpg" alt="img"></p>
+<p><img src="12.jpg" alt="img"></p>
+<p><img src="13.jpg" alt="img"></p>
+<p><img src="14.jpg" alt="img"></p>
+<p><img src="15.jpg" alt="img"></p>
+<h2 id="DISPLAY-ARRAY"><a href="#DISPLAY-ARRAY" class="headerlink" title="DISPLAY ARRAY"></a>DISPLAY ARRAY</h2><p>将程序数组的值显示在画面上</p>
+<p><img src="16.jpg" alt="img"></p>
+<p><img src="17.jpg" alt="img"></p>
+<p><img src="18.jpg" alt="img"></p>
+<h1 id="REPORT-撰写"><a href="#REPORT-撰写" class="headerlink" title="REPORT 撰写"></a>REPORT 撰写</h1><p>BDL 要印制出一份报表，程序分成二个部份：</p>
+<ol>
+<li>主程序中先驱动 REPORT DRIVER，并且撷取报表所需报表的数据。</li>
+<li>取得数据后进入 REPORT FUNCTION，做报表格式的设置，例如报表的版面设置、以及表头、表身、表尾如何安排。</li>
+</ol>
+<h2 id="FUNCTION-中启动REPORT"><a href="#FUNCTION-中启动REPORT" class="headerlink" title="FUNCTION 中启动REPORT"></a>FUNCTION 中启动REPORT</h2><h3 id="START-REPORT"><a href="#START-REPORT" class="headerlink" title="START REPORT"></a>START REPORT</h3><p>语法：START REPORT rep_name [TO { SCREEN |FILE filename | PRINTER } ]</p>
+<p>说明：</p>
+<ol>
+<li>这个指令是在驱动 REPORT DRIVER。</li>
+<li>TO SCREEN：为系统DEFAULT 可不写。</li>
+<li>TO FILE filenme：将REPORT 的结果送到一个档案中(档名自订)。</li>
+<li>TO PRINTER：将REPORT 结果送到打印机(系统打印机)。</li>
+<li>若(2)、(3)都不写，则系统会将结果自动送到屏幕输出。</li>
+</ol>
+<h3 id="OUTPUT-TO-REPORT-叙述"><a href="#OUTPUT-TO-REPORT-叙述" class="headerlink" title="OUTPUT TO REPORT 叙述"></a>OUTPUT TO REPORT 叙述</h3><p>语法：OUTPUT TO REPORT rep_name(expr_list)</p>
+<p>说明：该功能类似 CALL function，并传递参数，将数据送到REPORT FUNCTION。</p>
+<h3 id="FIENSH-REPORT-叙述"><a href="#FIENSH-REPORT-叙述" class="headerlink" title="FIENSH REPORT 叙述"></a>FIENSH REPORT 叙述</h3><p>语法：FINISH REPORT rep_name</p>
+<p>说明：此指令为结束报表印制的指令。</p>
+<p>4GL 报表示范：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">FUNCTION sel_employee( )</span><br><span class="line">  DEFINE p_employee RECORD LIKE employee_file.*</span><br><span class="line">  DECLARE emp_cs CURSOR FOR</span><br><span class="line">    SELECT * FROM employee_file</span><br><span class="line">    :</span><br><span class="line">  START REPORT emp_rep</span><br><span class="line">  :</span><br><span class="line">  FOREACH emp_cs INTO p_employee.*</span><br><span class="line">    OUTPUT TO REPORT emp_rep(p_employee.*)</span><br><span class="line">  END FOREACH</span><br><span class="line">  :</span><br><span class="line">  FINISH REPORT emp_rep</span><br><span class="line">END FUNCTION</span><br><span class="line">REPORT emp_rep(s_employee)</span><br><span class="line">  DEFINE s_employee RECORD LIKE employee_file.*</span><br><span class="line">  FORMAT</span><br><span class="line">  :</span><br><span class="line">  :</span><br><span class="line">END REPORT</span><br></pre></td></tr></table></figure>
+<h3 id="REPORT-FUNCTION-的组成"><a href="#REPORT-FUNCTION-的组成" class="headerlink" title="REPORT FUNCTION 的组成"></a>REPORT FUNCTION 的组成</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">REPORT report_name(expr_list)</span><br><span class="line">  [DEFINE define_statement]</span><br><span class="line">  [OUTPUT output_statement]</span><br><span class="line">  [ORDER BY sort_list]</span><br><span class="line">  FORMAT</span><br><span class="line">    control_block</span><br><span class="line">    statement</span><br><span class="line">  :</span><br><span class="line">  :</span><br><span class="line">END REPORT</span><br></pre></td></tr></table></figure>
+<h3 id="REPORT-report-name（expr-list）叙述"><a href="#REPORT-report-name（expr-list）叙述" class="headerlink" title="REPORT report_name（expr_list）叙述"></a>REPORT report_name（expr_list）叙述</h3><p>report_name 即是 REPORT 的名称，与START REPORT rep_name 的rep_name 是一致的。expr_list 为先前主程序所传递的参数。</p>
+<h3 id="OUTPUT-Section"><a href="#OUTPUT-Section" class="headerlink" title="OUTPUT Section"></a>OUTPUT Section</h3><p>此叙述为定义报表的边界，报表长度。以下介绍设置报表边界的指令，及若没有 OUPUT叙述时，系统的缺省值。</p>
+<p><img src="19.jpg" alt="img"></p>
+<h3 id="ORDER-BY-Section"><a href="#ORDER-BY-Section" class="headerlink" title="ORDER BY Section"></a>ORDER BY Section</h3><p>语法:ORDER [ EXTERNAL ] BY field_id_1 [ASC|DESC] , field_id_2 [ASC|DESC] , …</p>
+<p>说明:</p>
+<ol>
+<li>ORDER BY 区间，主要是作排序字段用，以逗号分开，摆在最前面的字段为主键，同时只能用所接收的参数内的字段来排序。</li>
+<li>ORDER BY 会先将数据排序过并存在暂存盘中，配合BEFORE GROUP OF 或 AFTER GROUP OF 区段排序后再由暂存档印出。</li>
+<li>加上 EXTERNAL 即表示传入的数据已经经过外部（START REPORT 时）的排序，因此此处仅为注标，系统不会重复的运行工作。</li>
+<li>若后续于 FORMAT 中有使用GROUP 的分群输出功能，则一定要有ORDER BY 宣告，必要时可搭配上述EXTRRNAL 功能。</li>
+</ol>
+<h3 id="FORMAT-Section"><a href="#FORMAT-Section" class="headerlink" title="FORMAT Section"></a>FORMAT Section</h3><p>这个部份为 REPORT FUNCTION 的重心，所以报表的排版均由此部份控制。以下说明此SECTION 的每个CONTROL BLOCKS 用途。</p>
+<ul>
+<li>FIRST PAGE HEADER ：报表第一页的表头控制段。</li>
+<li>PAGE HEADER ：报表每一页的表头控制段。</li>
+<li>BEFORE GROUP OF ：设置在一组数据的开始之前所必须运行的叙述。</li>
+<li>ON EVERY ROW ：指定每一笔记录的输出格式。</li>
+<li>AFTER GROUP OF ：在控制区段设置一组数据之后必须运行的叙述。</li>
+<li>PAGE TRAILER ：每一页报表页尾的控制段。</li>
+<li>ON LAST ROW ：所有数据印完后要做的动作，例如”总计”。</li>
+</ul>
+<h3 id="FORMAT-内可用指令"><a href="#FORMAT-内可用指令" class="headerlink" title="FORMAT 内可用指令"></a>FORMAT 内可用指令</h3><p>PRINT</p>
+<ol>
+<li>打印信息或资料。</li>
+<li>可用逗号【，】分隔要打印的字段。</li>
+<li>一个 PRINT 指令即占用一行的打印空间。</li>
+<li>若以分号【；】结尾，表示下一个PRINT 指令亦接续本行打印。</li>
+</ol>
+<p>示范：PRINT “员工编号：”, employee_no</p>
+<p>SKIP</p>
+<ol>
+<li>打印时要跳几行或几页。</li>
+<li>若在打印报表中有使用 IF、CASE 等流程判断指令，需确保每个流程的每一个情境下，所用的报表打印空间（行数）是一致的。</li>
+</ol>
+<p>示范：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SKIP 2 LINES 跳两行</span><br><span class="line">SKIP TO TOP OF PAGE 跳页</span><br></pre></td></tr></table></figure></p>
+<p>NEED</p>
+<ol>
+<li>NEED integer_value LINES</li>
+<li>在打印前，先确定是否有足够的剩余行数，可供接下来打印，如果不够将先跳页后，再继续往下印。</li>
+</ol>
+<h3 id="打印时可运用的表达式或函数"><a href="#打印时可运用的表达式或函数" class="headerlink" title="打印时可运用的表达式或函数"></a>打印时可运用的表达式或函数</h3><ul>
+<li>CLIPPED：将字符串后面的空白清掉。</li>
+<li>USING：针对数值定其打印的格式。</li>
+<li>COLUMN：指定输出的行位置。</li>
+<li>LINENO：取得当前打印行的列号值。</li>
+<li>PAGENO：取得当前的页数。</li>
+<li>SPACES：传回空白。</li>
+<li>TIME：传回系统时间，格式:”hh:mm:ss”</li>
+<li>TODAY：传回系统今天的日期。</li>
+<li>LENGTH(expr)：expr 为一字符串变量，其会传回expr 的长度。</li>
+</ul>
+<h3 id="群组函数"><a href="#群组函数" class="headerlink" title="群组函数"></a>群组函数</h3><p>在群组区块中，提供以下函数，方便在撰写报表时的数值运算。</p>
+<ul>
+<li>GROUP SUM(expression) :GROUP 区块中，数值的加总。</li>
+<li>GROUP COUNT(*) :GROUP 区块中，资料的总数。</li>
+<li>GROUP MIN(expression) :GROUP 区块中，取得数值的最小值。</li>
+<li>GROUP MAX(expression) :GROUP 区块中，取得数值的最大值。</li>
+<li>GROUP AVG(expression) :GROUP 区块中，取得数值的平均值。</li>
+<li>GROUP PERCENT(*) :GROUP 区块中，资料的百分比。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BDL/" rel="tag"><i class="fa fa-tag"></i> BDL</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/20/touch/" rel="next" title="移动端touch事件">
+                <i class="fa fa-chevron-left"></i> 移动端touch事件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/20/responsive-img/" rel="prev" title="响应式图片解决方案">
+                响应式图片解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Genero-BDL-架构"><span class="nav-number">1.</span> <span class="nav-text">Genero BDL 架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#画面档FORM组成"><span class="nav-number">2.</span> <span class="nav-text">画面档FORM组成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SCHEMA-section（非必要部分）"><span class="nav-number">2.1.</span> <span class="nav-text">SCHEMA section（非必要部分）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ACTION-DEFAULT-section（非必要部分）"><span class="nav-number">2.2.</span> <span class="nav-text">ACTION DEFAULT section（非必要部分）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TOPMENU-section（非必要部分）"><span class="nav-number">2.3.</span> <span class="nav-text">TOPMENU section（非必要部分）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TOOLBAR-section（非必要部分）"><span class="nav-number">2.4.</span> <span class="nav-text">TOOLBAR section（非必要部分）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LAYOUT-section（非必要部分）"><span class="nav-number">2.5.</span> <span class="nav-text">LAYOUT section（非必要部分）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TABLES-section（非必要部分）"><span class="nav-number">2.6.</span> <span class="nav-text">TABLES section（非必要部分）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ATTRIBUTES-section（非必要部分）"><span class="nav-number">2.7.</span> <span class="nav-text">ATTRIBUTES section（非必要部分）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#INSTRUCTION-section（非必要部分）"><span class="nav-number">2.8.</span> <span class="nav-text">INSTRUCTION section（非必要部分）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变量及运算"><span class="nav-number">3.</span> <span class="nav-text">变量及运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的定义"><span class="nav-number">3.1.</span> <span class="nav-text">变量的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接定义"><span class="nav-number">3.1.1.</span> <span class="nav-text">直接定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对应数据库字段"><span class="nav-number">3.1.2.</span> <span class="nav-text">对应数据库字段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的型态"><span class="nav-number">3.2.</span> <span class="nav-text">变量的型态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的集合（Records）"><span class="nav-number">3.3.</span> <span class="nav-text">变量的集合（Records）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接定义-1"><span class="nav-number">3.3.1.</span> <span class="nav-text">直接定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对应数据库字段-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">对应数据库字段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变数的设置"><span class="nav-number">3.4.</span> <span class="nav-text">变数的设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化一组变数的值"><span class="nav-number">3.5.</span> <span class="nav-text">初始化一组变数的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预定义完成变数"><span class="nav-number">3.6.</span> <span class="nav-text">预定义完成变数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常数的定义"><span class="nav-number">3.7.</span> <span class="nav-text">常数的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预定义完成常数"><span class="nav-number">3.8.</span> <span class="nav-text">预定义完成常数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式"><span class="nav-number">3.9.</span> <span class="nav-text">表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#比较表达式"><span class="nav-number">3.9.1.</span> <span class="nav-text">比较表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值表达式"><span class="nav-number">3.9.2.</span> <span class="nav-text">数值表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串表达式"><span class="nav-number">3.9.3.</span> <span class="nav-text">字符串表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑、日期、字段表达式"><span class="nav-number">3.9.4.</span> <span class="nav-text">逻辑、日期、字段表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全域变数指定"><span class="nav-number">3.10.</span> <span class="nav-text">全域变数指定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变数的生命周期"><span class="nav-number">3.11.</span> <span class="nav-text">变数的生命周期</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#程控流程"><span class="nav-number">4.</span> <span class="nav-text">程控流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Module-程序架构"><span class="nav-number">4.1.</span> <span class="nav-text">Module 程序架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MAIN-函式"><span class="nav-number">4.1.1.</span> <span class="nav-text">MAIN( ) 函式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一般-FUNCTION-函式"><span class="nav-number">4.1.2.</span> <span class="nav-text">一般 FUNCTION( ) 函式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#报表结构-REPORT-函式"><span class="nav-number">4.1.3.</span> <span class="nav-text">报表结构 REPORT( )函式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4GL-批注符号"><span class="nav-number">4.1.4.</span> <span class="nav-text">4GL 批注符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CALL"><span class="nav-number">4.1.5.</span> <span class="nav-text">CALL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RETURN"><span class="nav-number">4.1.6.</span> <span class="nav-text">RETURN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IF"><span class="nav-number">4.1.7.</span> <span class="nav-text">IF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CASE"><span class="nav-number">4.1.8.</span> <span class="nav-text">CASE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FOR"><span class="nav-number">4.1.9.</span> <span class="nav-text">FOR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WHILE"><span class="nav-number">4.1.10.</span> <span class="nav-text">WHILE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CONTINUE"><span class="nav-number">4.1.11.</span> <span class="nav-text">CONTINUE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXIT离开控制段"><span class="nav-number">4.1.12.</span> <span class="nav-text">EXIT离开控制段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SLEEP"><span class="nav-number">4.1.13.</span> <span class="nav-text">SLEEP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EL"><span class="nav-number">4.1.14.</span> <span class="nav-text">EL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GOTO"><span class="nav-number">4.1.15.</span> <span class="nav-text">GOTO</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CURSOR-的应用"><span class="nav-number">5.</span> <span class="nav-text">CURSOR 的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据的查询、更改"><span class="nav-number">5.1.</span> <span class="nav-text">数据的查询、更改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CONSTRUCT"><span class="nav-number">5.1.1.</span> <span class="nav-text">CONSTRUCT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PREPARE"><span class="nav-number">5.1.2.</span> <span class="nav-text">PREPARE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FREE"><span class="nav-number">5.1.3.</span> <span class="nav-text">FREE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据的查询"><span class="nav-number">5.2.</span> <span class="nav-text">数据的查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SCROLLING-CURSOR"><span class="nav-number">5.2.1.</span> <span class="nav-text">SCROLLING CURSOR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-SCROLLING-CURSOR"><span class="nav-number">5.2.2.</span> <span class="nav-text">Non-SCROLLING CURSOR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SCROLLING-CURSOR-1"><span class="nav-number">5.2.3.</span> <span class="nav-text">SCROLLING CURSOR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-SCROLLING-CURSOR-1"><span class="nav-number">5.2.4.</span> <span class="nav-text">Non-SCROLLING CURSOR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据的锁定"><span class="nav-number">5.3.</span> <span class="nav-text">数据的锁定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LOCKING-CURSOR"><span class="nav-number">5.3.1.</span> <span class="nav-text">LOCKING CURSOR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DECLARE-叙述"><span class="nav-number">5.3.2.</span> <span class="nav-text">DECLARE 叙述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OPEN-叙述"><span class="nav-number">5.3.3.</span> <span class="nav-text">OPEN 叙述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FETCH-叙述"><span class="nav-number">5.3.4.</span> <span class="nav-text">FETCH 叙述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CLOSE-叙述"><span class="nav-number">5.3.5.</span> <span class="nav-text">CLOSE 叙述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USING-的使用时机"><span class="nav-number">5.3.6.</span> <span class="nav-text">USING 的使用时机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TRANSACTION"><span class="nav-number">5.3.7.</span> <span class="nav-text">TRANSACTION</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大量运行同一-SQL-指令（EXECUTE）"><span class="nav-number">5.3.8.</span> <span class="nav-text">大量运行同一 SQL 指令（EXECUTE）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大量运行新增指令（PUT-FLUSH）"><span class="nav-number">5.3.9.</span> <span class="nav-text">大量运行新增指令（PUT..FLUSH）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ARRAY-的应用"><span class="nav-number">6.</span> <span class="nav-text">ARRAY 的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ARRAY（数组）"><span class="nav-number">6.1.</span> <span class="nav-text">ARRAY（数组）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#INPUT-ARRAY"><span class="nav-number">6.2.</span> <span class="nav-text">INPUT ARRAY</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DISPLAY-ARRAY"><span class="nav-number">6.3.</span> <span class="nav-text">DISPLAY ARRAY</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#REPORT-撰写"><span class="nav-number">7.</span> <span class="nav-text">REPORT 撰写</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FUNCTION-中启动REPORT"><span class="nav-number">7.1.</span> <span class="nav-text">FUNCTION 中启动REPORT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#START-REPORT"><span class="nav-number">7.1.1.</span> <span class="nav-text">START REPORT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OUTPUT-TO-REPORT-叙述"><span class="nav-number">7.1.2.</span> <span class="nav-text">OUTPUT TO REPORT 叙述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FIENSH-REPORT-叙述"><span class="nav-number">7.1.3.</span> <span class="nav-text">FIENSH REPORT 叙述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#REPORT-FUNCTION-的组成"><span class="nav-number">7.1.4.</span> <span class="nav-text">REPORT FUNCTION 的组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#REPORT-report-name（expr-list）叙述"><span class="nav-number">7.1.5.</span> <span class="nav-text">REPORT report_name（expr_list）叙述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OUTPUT-Section"><span class="nav-number">7.1.6.</span> <span class="nav-text">OUTPUT Section</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ORDER-BY-Section"><span class="nav-number">7.1.7.</span> <span class="nav-text">ORDER BY Section</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FORMAT-Section"><span class="nav-number">7.1.8.</span> <span class="nav-text">FORMAT Section</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FORMAT-内可用指令"><span class="nav-number">7.1.9.</span> <span class="nav-text">FORMAT 内可用指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打印时可运用的表达式或函数"><span class="nav-number">7.1.10.</span> <span class="nav-text">打印时可运用的表达式或函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#群组函数"><span class="nav-number">7.1.11.</span> <span class="nav-text">群组函数</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

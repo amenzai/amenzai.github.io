@@ -1,0 +1,1015 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="回调函数模式让 Node 可以处理异步操作。但是，为了适应回调函数，异步操作只能有两个状态：开始和结束。对于那些多状态的异步操作（状态1，状态2，状态3，……），回调函数就会无法处理，你不得不将异步操作拆开，分成多个阶段。每个阶段结束时，调用下一个回调函数。 为了解决这个问题，Node 提供 Event Emitter 接口。通过事件，解决多状态异步操作的响应问题。">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Events模块">
+<meta property="og:url" content="http://amenzai.me/2017/04/19/Events模块/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="回调函数模式让 Node 可以处理异步操作。但是，为了适应回调函数，异步操作只能有两个状态：开始和结束。对于那些多状态的异步操作（状态1，状态2，状态3，……），回调函数就会无法处理，你不得不将异步操作拆开，分成多个阶段。每个阶段结束时，调用下一个回调函数。 为了解决这个问题，Node 提供 Event Emitter 接口。通过事件，解决多状态异步操作的响应问题。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.382Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Events模块">
+<meta name="twitter:description" content="回调函数模式让 Node 可以处理异步操作。但是，为了适应回调函数，异步操作只能有两个状态：开始和结束。对于那些多状态的异步操作（状态1，状态2，状态3，……），回调函数就会无法处理，你不得不将异步操作拆开，分成多个阶段。每个阶段结束时，调用下一个回调函数。 为了解决这个问题，Node 提供 Event Emitter 接口。通过事件，解决多状态异步操作的响应问题。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2017/04/19/Events模块/"/>
+
+
+
+
+
+  <title> Events模块 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2017/04/19/Events模块/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-19T00:00:00+08:00">
+                2017-04-19
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Events模块
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>回调函数模式让 Node 可以处理异步操作。但是，为了适应回调函数，异步操作只能有两个状态：开始和结束。对于那些多状态的异步操作（状态1，状态2，状态3，……），回调函数就会无法处理，你不得不将异步操作拆开，分成多个阶段。每个阶段结束时，调用下一个回调函数。</p>
+<p>为了解决这个问题，Node 提供 Event Emitter 接口。通过事件，解决多状态异步操作的响应问题。</p>
+<a id="more"></a>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>Event Emitter 是一个接口，可以在任何对象上部署。这个接口由<code>events</code>模块提供。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"><span class="keyword">var</span> emitter = <span class="keyword">new</span> EventEmitter();</span><br></pre></td></tr></table></figure>
+<p><code>events</code>模块的<code>EventEmitter</code>是一个构造函数，可以用来生成事件发生器的实例<code>emitter</code>。</p>
+<p>然后，事件发生器的实例方法<code>on</code>用来监听事件，实例方法<code>emit</code>用来发出事件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">emitter.on(<span class="string">'someEvent'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'event has occured'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'start'</span>);</span><br><span class="line">  emitter.emit(<span class="string">'someEvent'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'end'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f()</span><br><span class="line"><span class="comment">// start</span></span><br><span class="line"><span class="comment">// event has occured</span></span><br><span class="line"><span class="comment">// end</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>EventEmitter</code>对象实例<code>emitter</code>就是消息中心。通过<code>on</code>方法为<code>someEvent</code>事件指定回调函数，通过<code>emit</code>方法触发<code>someEvent</code>事件。</p>
+<p>上面代码还表明，<code>EventEmitter</code>对象的事件触发和监听是同步的，即只有事件的回调函数执行以后，函数<code>f</code>才会继续执行。</p>
+<h1 id="Event-Emitter-接口的部署"><a href="#Event-Emitter-接口的部署" class="headerlink" title="Event Emitter 接口的部署"></a>Event Emitter 接口的部署</h1><p>Event Emitter 接口可以部署在任意对象上，使得这些对象也能订阅和发布消息。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dog.prototype.__proto__ = EventEmitter.prototype;</span><br><span class="line"><span class="comment">// 另一种写法</span></span><br><span class="line"><span class="comment">// Dog.prototype = Object.create(EventEmitter.prototype);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> simon = <span class="keyword">new</span> Dog(<span class="string">'simon'</span>);</span><br><span class="line"></span><br><span class="line">simon.on(<span class="string">'bark'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' barked'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  simon.emit(<span class="string">'bark'</span>);</span><br><span class="line">&#125;, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+<p>上面代码新建了一个构造函数<code>Dog</code>，然后让其继承<code>EventEmitter</code>，因此<code>Dog</code>就拥有了<code>EventEmitter</code>的接口。最后，为<code>Dog</code>的实例指定<code>bark</code>事件的监听函数，再使用<code>EventEmitter</code>的<code>emit</code>方法，触发<code>bark</code>事件。</p>
+<p>Node 内置模块<code>util</code>的<code>inherits</code>方法，提供了另一种继承 Event Emitter 接口的方法。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</span><br><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Radio = <span class="function"><span class="keyword">function</span> (<span class="params">station</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      self.emit(<span class="string">'open'</span>, station);</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      self.emit(<span class="string">'close'</span>, station);</span><br><span class="line">    &#125;, <span class="number">5000</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.on(<span class="string">'newListener'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">listener</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'Event Listener: '</span> + listener);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">util.inherits(Radio, EventEmitter);</span><br><span class="line"><span class="built_in">module</span>.exports = Radio;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>Radio</code>是一个构造函数，它的实例继承了EventEmitter接口。下面是使用这个模块的例子。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Radio = <span class="built_in">require</span>(<span class="string">'./radio.js'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> station = &#123;</span><br><span class="line">  freq: <span class="string">'80.16'</span>,</span><br><span class="line">  name: <span class="string">'Rock N Roll Radio'</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> radio = <span class="keyword">new</span> Radio(station);</span><br><span class="line"></span><br><span class="line">radio.on(<span class="string">'open'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">station</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'"%s" FM %s 打开'</span>, station.name, station.freq);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'♬ ♫♬'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">radio.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">station</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'"%s" FM %s 关闭'</span>, station.name, station.freq);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="Event-Emitter-的实例方法"><a href="#Event-Emitter-的实例方法" class="headerlink" title="Event Emitter 的实例方法"></a>Event Emitter 的实例方法</h1><p>Event Emitter 的实例方法如下。</p>
+<ul>
+<li><code>emitter.on(name, f)</code> 对事件<code>name</code>指定监听函数<code>f</code></li>
+<li><code>emitter.addListener(name, f)</code> <code>addListener</code>是<code>on</code>方法的别名</li>
+<li><code>emitter.once(name, f)</code> 与<code>on</code>方法类似，但是监听函数<code>f</code>是一次性的，使用后自动移除</li>
+<li><code>emitter.listeners(name)</code> 返回一个数组，成员是事件<code>name</code>所有监听函数</li>
+<li><code>emitter.removeListener(name, f)</code> 移除事件<code>name</code>的监听函数<code>f</code></li>
+<li><code>emitter.removeAllListeners(name)</code> 移除事件<code>name</code>的所有监听函数</li>
+</ul>
+<h2 id="emit"><a href="#emit" class="headerlink" title="emit()"></a>emit()</h2><p><code>EventEmitter</code>实例对象的<code>emit</code>方法，用来触发事件。它的第一个参数是事件名称，其余参数都会依次传入回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"><span class="keyword">var</span> myEmitter = <span class="keyword">new</span> EventEmitter();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> connection = <span class="function"><span class="keyword">function</span> (<span class="params">id</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'client id: '</span> + id);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">myEmitter.on(<span class="string">'connection'</span>, connection);</span><br><span class="line">myEmitter.emit(<span class="string">'connection'</span>, <span class="number">6</span>);</span><br><span class="line"><span class="comment">// client id: 6</span></span><br></pre></td></tr></table></figure>
+<h2 id="once"><a href="#once" class="headerlink" title="once()"></a>once()</h2><p>该方法类似于<code>on</code>方法，但是回调函数只触发一次。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"><span class="keyword">var</span> myEmitter = <span class="keyword">new</span> EventEmitter;</span><br><span class="line"></span><br><span class="line">myEmitter.once(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'message: '</span> + msg);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">myEmitter.emit(<span class="string">'message'</span>, <span class="string">'this is the first message'</span>);</span><br><span class="line">myEmitter.emit(<span class="string">'message'</span>, <span class="string">'this is the second message'</span>);</span><br><span class="line">myEmitter.emit(<span class="string">'message'</span>, <span class="string">'welcome to nodejs'</span>);</span><br></pre></td></tr></table></figure>
+<p>上面代码触发了三次message事件，但是回调函数只会在第一次调用时运行。</p>
+<p>下面代码指定，一旦服务器连通，只调用一次的回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">server.once(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">stream</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Ah, we have our first user!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>该方法返回一个EventEmitter对象，因此可以链式加载监听函数。</p>
+<h2 id="removeListener"><a href="#removeListener" class="headerlink" title="removeListener()"></a>removeListener()</h2><p>该方法用于移除回调函数。它接受两个参数，第一个是事件名称，第二个是回调函数名称。这就是说，不能用于移除匿名函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"><span class="keyword">var</span> emitter = <span class="keyword">new</span> EventEmitter;</span><br><span class="line"></span><br><span class="line">emitter.on(<span class="string">'message'</span>, <span class="built_in">console</span>.log);</span><br><span class="line"></span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  emitter.emit(<span class="string">'message'</span>, <span class="string">'foo bar'</span>);</span><br><span class="line">&#125;, <span class="number">300</span>);</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  emitter.removeListener(<span class="string">'message'</span>, <span class="built_in">console</span>.log);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>上面代码每300毫秒触发一次message事件，直到1000毫秒后取消监听。</p>
+<p>另一个例子是使用removeListener方法模拟once方法。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"><span class="keyword">var</span> emitter = <span class="keyword">new</span> EventEmitter;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onlyOnce</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"You'll never see this again"</span>);</span><br><span class="line">  emitter.removeListener(<span class="string">"firstConnection"</span>, onlyOnce);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">emitter.on(<span class="string">"firstConnection"</span>, onlyOnce);</span><br></pre></td></tr></table></figure>
+<h2 id="setMaxListeners"><a href="#setMaxListeners" class="headerlink" title="setMaxListeners()"></a>setMaxListeners()</h2><p>Node默认允许同一个事件最多可以指定10个回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">emitter.on(<span class="string">'someEvent'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'event 1'</span>); &#125;);</span><br><span class="line">emitter.on(<span class="string">'someEvent'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'event 2'</span>); &#125;);</span><br><span class="line">emitter.on(<span class="string">'someEvent'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'event 3'</span>); &#125;);</span><br></pre></td></tr></table></figure>
+<p>超过10个回调函数，会发出一个警告。这个门槛值可以通过<code>setMaxListeners</code>方法改变。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">emitter.setMaxListeners(<span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="removeAllListeners"><a href="#removeAllListeners" class="headerlink" title="removeAllListeners()"></a>removeAllListeners()</h2><p>该方法用于移除某个事件的所有回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"><span class="keyword">var</span> emitter = <span class="keyword">new</span> EventEmitter;</span><br><span class="line"></span><br><span class="line"><span class="comment">// some code here</span></span><br><span class="line"></span><br><span class="line">emitter.removeAllListeners(<span class="string">"firstConnection"</span>);</span><br></pre></td></tr></table></figure>
+<p>如果不带参数，则表示移除所有事件的所有回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">emitter.removeAllListeners();</span><br></pre></td></tr></table></figure>
+<h2 id="listeners"><a href="#listeners" class="headerlink" title="listeners()"></a>listeners()</h2><p><code>listeners</code>方法接受一个事件名称作为参数，返回该事件所有回调函数组成的数组。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ee = <span class="keyword">new</span> EventEmitter;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onlyOnce</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(ee.listeners(<span class="string">"firstConnection"</span>));</span><br><span class="line">  ee.removeListener(<span class="string">"firstConnection"</span>, onlyOnce);</span><br><span class="line">  <span class="built_in">console</span>.log(ee.listeners(<span class="string">"firstConnection"</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ee.on(<span class="string">"firstConnection"</span>, onlyOnce)</span><br><span class="line">ee.emit(<span class="string">"firstConnection"</span>);</span><br><span class="line">ee.emit(<span class="string">"firstConnection"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// [ [Function: onlyOnce] ]</span></span><br><span class="line"><span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+<p>上面代码显示两次回调函数组成的数组，第一次只有一个回调函数<code>onlyOnce</code>，第二次是一个空数组，因为<code>removeListener</code>方法取消了回调函数。</p>
+<h1 id="错误捕获"><a href="#错误捕获" class="headerlink" title="错误捕获"></a>错误捕获</h1><p>事件处理过程中抛出的错误，可以使用<code>try...catch</code>捕获。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"><span class="keyword">var</span> emitter = <span class="keyword">new</span> EventEmitter();</span><br><span class="line"></span><br><span class="line">emitter.on(<span class="string">'beep'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'beep'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">emitter.on(<span class="string">'beep'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">'oops!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">emitter.on(<span class="string">'beep'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'beep again'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'before emit'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  emitter.emit(<span class="string">'beep'</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">  <span class="built_in">console</span>.error(<span class="string">'caught while emitting:'</span>, err.message);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'after emit'</span>);</span><br></pre></td></tr></table></figure>
+<p>上面的代码，<code>beep</code>一共绑定了三个监听函数。其中，第二个监听函数会抛出错误。执行上面的代码，会得到下面的结果。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">before emit</span><br><span class="line">beep</span><br><span class="line">caught <span class="keyword">while</span> emitting: oops!</span><br><span class="line">after emit</span><br></pre></td></tr></table></figure>
+<p>可以看到，第二个监听函数抛出的错误被<code>try...catch</code>代码块捕获了。一旦被捕获，该事件后面的监听函数都不会再执行了。</p>
+<p>如果不使用<code>try...catch</code>，可以让进程监听<code>uncaughtException</code>事件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">process.on(<span class="string">'uncaughtException'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(<span class="string">'uncaught exception:'</span>, err.stack || err);</span><br><span class="line">  <span class="comment">// 关闭资源</span></span><br><span class="line">  closeEverything(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err)</span><br><span class="line">      <span class="built_in">console</span>.error(<span class="string">'Error while closing everything:'</span>, err.stack || err);</span><br><span class="line">    <span class="comment">// 退出进程</span></span><br><span class="line">    process.exit(<span class="number">1</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h1><p>Events模块默认支持两个事件。</p>
+<ul>
+<li><code>newListener</code>事件：添加新的回调函数时触发。</li>
+<li><code>removeListener</code>事件：移除回调时触发。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">ee.on(<span class="string">"newListener"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">evtName</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"New Listener: "</span> + evtName);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ee.on(<span class="string">"removeListener"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">evtName</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Removed Listener: "</span> + evtName);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">ee.on(<span class="string">"save-user"</span>, foo);</span><br><span class="line">ee.removeListener(<span class="string">"save-user"</span>, foo);</span><br><span class="line"></span><br><span class="line"><span class="comment">// New Listener: removeListener</span></span><br><span class="line"><span class="comment">// New Listener: save-user</span></span><br><span class="line"><span class="comment">// Removed Listener: save-user</span></span><br></pre></td></tr></table></figure>
+<p>上面代码会触发两次newListener事件，以及一次removeListener事件。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"><i class="fa fa-tag"></i> node</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/19/Http模块/" rel="next" title="Http模块">
+                <i class="fa fa-chevron-left"></i> Http模块
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/19/Cluster模块/" rel="prev" title="Cluster模块">
+                Cluster模块 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Event-Emitter-接口的部署"><span class="nav-number">2.</span> <span class="nav-text">Event Emitter 接口的部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Event-Emitter-的实例方法"><span class="nav-number">3.</span> <span class="nav-text">Event Emitter 的实例方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#emit"><span class="nav-number">3.1.</span> <span class="nav-text">emit()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#once"><span class="nav-number">3.2.</span> <span class="nav-text">once()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#removeListener"><span class="nav-number">3.3.</span> <span class="nav-text">removeListener()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setMaxListeners"><span class="nav-number">3.4.</span> <span class="nav-text">setMaxListeners()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#removeAllListeners"><span class="nav-number">3.5.</span> <span class="nav-text">removeAllListeners()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#listeners"><span class="nav-number">3.6.</span> <span class="nav-text">listeners()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误捕获"><span class="nav-number">4.</span> <span class="nav-text">错误捕获</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件类型"><span class="nav-number">5.</span> <span class="nav-text">事件类型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

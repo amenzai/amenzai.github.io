@@ -1,0 +1,1084 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="阿闷仔，阿闷仔的博客，前端博客" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="信息图表的相关知识总结。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息图表笔记">
+<meta property="og:url" content="http://amenzai.me/2017/03/10/信息图表笔记/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="信息图表的相关知识总结。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://amenzai.me/2017/03/10/信息图表笔记/01.jpg">
+<meta property="og:image" content="http://amenzai.me/2017/03/10/信息图表笔记/02.jpg">
+<meta property="og:image" content="http://amenzai.me/2017/03/10/信息图表笔记/03.jpg">
+<meta property="og:image" content="http://amenzai.me/2017/03/10/信息图表笔记/04.jpg">
+<meta property="og:image" content="http://amenzai.me/2017/03/10/信息图表笔记/05.jpg">
+<meta property="og:image" content="http://amenzai.me/2017/03/10/信息图表笔记/06.jpg">
+<meta property="og:image" content="http://amenzai.me/2017/03/10/信息图表笔记/07.jpg">
+<meta property="og:image" content="http://amenzai.me/2017/03/10/信息图表笔记/08.jpg">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="信息图表笔记">
+<meta name="twitter:description" content="信息图表的相关知识总结。">
+<meta name="twitter:image" content="http://amenzai.me/2017/03/10/信息图表笔记/01.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2017/03/10/信息图表笔记/"/>
+
+
+
+
+
+  <title> 信息图表笔记 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2017/03/10/信息图表笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-10T11:32:32+08:00">
+                2017-03-10
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/职场办公/" itemprop="url" rel="index">
+                    <span itemprop="name">职场办公</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                信息图表笔记
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>信息图表的相关知识总结。</p>
+<a id="more"></a>
+<h1 id="什么是信息图表"><a href="#什么是信息图表" class="headerlink" title="什么是信息图表"></a>什么是信息图表</h1><p>信息、数据等的可视化表达。</p>
+<h1 id="为什么信息图表这么受欢迎"><a href="#为什么信息图表这么受欢迎" class="headerlink" title="为什么信息图表这么受欢迎"></a>为什么信息图表这么受欢迎</h1><ol>
+<li>我们天生喜欢读图，信息图表有与生俱来的吸引力。</li>
+<li>我们注意力有限，信息图表能提高阅读效率。</li>
+</ol>
+<h1 id="为什么你应该学信息图表"><a href="#为什么你应该学信息图表" class="headerlink" title="为什么你应该学信息图表"></a>为什么你应该学信息图表</h1><h2 id="时代刚需"><a href="#时代刚需" class="headerlink" title="时代刚需"></a>时代刚需</h2><p>工作离不开信息图表。</p>
+<ul>
+<li>竞标提案<br>借助信息图表，用数据说服客户。</li>
+<li>产品发布<br>借助信息图表，形象介绍产品功能，加深用户形象。</li>
+<li>业务分析<br>借助信息图表，迅速解读数据，协助快速决策。</li>
+<li>年终总结<br>借助信息图表，展示业绩，规划未来。</li>
+</ul>
+<p>学习需要信息图表</p>
+<ul>
+<li>读书笔记<br>借助信息图表，整理内容逻辑，回顾书中精髓，温故知新。</li>
+<li>时间管理<br>借助信息图表，把抽象的时间可视化，便于管理，提高效率。</li>
+<li>毕业答辩<br>借助信息图表，展示研究数据，构造理论模型，为论文加分。</li>
+<li>简历制作<br>借助信息图表，展示自我，吸引眼球。</li>
+</ul>
+<p>生活处处可见信息图表</p>
+<ul>
+<li>理财</li>
+<li>备忘</li>
+<li>出行</li>
+<li>看新闻</li>
+</ul>
+<h2 id="求职神奇"><a href="#求职神奇" class="headerlink" title="求职神奇"></a>求职神奇</h2><p>信息图表风格简历，会让HR眼前一亮。</p>
+<p>其实就是平常扁平化那一套：用图标，形状色块，非衬线字体。</p>
+<p>做成长图可以在多个渠道传播。</p>
+<h2 id="逆袭神器"><a href="#逆袭神器" class="headerlink" title="逆袭神器"></a>逆袭神器</h2><p>对常见信息的可视化解读，分享，得到认可，逆袭人生。</p>
+<h2 id="一种情怀"><a href="#一种情怀" class="headerlink" title="一种情怀"></a>一种情怀</h2><p>做表吧！</p>
+<h1 id="如何制作一张好表"><a href="#如何制作一张好表" class="headerlink" title="如何制作一张好表"></a>如何制作一张好表</h1><h2 id="信息图表的构成"><a href="#信息图表的构成" class="headerlink" title="信息图表的构成"></a>信息图表的构成</h2><p>信息图表=信息（故事内容）+图表（可视化设计）</p>
+<p>所以好的信息图表就是好的内容和设计构成的。</p>
+<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><p>基础信息数据+逻辑框架</p>
+<h3 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h3><p>图标、图表、文字描述</p>
+<p>所以，信息图表和PPT一样，依然是结构化思考，视觉化表达。</p>
+<h2 id="信息图表的制作工具"><a href="#信息图表的制作工具" class="headerlink" title="信息图表的制作工具"></a>信息图表的制作工具</h2><p>PS? AI? PPT就可以啦！<br>一页一页做完，导出长图，不就OK啦！</p>
+<h2 id="信息图表的制作流程"><a href="#信息图表的制作流程" class="headerlink" title="信息图表的制作流程"></a>信息图表的制作流程</h2><p>领导决定要做-确定内容-开始收集材料-问同事拿资料-加班-改</p>
+<h2 id="制作信息图表的五大原则"><a href="#制作信息图表的五大原则" class="headerlink" title="制作信息图表的五大原则"></a>制作信息图表的五大原则</h2><h3 id="图表合适，准确呈现"><a href="#图表合适，准确呈现" class="headerlink" title="图表合适，准确呈现"></a>图表合适，准确呈现</h3><p>选对表别看脸，图表不是装饰。不要手绘图表，确保数据准确，符合实际。</p>
+<p>每个图表都有自己擅长的逻辑关系：</p>
+<ul>
+<li>饼图：比例关系</li>
+<li>折线：趋势</li>
+<li>柱形图：分布关系</li>
+<li>散点图：相关性</li>
+<li>雷达图：综合关系</li>
+</ul>
+<h3 id="设计简约，风格统一"><a href="#设计简约，风格统一" class="headerlink" title="设计简约，风格统一"></a>设计简约，风格统一</h3><p>简约至上，不要为了炫技而设计。统一风格，让整体视觉一气呵成。</p>
+<p>使用主题配色，统一设计元素风格。</p>
+<h3 id="适当创新，吸引眼球"><a href="#适当创新，吸引眼球" class="headerlink" title="适当创新，吸引眼球"></a>适当创新，吸引眼球</h3><p>怎样让图表活起来？最常用的两种方法：</p>
+<ul>
+<li>关联<ul>
+<li>关联实物加深认知：把饼图和可乐瓶盖关联起来</li>
+<li>关联实物加深理解：不同品牌咖啡因含量比较用咖啡杯实物</li>
+<li>关联实物营造场景：在柱状图和山峰结合，营造雪山场景</li>
+</ul>
+</li>
+<li>类比<ul>
+<li>实物类比形象生动：把网速与实物（飞机，火箭等）结合</li>
+<li>实物类比赋予联想：用各种实物类比尺寸（罩杯等）</li>
+</ul>
+</li>
+</ul>
+<p>适当关联，注意画面美观不违和。适当类比，切勿多此一举喧宾夺主</p>
+<h3 id="内容精简，避免冗余"><a href="#内容精简，避免冗余" class="headerlink" title="内容精简，避免冗余"></a>内容精简，避免冗余</h3><p>读者不关心的内容，删删删。</p>
+<h3 id="重点突出，结论秒懂"><a href="#重点突出，结论秒懂" class="headerlink" title="重点突出，结论秒懂"></a>重点突出，结论秒懂</h3><p>信息图表绝不是数据的简单罗列，你还要告诉读者这个图反映了什么问题。</p>
+<p>把结论强调在图上，这样读者就一目了然了。</p>
+<p>如何突出重点？</p>
+<p><strong>1. 强调法</strong></p>
+<p><img src="01.jpg" alt="img"></p>
+<p><strong>2. 拆分法</strong></p>
+<p>如果你觉得每一个内容都是重点，都想突出，那就进行拆分，保证一个画面只讲一个内容，防止内容堆在一起互相干扰。</p>
+<ul>
+<li>利用属性的场景进行拆分，例如马路。</li>
+<li>利用熟悉的事物进行拆分，例如元素周期表</li>
+<li>利用流程协助拆分</li>
+</ul>
+<p><strong>3. 粗暴法</strong></p>
+<p>直接告诉读者这就是重点。</p>
+<ul>
+<li>粗暴的标出（地图位置）</li>
+<li>粗暴的圈出：直接圈出重点，结论一目了然。</li>
+</ul>
+<h1 id="如何制定信息图表的内容"><a href="#如何制定信息图表的内容" class="headerlink" title="如何制定信息图表的内容"></a>如何制定信息图表的内容</h1><p>讲好一个故事。</p>
+<ul>
+<li>第一步：从零开始-确定目标、提出问题</li>
+<li>第二步：顺藤摸瓜-解答问题、寻找信息</li>
+<li>第三步：统领全局-整理逻辑、画出框架</li>
+<li>第四步：局部处理-确定数据的可视化形式</li>
+</ul>
+<h2 id="从零开始-确定目标、提出问题"><a href="#从零开始-确定目标、提出问题" class="headerlink" title="从零开始-确定目标、提出问题"></a>从零开始-确定目标、提出问题</h2><p>做信息图表首先要确定目标，这个目标可以是一个热点、科普等。</p>
+<p>围绕确定好的目标，提出问题，是做信息图表必不可少的一步。</p>
+<p>提问题的原则：6W原则。数量为王，就是问题不论深浅都要提出来。</p>
+<h2 id="第二步：顺藤摸瓜-解答问题、寻找信息"><a href="#第二步：顺藤摸瓜-解答问题、寻找信息" class="headerlink" title="第二步：顺藤摸瓜-解答问题、寻找信息"></a>第二步：顺藤摸瓜-解答问题、寻找信息</h2><h3 id="定性问题"><a href="#定性问题" class="headerlink" title="定性问题"></a>定性问题</h3><p>对于跟数据没有太大关系的问题，我们可以采用下面的方法（what why how）。</p>
+<p>百度、谷歌、维基百科、调查问卷、采访行业专家</p>
+<h3 id="定量的问题"><a href="#定量的问题" class="headerlink" title="定量的问题"></a>定量的问题</h3><p>需要用数据进行说话的部分。公司给了很多数据或没数据，没数据去哪找？</p>
+<p>首先你要确定，自己需要的数据所在的领域：微博？微信？互联网？然后就到对应的网站去收集。</p>
+<ul>
+<li>找微博方面的数据：<a href="http://www.zhiweidata.com" target="_blank" rel="noopener">知微</a>，并且有相关chrome插件。</li>
+<li>微信图文数据：微信公众平台后台，如果要找别人公众号图文数据，到这<a href="http://www.newrank.cn" target="_blank" rel="noopener">新媒体排行榜</a></li>
+<li>淘宝数据：<a href="http://shu.taobao.com" target="_blank" rel="noopener">淘宝指数</a></li>
+<li>互联网行业数据：<a href="http://www.cnnic.net.cn" target="_blank" rel="noopener">CNNIC</a>与<a href="http://www.iresearch.cn" target="_blank" rel="noopener">艾瑞</a></li>
+<li>某个关键字相关数据：<a href="http://index.baidu.com" target="_blank" rel="noopener">百度指数</a></li>
+</ul>
+<p>找数据时可以看看同类信息图表的数据来源。</p>
+<h2 id="第三步：统领全局-整理逻辑、画出框架"><a href="#第三步：统领全局-整理逻辑、画出框架" class="headerlink" title="第三步：统领全局-整理逻辑、画出框架"></a>第三步：统领全局-整理逻辑、画出框架</h2><p><img src="02.jpg" alt="img"><br><img src="03.jpg" alt="img"><br><img src="04.jpg" alt="img"><br><img src="05.jpg" alt="img"><br><img src="06.jpg" alt="img"><br><img src="07.jpg" alt="img"><br><img src="08.jpg" alt="img"></p>
+<h2 id="第四步：局部处理-确定数据的可视化形式"><a href="#第四步：局部处理-确定数据的可视化形式" class="headerlink" title="第四步：局部处理-确定数据的可视化形式"></a>第四步：局部处理-确定数据的可视化形式</h2><p>分析：这组数据用哪个表比较合适，这段信息是否需要使用图标，这组文字是否需要进行设计。</p>
+<p>在纸上把它们画出来，这样一个信息图表的雏形就出现了。</p>
+<h1 id="ICON的N中睡法"><a href="#ICON的N中睡法" class="headerlink" title="ICON的N中睡法"></a>ICON的N中睡法</h1><h2 id="为何要用图标"><a href="#为何要用图标" class="headerlink" title="为何要用图标"></a>为何要用图标</h2><p>信息图表里用的时候有逼格。</p>
+<h2 id="如何获得现成的图标"><a href="#如何获得现成的图标" class="headerlink" title="如何获得现成的图标"></a>如何获得现成的图标</h2><p>那些网站下载去，就不列举了。</p>
+<h2 id="如何三分钟打造一枚图标"><a href="#如何三分钟打造一枚图标" class="headerlink" title="如何三分钟打造一枚图标"></a>如何三分钟打造一枚图标</h2><ul>
+<li>PPT形状编辑法</li>
+<li>AI素材法</li>
+<li>AI描摹法：也可以用vector软件</li>
+</ul>
+<p>重点说一下描摹法，在AI中描摹-扩展-去白底</p>
+<p>用软件，可以在纸上画一个图标，拍照截图，进行处理。</p>
+<h1 id="三招变图表大神"><a href="#三招变图表大神" class="headerlink" title="三招变图表大神"></a>三招变图表大神</h1><h2 id="第一招：脱掉"><a href="#第一招：脱掉" class="headerlink" title="第一招：脱掉"></a>第一招：脱掉</h2><p>脱掉背景：杂乱的背景，刺眼的背景<br>脱掉元素：多余的图例、坐标轴、网格线、边框线<br>脱掉效果：渐变、描边、阴影<br>脱掉字体： 难看的宋体<br>脱掉颜色：系统默认颜色</p>
+<h2 id="第二招：复制黏贴"><a href="#第二招：复制黏贴" class="headerlink" title="第二招：复制黏贴"></a>第二招：复制黏贴</h2><p>插入图表，比如是柱形图，复制一个图标，选中柱形，黏贴就行了，如果被拉伸了，填充选择层叠就行了。</p>
+<h2 id="第三招：安装office2013"><a href="#第三招：安装office2013" class="headerlink" title="第三招：安装office2013"></a>第三招：安装office2013</h2><p>利用各种插件。</p>
+<h1 id="三招教你文字设计"><a href="#三招教你文字设计" class="headerlink" title="三招教你文字设计"></a>三招教你文字设计</h1><h2 id="信息图表文字排版术"><a href="#信息图表文字排版术" class="headerlink" title="信息图表文字排版术"></a>信息图表文字排版术</h2><p>方式一：大小搭配（包括文字粗细）</p>
+<p>通过大小对比来突出重点是个简单却有效的方式。</p>
+<p>方式二：颜色对比</p>
+<p>通过颜色的对比不仅能让信息图表的重点内容突出，还能让信息图表更有设计感。</p>
+<p>方式三：位置和旋转</p>
+<p>根据对内容的理解，改变文本位置和适当旋转，会让排版不乏味。</p>
+<h2 id="文字图形化，让文字也变得秒懂"><a href="#文字图形化，让文字也变得秒懂" class="headerlink" title="文字图形化，让文字也变得秒懂"></a>文字图形化，让文字也变得秒懂</h2><p>文字可以和形状进行布尔运算。</p>
+<p>拆字，与图形组合，编辑锚点，多样化。</p>
+<p>多思考联想标题中那个字或词可以进行设计。</p>
+<h2 id="只用文字也能做信息图表-文字云大法"><a href="#只用文字也能做信息图表-文字云大法" class="headerlink" title="只用文字也能做信息图表-文字云大法"></a>只用文字也能做信息图表-文字云大法</h2><h1 id="基础图表的逆袭-柱形图"><a href="#基础图表的逆袭-柱形图" class="headerlink" title="基础图表的逆袭-柱形图"></a>基础图表的逆袭-柱形图</h1><h1 id="基础图表的逆袭-饼图"><a href="#基础图表的逆袭-饼图" class="headerlink" title="基础图表的逆袭-饼图"></a>基础图表的逆袭-饼图</h1>
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/01/职场笔记/" rel="next" title="职场笔记">
+                <i class="fa fa-chevron-left"></i> 职场笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/03/AMD规范/" rel="prev" title="AMD规范">
+                AMD规范 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是信息图表"><span class="nav-number">1.</span> <span class="nav-text">什么是信息图表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么信息图表这么受欢迎"><span class="nav-number">2.</span> <span class="nav-text">为什么信息图表这么受欢迎</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么你应该学信息图表"><span class="nav-number">3.</span> <span class="nav-text">为什么你应该学信息图表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#时代刚需"><span class="nav-number">3.1.</span> <span class="nav-text">时代刚需</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求职神奇"><span class="nav-number">3.2.</span> <span class="nav-text">求职神奇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逆袭神器"><span class="nav-number">3.3.</span> <span class="nav-text">逆袭神器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一种情怀"><span class="nav-number">3.4.</span> <span class="nav-text">一种情怀</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何制作一张好表"><span class="nav-number">4.</span> <span class="nav-text">如何制作一张好表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#信息图表的构成"><span class="nav-number">4.1.</span> <span class="nav-text">信息图表的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内容"><span class="nav-number">4.1.1.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计"><span class="nav-number">4.1.2.</span> <span class="nav-text">设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息图表的制作工具"><span class="nav-number">4.2.</span> <span class="nav-text">信息图表的制作工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息图表的制作流程"><span class="nav-number">4.3.</span> <span class="nav-text">信息图表的制作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作信息图表的五大原则"><span class="nav-number">4.4.</span> <span class="nav-text">制作信息图表的五大原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图表合适，准确呈现"><span class="nav-number">4.4.1.</span> <span class="nav-text">图表合适，准确呈现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计简约，风格统一"><span class="nav-number">4.4.2.</span> <span class="nav-text">设计简约，风格统一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适当创新，吸引眼球"><span class="nav-number">4.4.3.</span> <span class="nav-text">适当创新，吸引眼球</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容精简，避免冗余"><span class="nav-number">4.4.4.</span> <span class="nav-text">内容精简，避免冗余</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重点突出，结论秒懂"><span class="nav-number">4.4.5.</span> <span class="nav-text">重点突出，结论秒懂</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何制定信息图表的内容"><span class="nav-number">5.</span> <span class="nav-text">如何制定信息图表的内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从零开始-确定目标、提出问题"><span class="nav-number">5.1.</span> <span class="nav-text">从零开始-确定目标、提出问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步：顺藤摸瓜-解答问题、寻找信息"><span class="nav-number">5.2.</span> <span class="nav-text">第二步：顺藤摸瓜-解答问题、寻找信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定性问题"><span class="nav-number">5.2.1.</span> <span class="nav-text">定性问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定量的问题"><span class="nav-number">5.2.2.</span> <span class="nav-text">定量的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步：统领全局-整理逻辑、画出框架"><span class="nav-number">5.3.</span> <span class="nav-text">第三步：统领全局-整理逻辑、画出框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四步：局部处理-确定数据的可视化形式"><span class="nav-number">5.4.</span> <span class="nav-text">第四步：局部处理-确定数据的可视化形式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ICON的N中睡法"><span class="nav-number">6.</span> <span class="nav-text">ICON的N中睡法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为何要用图标"><span class="nav-number">6.1.</span> <span class="nav-text">为何要用图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何获得现成的图标"><span class="nav-number">6.2.</span> <span class="nav-text">如何获得现成的图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何三分钟打造一枚图标"><span class="nav-number">6.3.</span> <span class="nav-text">如何三分钟打造一枚图标</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三招变图表大神"><span class="nav-number">7.</span> <span class="nav-text">三招变图表大神</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一招：脱掉"><span class="nav-number">7.1.</span> <span class="nav-text">第一招：脱掉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二招：复制黏贴"><span class="nav-number">7.2.</span> <span class="nav-text">第二招：复制黏贴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三招：安装office2013"><span class="nav-number">7.3.</span> <span class="nav-text">第三招：安装office2013</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三招教你文字设计"><span class="nav-number">8.</span> <span class="nav-text">三招教你文字设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#信息图表文字排版术"><span class="nav-number">8.1.</span> <span class="nav-text">信息图表文字排版术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文字图形化，让文字也变得秒懂"><span class="nav-number">8.2.</span> <span class="nav-text">文字图形化，让文字也变得秒懂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只用文字也能做信息图表-文字云大法"><span class="nav-number">8.3.</span> <span class="nav-text">只用文字也能做信息图表-文字云大法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础图表的逆袭-柱形图"><span class="nav-number">9.</span> <span class="nav-text">基础图表的逆袭-柱形图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础图表的逆袭-饼图"><span class="nav-number">10.</span> <span class="nav-text">基础图表的逆袭-饼图</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

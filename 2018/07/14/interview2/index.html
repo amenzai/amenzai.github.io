@@ -1,0 +1,1187 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="面试," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前端面试进阶内容。">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 JS 中级面试">
+<meta property="og:url" content="http://amenzai.me/2018/07/14/interview2/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="前端面试进阶内容。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37199182-d7a32bc2-23bb-11e8-8369-c3abd1b42189.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249106-a5f12974-251b-11e8-93aa-06e053884e44.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249117-ca6bb9cc-251b-11e8-9112-df63287947bf.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249118-d3ca48ee-251b-11e8-8662-372ede0b9894.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249120-e53b2328-251b-11e8-8b6a-5fa9984f33db.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249137-7a01d52e-251c-11e8-9f82-efe1a256c5ca.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249142-82e51264-251c-11e8-89e6-5a39153f7185.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249150-ada5de20-251c-11e8-902e-72dac0c2c3d2.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249158-d305ea3e-251c-11e8-97ea-365b92d79753.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249161-f2dae9fe-251c-11e8-85b0-3258f13e5a47.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249166-21bb7ac2-251d-11e8-81c7-f5856635846b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249240-b7cae628-251e-11e8-9899-6ae53045efcb.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249245-d5b3b052-251e-11e8-975b-e79550efa0a0.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249253-2bee3e10-251f-11e8-9a56-a11ec3b80f68.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249286-b163e338-251f-11e8-877b-7ad8820708d7.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37249852-7d4d4d18-252a-11e8-938d-7b7fd53d92d4.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37250012-bf9aa14a-252d-11e8-8501-f848892783eb.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37250013-c70915d8-252d-11e8-8c0e-533f3744fed9.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37250019-e402e790-252d-11e8-913b-5f8cf0f4eb25.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37250020-ea562968-252d-11e8-8b5e-61bb6cf0014c.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37250025-08dc2298-252e-11e8-8517-dc606ee39b54.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37250178-af412a2c-2531-11e8-828c-66251ffb4509.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37250192-00721abe-2532-11e8-9291-dad40fa29ab3.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37250312-8341e3dc-2534-11e8-83d3-b2329bd93f49.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37250322-dd701ad6-2534-11e8-8677-974d1f67beb1.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37250376-1e592d98-2536-11e8-99c0-8dd6fbe559c6.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37250434-7bec1154-2537-11e8-8e61-1f7cb732d408.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/37250470-66f77af8-2538-11e8-9581-ff00a1acdd1f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/43695152-738743fc-9969-11e8-9fe5-e2ba76c175f1.jpg">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/43695482-91e8cec2-996b-11e8-92f3-03e8fccec462.jpg">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/43695491-98908b84-996b-11e8-9c53-8328af8f466f.jpg">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/43695504-a975cb3a-996b-11e8-8d1c-470993e3bdf4.jpg">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/43695470-72fa6106-996b-11e8-8f4d-db462b0764dd.jpg">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/43698843-a442ee1e-997e-11e8-8802-1a9938459bbf.jpg">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.388Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 JS 中级面试">
+<meta name="twitter:description" content="前端面试进阶内容。">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/20960902/37199182-d7a32bc2-23bb-11e8-8369-c3abd1b42189.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2018/07/14/interview2/"/>
+
+
+
+
+
+  <title> 前端 JS 中级面试 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2018/07/14/interview2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-14T17:12:35+08:00">
+                2018-07-14
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/前端学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">前端学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                前端 JS 中级面试
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前端面试进阶内容。</p>
+<a id="more"></a>
+<p><strong>面试环节：</strong></p>
+<ul>
+<li>一面：基础知识 html css3 js</li>
+<li>二面/三面（高级工程师）：基础延伸（根据简历上自己的项目）、技术原理 优点 缺点</li>
+<li>三面/四面（业务负责人）：项目中担任的角色，起的作用，业务处理</li>
+<li>终面（HR）：性格、沟通、潜能、规划</li>
+</ul>
+<hr>
+<p><strong>面试准备：</strong></p>
+<ul>
+<li>职位描述分析<ul>
+<li>通过了解招聘公司的岗位描述和要求，搞清楚需要了解那些技术点，然后查阅资料搞懂</li>
+<li>深入分析，弄清侧重的技术点</li>
+</ul>
+</li>
+<li>业务分析或实战模拟<ul>
+<li>了解公司是哪个方向的业务，可以访问官网，查看源码了解技术栈</li>
+<li>比如：对于Jquery,了解下jQuery模板引擎、jQuery事件委托、事件代理、waifer延迟等</li>
+</ul>
+</li>
+<li>技术栈准备<ul>
+<li>jQuery：核心架构 事件委托 插件机制</li>
+<li>Vue React AngularJs NodeJs less sass grunt gulp npm webpack </li>
+<li>可以事先准备些自己熟知的项目、例子、技术点，将面试官往这方面引导</li>
+</ul>
+</li>
+<li>自我介绍<ul>
+<li>简历：基本信息、学历、工作经历、开源项目<ul>
+<li>基本信息：姓名、年龄、手机、邮箱、籍贯</li>
+<li>学历：博士-硕士-本科</li>
+<li>工作经历：时间-公司-岗位-职责-技术栈-业绩</li>
+<li>开源项目：github和说明</li>
+</ul>
+</li>
+<li>自我陈述<ul>
+<li>把握面试的沟通方向</li>
+<li>豁达、自信的适度发挥</li>
+<li>自如谈兴趣、巧妙示实例、适时讨疑问</li>
+<li>节奏要适宜、切忌小聪明</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>一面二面</strong></p>
+<ul>
+<li>页面布局</li>
+<li>CSS盒模型<ul>
+<li>标准模型和IE模型概念 </li>
+<li>上述之间区别：content-box border-box</li>
+<li>CSS如何设置上述两种模型</li>
+<li>JS如何设置 获取盒模型的宽和高 IE: ele.currentStyle.width/heigh</li>
+<li>根据盒模型解释边距重叠</li>
+<li>BFC（边距重叠解决方案）<ul>
+<li>BFC基本概念：块级格式化上下文</li>
+<li>原理，也就是BFC的渲染规则<ul>
+<li>BFC元素垂直方向的边距会发生重叠</li>
+<li>BFC元素的区域不会与浮动元素的Box重叠</li>
+<li>BFC在页面是一个独立的容器，外面的元素不会影响里面的元素反之亦然</li>
+<li>计算BFC高的时，浮动元素也会参与计算</li>
+</ul>
+</li>
+<li>如何创建：<ul>
+<li>overflow: hidden/auto等, 不是visible</li>
+<li>float的值不为none</li>
+<li>position的值不为static 或者relative</li>
+<li>display 是 table table-cell</li>
+</ul>
+</li>
+<li>使用场景：</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>DOM事件</p>
+<ul>
+<li>基本概念：DOM事件的级别<br><img src="https://user-images.githubusercontent.com/20960902/37199182-d7a32bc2-23bb-11e8-8369-c3abd1b42189.png" alt="image"></li>
+<li>DOM事件模型<ul>
+<li>捕获和冒泡</li>
+</ul>
+</li>
+<li>DOM事件流<ul>
+<li>三个阶段<br>第一阶段：从window对象传导到目标节点，称为“捕获阶段”（capture phase）。<br>第二阶段：在目标节点上触发，称为“目标阶段”（target phase）。<br>第三阶段：从目标节点传导回window对象，称为“冒泡阶段”（bubbling phase）。</li>
+</ul>
+</li>
+<li>DOM事件的捕获具体流程</li>
+<li>Event对象的常见应用<br>event.target：事件最初发生的节点<br>event.currentTarget：事件当前所在的节点<br>event.preventDefault()<br>event.stopPropagation()<br>event.stopImmediatePropagation()：阻止同一个事件的其他监听函数被调用</li>
+<li>自定义事件<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 新建事件实例 如果需要传递数据则需要CustomEvent</span></span><br><span class="line"><span class="keyword">var</span> event = <span class="keyword">new</span> Event(<span class="string">'build'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加监听函数</span></span><br><span class="line">elem.addEventListener(<span class="string">'build'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123; ... &#125;, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 触发事件</span></span><br><span class="line">elem.dispatchEvent(event);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Http协议类</p>
+<ul>
+<li>HTTP协议的主要特点<br>简单快速：URL对应一个资源<br>灵活：传个类型，就是请求对应文件类型的资源<br>无连接：连接一次就会断掉<br>无状态：不能区分两次连接的身份</li>
+<li>HTTP报文的组成部分<br>请求报文：请求行、请求头、空行、请求体<br><img src="https://user-images.githubusercontent.com/20960902/37249106-a5f12974-251b-11e8-93aa-06e053884e44.png" alt="image"><br>相应报文：状态行、响应头、空行、响应体<br><img src="https://user-images.githubusercontent.com/20960902/37249117-ca6bb9cc-251b-11e8-9112-df63287947bf.png" alt="image"></li>
+<li>HTTP的方法<br><img src="https://user-images.githubusercontent.com/20960902/37249118-d3ca48ee-251b-11e8-8662-372ede0b9894.png" alt="image"></li>
+<li>POST和GET的区别<br><img src="https://user-images.githubusercontent.com/20960902/37249120-e53b2328-251b-11e8-8b6a-5fa9984f33db.png" alt="image"><br>记住三到四个</li>
+<li>HTTP状态码<br><img src="https://user-images.githubusercontent.com/20960902/37249137-7a01d52e-251c-11e8-9f82-efe1a256c5ca.png" alt="image"><br><img src="https://user-images.githubusercontent.com/20960902/37249142-82e51264-251c-11e8-89e6-5a39153f7185.png" alt="image"><br><img src="https://user-images.githubusercontent.com/20960902/37249150-ada5de20-251c-11e8-902e-72dac0c2c3d2.png" alt="image"></li>
+<li>什么是持久连接<br><img src="https://user-images.githubusercontent.com/20960902/37249158-d305ea3e-251c-11e8-97ea-365b92d79753.png" alt="image"></li>
+<li>什么是管线化<br><img src="https://user-images.githubusercontent.com/20960902/37249161-f2dae9fe-251c-11e8-85b0-3258f13e5a47.png" alt="image"><br><img src="https://user-images.githubusercontent.com/20960902/37249166-21bb7ac2-251d-11e8-81c7-f5856635846b.png" alt="image"></li>
+</ul>
+</li>
+<li>原型链类<ul>
+<li>创建对象几种方法<br><img src="https://user-images.githubusercontent.com/20960902/37249240-b7cae628-251e-11e8-9899-6ae53045efcb.png" alt="image"></li>
+<li>原型、构造函数、实例、原型链<br><img src="https://user-images.githubusercontent.com/20960902/37249245-d5b3b052-251e-11e8-975b-e79550efa0a0.png" alt="image"></li>
+<li>instanceof的原理<br><img src="https://user-images.githubusercontent.com/20960902/37249253-2bee3e10-251f-11e8-9a56-a11ec3b80f68.png" alt="image"></li>
+<li>new运算符<br><img src="https://user-images.githubusercontent.com/20960902/37249286-b163e338-251f-11e8-877b-7ad8820708d7.png" alt="image"></li>
+</ul>
+</li>
+<li>面向对象<ul>
+<li>类与实例<br>类的声明<br>生成实例</li>
+<li>类与继承<br>如何实现继承<br>继承的几种方式</li>
+</ul>
+</li>
+<li>通信类<ul>
+<li>什么是同源策略及限制</li>
+<li>前后端如何通信</li>
+<li>如何创建Ajax</li>
+<li>跨域通信的几种方式</li>
+</ul>
+</li>
+<li>安全类<ul>
+<li>CSRF<br>基本概念：跨站请求伪造<br>攻击原理<br><img src="https://user-images.githubusercontent.com/20960902/37249852-7d4d4d18-252a-11e8-938d-7b7fd53d92d4.png" alt="image"><br>防御措施：TOKEN验证、Referer验证（页面内来源验证）、隐藏令牌</li>
+<li>XSS<br>基本概念：跨域脚本攻击<br>攻击原理：不需要登录验证，根据合法渠道，注入脚本<br>防范措施：</li>
+</ul>
+</li>
+<li><p>算法类</p>
+<ul>
+<li><p>排序<br><img src="https://user-images.githubusercontent.com/20960902/37250012-bf9aa14a-252d-11e8-8501-f848892783eb.png" alt="image"><br><img src="https://user-images.githubusercontent.com/20960902/37250013-c70915d8-252d-11e8-8c0e-533f3744fed9.png" alt="image"></p>
+</li>
+<li><p>堆栈、队列、链表<br><img src="https://user-images.githubusercontent.com/20960902/37250019-e402e790-252d-11e8-913b-5f8cf0f4eb25.png" alt="image"></p>
+</li>
+<li><p>递归<br><img src="https://user-images.githubusercontent.com/20960902/37250020-ea562968-252d-11e8-8b5e-61bb6cf0014c.png" alt="image"></p>
+</li>
+<li><p>波兰式和逆波兰式<br><img src="https://user-images.githubusercontent.com/20960902/37250025-08dc2298-252e-11e8-8517-dc606ee39b54.png" alt="image"></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>先理解题目（问面试官给个提示，说自己知道用了什么技术点，自己说一下。。）</p>
+<p><strong>二面/三面</strong></p>
+<p>面试技巧：</p>
+<ul>
+<li>知识面要广</li>
+<li>理解要深刻</li>
+<li>内心要诚实</li>
+<li>态度要谦虚</li>
+<li>回答要灵活</li>
+<li>要学会赞美</li>
+</ul>
+<p>渲染机制：</p>
+<p>什么是DOCTYPE及作用<br><img src="https://user-images.githubusercontent.com/20960902/37250178-af412a2c-2531-11e8-828c-66251ffb4509.png" alt="image"></p>
+<p>浏览器渲染过程<br><img src="https://user-images.githubusercontent.com/20960902/37250192-00721abe-2532-11e8-9291-dad40fa29ab3.png" alt="image"></p>
+<p>HTML 渲染过程的一些特点：</p>
+<ul>
+<li>顺序执行、并发加载（词法分析、并发加载、并发上限）</li>
+<li>是否阻塞（css head 中阻塞页面的渲染、css 阻塞 JS 的执行、css 不阻塞外部脚本的加载）<br>直接引入的 JS 阻塞页面的渲染、JS不阻塞资源的加载、JS 顺序执行，阻塞后续 JS 逻辑的执行</li>
+<li>依赖关系（页面渲染依赖 css 的加载、js 的执行顺序的依赖关系）</li>
+<li>引入方式（直接引入、defer、async、异步动态引入）</li>
+</ul>
+<p>回流：</p>
+<ul>
+<li>当render tree中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。这就称为回流(reflow)</li>
+<li>当页面布局和几何属性改变时就需要回流</li>
+</ul>
+<p>重绘：</p>
+<p>当render tree中的一些元素需要更新属性，而这些属性只是影响元素的外观，风格，而不会影响布局的，比如background-color。则就叫称为重绘。</p>
+<p>回流必将引起重绘、而重绘不一定会引起回流</p>
+<p>触发页面重布局的属性：</p>
+<ul>
+<li>盒子模型相关属性会触发重布局</li>
+<li>定位属性及浮动也会触发重布局</li>
+<li>改变节点内部文字结构也会触发重布局</li>
+</ul>
+<p>只触发重绘的属性：</p>
+<ul>
+<li>和外观相关的属性</li>
+</ul>
+<p>JS运行机制：<br><img src="https://user-images.githubusercontent.com/20960902/37250312-8341e3dc-2534-11e8-83d3-b2329bd93f49.png" alt="image"></p>
+<p>页面性能：<br><img src="https://user-images.githubusercontent.com/20960902/37250322-dd701ad6-2534-11e8-8677-974d1f67beb1.png" alt="image"></p>
+<p>缓存：<br><img src="https://user-images.githubusercontent.com/20960902/37250376-1e592d98-2536-11e8-99c0-8dd6fbe559c6.png" alt="image"></p>
+<p>错误监控：<br><img src="https://user-images.githubusercontent.com/20960902/37250434-7bec1154-2537-11e8-8e61-1f7cb732d408.png" alt="image"><br><img src="https://user-images.githubusercontent.com/20960902/37250470-66f77af8-2538-11e8-9581-ff00a1acdd1f.png" alt="image"></p>
+<hr>
+<p><strong>三面四面</strong></p>
+<p>面试技巧：</p>
+<ul>
+<li>准备要充分</li>
+<li>描述要演练（模拟演练）</li>
+<li>引导找时机（引导说出自己优势，做过的项目啥的）</li>
+<li>优势要发挥</li>
+<li>回答要灵活</li>
+</ul>
+<p>考查能力：</p>
+<ul>
+<li>业务能力<ul>
+<li>主动描述或被动回答<br><img src="https://user-images.githubusercontent.com/20960902/43695152-738743fc-9969-11e8-9fe5-e2ba76c175f1.jpg" alt="5-1 mp4_20180806_111002 553"></li>
+</ul>
+</li>
+<li>团队协作能力<br><img src="https://user-images.githubusercontent.com/20960902/43695482-91e8cec2-996b-11e8-92f3-03e8fccec462.jpg" alt="up1"></li>
+<li>事务推动能力<br><img src="https://user-images.githubusercontent.com/20960902/43695491-98908b84-996b-11e8-9c53-8328af8f466f.jpg" alt="5-2 mp4_20180806_111758 024"></li>
+<li>带人能力<br><img src="https://user-images.githubusercontent.com/20960902/43695504-a975cb3a-996b-11e8-8d1c-470993e3bdf4.jpg" alt="5-2 mp4_20180806_111833 048"></li>
+<li>其他能力<ul>
+<li>组织能力</li>
+<li>学习能力</li>
+<li>行业经验</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>最终面</strong></p>
+<p>面试技巧：</p>
+<ul>
+<li>乐观积极</li>
+<li>主动沟通</li>
+<li>逻辑顺畅</li>
+<li>上进有责任心</li>
+<li>有主张，做事果断</li>
+</ul>
+<p>考察问题：</p>
+<ul>
+<li>职业竞争力<br><img src="https://user-images.githubusercontent.com/20960902/43695470-72fa6106-996b-11e8-8f4d-db462b0764dd.jpg" alt="6-1 mp4_20180806_112528 128"></li>
+<li>职业规划<br><img src="https://user-images.githubusercontent.com/20960902/43698843-a442ee1e-997e-11e8-8802-1a9938459bbf.jpg" alt="6-2 mp4_20180806_112910 520"></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"><i class="fa fa-tag"></i> 面试</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/14/interview1/" rel="next" title="前端 JS 初级面试">
+                <i class="fa fa-chevron-left"></i> 前端 JS 初级面试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/14/interview3/" rel="prev" title="前端 JS 高级面试">
+                前端 JS 高级面试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

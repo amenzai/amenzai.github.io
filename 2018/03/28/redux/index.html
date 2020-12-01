@@ -1,0 +1,969 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="react," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="如何使用redux管理react应用数据？这一篇谈一谈redux的基本用法。">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redux基本用法">
+<meta property="og:url" content="http://amenzai.me/2018/03/28/redux/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="如何使用redux管理react应用数据？这一篇谈一谈redux的基本用法。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.399Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redux基本用法">
+<meta name="twitter:description" content="如何使用redux管理react应用数据？这一篇谈一谈redux的基本用法。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2018/03/28/redux/"/>
+
+
+
+
+
+  <title> redux基本用法 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2018/03/28/redux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T20:26:07+08:00">
+                2018-03-28
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/前端学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">前端学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                redux基本用法
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如何使用redux管理react应用数据？这一篇谈一谈redux的基本用法。</p>
+<a id="more"></a>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建Store</span></span><br><span class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"><span class="keyword">const</span> store = createStore(fn);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> state = store.getState();</span><br><span class="line"></span><br><span class="line"><span class="comment">// view产生action</span></span><br><span class="line"><span class="keyword">const</span> ADD_TODO = <span class="string">'添加 TODO'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTodo</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    type: ADD_TODO,</span><br><span class="line">    text</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发送action</span></span><br><span class="line">store.dispatch(addTodo(<span class="string">'Learn Redux'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算新的state</span></span><br><span class="line"><span class="keyword">const</span> defaultState = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> reducer = <span class="function">(<span class="params">state = defaultState, action</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'ADD'</span>:</span><br><span class="line">      <span class="keyword">return</span> state + action.payload;</span><br><span class="line">    <span class="keyword">default</span>: </span><br><span class="line">      <span class="keyword">return</span> state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> state = reducer(<span class="number">1</span>, &#123;</span><br><span class="line">  type: <span class="string">'ADD'</span>,</span><br><span class="line">  payload: <span class="number">2</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"><span class="comment">// 每当store.dispatch发送过来一个新的 Action，就会自动调用 Reducer，得到新的 State。</span></span><br><span class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"><span class="keyword">const</span> store = createStore(reducer);</span><br><span class="line"></span><br><span class="line">store.subscribe(listener);</span><br></pre></td></tr></table></figure>
+<h2 id="Reducer-的拆分"><a href="#Reducer-的拆分" class="headerlink" title="Reducer 的拆分"></a>Reducer 的拆分</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; combineReducers &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> chatReducer = combineReducers(&#123;</span><br><span class="line">  chatLog,</span><br><span class="line">  statusMessage,</span><br><span class="line">  userName</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> todoApp;</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"><span class="comment">// 子reducer放入一个文件，统一引入</span></span><br><span class="line"><span class="keyword">import</span> &#123; combineReducers &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> reducers <span class="keyword">from</span> <span class="string">'./reducers'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> reducer = combineReducers(reducers)</span><br></pre></td></tr></table></figure>
+<h2 id="流程解析"><a href="#流程解析" class="headerlink" title="流程解析"></a>流程解析</h2><ol>
+<li>用户发出 Action（store.dispatch(action);）</li>
+<li>Store 自动调用 Reducer，并且传入两个参数：当前 State 和收到的 Action。 Reducer 会返回新的 State 。（let nextState = todoApp(previousState, action);）</li>
+<li>State 一旦有变化，Store 就会调用监听函数。（store.subscribe(listener);）</li>
+<li>listener可以通过store.getState()得到当前状态。如果使用的是 React，这时可以触发重新渲染 View。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">listerner</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> newState = store.getState();</span><br><span class="line">  component.setState(newState);   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="异步需要中间件支持"><a href="#异步需要中间件支持" class="headerlink" title="异步需要中间件支持"></a>异步需要中间件支持</h2><h3 id="中间件用法"><a href="#中间件用法" class="headerlink" title="中间件用法"></a>中间件用法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; applyMiddleware, createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"><span class="keyword">import</span> createLogger <span class="keyword">from</span> <span class="string">'redux-logger'</span>;</span><br><span class="line"><span class="keyword">const</span> logger = createLogger();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = createStore(</span><br><span class="line">  reducer,</span><br><span class="line">  applyMiddleware(logger)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// createStore方法可以接受整个应用的初始状态作为参数，</span></span><br><span class="line"><span class="comment">// applyMiddleware是第三个参数</span></span><br><span class="line"><span class="keyword">const</span> store = createStore(</span><br><span class="line">  reducer,</span><br><span class="line">  initial_state,</span><br><span class="line">  applyMiddleware(logger)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="异步操作思路"><a href="#异步操作思路" class="headerlink" title="异步操作思路"></a>异步操作思路</h3><ol>
+<li>操作开始时，送出一个 Action，触发 State 更新为”正在操作”状态，View 重新渲染</li>
+<li>操作结束后，再送出一个 Action，触发 State 更新为”操作结束”状态，View 再一次重新渲染</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 异步操作要发出三种 Action。</span></span><br><span class="line">&#123; <span class="attr">type</span>: <span class="string">'FETCH_POSTS_REQUEST'</span> &#125;</span><br><span class="line">&#123; <span class="attr">type</span>: <span class="string">'FETCH_POSTS_FAILURE'</span>, <span class="attr">error</span>: <span class="string">'Oops'</span> &#125;</span><br><span class="line">&#123; <span class="attr">type</span>: <span class="string">'FETCH_POSTS_SUCCESS'</span>, <span class="attr">response</span>: &#123; ... &#125; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// state改造  </span></span><br><span class="line"><span class="keyword">let</span> state = &#123;</span><br><span class="line">  <span class="comment">// ... </span></span><br><span class="line">  isFetching: <span class="literal">true</span>,</span><br><span class="line">  didInvalidate: <span class="literal">true</span>,</span><br><span class="line">  lastUpdated: <span class="string">'xxxxxxx'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fetchPosts = <span class="function"><span class="params">postTitle</span> =&gt;</span> (dispatch, getState) =&gt; &#123;</span><br><span class="line">  dispatch(requestPosts(postTitle));</span><br><span class="line">  <span class="keyword">return</span> fetch(<span class="string">`/some/API/<span class="subst">$&#123;postTitle&#125;</span>.json`</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> response.json())</span><br><span class="line">    .then(<span class="function"><span class="params">json</span> =&gt;</span> dispatch(receivePosts(postTitle, json)));</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fetchPosts = </span><br><span class="line">  (dispatch, postTitle) =&gt; <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">     dispatch(requestPosts(postTitle));</span><br><span class="line">     <span class="keyword">return</span> fetch(<span class="string">`/some/API/<span class="subst">$&#123;postTitle&#125;</span>.json`</span>)</span><br><span class="line">       .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">         type: <span class="string">'FETCH_POSTS'</span>,</span><br><span class="line">         payload: response.json()</span><br><span class="line">       &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用方法一</span></span><br><span class="line">store.dispatch(fetchPosts(<span class="string">'reactjs'</span>));</span><br><span class="line"><span class="comment">// 使用方法二</span></span><br><span class="line">store.dispatch(fetchPosts(<span class="string">'reactjs'</span>)).then(<span class="function"><span class="params">()</span> =&gt;</span></span><br><span class="line">  <span class="built_in">console</span>.log(store.getState())</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; createStore, applyMiddleware &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">'redux-thunk'</span>;</span><br><span class="line"><span class="comment">// import promiseMiddleware from 'redux-promise';</span></span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducers'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Note: this API requires redux@&gt;=3.1.0</span></span><br><span class="line"><span class="keyword">const</span> store = createStore(</span><br><span class="line">  reducer,</span><br><span class="line">  applyMiddleware(thunk)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="react-redux"><a href="#react-redux" class="headerlink" title="react-redux"></a>react-redux</h2><p>待整理…</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"><i class="fa fa-tag"></i> react</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/22/vue-store/" rel="next" title="vuex简介">
+                <i class="fa fa-chevron-left"></i> vuex简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/01/gjc-utils/" rel="prev" title="发布了一个npm包（gjc-utils）">
+                发布了一个npm包（gjc-utils） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码示例"><span class="nav-number">1.</span> <span class="nav-text">代码示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reducer-的拆分"><span class="nav-number">2.</span> <span class="nav-text">Reducer 的拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程解析"><span class="nav-number">3.</span> <span class="nav-text">流程解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步需要中间件支持"><span class="nav-number">4.</span> <span class="nav-text">异步需要中间件支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#中间件用法"><span class="nav-number">4.1.</span> <span class="nav-text">中间件用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步操作思路"><span class="nav-number">4.2.</span> <span class="nav-text">异步操作思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react-redux"><span class="nav-number">5.</span> <span class="nav-text">react-redux</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

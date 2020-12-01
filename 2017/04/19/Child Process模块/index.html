@@ -1,0 +1,992 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="child_process模块用于新建子进程。子进程的运行结果储存在系统缓存之中（最大200KB），等到子进程运行结束以后，主进程再用回调函数读取子进程的运行结果。">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Child Process模块">
+<meta property="og:url" content="http://amenzai.me/2017/04/19/Child Process模块/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="child_process模块用于新建子进程。子进程的运行结果储存在系统缓存之中（最大200KB），等到子进程运行结束以后，主进程再用回调函数读取子进程的运行结果。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.380Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Child Process模块">
+<meta name="twitter:description" content="child_process模块用于新建子进程。子进程的运行结果储存在系统缓存之中（最大200KB），等到子进程运行结束以后，主进程再用回调函数读取子进程的运行结果。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2017/04/19/Child Process模块/"/>
+
+
+
+
+
+  <title> Child Process模块 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2017/04/19/Child Process模块/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-19T00:00:00+08:00">
+                2017-04-19
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Child Process模块
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>child_process模块用于新建子进程。子进程的运行结果储存在系统缓存之中（最大200KB），等到子进程运行结束以后，主进程再用回调函数读取子进程的运行结果。</p>
+<a id="more"></a>
+<h1 id="exec"><a href="#exec" class="headerlink" title="exec()"></a>exec()</h1><p><code>exec</code>方法用于执行bash命令，它的参数是一个命令字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">'child_process'</span>).exec;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ls = exec(<span class="string">'ls -l'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, stdout, stderr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error.stack);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Error code: '</span> + error.code);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Child Process STDOUT: '</span> + stdout);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码的<code>exec</code>方法用于新建一个子进程，然后缓存它的运行结果，运行结束后调用回调函数。</p>
+<p><code>exec</code>方法最多可以接受两个参数，第一个参数是所要执行的shell命令，第二个参数是回调函数，该函数接受三个参数，分别是发生的错误、标准输出的显示结果、标准错误的显示结果。</p>
+<p>由于标准输出和标准错误都是流对象（stream），可以监听data事件，因此上面的代码也可以写成下面这样。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">'child_process'</span>).exec;</span><br><span class="line"><span class="keyword">var</span> child = exec(<span class="string">'ls -l'</span>);</span><br><span class="line"></span><br><span class="line">child.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'stdout: '</span> + data);</span><br><span class="line">&#125;);</span><br><span class="line">child.stderr.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'stdout: '</span> + data);</span><br><span class="line">&#125;);</span><br><span class="line">child.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">code</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'closing code: '</span> + code);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面的代码还表明，子进程本身有<code>close</code>事件，可以设置回调函数。</p>
+<p>上面的代码还有一个好处。监听data事件以后，可以实时输出结果，否则只有等到子进程结束，才会输出结果。所以，如果子进程运行时间较长，或者是持续运行，第二种写法更好。</p>
+<p>下面是另一个例子，假定有一个child.js文件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// child.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">'child_process'</span>).exec;</span><br><span class="line">exec(<span class="string">'node -v'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">error, stdout, stderr</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'stdout: '</span> + stdout);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'stderr: '</span> + stderr);</span><br><span class="line">  <span class="keyword">if</span> (error !== <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'exec error: '</span> + error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行后，该文件的输出结果如下。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node child.js</span><br><span class="line"></span><br><span class="line">stdout: v0.11.14</span><br><span class="line"></span><br><span class="line">stderr:</span><br></pre></td></tr></table></figure>
+<p>exec方法会直接调用bash（<code>/bin/sh</code>程序）来解释命令，所以如果有用户输入的参数，exec方法是不安全的。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> path = <span class="string">";user input"</span>;</span><br><span class="line">child_process.exec(<span class="string">'ls -l '</span> + path, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码表示，在bash环境下，<code>ls -l; user input</code>会直接运行。如果用户输入恶意代码，将会带来安全风险。因此，在有用户输入的情况下，最好不使用<code>exec</code>方法，而是使用<code>execFile</code>方法。</p>
+<h1 id="execSync"><a href="#execSync" class="headerlink" title="execSync()"></a>execSync()</h1><p><code>execSync</code>是<code>exec</code>的同步执行版本。</p>
+<p>它可以接受两个参数，第一个参数是所要执行的命令，第二个参数用来配置执行环境。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> execSync = <span class="built_in">require</span>(<span class="string">"child_process"</span>).execSync;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> SEPARATOR = process.platform === <span class="string">'win32'</span> ? <span class="string">';'</span> : <span class="string">':'</span>;</span><br><span class="line"><span class="keyword">var</span> env = <span class="built_in">Object</span>.assign(&#123;&#125;, process.env);</span><br><span class="line"></span><br><span class="line">env.PATH = path.resolve(<span class="string">'./node_modules/.bin'</span>) + SEPARATOR + env.PATH;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myExecSync</span>(<span class="params">cmd</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> output = execSync(cmd, &#123;</span><br><span class="line">    cwd: process.cwd(),</span><br><span class="line">    env: env</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(output);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myExecSync(<span class="string">'eslint .'</span>);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>execSync</code>方法的第二个参数是一个对象。该对象的<code>cwd</code>属性指定脚本的当前目录，<code>env</code>属性指定环境变量。上面代码将<code>./node_modules/.bin</code>目录，存入<code>$PATH</code>变量。这样就可以不加路径，引用项目内部的模块命令了，比如<code>eslint</code>命令实际执行的是<code>./node_modules/.bin/eslint</code>。</p>
+<h1 id="execFile"><a href="#execFile" class="headerlink" title="execFile()"></a>execFile()</h1><p>execFile方法直接执行特定的程序，参数作为数组传入，不会被bash解释，因此具有较高的安全性。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> child_process = <span class="built_in">require</span>(<span class="string">'child_process'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> path = <span class="string">"."</span>;</span><br><span class="line">child_process.execFile(<span class="string">'/bin/ls'</span>, [<span class="string">'-l'</span>, path], <span class="function"><span class="keyword">function</span> (<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，假定<code>path</code>来自用户输入，如果其中包含了分号或反引号，ls程序不理解它们的含义，因此也就得不到运行结果，安全性就得到了提高。</p>
+<h1 id="spawn"><a href="#spawn" class="headerlink" title="spawn()"></a>spawn()</h1><p>spawn方法创建一个子进程来执行特定命令，用法与execFile方法类似，但是没有回调函数，只能通过监听事件，来获取运行结果。它属于异步执行，适用于子进程长时间运行的情况。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> child_process = <span class="built_in">require</span>(<span class="string">'child_process'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> path = <span class="string">'.'</span>;</span><br><span class="line"><span class="keyword">var</span> ls = child_process.spawn(<span class="string">'/bin/ls'</span>, [<span class="string">'-l'</span>, path]);</span><br><span class="line">ls.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'stdout: '</span> + data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ls.stderr.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'stderr: '</span> + data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ls.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">code</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'child process exited with code '</span> + code);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>spawn方法接受两个参数，第一个是可执行文件，第二个是参数数组。</p>
+<p>spawn对象返回一个对象，代表子进程。该对象部署了EventEmitter接口，它的<code>data</code>事件可以监听，从而得到子进程的输出结果。</p>
+<p>spawn方法与exec方法非常类似，只是使用格式略有区别。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">child_process.exec(command, [options], callback)</span><br><span class="line">child_process.spawn(command, [args], [options])</span><br></pre></td></tr></table></figure>
+<h1 id="fork"><a href="#fork" class="headerlink" title="fork()"></a>fork()</h1><p>fork方法直接创建一个子进程，执行Node脚本，<code>fork(&#39;./child.js&#39;)</code> 相当于 <code>spawn(&#39;node&#39;, [&#39;./child.js&#39;])</code> 。与spawn方法不同的是，fork会在父进程与子进程之间，建立一个通信管道，用于进程之间的通信。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> n = child_process.fork(<span class="string">'./child.js'</span>);</span><br><span class="line">n.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">m</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'PARENT got message:'</span>, m);</span><br><span class="line">&#125;);</span><br><span class="line">n.send(&#123; <span class="attr">hello</span>: <span class="string">'world'</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，fork方法返回一个代表进程间通信管道的对象，对该对象可以监听message事件，用来获取子进程返回的信息，也可以向子进程发送信息。</p>
+<p>child.js脚本的内容如下。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">process.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">m</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'CHILD got message:'</span>, m);</span><br><span class="line">&#125;);</span><br><span class="line">process.send(&#123; <span class="attr">foo</span>: <span class="string">'bar'</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，子进程监听message事件，并向父进程发送信息。</p>
+<h1 id="send"><a href="#send" class="headerlink" title="send()"></a>send()</h1><p>使用 child_process.fork() 生成新进程之后，就可以用 child.send(message, [sendHandle]) 向新进程发送消息。新进程中通过监听message事件，来获取消息。</p>
+<p>下面的例子是主进程的代码。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> cp = <span class="built_in">require</span>(<span class="string">'child_process'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> n = cp.fork(__dirname + <span class="string">'/sub.js'</span>);</span><br><span class="line"></span><br><span class="line">n.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">m</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'PARENT got message:'</span>, m);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">n.send(&#123; <span class="attr">hello</span>: <span class="string">'world'</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p>下面是子进程sub.js代码。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">process.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">m</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'CHILD got message:'</span>, m);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">process.send(&#123; <span class="attr">foo</span>: <span class="string">'bar'</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"><i class="fa fa-tag"></i> node</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/19/Stream接口/" rel="next" title="Stream接口">
+                <i class="fa fa-chevron-left"></i> Stream接口
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/19/fs模块/" rel="prev" title="fs模块">
+                fs模块 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#exec"><span class="nav-number">1.</span> <span class="nav-text">exec()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#execSync"><span class="nav-number">2.</span> <span class="nav-text">execSync()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#execFile"><span class="nav-number">3.</span> <span class="nav-text">execFile()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#spawn"><span class="nav-number">4.</span> <span class="nav-text">spawn()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fork"><span class="nav-number">5.</span> <span class="nav-text">fork()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#send"><span class="nav-number">6.</span> <span class="nav-text">send()</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

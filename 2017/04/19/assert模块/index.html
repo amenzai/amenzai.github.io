@@ -1,0 +1,982 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="assert模块是Node的内置模块，主要用于断言。如果表达式不符合预期，就抛出一个错误。该模块提供11个方法，但只有少数几个是常用的。">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="assert模块">
+<meta property="og:url" content="http://amenzai.me/2017/04/19/assert模块/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="assert模块是Node的内置模块，主要用于断言。如果表达式不符合预期，就抛出一个错误。该模块提供11个方法，但只有少数几个是常用的。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.386Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="assert模块">
+<meta name="twitter:description" content="assert模块是Node的内置模块，主要用于断言。如果表达式不符合预期，就抛出一个错误。该模块提供11个方法，但只有少数几个是常用的。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2017/04/19/assert模块/"/>
+
+
+
+
+
+  <title> assert模块 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2017/04/19/assert模块/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-19T00:00:00+08:00">
+                2017-04-19
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                assert模块
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>assert模块是Node的内置模块，主要用于断言。如果表达式不符合预期，就抛出一个错误。该模块提供11个方法，但只有少数几个是常用的。</p>
+<a id="more"></a>
+<h1 id="assert"><a href="#assert" class="headerlink" title="assert()"></a>assert()</h1><p>assert方法接受两个参数，当第一个参数对应的布尔值为true时，不会有任何提示，返回undefined。当第一个参数对应的布尔值为false时，会抛出一个错误，该错误的提示信息就是第二个参数设定的字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式</span></span><br><span class="line">assert(value, message)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子</span></span><br><span class="line"><span class="keyword">var</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> expected = add(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">assert( expected === <span class="number">3</span>, <span class="string">'预期1加2等于3'</span>);</span><br></pre></td></tr></table></figure>
+<p>上面代码不会有任何输出，因为assert方法的第一个参数是true。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">assert( expected === <span class="number">4</span>, <span class="string">'预期1加2等于3'</span>)</span><br><span class="line"><span class="comment">// AssertionError: 预期1加2等于3</span></span><br></pre></td></tr></table></figure>
+<p>上面代码会抛出一个错误，因为assert方法的第一个参数是false。</p>
+<h1 id="assert-ok"><a href="#assert-ok" class="headerlink" title="assert.ok()"></a>assert.ok()</h1><p>ok是assert方法的另一个名字，与assert方法完全一样。</p>
+<h1 id="assert-equal"><a href="#assert-equal" class="headerlink" title="assert.equal()"></a>assert.equal()</h1><p>equal方法接受三个参数，第一个参数是实际值，第二个是预期值，第三个是错误的提示信息。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式</span></span><br><span class="line">assert.equal(actual, expected, [message])</span><br><span class="line"></span><br><span class="line">assert.equal(<span class="literal">true</span>, value, message);</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">assert(value, message);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子</span></span><br><span class="line"><span class="keyword">var</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> expected = add(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下三句效果相同</span></span><br><span class="line">assert(expected == <span class="number">3</span>, <span class="string">'预期1+2等于3'</span>);</span><br><span class="line">assert.ok(expected == <span class="number">3</span>, <span class="string">'预期1+2等于3'</span>);</span><br><span class="line">assert.equal(expected, <span class="number">3</span>, <span class="string">'预期1+2等于3'</span>);</span><br></pre></td></tr></table></figure>
+<p>equal方法内部使用的是相等运算符（==），而不是严格运算符（===），进行比较运算。</p>
+<h1 id="assert-notEqual"><a href="#assert-notEqual" class="headerlink" title="assert.notEqual()"></a>assert.notEqual()</h1><p>notEqual方法的用法与equal方法类似，但只有在实际值等于预期值时，才会抛出错误。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式</span></span><br><span class="line">assert.notEqual(actual, expected, [message])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用法</span></span><br><span class="line"><span class="keyword">var</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> expected = add(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下三种写法效果相同</span></span><br><span class="line">assert(expected != <span class="number">4</span>, <span class="string">'预期不等于4'</span>);</span><br><span class="line">assert.ok(expected != <span class="number">4</span>, <span class="string">'预期不等于4'</span>);</span><br><span class="line">assert.notEqual(expected, <span class="number">4</span>, <span class="string">'预期不等于4'</span>);</span><br></pre></td></tr></table></figure>
+<p>notEqual方法内部使用不相等运算符（!=），而不是严格不相等运算符（!==），进行比较运算。</p>
+<h1 id="assert-deepEqual"><a href="#assert-deepEqual" class="headerlink" title="assert.deepEqual()"></a>assert.deepEqual()</h1><p>deepEqual方法用来比较两个对象。只要它们的属性一一对应，且值都相等，就认为两个对象相等，否则抛出一个错误。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式</span></span><br><span class="line">assert.deepEqual(actual, expected, [message])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子</span></span><br><span class="line"><span class="keyword">var</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> list2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">assert.deepEqual(list1, list2, <span class="string">'预期两个数组应该有相同的属性'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = &#123; <span class="string">"name"</span>:<span class="string">"john"</span>, <span class="string">"age"</span>:<span class="string">"21"</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> person2 = &#123; <span class="string">"name"</span>:<span class="string">"john"</span>, <span class="string">"age"</span>:<span class="string">"21"</span> &#125;;</span><br><span class="line"></span><br><span class="line">assert.deepEqual(person1, person2, <span class="string">'预期两个对象应该有相同的属性'</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="assert-notDeepEqual"><a href="#assert-notDeepEqual" class="headerlink" title="assert.notDeepEqual()"></a>assert.notDeepEqual()</h1><p>notDeepEqual方法与deepEqual方法正好相反，用来断言两个对象是否不相等。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式</span></span><br><span class="line">assert.notDeepEqual(actual, expected, [message])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子</span></span><br><span class="line"><span class="keyword">var</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> list1 = [<span class="number">1</span>, <span class="number">2</span>, ,<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> list2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">assert.notDeepEqual(list1, list2, <span class="string">'预期两个对象不相等'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = &#123; <span class="string">"name"</span>:<span class="string">"john"</span>, <span class="string">"age"</span>:<span class="string">"21"</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> person2 = &#123; <span class="string">"name"</span>:<span class="string">"jane"</span>, <span class="string">"age"</span>:<span class="string">"19"</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// deepEqual checks the elements in the objects are identical</span></span><br><span class="line">assert.notDeepEqual(person1, person2, <span class="string">'预期两个对象不相等'</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="assert-strictEqual"><a href="#assert-strictEqual" class="headerlink" title="assert.strictEqual()"></a>assert.strictEqual()</h1><p>strictEqual方法使用严格相等运算符（===），比较两个表达式。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式</span></span><br><span class="line">assert.strictEqual(actual, expected, [message])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子</span></span><br><span class="line"><span class="keyword">var</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"></span><br><span class="line">assert.strictEqual(<span class="number">1</span>, <span class="string">'1'</span>, <span class="string">'预期严格相等'</span>);</span><br><span class="line"><span class="comment">// AssertionError: 预期严格相等</span></span><br></pre></td></tr></table></figure>
+<h1 id="assert-notStrictEqual"><a href="#assert-notStrictEqual" class="headerlink" title="assert.notStrictEqual()"></a>assert.notStrictEqual()</h1><p>assert.notStrictEqual方法使用严格不相等运算符（!==），比较两个表达式。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式</span></span><br><span class="line">assert.notStrictEqual(actual, expected, [message])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子</span></span><br><span class="line"><span class="keyword">var</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"></span><br><span class="line">assert.notStrictEqual(<span class="number">1</span>, <span class="literal">true</span>, <span class="string">'预期严格不相等'</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="assert-throws"><a href="#assert-throws" class="headerlink" title="assert.throws()"></a>assert.throws()</h1><p>throws方法预期某个代码块会抛出一个错误，且抛出的错误符合指定的条件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式</span></span><br><span class="line">assert.throws(block, [error], [message])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例一，抛出的错误符合某个构造函数</span></span><br><span class="line">assert.throws(</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Wrong value"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">Error</span>,</span><br><span class="line">  <span class="string">'不符合预期的错误类型'</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例二、抛出错误的提示信息符合正则表达式</span></span><br><span class="line">assert.throws(</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Wrong value"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  /value/,</span><br><span class="line">  <span class="string">'不符合预期的错误类型'</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例三、抛出的错误符合自定义函数的校验</span></span><br><span class="line">assert.throws(</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Wrong value"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( (err <span class="keyword">instanceof</span> <span class="built_in">Error</span>) &amp;&amp; <span class="regexp">/value/</span>.test(err) ) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">'不符合预期的错误类型'</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h1 id="assert-doesNotThrow"><a href="#assert-doesNotThrow" class="headerlink" title="assert.doesNotThrow()"></a>assert.doesNotThrow()</h1><p>doesNotThrow方法与throws方法正好相反，预期某个代码块不抛出错误。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式</span></span><br><span class="line">assert.doesNotThrow(block, [message])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用法</span></span><br><span class="line">assert.doesNotThrow(</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Nothing to see here"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">'预期不抛出错误'</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h1 id="assert-ifError"><a href="#assert-ifError" class="headerlink" title="assert.ifError()"></a>assert.ifError()</h1><p>ifError方法断言某个表达式是否false，如果该表达式对应的布尔值等于true，就抛出一个错误。它对于验证回调函数的第一个参数十分有用，如果该参数为true，就表示有错误。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式</span></span><br><span class="line">assert.ifError(value)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params">name, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> error = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">var</span> str   = <span class="string">"Hello "</span>+name;</span><br><span class="line">  callback(error, str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// use the function</span></span><br><span class="line">sayHello(<span class="string">'World'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, value</span>)</span>&#123;</span><br><span class="line">  assert.ifError(err);</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="assert-fail"><a href="#assert-fail" class="headerlink" title="assert.fail()"></a>assert.fail()</h1><p>fail方法用于抛出一个错误。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式</span></span><br><span class="line">assert.fail(actual, expected, message, operator)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子</span></span><br><span class="line"><span class="keyword">var</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"></span><br><span class="line">assert.fail(<span class="number">21</span>, <span class="number">42</span>, <span class="string">'Test Failed'</span>, <span class="string">'##'</span>)</span><br><span class="line"><span class="comment">// AssertionError: Test Failed</span></span><br><span class="line">assert.fail(<span class="number">21</span>, <span class="number">21</span>, <span class="string">'Test Failed'</span>, <span class="string">'##'</span>)</span><br><span class="line"><span class="comment">// AssertionError: Test Failed</span></span><br><span class="line">assert.fail(<span class="number">21</span>, <span class="number">42</span>, <span class="literal">undefined</span>, <span class="string">'##'</span>)</span><br><span class="line"><span class="comment">// AssertionError: 21 ## 42</span></span><br></pre></td></tr></table></figure>
+<p>该方法共有四个参数，但是不管参数是什么值，它总是抛出一个错误。如果message参数对应的布尔值不为false，抛出的错误信息就是message，否则错误信息就是“实际值 + 分隔符 + 预期值”。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"><i class="fa fa-tag"></i> node</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/19/Koa框架/" rel="next" title="Koa框架">
+                <i class="fa fa-chevron-left"></i> Koa框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/19/Buffer对象/" rel="prev" title="Buffer对象">
+                Buffer对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#assert"><span class="nav-number">1.</span> <span class="nav-text">assert()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert-ok"><span class="nav-number">2.</span> <span class="nav-text">assert.ok()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert-equal"><span class="nav-number">3.</span> <span class="nav-text">assert.equal()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert-notEqual"><span class="nav-number">4.</span> <span class="nav-text">assert.notEqual()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert-deepEqual"><span class="nav-number">5.</span> <span class="nav-text">assert.deepEqual()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert-notDeepEqual"><span class="nav-number">6.</span> <span class="nav-text">assert.notDeepEqual()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert-strictEqual"><span class="nav-number">7.</span> <span class="nav-text">assert.strictEqual()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert-notStrictEqual"><span class="nav-number">8.</span> <span class="nav-text">assert.notStrictEqual()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert-throws"><span class="nav-number">9.</span> <span class="nav-text">assert.throws()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert-doesNotThrow"><span class="nav-number">10.</span> <span class="nav-text">assert.doesNotThrow()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert-ifError"><span class="nav-number">11.</span> <span class="nav-text">assert.ifError()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert-fail"><span class="nav-number">12.</span> <span class="nav-text">assert.fail()</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

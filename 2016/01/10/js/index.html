@@ -1,0 +1,978 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,js代码段," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="js常用代码块整理。">
+<meta name="keywords" content="javascript,js代码段">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js常用代码块">
+<meta property="og:url" content="http://amenzai.me/2016/01/10/js/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="js常用代码块整理。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.390Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js常用代码块">
+<meta name="twitter:description" content="js常用代码块整理。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2016/01/10/js/"/>
+
+
+
+
+
+  <title> js常用代码块 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2016/01/10/js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-01-10T20:26:07+08:00">
+                2016-01-10
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/前端学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">前端学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                js常用代码块
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>js常用代码块整理。</p>
+<a id="more"></a>
+<h1 id="事件对象兼容写法"><a href="#事件对象兼容写法" class="headerlink" title="事件对象兼容写法"></a>事件对象兼容写法</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123; <span class="comment">// 文档中点击</span></span><br><span class="line">  <span class="keyword">var</span> event = event || <span class="built_in">window</span>.event; <span class="comment">// 兼容性写法</span></span><br><span class="line">  <span class="built_in">console</span>.log(event.clientY);</span><br><span class="line">  <span class="built_in">console</span>.log(event.pageY);</span><br><span class="line">  <span class="built_in">console</span>.log(event.screenY);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="一个盒子内的坐标"><a href="#一个盒子内的坐标" class="headerlink" title="一个盒子内的坐标"></a>一个盒子内的坐标</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"div"</span>)[<span class="number">0</span>];</span><br><span class="line">div.onmousemove = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> event = event || <span class="built_in">window</span>.event;</span><br><span class="line">  <span class="keyword">var</span> x = event.clientX - <span class="keyword">this</span>.offsetLeft;</span><br><span class="line">  <span class="keyword">var</span> y = event.clientY - <span class="keyword">this</span>.offsetTop;</span><br><span class="line">  <span class="keyword">this</span>.innerHTML = x + <span class="string">"px"</span> + y + <span class="string">"px"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="封装scrollTop-Left函数"><a href="#封装scrollTop-Left函数" class="headerlink" title="封装scrollTop Left函数"></a>封装scrollTop Left函数</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">$</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">document</span>.getElementById(id);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">obj</span>) </span>&#123; obj.style.display = <span class="string">"block"</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hide</span>(<span class="params">obj</span>) </span>&#123; obj.style.display = <span class="string">"none"</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">scroll</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.pageYOffset != <span class="literal">null</span>) <span class="comment">//  ie9+ 和其他浏览器</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      left: <span class="built_in">window</span>.pageXOffset,</span><br><span class="line">      top: <span class="built_in">window</span>.pageYOffset</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.compatMode == <span class="string">"CSS1Compat"</span>) <span class="comment">// 声明的了 DTD</span></span><br><span class="line">  <span class="comment">// 检测是不是怪异模式的浏览器 -- 就是没有 声明&lt;!DOCTYPE html&gt;</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      left: <span class="built_in">document</span>.documentElement.scrollLeft,</span><br><span class="line">      top: <span class="built_in">document</span>.documentElement.scrollTop</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="comment">//  剩下的肯定是怪异模式的</span></span><br><span class="line">    left: <span class="built_in">document</span>.body.scrollLeft,</span><br><span class="line">    top: <span class="built_in">document</span>.body.scrollTop</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(scroll().top);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="导航固定写法"><a href="#导航固定写法" class="headerlink" title="导航固定写法"></a>导航固定写法</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> nav = $(<span class="string">"Q-nav"</span>);</span><br><span class="line"><span class="keyword">var</span> navTop = nav.offsetTop; <span class="comment">// 得到导航栏距离顶部的距离  168</span></span><br><span class="line"><span class="built_in">console</span>.log(navTop);</span><br><span class="line"><span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// console.log(nav.offsetTop);</span></span><br><span class="line">  <span class="keyword">if</span> (scroll().top &gt;= navTop) &#123;</span><br><span class="line">    <span class="comment">//alert("到位置了");</span></span><br><span class="line">    nav.className = <span class="string">"nav fixed"</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    nav.className = <span class="string">"nav"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="两边跟随的广告（广告图绝对定位）"><a href="#两边跟随的广告（广告图绝对定位）" class="headerlink" title="两边跟随的广告（广告图绝对定位）"></a>两边跟随的广告（广告图绝对定位）</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> pic = $(<span class="string">"pic"</span>);</span><br><span class="line">  <span class="keyword">var</span> leader = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">var</span> target = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">var</span> timer = <span class="literal">null</span>; <span class="comment">// 定时器</span></span><br><span class="line">  <span class="keyword">var</span> top = pic.offsetTop; <span class="comment">// 50</span></span><br><span class="line">  <span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    clearInterval(timer);</span><br><span class="line">    target = scroll().top + top; <span class="comment">// 把最新的 scrolltop 给  target</span></span><br><span class="line">    timer = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      leader = leader + (target - leader) / <span class="number">10</span>;</span><br><span class="line">      pic.style.top = leader + <span class="string">'px'</span>;</span><br><span class="line">    &#125;, <span class="number">30</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="返回顶部的小火箭"><a href="#返回顶部的小火箭" class="headerlink" title="返回顶部的小火箭"></a>返回顶部的小火箭</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">window.onload = function() &#123;</span><br><span class="line">  var goTop = $(&quot;gotop&quot;);</span><br><span class="line">  window.onscroll = function() &#123;</span><br><span class="line">    scroll().top &gt; 0 ? show(goTop) : hide(goTop); // 如果大于0 就显示 否则隐藏</span><br><span class="line">    leader = scroll().top; // 把 卷去的头部 给  起始位置</span><br><span class="line">    console.log(scroll().top);</span><br><span class="line">  &#125;</span><br><span class="line">  var leader = 0,</span><br><span class="line">    target = 0,</span><br><span class="line">    timer = null;</span><br><span class="line">  // leader 起始位置  target  目标位置</span><br><span class="line">  goTop.onclick = function() &#123;</span><br><span class="line">    target = 0; //  点击完毕之后 奔向0 去的  不写也可以</span><br><span class="line">    timer = setInterval(function() &#123;</span><br><span class="line">      leader = leader + (target - leader) / 10;</span><br><span class="line">      window.scrollTo(0, leader); // 去往页面中的某个位置</span><br><span class="line">      if (leader == target) &#123;</span><br><span class="line">        clearInterval(timer);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 20);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="三个取整函数"><a href="#三个取整函数" class="headerlink" title="三个取整函数"></a>三个取整函数</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(Math.ceil(1.01))</span><br><span class="line">console.log(Math.ceil(1.9))</span><br><span class="line">console.log(Math.ceil(-1.3))</span><br><span class="line">  //floor  地板   向下取整</span><br><span class="line">console.log(Math.floor(1.01))</span><br><span class="line">console.log(Math.floor(1.9))</span><br><span class="line">console.log(Math.floor(-1.3))</span><br><span class="line">  // 四舍五入</span><br><span class="line">console.log(Math.round(1.01))</span><br><span class="line">console.log(Math.round(1.5))</span><br></pre></td></tr></table></figure>
+<h1 id="封装可视区域大小函数（窗口宽度）"><a href="#封装可视区域大小函数（窗口宽度）" class="headerlink" title="封装可视区域大小函数（窗口宽度）"></a>封装可视区域大小函数（窗口宽度）</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function client() &#123;</span><br><span class="line">  if (window.innerWidth != null) // ie9 +  最新浏览器</span><br><span class="line">  &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      width: window.innerWidth,</span><br><span class="line">      height: window.innerHeight</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else if (document.compatMode === &quot;CSS1Compat&quot;) // 标准浏览器</span><br><span class="line">  &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      width: document.documentElement.clientWidth,</span><br><span class="line">      height: document.documentElement.clientHeight</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return &#123; // 怪异浏览器</span><br><span class="line">    width: document.body.clientWidth,</span><br><span class="line">    height: document.body.clientHeight</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">// document.write(client().width);</span><br><span class="line"></span><br><span class="line">window.onresize = reSize;</span><br><span class="line"></span><br><span class="line">function reSize() &#123;</span><br><span class="line">  var clientWidth = client().width;</span><br><span class="line">  if (clientWidth &gt; 980) &#123;</span><br><span class="line">    styleCss.href = &quot;&quot;;</span><br><span class="line">  &#125; else if (clientWidth &gt; 640) &#123;</span><br><span class="line">    styleCss.href = &quot;css/pad.css&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    styleCss.href = &quot;css/mobile.css&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">//检测屏幕分辨率</span><br><span class="line">document.write(window.screen.width);</span><br></pre></td></tr></table></figure>
+<h1 id="阻止冒泡方法"><a href="#阻止冒泡方法" class="headerlink" title="阻止冒泡方法"></a>阻止冒泡方法</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var btn = document.getElementById(&quot;btn&quot;);</span><br><span class="line">document.onclick = function() &#123;</span><br><span class="line">  alert(&quot;点击了空白处&quot;)</span><br><span class="line">&#125;</span><br><span class="line">btn.onclick = function(event) &#123;</span><br><span class="line">  alert(&quot;点击了按钮&quot;)</span><br><span class="line">  var event = event || window.event;</span><br><span class="line">  if (event &amp;&amp; event.stopPropagation) &#123;</span><br><span class="line">    event.stopPropagation(); //  w3c 标准</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    event.cancelBubble = true; // ie 678  ie浏览器</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="点击空白隐藏"><a href="#点击空白隐藏" class="headerlink" title="点击空白隐藏"></a>点击空白隐藏</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function $(id) &#123;</span><br><span class="line">  return document.getElementById(id);</span><br><span class="line">&#125;</span><br><span class="line">var login = document.getElementById(&quot;login&quot;);</span><br><span class="line">login.onclick = function(event) &#123;</span><br><span class="line">  $(&quot;mask&quot;).style.display = &quot;block&quot;;</span><br><span class="line">  $(&quot;show&quot;).style.display = &quot;block&quot;;</span><br><span class="line">  document.body.style.overflow = &quot;hidden&quot;; // 不显示滚动条</span><br><span class="line">  //取消冒泡</span><br><span class="line">  var event = event || window.event;</span><br><span class="line">  if (event &amp;&amp; event.stopPropagation) &#123;</span><br><span class="line">    event.stopPropagation();</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    event.cancelBubble = true;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">document.onclick = function(event) &#123;</span><br><span class="line"></span><br><span class="line">  var event = event || window.event;</span><br><span class="line">  // alert(event.target.id);  // 返回的是点击的某个对象的id 名字</span><br><span class="line">  // alert(event.srcElement.id);</span><br><span class="line">  var targetId = event.target ? event.target.id : event.srcElement.id;</span><br><span class="line">  // 看明白这个写法</span><br><span class="line">  if (targetId != &quot;show&quot;) // 不等于当前点点击的名字</span><br><span class="line">  &#123;</span><br><span class="line">    $(&quot;mask&quot;).style.display = &quot;none&quot;;</span><br><span class="line">    $(&quot;show&quot;).style.display = &quot;none&quot;;</span><br><span class="line">    document.body.style.overflow = &quot;visible&quot;; // 显示滚动条</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="返回元素当前样式"><a href="#返回元素当前样式" class="headerlink" title="返回元素当前样式"></a>返回元素当前样式</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var demo = document.getElementById(&quot;demo&quot;);</span><br><span class="line"></span><br><span class="line">function getStyle(obj, attr) &#123; //  谁的      那个属性</span><br><span class="line">  if (obj.currentStyle) // ie 等</span><br><span class="line">  &#123;</span><br><span class="line">    return obj.currentStyle[attr]; // 返回传递过来的某个属性</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return window.getComputedStyle(obj, null)[attr]; // w3c 浏览器</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(getStyle(demo, &quot;width&quot;));</span><br></pre></td></tr></table></figure>
+<h1 id="闭包版tab栏-节流"><a href="#闭包版tab栏-节流" class="headerlink" title="闭包版tab栏 节流"></a>闭包版tab栏 节流</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">window.onload = function() &#123;</span><br><span class="line">  //要想多个盒子不相互影响 ，我们可以通过id 给他们分开</span><br><span class="line">  //封装tab栏切换函数</span><br><span class="line">  function tab(obj) &#123;</span><br><span class="line">    var target = document.getElementById(obj);</span><br><span class="line">    var spans = target.getElementsByTagName(&quot;span&quot;);</span><br><span class="line">    var lis = target.getElementsByTagName(&quot;li&quot;);</span><br><span class="line">    for (var i = 0; i &lt; spans.length; i++) &#123;</span><br><span class="line">      //  spans[i].index = i;</span><br><span class="line">      spans[i].onmouseover = function(num) &#123;</span><br><span class="line">        return function() &#123;</span><br><span class="line">          for (var j = 0; j &lt; spans.length; j++) &#123;</span><br><span class="line">            spans[j].className = &quot;&quot;;</span><br><span class="line">            lis[j].className = &quot;&quot;;</span><br><span class="line">          &#125;</span><br><span class="line">          spans[num].className = &quot;current&quot;;</span><br><span class="line">          lis[num].className = &quot;show&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;(i);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  tab(&quot;one&quot;);</span><br><span class="line">  tab(&quot;two&quot;);</span><br><span class="line">  tab(&quot;three&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="窗口尺寸改变，触发不那么灵敏-闭包版本"><a href="#窗口尺寸改变，触发不那么灵敏-闭包版本" class="headerlink" title="窗口尺寸改变，触发不那么灵敏 闭包版本"></a>窗口尺寸改变，触发不那么灵敏 闭包版本</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var num = 0;</span><br><span class="line">var demo = document.getElementById(&quot;demo&quot;)</span><br><span class="line">window.onresize = throttle(function() &#123;</span><br><span class="line">  demo.innerHTML = window.innerWidth || document.documentElement.clientWidth;</span><br><span class="line">  num++;</span><br><span class="line">  console.log(num);</span><br><span class="line">&#125;, 300);</span><br><span class="line"></span><br><span class="line">function throttle(fn, delay) &#123; // 闭包  节流</span><br><span class="line">  var timer = null;</span><br><span class="line">  return function() &#123;</span><br><span class="line">    clearTimeout(timer);</span><br><span class="line">    timer = setTimeout(fn, delay);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="运动函数"><a href="#运动函数" class="headerlink" title="运动函数"></a>运动函数</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var btn200 = document.getElementById(&quot;btn200&quot;);</span><br><span class="line">var btn400 = document.getElementById(&quot;btn400&quot;);</span><br><span class="line">var box = document.getElementById(&quot;box&quot;);</span><br><span class="line">btn200.onclick = function() &#123;</span><br><span class="line">  animate(box, &#123; width: 200, top: 100, left: 200, opacity: 40, zIndex: 3 &#125;, function() &#123; alert(&quot;我来了&quot;) &#125;);</span><br><span class="line">&#125;</span><br><span class="line">btn400.onclick = function() &#123;</span><br><span class="line">    animate(box, &#123; top: 500 &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  // 多个属性运动框架  添加回调函数</span><br><span class="line">function animate(obj, json, fn) &#123; // 给谁    json</span><br><span class="line">  clearInterval(obj.timer);</span><br><span class="line">  obj.timer = setInterval(function() &#123;</span><br><span class="line">    var flag = true; // 用来判断是否停止定时器   一定写到遍历的外面</span><br><span class="line">    for (var attr in json) &#123; // attr  属性     json[attr]  值</span><br><span class="line">      //开始遍历 json</span><br><span class="line">      // 计算步长    用 target 位置 减去当前的位置  除以 10</span><br><span class="line">      // console.log(attr);</span><br><span class="line">      var current = 0;</span><br><span class="line">      if (attr == &quot;opacity&quot;) &#123;</span><br><span class="line">        current = Math.round(parseInt(getStyle(obj, attr) * 100)) || 0;</span><br><span class="line">        console.log(current);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        current = parseInt(getStyle(obj, attr)); // 数值</span><br><span class="line">      &#125;</span><br><span class="line">      // console.log(current);</span><br><span class="line">      // 目标位置就是  属性值</span><br><span class="line">      var step = (json[attr] - current) / 10; // 步长  用目标位置 - 现在的位置 / 10</span><br><span class="line">      step = step &gt; 0 ? Math.ceil(step) : Math.floor(step);</span><br><span class="line">      //判断透明度</span><br><span class="line">      if (attr == &quot;opacity&quot;) // 判断用户有没有输入 opacity</span><br><span class="line">      &#123;</span><br><span class="line">        if (&quot;opacity&quot; in obj.style) // 判断 我们浏览器是否支持opacity</span><br><span class="line">        &#123;</span><br><span class="line">          // obj.style.opacity</span><br><span class="line">          obj.style.opacity = (current + step) / 100;</span><br><span class="line">        &#125; else &#123; // obj.style.filter = alpha(opacity = 30)</span><br><span class="line">          obj.style.filter = &quot;alpha(opacity = &quot; + (current + step) * 10 + &quot;)&quot;;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">      &#125; else if (attr == &quot;zIndex&quot;) &#123;</span><br><span class="line">        obj.style.zIndex = json[attr];</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        obj.style[attr] = current + step + &quot;px&quot;;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      if (current != json[attr]) // 只要其中一个不满足条件 就不应该停止定时器  这句一定遍历里面</span><br><span class="line">      &#123;</span><br><span class="line">        flag = false;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (flag) // 用于判断定时器的条件</span><br><span class="line">    &#123;</span><br><span class="line">      clearInterval(obj.timer);</span><br><span class="line">      //alert(&quot;ok了&quot;);</span><br><span class="line">      if (fn) // 很简单   当定时器停止了。 动画就结束了  如果有回调，就应该执行回调</span><br><span class="line">      &#123;</span><br><span class="line">        fn(); // 函数名 +  （）  调用函数  执行函数 暂且这样替代</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, 30)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="获取元素样式中的某个属性"><a href="#获取元素样式中的某个属性" class="headerlink" title="获取元素样式中的某个属性"></a>获取元素样式中的某个属性</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getStyle(obj, attr) &#123; //  谁的      那个属性</span><br><span class="line">  if (obj.currentStyle) // ie 等</span><br><span class="line">  &#123;</span><br><span class="line">    return obj.currentStyle[attr]; // 返回传递过来的某个属性</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return window.getComputedStyle(obj, null)[attr]; // w3c 浏览器</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="全选和反选"><a href="#全选和反选" class="headerlink" title="全选和反选"></a>全选和反选</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">window.onload = function()&#123;</span><br><span class="line">    var btns = document.getElementsByTagName(&quot;button&quot;);</span><br><span class="line">    var inputs = document.getElementById(&quot;bottom&quot;).getElementsByTagName(&quot;input&quot;);</span><br><span class="line">    /*全选和取消 函数*/</span><br><span class="line">     function all(flag)&#123;</span><br><span class="line">         for(var i=0;i&lt;inputs.length;i++)</span><br><span class="line">         &#123;</span><br><span class="line">             inputs[i].checked = flag;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     btns[0].onclick = function()&#123;</span><br><span class="line">          all(true);</span><br><span class="line">     &#125;;</span><br><span class="line">     btns[1].onclick = function()&#123;</span><br><span class="line">          all(false);</span><br><span class="line">     &#125;;</span><br><span class="line">     btns[2].onclick = function()&#123;</span><br><span class="line"></span><br><span class="line">         for(var i=0;i&lt;inputs.length;i++)</span><br><span class="line">         &#123;</span><br><span class="line">             inputs[i].checked == true ?  inputs[i].checked = false : inputs[i].checked = true;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="tab1栏切换"><a href="#tab1栏切换" class="headerlink" title="tab1栏切换"></a>tab1栏切换</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">window.onload = function()&#123;</span><br><span class="line">    function tab(obj) &#123;</span><br><span class="line">        console.log(222);</span><br><span class="line">        var obj = document.getElementById(obj);</span><br><span class="line">        var btns = obj.getElementsByTagName(&apos;button&apos;);</span><br><span class="line">        var lis= obj.getElementsByTagName(&apos;li&apos;);</span><br><span class="line">        for (var i = 0; i &lt; btns.length; i++) &#123;</span><br><span class="line">            btns[i].index = i; //难点</span><br><span class="line">            btns[i].onmouseover = function() &#123;</span><br><span class="line">                for (var j = 0; j &lt; btns.length; j++) &#123;</span><br><span class="line">                    //让所有的 btn 类名清空</span><br><span class="line">                    btns[j].className = &quot;&quot;;</span><br><span class="line">                    lis[j].className = &quot;&quot;;</span><br><span class="line">                    // 当前的那个按钮 的添加 类名</span><br><span class="line">                    this.className = &quot;bg&quot;</span><br><span class="line">                    //先隐藏下面所有的 li盒子</span><br><span class="line">                    //留下中意的那个 跟点击的序号有关系的</span><br><span class="line">                    lis[this.index].className = &quot;show&quot;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    tab(&quot;one&quot;);</span><br><span class="line">    tab(&quot;two&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="定时器应用"><a href="#定时器应用" class="headerlink" title="定时器应用"></a>定时器应用</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function $(id) &#123; return document.getElementById(id);&#125;  // id函数</span><br><span class="line">function hide(id) &#123;   // 隐藏函数</span><br><span class="line">    $(id).style.display = &quot;none&quot;;</span><br><span class="line">&#125;</span><br><span class="line">function show(id) &#123;</span><br><span class="line">    $(id).style.display = &quot;block&quot;;</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(closeAd,5000);</span><br><span class="line">function closeAd() &#123;</span><br><span class="line">    hide(&quot;left&quot;);</span><br><span class="line">    hide(&quot;right&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="定时器应用-1"><a href="#定时器应用-1" class="headerlink" title="定时器应用"></a>定时器应用</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;xiaomi&quot;&gt;</span><br><span class="line">  &lt;!-- 这里放一个超高的图片，需要进行绝对定位，超出的部分，让父亲隐藏掉。 --&gt;</span><br><span class="line">    &lt;img src=&quot;mi.png&quot; alt=&quot;&quot; id=&quot;pic&quot;/&gt;</span><br><span class="line">    &lt;!-- 上下部分触发事件的绝对定位块 --&gt;</span><br><span class="line">    &lt;span class=&quot;up&quot; id=&quot;picUp&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;down&quot; id=&quot;picDown&quot;&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">function $(id) &#123; return document.getElementById(id);&#125;</span><br><span class="line">var num = 0; // 控制图片的top值</span><br><span class="line">var timer = null; // 定时器名称</span><br><span class="line">$(&quot;picUp&quot;).onmouseover = function()&#123;</span><br><span class="line">    clearInterval(timer);</span><br><span class="line">    timer =  setInterval(function()&#123;</span><br><span class="line">         num -= 3;</span><br><span class="line">         //这里的数值都是根据给定的图片高度算出的</span><br><span class="line">         num &gt;= -1070 ? $(&quot;pic&quot;).style.top = num + &quot;px&quot; :  clearInterval(timer);</span><br><span class="line"></span><br><span class="line">     &#125;,30);</span><br><span class="line">&#125;</span><br><span class="line">$(&quot;picDown&quot;).onmouseover = function()&#123;</span><br><span class="line">    clearInterval(timer);</span><br><span class="line">      timer  = setInterval(function()&#123;</span><br><span class="line">          num+=3;</span><br><span class="line">         num &lt; 0 ?  $(&quot;pic&quot;).style.top = num + &quot;px&quot; : clearInterval(timer);</span><br><span class="line">      &#125;,30);</span><br><span class="line">&#125;</span><br><span class="line">$(&quot;picUp&quot;).parentNode.onmouseout = function() &#123;</span><br><span class="line">    clearInterval(timer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="无缝滚动"><a href="#无缝滚动" class="headerlink" title="无缝滚动"></a>无缝滚动</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var scroll = document.getElementById(&quot;scroll&quot;);</span><br><span class="line">var ul = scroll.children[0];</span><br><span class="line">var num = 0; //控制左侧值  left</span><br><span class="line">var timer = null;  // 定时器</span><br><span class="line">timer = setInterval(autoPlay,20);</span><br><span class="line">function autoPlay() &#123;</span><br><span class="line">    num--;</span><br><span class="line">    num&lt;=-1200 ? num = 0 : num;</span><br><span class="line">    ul.style.left = num + &quot;px&quot;;</span><br><span class="line">&#125;</span><br><span class="line">scroll.onmouseover = function() &#123;  // 鼠标经过大盒子  停止定时器</span><br><span class="line">    clearInterval(timer);</span><br><span class="line">&#125;</span><br><span class="line">scroll.onmouseout = function() &#123;</span><br><span class="line">    timer = setInterval(autoPlay,20);  // 开启定时器</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="检测字符串长度"><a href="#检测字符串长度" class="headerlink" title="检测字符串长度"></a>检测字符串长度</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var txt = &quot;what are you 弄啥咧!好的&quot;;</span><br><span class="line">  console.log(txt.length);</span><br><span class="line">  function getStringLength(str) &#123;</span><br><span class="line">      var len = 0; //存储总长度</span><br><span class="line">      var c = 0;  // 存储每一个编码</span><br><span class="line">      for(var i=0;i&lt;str.length;i++)</span><br><span class="line">      &#123;</span><br><span class="line">          c = str.charCodeAt(i);</span><br><span class="line">          if(c&gt;=0 &amp;&amp; c&lt;=127)</span><br><span class="line">          &#123;</span><br><span class="line">              len++;</span><br><span class="line">          &#125;</span><br><span class="line">          else</span><br><span class="line">          &#123;</span><br><span class="line">              len += 2;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      return len;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  console.log(getStringLength(txt));</span><br></pre></td></tr></table></figure>
+<h1 id="封装自己的-函数，快速获取页面元素"><a href="#封装自己的-函数，快速获取页面元素" class="headerlink" title="封装自己的$函数，快速获取页面元素"></a>封装自己的$函数，快速获取页面元素</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> //function $(id) &#123;return document.getElementById(id)&#125;  //id选择器</span><br><span class="line"></span><br><span class="line"> function getClass(classname)   //  类的写法</span><br><span class="line"> &#123;</span><br><span class="line">     //判断支持否</span><br><span class="line">     if(document.getElementsByClassName)</span><br><span class="line">     &#123;</span><br><span class="line">         return document.getElementsByClassName(classname);</span><br><span class="line">     &#125;</span><br><span class="line">     var arr = []; //用于返回 数组</span><br><span class="line">     var dom = document.getElementsByTagName(&quot;*&quot;);</span><br><span class="line">     for(var i=0;i&lt;dom.length;i++)  // 遍历所有的 盒子</span><br><span class="line">     &#123;</span><br><span class="line">         var txtarr = dom[i].className.split(&quot; &quot;); // 分割类名 并且 转换为数组</span><br><span class="line">         //  [&quot;demo&quot;,&quot;test&quot;];</span><br><span class="line">         for(var j=0;j&lt;txtarr.length;j++)  // 遍历 通过类名分割的数组</span><br><span class="line">         &#123;</span><br><span class="line">             if(txtarr[j] == classname)</span><br><span class="line">             &#123;</span><br><span class="line">                 arr.push(dom[i]); // 我们要的是 div</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     return arr;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> // $(&quot;#demo&quot;)   $(&quot;.one&quot;)   $(&quot;div&quot;)</span><br><span class="line">  //封装自己的$</span><br><span class="line">  function $(str) &#123;</span><br><span class="line">      var s = str.charAt(0);   //  一个s 的变量 存放是 符号  #  .</span><br><span class="line">      var ss = str.substr(1);  // demo</span><br><span class="line">      switch(s)</span><br><span class="line">      &#123;</span><br><span class="line">          case &quot;#&quot;:</span><br><span class="line">              return document.getElementById(ss);</span><br><span class="line">          break;</span><br><span class="line">          case &quot;.&quot;:</span><br><span class="line">              return getClass(ss);</span><br><span class="line">          break;</span><br><span class="line">          default :</span><br><span class="line">              return document.getElementsByTagName(str);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">$(&quot;#demo&quot;).style.backgroundColor = &quot;purple&quot;;</span><br><span class="line">$(&quot;#last&quot;).style.backgroundColor = &quot;purple&quot;;</span><br><span class="line"> var test = $(&quot;.one&quot;);</span><br><span class="line">  for(var i=0;i&lt;test.length;i++)</span><br><span class="line">  &#123;</span><br><span class="line">      test[i].style.backgroundColor = &quot;blue&quot;;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="匀速运动与缓动动画"><a href="#匀速运动与缓动动画" class="headerlink" title="匀速运动与缓动动画"></a>匀速运动与缓动动画</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//匀速运动</span><br><span class="line">var btn = document.getElementById(&quot;btn&quot;);</span><br><span class="line">var box = document.getElementById(&quot;bOX&quot;);</span><br><span class="line">var num = 0;</span><br><span class="line">var timer = null;</span><br><span class="line">btn.onclick = function() &#123;</span><br><span class="line">    timer = setInterval(function()&#123;</span><br><span class="line">        num++;</span><br><span class="line">        if(num &gt;=500)</span><br><span class="line">        &#123;</span><br><span class="line">            clearInterval(timer);</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            box.style.left = num + &quot;px&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,10)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//缓动动画</span><br><span class="line">var btn = document.getElementById(&quot;btn&quot;);</span><br><span class="line">var box = document.getElementById(&quot;bOX&quot;);</span><br><span class="line">var timer = null;</span><br><span class="line">var leader = 0;</span><br><span class="line">var target = 500;</span><br><span class="line">btn.onclick = function() &#123;</span><br><span class="line">    setInterval(function()&#123;</span><br><span class="line">        leader = leader + (target - leader )/10;</span><br><span class="line">        box.style.left = leader + &quot;px&quot;;</span><br><span class="line">    &#125;,30)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
+          
+            <a href="/tags/js代码段/" rel="tag"><i class="fa fa-tag"></i> js代码段</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/30/bindData/" rel="next" title="数据绑定的相关知识">
+                <i class="fa fa-chevron-left"></i> 数据绑定的相关知识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/20/js-oop/" rel="prev" title="js面向对象基础知识杂谈">
+                js面向对象基础知识杂谈 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事件对象兼容写法"><span class="nav-number">1.</span> <span class="nav-text">事件对象兼容写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一个盒子内的坐标"><span class="nav-number">2.</span> <span class="nav-text">一个盒子内的坐标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#封装scrollTop-Left函数"><span class="nav-number">3.</span> <span class="nav-text">封装scrollTop Left函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#导航固定写法"><span class="nav-number">4.</span> <span class="nav-text">导航固定写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#两边跟随的广告（广告图绝对定位）"><span class="nav-number">5.</span> <span class="nav-text">两边跟随的广告（广告图绝对定位）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#返回顶部的小火箭"><span class="nav-number">6.</span> <span class="nav-text">返回顶部的小火箭</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三个取整函数"><span class="nav-number">7.</span> <span class="nav-text">三个取整函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#封装可视区域大小函数（窗口宽度）"><span class="nav-number">8.</span> <span class="nav-text">封装可视区域大小函数（窗口宽度）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#阻止冒泡方法"><span class="nav-number">9.</span> <span class="nav-text">阻止冒泡方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点击空白隐藏"><span class="nav-number">10.</span> <span class="nav-text">点击空白隐藏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#返回元素当前样式"><span class="nav-number">11.</span> <span class="nav-text">返回元素当前样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包版tab栏-节流"><span class="nav-number">12.</span> <span class="nav-text">闭包版tab栏 节流</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#窗口尺寸改变，触发不那么灵敏-闭包版本"><span class="nav-number">13.</span> <span class="nav-text">窗口尺寸改变，触发不那么灵敏 闭包版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运动函数"><span class="nav-number">14.</span> <span class="nav-text">运动函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取元素样式中的某个属性"><span class="nav-number">15.</span> <span class="nav-text">获取元素样式中的某个属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#全选和反选"><span class="nav-number">16.</span> <span class="nav-text">全选和反选</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tab1栏切换"><span class="nav-number">17.</span> <span class="nav-text">tab1栏切换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器应用"><span class="nav-number">18.</span> <span class="nav-text">定时器应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器应用-1"><span class="nav-number">19.</span> <span class="nav-text">定时器应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#无缝滚动"><span class="nav-number">20.</span> <span class="nav-text">无缝滚动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#检测字符串长度"><span class="nav-number">21.</span> <span class="nav-text">检测字符串长度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#封装自己的-函数，快速获取页面元素"><span class="nav-number">22.</span> <span class="nav-text">封装自己的$函数，快速获取页面元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#匀速运动与缓动动画"><span class="nav-number">23.</span> <span class="nav-text">匀速运动与缓动动画</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

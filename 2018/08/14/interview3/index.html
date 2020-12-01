@@ -1,0 +1,1502 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="面试," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前端 JS 高级知识整理，以及面试要点。">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 JS 高级面试">
+<meta property="og:url" content="http://amenzai.me/2018/08/14/interview3/index.html">
+<meta property="og:site_name" content="阿闷仔的博客">
+<meta property="og:description" content="前端 JS 高级知识整理，以及面试要点。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-images.githubusercontent.com/20960902/44129348-558ea85a-a07a-11e8-9059-63df6addcc63.png">
+<meta property="og:updated_time" content="2020-11-30T12:08:17.389Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端 JS 高级面试">
+<meta name="twitter:description" content="前端 JS 高级知识整理，以及面试要点。">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/20960902/44129348-558ea85a-a07a-11e8-9059-63df6addcc63.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://amenzai.me/2018/08/14/interview3/"/>
+
+
+
+
+
+  <title> 前端 JS 高级面试 | 阿闷仔的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <img class="myavatar" src="/uploads/avatar.jpg"
+               alt="阿闷仔的博客"/>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个CODER的自我修养</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-camera">
+          <a href="/camera" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            摄影记录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-share-alt"></i> <br />
+            
+            资源分享
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://amenzai.me/2018/08/14/interview3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="amenzai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿闷仔的博客">
+    </span>
+
+    
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-time">
+            
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-14T17:12:35+08:00">
+                2018-08-14
+              </time>
+            
+            
+          </span>
+
+          
+            <span class="post-category" >
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing" class="fr">
+                  <a href="/categories/前端学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">前端学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                前端 JS 高级面试
+              
+            
+          </h2>
+        
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前端 JS 高级知识整理，以及面试要点。</p>
+<a id="more"></a>
+<ul>
+<li>基础知识<ul>
+<li>ES6 常用语法</li>
+<li>原型高级应用</li>
+<li>异步全面讲解</li>
+</ul>
+</li>
+<li>框架原理<ul>
+<li>虚拟 DOM</li>
+<li>MVVM Vue</li>
+<li>组件化 React</li>
+</ul>
+</li>
+<li>混合开发<ul>
+<li>hybrid</li>
+<li>hybrid vs H5</li>
+<li>前端客户端通讯</li>
+</ul>
+</li>
+<li>热爱编程<ul>
+<li>读书 博客</li>
+<li>开源  </li>
+</ul>
+</li>
+</ul>
+<h2 id="ES6-常用语法"><a href="#ES6-常用语法" class="headerlink" title="ES6 常用语法"></a>ES6 常用语法</h2><h3 id="模块化的使用和编译环境"><a href="#模块化的使用和编译环境" class="headerlink" title="模块化的使用和编译环境"></a>模块化的使用和编译环境</h3><p><a href="#">webpack笔记</a><br><a href="https://github.com/amenzai/code-snippet/blob/master/js/babel.md" target="_blank" rel="noopener">babel使用</a><br>rollup.js 使用：</p>
+<ul>
+<li>功能单一， webpack功能强大</li>
+<li>参考设计原则和Linux设计思想</li>
+<li>工具要尽量功能单一，可集成，可扩展</li>
+<li>wangEdtor 用的 gulp + rollup</li>
+</ul>
+<h3 id="Class-与-JS-构造函数的区别"><a href="#Class-与-JS-构造函数的区别" class="headerlink" title="Class 与 JS 构造函数的区别"></a>Class 与 JS 构造函数的区别</h3><ul>
+<li>Class 在语法上更加铁盒面向对象的写法</li>
+<li>Class 实现继承更加易读、易理解</li>
+<li>更易于写 java 等后端语言的使用</li>
+<li>本质还是语法糖，使用 prototype</li>
+</ul>
+<p><a href="http://amenzai.me/javascript-book/chapter3/section3.3.html">参考1-构造函数和集成ES5</a><br><a href="https://github.com/amenzai/code-snippet/blob/master/js/ES6.md#%E6%80%BB%E6%98%AF%E7%94%A8class%E5%8F%96%E4%BB%A3%E9%9C%80%E8%A6%81prototype%E7%9A%84%E6%93%8D%E4%BD%9C%E5%9B%A0%E4%B8%BAclass%E7%9A%84%E5%86%99%E6%B3%95%E6%9B%B4%E7%AE%80%E6%B4%81%E6%9B%B4%E6%98%93%E4%BA%8E%E7%90%86%E8%A7%A3" target="_blank" rel="noopener">参考2-class 和 extends</a></p>
+<h3 id="Promise-的用法"><a href="#Promise-的用法" class="headerlink" title="Promise 的用法"></a>Promise 的用法</h3><ul>
+<li>定义方法，return promise 实例</li>
+<li>new Promise 时要传入函数，函数有 resolve reject 两个参数</li>
+<li>执行成功 resolve() 失败 reject()</li>
+<li>then() 监听成功结果 catch() 监听失败结果</li>
+</ul>
+<p><a href="https://github.com/amenzai/code-snippet/blob/master/js/ES6.md#promise" target="_blank" rel="noopener">参考</a></p>
+<h3 id="ES6-其他常用功能"><a href="#ES6-其他常用功能" class="headerlink" title="ES6 其他常用功能"></a>ES6 其他常用功能</h3><p><a href="https://github.com/amenzai/code-snippet/blob/master/js/ES6.md" target="_blank" rel="noopener">参考</a></p>
+<h2 id="原型高级应用"><a href="#原型高级应用" class="headerlink" title="原型高级应用"></a>原型高级应用</h2><h3 id="原型如何实际应用"><a href="#原型如何实际应用" class="headerlink" title="原型如何实际应用"></a>原型如何实际应用</h3><p>jquery 和 zepto 的简单使用<br>他俩如何使用原型</p>
+<p><strong>zepto 如何使用原型</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> zepto = &#123;&#125;</span><br><span class="line">zepto.init = <span class="function"><span class="keyword">function</span>(<span class="params">selector</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// resoure code 略 only write prototype</span></span><br><span class="line">  <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice</span><br><span class="line">  <span class="keyword">var</span> dom = slice.call(<span class="built_in">document</span>.querySelectorAll(selector))</span><br><span class="line">  <span class="keyword">return</span> zepto.Z(dom, selector)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// use</span></span><br><span class="line"><span class="keyword">var</span> $ = <span class="function"><span class="keyword">function</span>(<span class="params">selector</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> zepto.init(selector)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构造函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Z</span>(<span class="params">dom, selector</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> i, len = dom ? dom.length : <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">this</span>[i] = dom[i]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.length = len</span><br><span class="line">  <span class="keyword">this</span>.selector = selector || <span class="string">''</span></span><br><span class="line">&#125;</span><br><span class="line">zepto.Z = <span class="function"><span class="keyword">function</span>(<span class="params">dom, selector</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Z(dom, selector)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$.fn = &#123;</span><br><span class="line">  <span class="keyword">constructor</span>: zepto.Z,</span><br><span class="line">  css: function(key, value) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">  html: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">zepto.Z.prototype = Z.prototype = $.fn</span><br></pre></td></tr></table></figure>
+<p><strong>jQuery 如何使用原型</strong><br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">window</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> jQuery = <span class="function"><span class="keyword">function</span>(<span class="params">selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> jQuery.fn.init(selector)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  jQuery.fn = &#123;</span><br><span class="line">    <span class="keyword">constructor</span>: jQuery,</span><br><span class="line">    css: function(key, value) &#123;</span><br><span class="line">      alert(<span class="string">'css'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    html: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'html'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> init = jQuery.fn.init = <span class="function"><span class="keyword">function</span>(<span class="params">selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice</span><br><span class="line">    <span class="keyword">var</span> dom = slice.call(<span class="built_in">document</span>.querySelectorAll(selector))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> i, len = dom ? dom.length : <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">      <span class="keyword">this</span>[i] = dom[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.length = len</span><br><span class="line">    <span class="keyword">this</span>.selector = selector || <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  init.prototype = jQuery.fn</span><br><span class="line"></span><br><span class="line">  <span class="built_in">window</span>.$ = jQuery</span><br><span class="line"></span><br><span class="line">&#125;)(<span class="built_in">window</span>)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>描述一下 jQuery 如何使用原型</li>
+<li>。。。。zepto。。。。。。</li>
+<li>再结合自己的项目经验，说一下自己开发的例子</li>
+</ul>
+<h3 id="原型如何满足扩展"><a href="#原型如何满足扩展" class="headerlink" title="原型如何满足扩展"></a>原型如何满足扩展</h3><p>$.fn.myMethod = function() {}</p>
+<ul>
+<li>说一下 jQuery 和 zepto 的插件机制</li>
+<li>结合自己开发经验，做过的基于原型的插件</li>
+</ul>
+<h2 id="异步全面讲解"><a href="#异步全面讲解" class="headerlink" title="异步全面讲解"></a>异步全面讲解</h2><h3 id="什么是单线程，和异步有何关系？什么是-event-loop"><a href="#什么是单线程，和异步有何关系？什么是-event-loop" class="headerlink" title="什么是单线程，和异步有何关系？什么是 event-loop"></a>什么是单线程，和异步有何关系？什么是 event-loop</h3><p>单线程：只有一个线程，同时只能做一件事（for 循环多次、alert），两段JS不能同时执行<br>原因：避免DOM渲染的冲突<br>解决方案：异步</p>
+<ul>
+<li>事件轮询，JS实现异步的具体解决方案</li>
+<li>同步代码直接执行</li>
+<li>异步函数先放在异步队列</li>
+<li>待同步函数执行完毕，轮询执行异步队列的函数</li>
+</ul>
+<p><code>什么是异步队列？何时被放入异步队列？轮询的过程</code></p>
+<h3 id="目前-JS-解决异步的方案有哪些"><a href="#目前-JS-解决异步的方案有哪些" class="headerlink" title="目前 JS 解决异步的方案有哪些"></a>目前 JS 解决异步的方案有哪些</h3><ul>
+<li>jQuery Deferred</li>
+<li>Promise</li>
+<li>Async / Await</li>
+<li>Generator<ul>
+<li>原理比较复杂</li>
+<li>不是异步的直接替代方式</li>
+<li>有更好更简洁的解决方案 async / await</li>
+<li>koa 也早已“弃暗投明”</li>
+</ul>
+</li>
+</ul>
+<h3 id="如果只用-jQuery-如何解决异步"><a href="#如果只用-jQuery-如何解决异步" class="headerlink" title="如果只用 jQuery 如何解决异步"></a>如果只用 jQuery 如何解决异步</h3><p>jquery1.5的变化：</p>
+<ul>
+<li>无法改变JS异步和单线程的本质</li>
+<li>只能从写法上杜绝 callback 这种形式</li>
+<li>他是一种语法糖形式，但是解耦了代码</li>
+<li>很好的体现：开放封闭原则</li>
+</ul>
+<p>$.ajax().done().fail().done()<br>$.ajax().then(function(){}, function(){}).then()</p>
+<p>jquery-deferred: 对扩展开放，对修改关闭<br>dtdAPI分为两类，用意不同：</p>
+<ul>
+<li>第一类：dtd.resolve(), dtd.reject</li>
+<li>第二类：dtd.then dtd.done dtd.fail</li>
+<li>这两类应该分开，否则后果很严重</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waitHandle</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 定义</span></span><br><span class="line">    <span class="keyword">var</span> dtd = $.Deferred()</span><br><span class="line">    <span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> task = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">'执行完成'</span>)</span><br><span class="line">            <span class="comment">// 成功</span></span><br><span class="line">          dtd.resolve()</span><br><span class="line">            <span class="comment">// 失败</span></span><br><span class="line">            <span class="comment">// dtd.reject()</span></span><br><span class="line">        &#125;</span><br><span class="line">        setTimeout(task, <span class="number">1000</span>)</span><br><span class="line">          <span class="comment">// wait 返回</span></span><br><span class="line">        <span class="keyword">return</span> dtd.promise()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 最终返回</span></span><br><span class="line">    <span class="keyword">return</span> wait(dtd)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 使用（B 员工）</span></span><br><span class="line">  <span class="keyword">var</span> w = waitHandle() <span class="comment">// promise 对象</span></span><br><span class="line">  $.when(w).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'ok 1'</span>)</span><br><span class="line">  &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'err 1'</span>)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="Promise-的标准"><a href="#Promise-的标准" class="headerlink" title="Promise 的标准"></a>Promise 的标准</h3><ul>
+<li>状态变化<ul>
+<li>三种状态：pending fulfilled rejected</li>
+<li>初始状态：pending</li>
+<li>pending 变为 fulfilled，或者 pending 变为 rejected</li>
+<li>状态变化不可逆</li>
+</ul>
+</li>
+<li>then<ul>
+<li>Promise 实例必须实现 then 这个方法</li>
+<li>then() 必须可以接受两个函数作为参数</li>
+<li>then() 返回的必须是一个 Promise 实例</li>
+</ul>
+</li>
+</ul>
+<p>问题：</p>
+<ul>
+<li>基本语法</li>
+<li>如何异常捕获（Error 和 reject 都要考虑）</li>
+<li>多个串联-链式执行的好处</li>
+<li>Promise.all 和 Promise.race</li>
+<li>Promise 标准 - 状态变化，then 函数</li>
+</ul>
+<h3 id="async-await-的使用"><a href="#async-await-的使用" class="headerlink" title="async / await 的使用"></a>async / await 的使用</h3><ul>
+<li>then 只是将 callback 拆分了</li>
+<li>async/await 是最直接的同步写法</li>
+<li>使用 await，函数必须用 async 标识</li>
+<li>await 后面跟的是一个 Promise 实例</li>
+<li>需要 babel-polyfill</li>
+</ul>
+<p>问题：</p>
+<ul>
+<li>基本语法</li>
+<li>使用了 Promise，并没有和 Promise 冲突</li>
+<li>完全是同步的写法，再也没有回调函数</li>
+<li>但是：改变不了JS单线程、异步的本质</li>
+</ul>
+<h2 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h2><h3 id="什么是Vdom，为何要用Vdom"><a href="#什么是Vdom，为何要用Vdom" class="headerlink" title="什么是Vdom，为何要用Vdom"></a>什么是Vdom，为何要用Vdom</h3><p>设计一个需求场景 -》用jquery实现 -》遇到的问题</p>
+<p>浏览器渲染 DOM 是很慢的，运行 JS 快成一匹马</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 点击按钮，改变表格数据</span></span><br><span class="line"><span class="comment">// jquery demo</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// html</span></span><br><span class="line"><span class="comment">// &lt;div id="container"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="comment">// &lt;button id="btn-change"&gt;change&lt;/button&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// js</span></span><br><span class="line"><span class="keyword">var</span> data = [&#123;</span><br><span class="line">    name: <span class="string">'张三'</span>,</span><br><span class="line">    age: <span class="string">'20'</span>,</span><br><span class="line">    address: <span class="string">'北京'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'李四'</span>,</span><br><span class="line">    age: <span class="string">'21'</span>,</span><br><span class="line">    address: <span class="string">'上海'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'王五'</span>,</span><br><span class="line">    age: <span class="string">'22'</span>,</span><br><span class="line">    address: <span class="string">'广州'</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 渲染函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> $container = $(<span class="string">'#container'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 清空容器，重要！！！</span></span><br><span class="line">  $container.html(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 拼接 table</span></span><br><span class="line">  <span class="keyword">var</span> $table = $(<span class="string">'&lt;table&gt;'</span>)</span><br><span class="line"></span><br><span class="line">  $table.append($(<span class="string">'&lt;tr&gt;&lt;td&gt;name&lt;/td&gt;&lt;td&gt;age&lt;/td&gt;&lt;td&gt;address&lt;/td&gt;/tr&gt;'</span>))</span><br><span class="line">  data.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">    $table.append($(<span class="string">'&lt;tr&gt;&lt;td&gt;'</span> + item.name + <span class="string">'&lt;/td&gt;&lt;td&gt;'</span> + item.age + <span class="string">'&lt;/td&gt;&lt;td&gt;'</span> + item.address +</span><br><span class="line">      <span class="string">'&lt;/td&gt;/tr&gt;'</span>))</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 渲染到页面</span></span><br><span class="line">  $container.append($table)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$(<span class="string">'#btn-change'</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  data[<span class="number">1</span>].age = <span class="number">30</span></span><br><span class="line">  data[<span class="number">2</span>].address = <span class="string">'深圳'</span></span><br><span class="line">  <span class="comment">// re-render  再次渲染</span></span><br><span class="line">  render(data)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 页面加载完立刻执行（初次渲染）</span></span><br><span class="line">render(data)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 存在的问题就是，没有改变数据的地方，也会重新渲染</span></span><br></pre></td></tr></table></figure>
+<p>遇到的问题：</p>
+<ul>
+<li>DOM 操作是“昂贵的”，JS 运行效率高</li>
+<li>尽量减少 DOM 操作，而不是“推倒重来”</li>
+<li>项目越复杂 ，影响就越严重</li>
+<li>vdom即可解决问题</li>
+</ul>
+<p>vdom：</p>
+<ul>
+<li>用 JS 模拟 DOM 结构</li>
+<li>DOM 变化的对比，放在 JS 层来做（图灵完备语言）</li>
+<li>提高重绘性能</li>
+</ul>
+<h3 id="Vdom如何使用，核心函数有哪些"><a href="#Vdom如何使用，核心函数有哪些" class="headerlink" title="Vdom如何使用，核心函数有哪些"></a>Vdom如何使用，核心函数有哪些</h3><p>snabbdom用法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// &lt;script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom.js"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="comment">// &lt;script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-class.js"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="comment">// &lt;script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-props.js"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="comment">// &lt;script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-style.js"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="comment">// &lt;script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-eventlisteners.js"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="comment">// &lt;script src="https://cdn.bootcss.com/snabbdom/0.7.1/h.js"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="keyword">var</span> snabbdom = <span class="built_in">window</span>.snabbdom</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义 patch</span></span><br><span class="line"><span class="keyword">var</span> patch = snabbdom.init([</span><br><span class="line">  snabbdom_class,</span><br><span class="line">  snabbdom_props,</span><br><span class="line">  snabbdom_style,</span><br><span class="line">  snabbdom_eventlisteners</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义 h</span></span><br><span class="line"><span class="keyword">var</span> h = snabbdom.h</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> container = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成 vnode</span></span><br><span class="line"><span class="keyword">var</span> vnode = h(<span class="string">'ul#list'</span>, &#123;&#125;, [</span><br><span class="line">  h(<span class="string">'li.item'</span>, &#123;&#125;, <span class="string">'Item 1'</span>),</span><br><span class="line">  h(<span class="string">'li.item'</span>, &#123;&#125;, <span class="string">'Item 2'</span>)</span><br><span class="line">])</span><br><span class="line">patch(container, vnode)</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn-change'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 生成 newVnode</span></span><br><span class="line">  <span class="keyword">var</span> newVnode = h(<span class="string">'ul#list'</span>, &#123;&#125;, [</span><br><span class="line">    h(<span class="string">'li.item'</span>, &#123;&#125;, <span class="string">'Item 1'</span>),</span><br><span class="line">    h(<span class="string">'li.item'</span>, &#123;&#125;, <span class="string">'Item B'</span>),</span><br><span class="line">    h(<span class="string">'li.item'</span>, &#123;&#125;, <span class="string">'Item 3'</span>)</span><br><span class="line">  ])</span><br><span class="line">  patch(vnode, newVnode) <span class="comment">// 找出差异，渲染差异</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// jquery例子改造</span></span><br><span class="line"><span class="keyword">var</span> snabbdom = <span class="built_in">window</span>.snabbdom</span><br><span class="line"><span class="comment">// 定义关键函数 patch</span></span><br><span class="line"><span class="keyword">var</span> patch = snabbdom.init([</span><br><span class="line">  snabbdom_class,</span><br><span class="line">  snabbdom_props,</span><br><span class="line">  snabbdom_style,</span><br><span class="line">  snabbdom_eventlisteners</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义关键函数 h</span></span><br><span class="line"><span class="keyword">var</span> h = snabbdom.h</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原始数据</span></span><br><span class="line"><span class="keyword">var</span> data = [&#123;</span><br><span class="line">    name: <span class="string">'张三'</span>,</span><br><span class="line">    age: <span class="string">'20'</span>,</span><br><span class="line">    address: <span class="string">'北京'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'李四'</span>,</span><br><span class="line">    age: <span class="string">'21'</span>,</span><br><span class="line">    address: <span class="string">'上海'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'王五'</span>,</span><br><span class="line">    age: <span class="string">'22'</span>,</span><br><span class="line">    address: <span class="string">'广州'</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"><span class="comment">// 把表头也放在 data 中</span></span><br><span class="line">data.unshift(&#123;</span><br><span class="line">  name: <span class="string">'姓名'</span>,</span><br><span class="line">  age: <span class="string">'年龄'</span>,</span><br><span class="line">  address: <span class="string">'地址'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> container = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 渲染函数</span></span><br><span class="line"><span class="keyword">var</span> vnode</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newVnode = h(<span class="string">'table'</span>, &#123;&#125;, data.map(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tds = []</span><br><span class="line">    <span class="keyword">var</span> i</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> item) &#123;</span><br><span class="line">      <span class="keyword">if</span> (item.hasOwnProperty(i)) &#123;</span><br><span class="line">        tds.push(h(<span class="string">'td'</span>, &#123;&#125;, item[i] + <span class="string">''</span>))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> h(<span class="string">'tr'</span>, &#123;&#125;, tds)</span><br><span class="line">  &#125;))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (vnode) &#123;</span><br><span class="line">    <span class="comment">// re-render</span></span><br><span class="line">    patch(vnode, newVnode)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 初次渲染</span></span><br><span class="line">    patch(container, newVnode)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 存储当前的 vnode 结果</span></span><br><span class="line">  vnode = newVnode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初次渲染</span></span><br><span class="line">render(data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> btnChange = <span class="built_in">document</span>.getElementById(<span class="string">'btn-change'</span>)</span><br><span class="line">btnChange.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  data[<span class="number">1</span>].age = <span class="number">30</span></span><br><span class="line">  data[<span class="number">2</span>].address = <span class="string">'深圳'</span></span><br><span class="line">  <span class="comment">// re-render</span></span><br><span class="line">  render(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>核心API：</p>
+<ul>
+<li>h(‘&lt;标签名&gt;’, {…属性…}, […子元素…])</li>
+<li>h(‘&lt;标签名&gt;’, {…属性…}, ‘….’)</li>
+<li>patch(container, vnode)</li>
+<li>patch(vnode, newVnode) </li>
+</ul>
+<h3 id="了解diff算法吗"><a href="#了解diff算法吗" class="headerlink" title="了解diff算法吗"></a>了解diff算法吗</h3><ul>
+<li>什么是diff算法 <ul>
+<li>linux diff 命令</li>
+<li>git diff （对比两个文件之间差异）</li>
+</ul>
+</li>
+<li>去繁就简<ul>
+<li>diff 算法非常复杂，实现难度很大，源码量很大</li>
+<li>去繁就简，讲明白核心流程，不关心细节</li>
+<li>面试官也大部分都不清楚细节，但是很关心核心流程</li>
+<li>去繁就简之后，依然具有很大挑战性，并不简单</li>
+</ul>
+</li>
+<li>vdom 为何用 diff 算法<ul>
+<li>DOM 操作是“昂贵”的，因此尽量减少 DOM 操作</li>
+<li>找出本次 DOM 必须更新的节点来更新，其他的不更新</li>
+<li>这个“找出”的过程，就需要 diff 算法</li>
+</ul>
+</li>
+<li>diff 算法的实现流程<ul>
+<li>patch(container, vnode)</li>
+<li>patch(vnode, newVnode)</li>
+</ul>
+</li>
+<li>核心逻辑：createElement 和 updateChildren</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// diff 算法实现</span></span><br><span class="line"><span class="comment">// code demo</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createElement</span>(<span class="params">vnode</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tag = vnode.tag <span class="comment">// 'ul'</span></span><br><span class="line">  <span class="keyword">var</span> attrs = vnode.attrs || &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> children = vnode.children || []</span><br><span class="line">  <span class="keyword">if</span> (!tag) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 创建真实的 DOM 元素</span></span><br><span class="line">  <span class="keyword">var</span> elem = <span class="built_in">document</span>.createElement(tag)</span><br><span class="line">  <span class="comment">// 属性</span></span><br><span class="line">  <span class="keyword">var</span> attrName</span><br><span class="line">  <span class="keyword">for</span> (attrName <span class="keyword">in</span> attrs) &#123;</span><br><span class="line">    <span class="keyword">if</span> (attrs.hasOwnProperty(attrName)) &#123;</span><br><span class="line">      <span class="comment">// 给 elem 添加属性</span></span><br><span class="line">      elem.setAttribute(attrName, attrs[attrName])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 子元素</span></span><br><span class="line">  children.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">childVnode</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 给 elem 添加子元素</span></span><br><span class="line">    elem.appendChild(createElement(childVnode)) <span class="comment">// 递归</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 返回真实的 DOM 元素</span></span><br><span class="line">  <span class="keyword">return</span> elem</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// vnode newVnode compare</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateChildren</span>(<span class="params">vnode, newVnode</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> children = vnode.children || []</span><br><span class="line">  <span class="keyword">var</span> newChildren = newVnode.children || []</span><br><span class="line"></span><br><span class="line">  children.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">childVnode, index</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> newChildVnode = newChildren[index]</span><br><span class="line">    <span class="keyword">if</span> (childVnode.tag === newChildVnode.tag) &#123;</span><br><span class="line">      <span class="comment">// 深层次对比，递归</span></span><br><span class="line">      updateChildren(childVnode, newChildVnode)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 替换</span></span><br><span class="line">      replaceNode(childVnode, newChildVnode)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">replaceNode</span>(<span class="params">vnode, newVnode</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> elem = vnode.elem <span class="comment">// 真实的 DOM 节点</span></span><br><span class="line">  <span class="keyword">var</span> newElem = createElement(newVnode)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 替换</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>answer:</p>
+<ul>
+<li>知道什么是 diff 算法，是 linux 的基础命令</li>
+<li>vdom 中应用 diff 算法是为了找出需要更新的节点</li>
+<li>vdom 实现过程，createElement 和 updateChildren</li>
+<li>与核心函数 patch 的关系</li>
+</ul>
+<h2 id="MVVM（Vue）"><a href="#MVVM（Vue）" class="headerlink" title="MVVM（Vue）"></a>MVVM（Vue）</h2><ul>
+<li>如何理解 MVVM</li>
+<li>如何实现 MVVM</li>
+<li>是否解读过 vue 的源码（理解能力 学习能力 自学能力）</li>
+</ul>
+<h2 id="说一下使用-jQuery-和使用框架的区别"><a href="#说一下使用-jQuery-和使用框架的区别" class="headerlink" title="说一下使用 jQuery 和使用框架的区别"></a>说一下使用 jQuery 和使用框架的区别</h2><p>todolist</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// jquery</span></span><br><span class="line"><span class="comment">// html</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// &lt;div&gt;</span></span><br><span class="line"><span class="comment">//   &lt;input type="text" name="" id="txt-title"&gt;</span></span><br><span class="line"><span class="comment">//   &lt;button id="btn-submit"&gt;submit&lt;/button&gt;</span></span><br><span class="line"><span class="comment">// &lt;/div&gt;</span></span><br><span class="line"><span class="comment">// &lt;div&gt;</span></span><br><span class="line"><span class="comment">//   &lt;ul id="ul-list"&gt;&lt;/ul&gt;</span></span><br><span class="line"><span class="comment">// &lt;/div&gt;</span></span><br><span class="line"><span class="keyword">var</span> $txtTitle = $(<span class="string">'#txt-title'</span>)</span><br><span class="line"><span class="keyword">var</span> $btnSubmit = $(<span class="string">'#btn-submit'</span>)</span><br><span class="line"><span class="keyword">var</span> $ulList = $(<span class="string">'#ul-list'</span>)</span><br><span class="line">$btnSubmit.click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> title = $txtTitle.val()</span><br><span class="line">  <span class="keyword">if</span> (!title) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> $li = $(<span class="string">'&lt;li&gt;'</span> + title + <span class="string">'&lt;/li&gt;'</span>)</span><br><span class="line">  $ulList.append($li)</span><br><span class="line">  $txtTitle.val(<span class="string">''</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// vue</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// &lt;div id="app"&gt;</span></span><br><span class="line"><span class="comment">//   &lt;div&gt;</span></span><br><span class="line"><span class="comment">//     &lt;input v-model="title"&gt;</span></span><br><span class="line"><span class="comment">//     &lt;button v-on:click="add"&gt;submit&lt;/button&gt;</span></span><br><span class="line"><span class="comment">//   &lt;/div&gt;</span></span><br><span class="line"><span class="comment">//   &lt;div&gt;</span></span><br><span class="line"><span class="comment">//     &lt;ul&gt;</span></span><br><span class="line"><span class="comment">//       &lt;li v-for="item in list"&gt;&#123;&#123;item&#125;&#125;&lt;/li&gt;</span></span><br><span class="line"><span class="comment">//     &lt;/ul&gt;</span></span><br><span class="line"><span class="comment">//   &lt;/div&gt;</span></span><br><span class="line"><span class="comment">// &lt;/div&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// data 独立</span></span><br><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">  title: <span class="string">''</span>,</span><br><span class="line">  list: []</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 初始化 Vue 实例</span></span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: data,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    add: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.list.push(<span class="keyword">this</span>.title)</span><br><span class="line">      <span class="keyword">this</span>.title = <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">with(this)&#123;  // this 就是 vm</span></span><br><span class="line"><span class="comment">    return _c(</span></span><br><span class="line"><span class="comment">        'div',</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            attrs:&#123;"id":"app"&#125;</span></span><br><span class="line"><span class="comment">        &#125;,</span></span><br><span class="line"><span class="comment">        [</span></span><br><span class="line"><span class="comment">            _c(</span></span><br><span class="line"><span class="comment">                'div',</span></span><br><span class="line"><span class="comment">                [</span></span><br><span class="line"><span class="comment">                    _c(</span></span><br><span class="line"><span class="comment">                        'input',</span></span><br><span class="line"><span class="comment">                        &#123;</span></span><br><span class="line"><span class="comment">                            directives:[</span></span><br><span class="line"><span class="comment">                                &#123;</span></span><br><span class="line"><span class="comment">                                    name:"model",</span></span><br><span class="line"><span class="comment">                                    rawName:"v-model",</span></span><br><span class="line"><span class="comment">                                    value:(title),</span></span><br><span class="line"><span class="comment">                                    expression:"title"</span></span><br><span class="line"><span class="comment">                                &#125;</span></span><br><span class="line"><span class="comment">                            ],</span></span><br><span class="line"><span class="comment">                            domProps:&#123;</span></span><br><span class="line"><span class="comment">                                "value":(title)</span></span><br><span class="line"><span class="comment">                            &#125;,</span></span><br><span class="line"><span class="comment">                            on:&#123;</span></span><br><span class="line"><span class="comment">                                "input":function($event)&#123;</span></span><br><span class="line"><span class="comment">                                    if($event.target.composing)return;</span></span><br><span class="line"><span class="comment">                                    title=$event.target.value</span></span><br><span class="line"><span class="comment">                                &#125;</span></span><br><span class="line"><span class="comment">                            &#125;</span></span><br><span class="line"><span class="comment">                        &#125;</span></span><br><span class="line"><span class="comment">                    ),</span></span><br><span class="line"><span class="comment">                    _v(" "),</span></span><br><span class="line"><span class="comment">                    _c(</span></span><br><span class="line"><span class="comment">                        'button',</span></span><br><span class="line"><span class="comment">                        &#123;</span></span><br><span class="line"><span class="comment">                            on:&#123;</span></span><br><span class="line"><span class="comment">                                "click":add</span></span><br><span class="line"><span class="comment">                            &#125;</span></span><br><span class="line"><span class="comment">                        &#125;,</span></span><br><span class="line"><span class="comment">                        [_v("submit")]</span></span><br><span class="line"><span class="comment">                    )</span></span><br><span class="line"><span class="comment">                ]</span></span><br><span class="line"><span class="comment">            ),</span></span><br><span class="line"><span class="comment">            _v(" "),</span></span><br><span class="line"><span class="comment">            _c('div',</span></span><br><span class="line"><span class="comment">                [</span></span><br><span class="line"><span class="comment">                    _c(</span></span><br><span class="line"><span class="comment">                        'ul',</span></span><br><span class="line"><span class="comment">                        _l((list),function(item)&#123;return _c('li',[_v(_s(item))])&#125;)</span></span><br><span class="line"><span class="comment">                    )</span></span><br><span class="line"><span class="comment">                ]</span></span><br><span class="line"><span class="comment">            )</span></span><br><span class="line"><span class="comment">        ]</span></span><br><span class="line"><span class="comment">    )</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>区别：</p>
+<ul>
+<li>数据和视图的分离，解耦（开放封闭原则）</li>
+<li>以数据驱动视图，只关心数据变化，DOM 操作被封装</li>
+</ul>
+<h3 id="说一下对-MVVM-的理解"><a href="#说一下对-MVVM-的理解" class="headerlink" title="说一下对 MVVM 的理解"></a>说一下对 MVVM 的理解</h3><p>MVC：</p>
+<ul>
+<li>M：Model 数据</li>
+<li>V：View 视图、界面</li>
+<li>C：Controller 控制器、逻辑处理</li>
+</ul>
+<p>MVVM：</p>
+<ul>
+<li>Model：模型、数据</li>
+<li>View：视图、模板（视图和模型是分离的）</li>
+<li>ViewModel：连接 Model 和 View</li>
+</ul>
+<p>关于 ViewModel</p>
+<ul>
+<li>MVVM 不算是一种创新</li>
+<li>但其中的 ViewModel 确实一种创新</li>
+<li>真正结合前端场景应用的创建</li>
+</ul>
+<p>解答：</p>
+<ul>
+<li>MVVM：Model View ViewModel</li>
+<li>三者之间的联系、以及如何对应到各段代码</li>
+<li>ViewModel 的理解，联系 View 和 Model</li>
+</ul>
+<p>MVVM三要素：</p>
+<ul>
+<li>响应式：vue 如何监听到 data 的每个属性变化</li>
+<li>模板引擎：Vue 的模板如何被解析，指令如何处理</li>
+<li>渲染：vue 的模板如何被渲染成html？以及渲染过程<h3 id="vue-中如何实现响应式"><a href="#vue-中如何实现响应式" class="headerlink" title="vue 中如何实现响应式"></a>vue 中如何实现响应式</h3></li>
+<li>什么是响应式<ul>
+<li>修改 data 属性之后，vue 立刻监听到</li>
+<li>data 属性被代理到 vm 中</li>
+</ul>
+</li>
+<li>Object.defineProperty</li>
+<li>模拟</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// var obj = &#123;</span></span><br><span class="line"><span class="comment">//     name: 'zhangsan',</span></span><br><span class="line"><span class="comment">//     age: 25</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">// console.log(obj)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// var obj = &#123;&#125;</span></span><br><span class="line"><span class="comment">// var _name = 'shangsan'</span></span><br><span class="line"><span class="comment">// Object.defineProperty(obj, 'name', &#123;</span></span><br><span class="line"><span class="comment">//     get: function () &#123;</span></span><br><span class="line"><span class="comment">//         console.log('get', _name) // 监听</span></span><br><span class="line"><span class="comment">//         return _name</span></span><br><span class="line"><span class="comment">//     &#125;,</span></span><br><span class="line"><span class="comment">//     set: function (newVal) &#123;</span></span><br><span class="line"><span class="comment">//         console.log('set', newVal)  // 监听</span></span><br><span class="line"><span class="comment">//         _name = newVal</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// var vm = new Vue(&#123;</span></span><br><span class="line"><span class="comment">//     el: '#app',</span></span><br><span class="line"><span class="comment">//     data: &#123;</span></span><br><span class="line"><span class="comment">//         name: 'zhangsan',</span></span><br><span class="line"><span class="comment">//         age: 20</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> vm = &#123;&#125;</span><br><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">  name: <span class="string">'zhangsan'</span>,</span><br><span class="line">  age: <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> key, value</span><br><span class="line"><span class="keyword">for</span> (key <span class="keyword">in</span> data) &#123;</span><br><span class="line">  (<span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123; <span class="comment">// 保证 key 的独立作用域</span></span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(vm, key, &#123;</span><br><span class="line">      get: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'get'</span>, data[key]) <span class="comment">// 监听</span></span><br><span class="line">        <span class="keyword">return</span> data[key]</span><br><span class="line">      &#125;,</span><br><span class="line">      set: <span class="function"><span class="keyword">function</span> (<span class="params">newVal</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'set'</span>, newVal) <span class="comment">// 监听</span></span><br><span class="line">        data[key] = newVal</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)(key)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>答案：</p>
+<ul>
+<li>关键是理解 Object.defineProperty</li>
+<li>将 data 的属性代理到 vm 上</li>
+</ul>
+<h3 id="vue-中如何解析模板"><a href="#vue-中如何解析模板" class="headerlink" title="vue 中如何解析模板"></a>vue 中如何解析模板</h3><ul>
+<li>模板是什么<ul>
+<li>本质：字符串</li>
+<li>有逻辑，如 v-if v-for 等</li>
+<li>与 html 格式很想，但有很大区别</li>
+<li>最终还要转换为 html 来显示</li>
+<li>分割线</li>
+<li>模板最终必须转换成 JS 代码，因为</li>
+<li>有逻辑（v-if v-for），必须用 JS 才能实现</li>
+<li>转换为 html 渲染页面，必须用 JS 才能实现</li>
+<li>因此，模板最终要转换成一个 JS 函数（render 函数）</li>
+</ul>
+</li>
+<li>render 函数<ul>
+<li>模板中所有信息都包含在了 render 函数中</li>
+<li>this 即 vm</li>
+<li>price 即 this.price 即 vm.price，即 data 中的 price</li>
+<li>_c 即 this._c 即 vm._c</li>
+<li>从哪里可以看到 render 函数？(源码查找code.render 打印出来)</li>
+<li>复杂一点的例子，render 函数是什么样子的？（参考上面的 todo-list）</li>
+<li>vm._c 是什么？（创建元素）</li>
+</ul>
+</li>
+<li>render 函数与 vdom<ul>
+<li>vm._c 其实就相当于 snabbdom 中的 h 函数</li>
+<li>render 函数执行之后，返回的是 vnode</li>
+<li>updateComponent 中实现了 vdom 的 patch</li>
+<li>页面首次渲染执行 updateComponent</li>
+<li>data 中每次修改属性，执行 updateComponent</li>
+</ul>
+</li>
+</ul>
+<p>根据 todo-list demo 的 render 函数：</p>
+<ul>
+<li>v-model 是怎么实现的？</li>
+<li>v-on:click 是怎么实现的？</li>
+<li>v-for 是怎么实现的？</li>
+</ul>
+<p>render函数解决了模板中“逻辑”（v-for v-if）的问题<br>还剩下模板生成 html 的问题<br>另外，vm._c 是什么？render 函数返回了什么？</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// html</span></span><br><span class="line"><span class="comment">// &lt;div id="app"&gt;</span></span><br><span class="line"><span class="comment">//   &lt;p&gt;&#123;&#123;price&#125;&#125;&lt;/p&gt;</span></span><br><span class="line"><span class="comment">// &lt;/div&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// js</span></span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    price: <span class="number">100</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下是手写的 ppt 中的 render 函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">with</span>(<span class="keyword">this</span>) &#123; <span class="comment">// this 就是 vm</span></span><br><span class="line">    <span class="keyword">return</span> _c(</span><br><span class="line">      <span class="string">'div'</span>, &#123;</span><br><span class="line">        attrs: &#123;</span><br><span class="line">          <span class="string">'id'</span>: <span class="string">'app'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;, [</span><br><span class="line">        _c(<span class="string">'p'</span>, [_v(_s(price))])</span><br><span class="line">      ]</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> vm._c(</span><br><span class="line">    <span class="string">'div'</span>, &#123;</span><br><span class="line">      attrs: &#123;</span><br><span class="line">        <span class="string">'id'</span>: <span class="string">'app'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, [</span><br><span class="line">      vm._c(<span class="string">'p'</span>, [vm._v(vm._s(vm.price))])</span><br><span class="line">    ]</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="vue-的整个实现流程"><a href="#vue-的整个实现流程" class="headerlink" title="vue 的整个实现流程"></a>vue 的整个实现流程</h3><ul>
+<li>模板：字符串，有逻辑，嵌入 JS 变量……</li>
+<li>模板必须转换为 JS 代码（有逻辑、渲染 html、JS 变量）</li>
+<li>render 函数是什么样子的</li>
+<li>render 函数执行是返回 vnode</li>
+<li>updateComponent</li>
+</ul>
+<p>流程：</p>
+<ul>
+<li>第一步：解析模板成 render 函数<ul>
+<li>with 的用法</li>
+<li>模板中的所有信息都被 render 函数包含</li>
+<li>模板中用到的 data 中的属性，都变成了 JS 变量</li>
+<li>模板中的 v-model  v-for  v-on 都变成了 JS 逻辑</li>
+<li>render 函数返回 vnode </li>
+</ul>
+</li>
+<li>第二步：响应式开始监听<ul>
+<li>Object.defineProperty</li>
+<li>将 data 的属性代理到 vm 上</li>
+</ul>
+</li>
+<li>第三步：首次渲染，显示页面，且绑定依赖<ul>
+<li>初次渲染，执行 updateComponent，执行 vm._render()</li>
+<li>执行 render 函数，会访问到 vm.list vm.title</li>
+<li>会被响应式的 get 方法监听到（后面详细讲）</li>
+<li>执行 updateComponent ，会走到 vdom 的 patch 方法</li>
+<li>patch 将 vnode 渲染成 DOM ，初次渲染完成</li>
+</ul>
+</li>
+<li>第四步：data 属性变化，触发 rerender<ul>
+<li>修改属性，被响应式的 set 监听到</li>
+<li>set 中执行 updateComponent</li>
+<li>updateComponent 重新执行 vm._render()</li>
+<li>生成的 vnode 和 prevVnode ，通过 patch 进行对比</li>
+<li>渲染到 html 中</li>
+</ul>
+</li>
+</ul>
+<h2 id="组件化-React"><a href="#组件化-React" class="headerlink" title="组件化 React"></a>组件化 React</h2><h3 id="说一下对组件化的理解"><a href="#说一下对组件化的理解" class="headerlink" title="说一下对组件化的理解"></a>说一下对组件化的理解</h3><ul>
+<li>组件化的封装<ul>
+<li>视图</li>
+<li>数据</li>
+<li>变化的逻辑（数据驱动视图变化）</li>
+</ul>
+</li>
+<li>组建的复用<ul>
+<li>props 传递</li>
+<li>复用</li>
+</ul>
+</li>
+</ul>
+<h3 id="JSX-本质是什么"><a href="#JSX-本质是什么" class="headerlink" title="JSX 本质是什么"></a>JSX 本质是什么</h3><ul>
+<li>JSX 语法<ul>
+<li>html 形式</li>
+<li>引入 JS 变量和表达式</li>
+<li>if…else…</li>
+<li>循环</li>
+<li>style 和 className</li>
+<li>事件</li>
+</ul>
+</li>
+<li>JSX 解析成 JS<ul>
+<li>JSX 其实是语法糖</li>
+<li>开发环境会将 JSX 编译成 JS 代码</li>
+<li>JSX 的写法大大降低了学习成本和编码工作量</li>
+<li>同时，JSX 也会增加 debug 成本</li>
+</ul>
+</li>
+<li>独立的标准<ul>
+<li>JSX 是 React 引入的，但不是 React 独有的</li>
+<li>React 已经将它作为一个独立标准开放，其他项目也可用</li>
+<li>React.createElement 是可以自定义修改的</li>
+<li>说明：本身功能已经完备；和其他标准兼容和扩展性没问题</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// jsx test</span></span><br><span class="line"><span class="comment">// devDependencies: babel-plugin-transform-react-jsx</span></span><br><span class="line"><span class="comment">// .babelrc</span></span><br><span class="line"><span class="comment">// &#123;"plugins": ["transform-react-jsx"]&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// demo.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* @jsx h */</span></span><br><span class="line"><span class="comment">// 上面这段注释，用于更改 React.cerateElement()函数名称</span></span><br><span class="line"><span class="comment">// var profile = &lt;div&gt;</span></span><br><span class="line"><span class="comment">//   &lt;img src="avatar.png" className="profile" /&gt;</span></span><br><span class="line"><span class="comment">//   &lt;h3&gt;&#123;[user.firstName, user.lastName].join(' ')&#125;&lt;/h3&gt;</span></span><br><span class="line"><span class="comment">// &lt;/div&gt;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// class Input extends Component &#123;</span></span><br><span class="line"><span class="comment">//   render() &#123;</span></span><br><span class="line"><span class="comment">//     return (</span></span><br><span class="line"><span class="comment">//       &lt;div&gt;</span></span><br><span class="line"><span class="comment">//           &lt;input value=&#123;this.state.title&#125; onChange=&#123;this.changeHandle.bind(this)&#125;/&gt;</span></span><br><span class="line"><span class="comment">//           &lt;button onClick=&#123;this.clickHandle.bind(this)&#125;&gt;submit&lt;/button&gt;</span></span><br><span class="line"><span class="comment">//       &lt;/div&gt;</span></span><br><span class="line"><span class="comment">//     );</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 命令行输入：babel --plugins trnasform-react-jsx demo.jsx</span></span><br></pre></td></tr></table></figure>
+<h3 id="JSX-和-vdom-的关系"><a href="#JSX-和-vdom-的关系" class="headerlink" title="JSX 和 vdom 的关系"></a>JSX 和 vdom 的关系</h3><ul>
+<li>为何需要 vdom<ul>
+<li>vdom 是 React 初次推广开来的，结合 JSX</li>
+<li>JSX 就是模板，最终要渲染成 html</li>
+<li>初次渲染 + 修改 state 后的 re-render</li>
+<li>正好符合 vdom 的应用场景</li>
+</ul>
+</li>
+<li>React.createElement 和 h 都生成 vndoe</li>
+<li>何时 patch ？<ul>
+<li>初次渲染 - ReactDOM.render(<app>, container)</app></li>
+<li>会触发 patch(container, vnode)</li>
+<li>re-render - setState</li>
+<li>会触发 patch(vnode, newVnode)</li>
+</ul>
+</li>
+<li>自定义组件的解析<ul>
+<li>‘div’ - 直接渲染 <code>&lt;div&gt;</code> 即可，vdom 可以做到</li>
+<li>Input 和 List ，是自定义组件（class），vdom 默认不认识</li>
+<li>因此 Input 和 List 定义的时候必须声明 render 函数</li>
+<li>根据 props 初始化实例，然后执行实例的 render 函数</li>
+<li>render 函数返回的还是 vnode对象</li>
+</ul>
+</li>
+</ul>
+<h3 id="说一下-setState-的过程"><a href="#说一下-setState-的过程" class="headerlink" title="说一下 setState 的过程"></a>说一下 setState 的过程</h3><ul>
+<li>setState 的异步（为何要异步）<ul>
+<li>可能会一次执行多次</li>
+<li>你无法规定、限制用户如何使用 setState</li>
+<li>没必要每次 setState 都重新渲染</li>
+<li>即便每次重新渲染，用户也看不到中间的效果</li>
+<li>只看到最后的结果即可</li>
+</ul>
+</li>
+<li>vue 修改属性也是异步</li>
+<li>setState 的过程<ul>
+<li>每个组件实例，都有 renderComponent 方法</li>
+<li>执行 renderComponent  会重新执行实例的 render</li>
+<li>render 函数返回 newVnode ，然后拿到 preVnode </li>
+<li>执行 patch(preVnode, newVnode)  </li>
+</ul>
+</li>
+</ul>
+<h3 id="阐述自己对-React-和-vue-的认识"><a href="#阐述自己对-React-和-vue-的认识" class="headerlink" title="阐述自己对 React 和 vue 的认识"></a>阐述自己对 React 和 vue 的认识</h3><ul>
+<li>两者的本质区别<ul>
+<li>vue：本质是 MVVM 框架，有 MVC 发展而来</li>
+<li>React：本质是前端组件化框架，由后端组件化发展而来</li>
+<li>但这并不妨碍他们两者都能实现相同的功能</li>
+</ul>
+</li>
+<li>模板的区别<ul>
+<li>vue - 使用模板（最初由 angular 提出）</li>
+<li>React - 使用 JSX</li>
+<li>模板语法上，我更加倾向于 JSX</li>
+<li>模板分离上，我更加倾向于 vue</li>
+<li>模板应该和 JS 逻辑分离</li>
+<li>回顾“开放封闭原则”</li>
+</ul>
+</li>
+<li>组件化的区别<ul>
+<li>React 本身就是组件化，没有组件化就不是 React</li>
+<li>vue 也支持组件化，不过是在 MVVM 上的扩展</li>
+<li>查阅 vue 组件化的文档，洋洋洒洒很多（侧面反映）</li>
+<li>对于组件化，我更加倾向于 React ，做的彻底而清晰</li>
+</ul>
+</li>
+<li>两者共同点<ul>
+<li>都支持组件化</li>
+<li>都是数据驱动试图</li>
+</ul>
+</li>
+</ul>
+<p>问题解答：</p>
+<ul>
+<li>国内使用，首推 vue 。文档更易读、易学、社区够大</li>
+<li>如果团队水平较高，推荐使用 React 。组件化和 JSX</li>
+</ul>
+<h2 id="hybrid"><a href="#hybrid" class="headerlink" title="hybrid"></a>hybrid</h2><ul>
+<li>移动端占大部分流量，已经远远超过 PC</li>
+<li>一线互联网公司都有自己的 App</li>
+<li>这些 App 中有很大比例的前端代码（不要惊讶）</li>
+<li>拿微信举例，你每天浏览微信的内容，多少是前端？</li>
+</ul>
+<h3 id="hybrid-是什么，为何用-hybrid？"><a href="#hybrid-是什么，为何用-hybrid？" class="headerlink" title="hybrid 是什么，为何用 hybrid？"></a>hybrid 是什么，为何用 hybrid？</h3><ul>
+<li>hybrid 文字解释<ul>
+<li>hybrid 即“混合”，即前端和客户端的混合开发</li>
+<li>需前端开发人员和客户端开发人员配合完成</li>
+<li>某些环节也可能涉及到 server 端</li>
+<li>PS：不要以为自己的前端就可以不理会客户端的知识</li>
+</ul>
+</li>
+<li>存在价值，为何会用 hybrid<ul>
+<li>可以快速迭代更新【关键】（无需 app 审核，思考为何？）</li>
+<li>体验流畅（和 NA 的体验基本类似）</li>
+<li>减少开发和沟通成本，双端公用一套代码</li>
+</ul>
+</li>
+<li>webview<ul>
+<li>是 app 中的一个组件（ app 可以有 webview ，也可以没有）</li>
+<li>用于加载 h5 页面，即一个小型的浏览器内核</li>
+</ul>
+</li>
+<li>file:// 协议<ul>
+<li>其实在一开始接触 html 开发，就已经使用了 file 协议</li>
+<li>只不过你当时没有“协议”“标准”等这些概念</li>
+<li>再次强调“协议”“标准”的重要性！！！</li>
+<li>file 协议：本地文件，快</li>
+<li>http(s) 协议：网络加载，慢</li>
+</ul>
+</li>
+<li>hybrid 实现流程<ul>
+<li>以下是前言：</li>
+<li>不是所有场景都适合使用 hybrid：</li>
+<li>使用 NA ：体验要求极致，变化不频繁（如头条的首页）</li>
+<li>使用 hybrid ：体验要求高，变化频繁（如头条的新闻详情页）</li>
+<li>使用 h5 ：体验无要求，不常用（如举报、反馈等页面）</li>
+<li>以下是具体流程</li>
+<li>前端做好静态页面（html js css），将文件交给客户端</li>
+<li>客户端拿到前端静态页面，以文件形式存储在 app 中</li>
+<li>客户端在一个 webview 中</li>
+<li>使用 file 协议加载静态页面</li>
+</ul>
+</li>
+</ul>
+<h3 id="介绍一下-hybrid-更新和上线的流程？"><a href="#介绍一下-hybrid-更新和上线的流程？" class="headerlink" title="介绍一下 hybrid 更新和上线的流程？"></a>介绍一下 hybrid 更新和上线的流程？</h3><ul>
+<li>分版本，有版本号，如 201803211015</li>
+<li>将静态文件压缩成 zip 包，上传到服务端</li>
+<li>客户端每次启动，都去服务端检查版本号</li>
+<li>如果服务端版本号大于客户端版本号，就去下载最新的 zip 包</li>
+<li>下载完之后解压包，然后将现有文件覆盖</li>
+</ul>
+<h3 id="hybrid-和-h5-的主要区别"><a href="#hybrid-和-h5-的主要区别" class="headerlink" title="hybrid 和 h5 的主要区别"></a>hybrid 和 h5 的主要区别</h3><ul>
+<li>优点<ul>
+<li>体验更好，跟 NA 体验基本一致</li>
+<li>可快速迭代，无需 app 审核【关键】</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>开发成本高。联调、测试、查 bug 都比较麻烦</li>
+<li>运维成本高。参考此前讲过的更新上线的流程</li>
+</ul>
+</li>
+<li>适用的场景<ul>
+<li>hybrid ：产品的稳定功能，体验要求高，迭代频繁</li>
+<li>h5 ：单词次运营活动（如 xx 红包）或不常用功能</li>
+</ul>
+</li>
+</ul>
+<h3 id="前端-JS-和客户端如何通讯？"><a href="#前端-JS-和客户端如何通讯？" class="headerlink" title="前端 JS 和客户端如何通讯？"></a>前端 JS 和客户端如何通讯？</h3><p><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115" target="_blank" rel="noopener">微信JSDK</a><br><img src="https://user-images.githubusercontent.com/20960902/44129348-558ea85a-a07a-11e8-9059-63df6addcc63.png" alt="20180815105719"></p>
+<ul>
+<li>JS 和客户端通讯的基本形式<ul>
+<li>JS 访问客户端能力，传递参数和回调函数</li>
+<li>客户端通过回调函数返回内容</li>
+</ul>
+</li>
+<li>schema 协议简介和使用<ul>
+<li>schema 协议 —— 前端和客户端通讯的约定</li>
+<li>使用iframe （类似JSONP）<br>例如：weixin://dl/scan 扫一扫</li>
+</ul>
+</li>
+<li>schema 使用的封装</li>
+<li>内置上线  <ul>
+<li>将以上封装的代码打包，叫做 invoke.js，内置到客户端</li>
+<li>客户端每次启动 webview ，都默认执行 invoke.js </li>
+<li>本地加载，免去网络加载的时间，更快</li>
+<li>本地加载，没有网络请求，黑客看不到 schema 协议，更安全</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// schema 使用的封装</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// html</span></span><br><span class="line"><span class="comment">// &lt;button id="btn1"&gt;扫一扫&lt;/button&gt;</span></span><br><span class="line"><span class="comment">// &lt;button id="btn2"&gt;分享&lt;/button&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// &lt;script type="text/javascript" src="./invoke.js"&gt;&lt;/script&gt;</span></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">window, undefined</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 调用 schema 的封装</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">_invoke</span>(<span class="params">action, data, callback</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 拼装 schema 协议</span></span><br><span class="line">    <span class="keyword">var</span> schema = <span class="string">'myapp://utils/'</span> + action</span><br><span class="line">    schema += schema.indexOf(<span class="string">'?'</span>) === <span class="number">-1</span> ? <span class="string">'?'</span> : <span class="string">'&amp;'</span></span><br><span class="line">      <span class="comment">// 拼接参数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> data) &#123;</span><br><span class="line">      <span class="keyword">if</span> (data.hasOwnProperty(key)) &#123;</span><br><span class="line">        schema += key + <span class="string">'='</span> + data[key] + <span class="string">'&amp;'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">      <span class="comment">// 处理 callback</span></span><br><span class="line">    callbackName = action + <span class="built_in">Date</span>.now()</span><br><span class="line">    <span class="built_in">window</span>[callbackName] = callback</span><br><span class="line">    schema += <span class="string">'callback='</span> + callbackName</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 触发</span></span><br><span class="line">    <span class="keyword">var</span> iframe = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>)</span><br><span class="line">    iframe.style.display = <span class="string">'none'</span></span><br><span class="line">    iframe.src = schema <span class="comment">// 重要！</span></span><br><span class="line">    <span class="keyword">var</span> body = <span class="built_in">document</span>.body</span><br><span class="line">    body.appendChild(iframe)</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      body.removeChild(iframe)</span><br><span class="line">      iframe = <span class="literal">null</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 暴露到全局变量</span></span><br><span class="line">  <span class="built_in">window</span>.invoke = &#123;</span><br><span class="line">    share: <span class="function"><span class="keyword">function</span>(<span class="params">data, callback</span>) </span>&#123;</span><br><span class="line">      _invoke(<span class="string">'share'</span>, data, callback)</span><br><span class="line">    &#125;,</span><br><span class="line">    scan: <span class="function"><span class="keyword">function</span>(<span class="params">data, callback</span>) </span>&#123;</span><br><span class="line">      _invoke(<span class="string">'scan'</span>, data, callback)</span><br><span class="line">    &#125;</span><br><span class="line">    login: <span class="function"><span class="keyword">function</span>(<span class="params">data, callback</span>) </span>&#123;</span><br><span class="line">      _invoke(<span class="string">'login'</span>, data, callback)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;)(<span class="built_in">window</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="你热爱编程吗"><a href="#你热爱编程吗" class="headerlink" title="你热爱编程吗"></a>你热爱编程吗</h2><ul>
+<li>读书<ul>
+<li>构建知识体系最好的方式</li>
+<li>自己买书</li>
+<li>看书有技巧（标记、有痕迹）</li>
+<li>看完书要总结（读书笔记、思维导图）</li>
+</ul>
+</li>
+<li>写博客</li>
+<li>做开源</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_qrcode.jpg" alt="amenzai wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫上面二维码，加我微信。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>欢迎各位老板打赏</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay_qrcode.jpg" alt="amenzai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay_qrcode.jpg" alt="amenzai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"><i class="fa fa-tag"></i> 面试</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/14/interview2/" rel="next" title="前端 JS 中级面试">
+                <i class="fa fa-chevron-left"></i> 前端 JS 中级面试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/10/webpack/" rel="prev" title="webpack 深入浅出">
+                webpack 深入浅出 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcxNC8xNjI0MQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="amenzai" />
+          <p class="site-author-name" itemprop="name">amenzai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/amenzai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/amenzai" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/amenzai1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="github" target="_blank">github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6-常用语法"><span class="nav-number">1.</span> <span class="nav-text">ES6 常用语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模块化的使用和编译环境"><span class="nav-number">1.1.</span> <span class="nav-text">模块化的使用和编译环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-与-JS-构造函数的区别"><span class="nav-number">1.2.</span> <span class="nav-text">Class 与 JS 构造函数的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-的用法"><span class="nav-number">1.3.</span> <span class="nav-text">Promise 的用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6-其他常用功能"><span class="nav-number">1.4.</span> <span class="nav-text">ES6 其他常用功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型高级应用"><span class="nav-number">2.</span> <span class="nav-text">原型高级应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原型如何实际应用"><span class="nav-number">2.1.</span> <span class="nav-text">原型如何实际应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型如何满足扩展"><span class="nav-number">2.2.</span> <span class="nav-text">原型如何满足扩展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步全面讲解"><span class="nav-number">3.</span> <span class="nav-text">异步全面讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是单线程，和异步有何关系？什么是-event-loop"><span class="nav-number">3.1.</span> <span class="nav-text">什么是单线程，和异步有何关系？什么是 event-loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目前-JS-解决异步的方案有哪些"><span class="nav-number">3.2.</span> <span class="nav-text">目前 JS 解决异步的方案有哪些</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果只用-jQuery-如何解决异步"><span class="nav-number">3.3.</span> <span class="nav-text">如果只用 jQuery 如何解决异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-的标准"><span class="nav-number">3.4.</span> <span class="nav-text">Promise 的标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#async-await-的使用"><span class="nav-number">3.5.</span> <span class="nav-text">async / await 的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟DOM"><span class="nav-number">4.</span> <span class="nav-text">虚拟DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Vdom，为何要用Vdom"><span class="nav-number">4.1.</span> <span class="nav-text">什么是Vdom，为何要用Vdom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vdom如何使用，核心函数有哪些"><span class="nav-number">4.2.</span> <span class="nav-text">Vdom如何使用，核心函数有哪些</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#了解diff算法吗"><span class="nav-number">4.3.</span> <span class="nav-text">了解diff算法吗</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVVM（Vue）"><span class="nav-number">5.</span> <span class="nav-text">MVVM（Vue）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说一下使用-jQuery-和使用框架的区别"><span class="nav-number">6.</span> <span class="nav-text">说一下使用 jQuery 和使用框架的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#说一下对-MVVM-的理解"><span class="nav-number">6.1.</span> <span class="nav-text">说一下对 MVVM 的理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-中如何实现响应式"><span class="nav-number">6.2.</span> <span class="nav-text">vue 中如何实现响应式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-中如何解析模板"><span class="nav-number">6.3.</span> <span class="nav-text">vue 中如何解析模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-的整个实现流程"><span class="nav-number">6.4.</span> <span class="nav-text">vue 的整个实现流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件化-React"><span class="nav-number">7.</span> <span class="nav-text">组件化 React</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#说一下对组件化的理解"><span class="nav-number">7.1.</span> <span class="nav-text">说一下对组件化的理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSX-本质是什么"><span class="nav-number">7.2.</span> <span class="nav-text">JSX 本质是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSX-和-vdom-的关系"><span class="nav-number">7.3.</span> <span class="nav-text">JSX 和 vdom 的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说一下-setState-的过程"><span class="nav-number">7.4.</span> <span class="nav-text">说一下 setState 的过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阐述自己对-React-和-vue-的认识"><span class="nav-number">7.5.</span> <span class="nav-text">阐述自己对 React 和 vue 的认识</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hybrid"><span class="nav-number">8.</span> <span class="nav-text">hybrid</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hybrid-是什么，为何用-hybrid？"><span class="nav-number">8.1.</span> <span class="nav-text">hybrid 是什么，为何用 hybrid？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍一下-hybrid-更新和上线的流程？"><span class="nav-number">8.2.</span> <span class="nav-text">介绍一下 hybrid 更新和上线的流程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hybrid-和-h5-的主要区别"><span class="nav-number">8.3.</span> <span class="nav-text">hybrid 和 h5 的主要区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端-JS-和客户端如何通讯？"><span class="nav-number">8.4.</span> <span class="nav-text">前端 JS 和客户端如何通讯？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你热爱编程吗"><span class="nav-number">9.</span> <span class="nav-text">你热爱编程吗</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amenzai</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
